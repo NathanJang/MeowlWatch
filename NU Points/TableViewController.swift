@@ -26,10 +26,9 @@ class TableViewController: UITableViewController {
         self.queryResult = Datastore.lastQuery
 
         self.refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
 
-        refreshControl!.beginRefreshing()
-        refresh(sender: nil)
+        beginRefrshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -116,33 +115,69 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 2 {
-            if let error = queryResult?.error {
-                switch error {
-                case .connectionError:
-                    return "Unable to connect to the server. Please make sure your device is connected to the internet."
-                case .authenticationError:
-                    return "Unable to login to server. Please tap \"Account\" to make sure your NetID and password are correct."
-                case .parseError:
-                    return "An unknown error has occurred. Please contact the developer of this app."
-                }
+            if !Datastore.canQuery {
+                return "Please tap \"Account\" to login to Northwestern."
+            }
+            if queryResult?.error != nil {
+                return queryResult?.errorString
             } else {
                 return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
             }
         } else { return nil }
     }
 
-    func refresh(sender: Any?) {
+    func beginRefrshing() {
+        self.refreshControl!.beginRefreshing()
+        refresh()
+    }
+
+    func refresh() {
         if Datastore.canQuery {
-            Datastore.query() {queryResult in
+            Datastore.query {queryResult in
                 self.queryResult = queryResult
                 self.tableView!.reloadData()
                 self.refreshControl!.endRefreshing()
+
+                if queryResult.error != nil {
+                    let alertController = UIAlertController(title: "Oops!", message: queryResult.errorString, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
+        } else {
+            refreshControl!.endRefreshing()
         }
     }
 
     func didTapAccountButton(sender: Any?) {
+        showLoginAlert()
+    }
 
+    func showLoginAlert() {
+        let alertController = UIAlertController(title: "Login to Northwestern", message: "Your NetID and password will only be sent to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
+        alertController.addTextField {textField in
+            textField.placeholder = "NetID"
+            textField.text = Datastore.netID
+        }
+        alertController.addTextField {textField in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        }
+
+        let loginAction = UIAlertAction(title: "Login", style: .default) {[weak alertController] alertAction in
+            if let alertController = alertController {
+                let netID = alertController.textFields![0].text ?? ""
+                let password = alertController.textFields![1].text ?? ""
+                Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
+                self.beginRefrshing()
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(loginAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true)
     }
 
 }

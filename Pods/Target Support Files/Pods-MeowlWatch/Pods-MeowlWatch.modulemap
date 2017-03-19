@@ -1,0 +1,6 @@
+framework module Pods_MeowlWatch {
+  umbrella header "Pods-MeowlWatch-umbrella.h"
+
+  export *
+  module * { export * }
+}

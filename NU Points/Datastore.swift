@@ -7,39 +7,49 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 struct Datastore {
 
     private init() {}
 
-    static var canQuery: Bool { return username != nil && password != nil }
+    static var canQuery: Bool { return netID != nil && password != nil }
 
-    static var username: String? {
+    static var netID: String? {
         get {
-            return _username
-        }
-        set {
-            _username = newValue
+            return _netID
         }
     }
-    private static var _username: String? = ""
+    private static var _netID: String?
 
     static var password: String? {
         get {
             return _password
         }
-        set {
-            _password = newValue
-        }
     }
-    private static var _password: String? = ""
+    private static var _password: String?
+
+    @discardableResult static func updateCredentials(netID: String?, password: String?, persistToKeychain shouldPersist: Bool) -> Bool {
+        self._netID = netID
+        self._password = password
+        if shouldPersist {
+            var success: Bool
+            if netID == nil || password == nil {
+                success = KeychainWrapper.standard.removeObject(forKey: "netID") && KeychainWrapper.standard.removeObject(forKey: "password")
+            } else {
+                success = KeychainWrapper.standard.set(netID!, forKey: "netID") && KeychainWrapper.standard.set(password!, forKey: "password")
+            }
+            return success
+        } else { return true }
+    }
 
     static let url: URL = URL(string: "https://go.dosa.northwestern.edu/uhfs/foodservice/balancecheck")!
 
-    static func query(onCompletion: @escaping (QueryResult?) -> Void) {
+    static func query(onCompletion: @escaping (QueryResult) -> Void) {
         print("Querying...")
+        guard canQuery else { return onCompletion(QueryResult(error: .authenticationError)) }
 
-        let credentialsString = "\(username!):\(password!)"
+        let credentialsString = "\(netID!):\(password!)"
         let credentialsData = credentialsString.data(using: .utf8)!
         let credentialsEncodedBase64 = credentialsData.base64EncodedString()
         let authorizationString = "Basic \(credentialsEncodedBase64)"
@@ -49,16 +59,17 @@ struct Datastore {
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             print("Query finished.")
 
-            guard let response = response as? HTTPURLResponse, let data = data else { return onCompletion(nil) }
+            guard let response = response as? HTTPURLResponse, let data = data else { return onCompletion(QueryResult(error: .connectionError)) }
 
-            if response.statusCode != 200 { return onCompletion(nil) }
+            if response.statusCode == 401 { return onCompletion(QueryResult(error: .authenticationError)) }
+            else if response.statusCode != 200 { return onCompletion(QueryResult(error: .parseError)) }
 
             let html = String(data: data, encoding: .utf8)!
 
             let result = QueryResult(html: html)
             self.lastQuery = result
 
-            onCompletion(result)
+            onCompletion(result ?? QueryResult(error: .parseError))
         }
 
         task.resume()
@@ -110,8 +121,8 @@ class QueryResult: NSObject, NSCoding {
 
     init(error: Error?) {
         self.dateRetrieved = Date()
-        self.name = ""
-        self.currentPlanName = ""
+        self.name = "--"
+        self.currentPlanName = "--"
         self.numberOfBoardMeals = 0
         self.numberOfEquivalencyMeals = 0
         self.pointsInCents = 0
@@ -188,6 +199,19 @@ extension QueryResult {
 
     var dateRetrievedString: String { return Datastore.displayDateFormatter.string(from: dateRetrieved) }
     var dateUpdatedString: String? { return dateUpdated != nil ? Datastore.displayDateFormatter.string(from: dateUpdated!) : nil }
+
+    var errorString: String? {
+        if let error = error {
+            switch error {
+            case .connectionError:
+                return "Unable to connect to the server. Please make sure your device is connected to the internet."
+            case .authenticationError:
+                return "Unable to login to server. Please tap \"Account\" to make sure your NetID and password are correct."
+            case .parseError:
+                return "An unknown error has occurred. Please contact the developer of this app."
+            }
+        } else { return nil }
+    }
 
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data!) as? QueryResult
             Datastore.lastQuery = lastQuery
         }
+
+        let netID = KeychainWrapper.standard.string(forKey: "netID")
+        let password = KeychainWrapper.standard.string(forKey: "password")
+        Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: false)
 
         return true
     }
