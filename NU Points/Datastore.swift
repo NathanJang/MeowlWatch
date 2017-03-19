@@ -109,6 +109,7 @@ class QueryResult: NSObject, NSCoding {
         self.catCashBonusInCents = UInt(toCentsWithString: matches[7])!
 
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "EEEE, MMMM d, yyyy hh:mm a"
         self.dateUpdated = dateFormatter.date(from: matches[8])
 

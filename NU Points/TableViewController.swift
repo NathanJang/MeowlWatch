@@ -115,9 +115,6 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 2 {
-            if !Datastore.canQuery {
-                return "Please tap \"Account\" to login to Northwestern."
-            }
             if queryResult?.error != nil {
                 return queryResult?.errorString
             } else {
@@ -146,6 +143,7 @@ class TableViewController: UITableViewController {
             }
         } else {
             refreshControl!.endRefreshing()
+            showLoginAlert()
         }
     }
 
