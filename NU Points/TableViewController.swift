@@ -27,7 +27,9 @@ class TableViewController: UITableViewController {
 
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
         beginRefrshing()
     }
 
@@ -90,16 +92,16 @@ class TableViewController: UITableViewController {
                 } else {
                     cell.textLabel!.text = queryResult?.boardMeals ?? "0"
                 }
-                cell.detailTextLabel!.text = "Meal Swipes Left 😉"
+                cell.detailTextLabel!.text = "Meal Swipes Left"
             case 1:
                 cell.textLabel!.text = queryResult?.equivalencyMeals ?? "0"
-                cell.detailTextLabel!.text = "Equivalencies Left 😋"
+                cell.detailTextLabel!.text = "Equivalencies Left"
             case 2:
                 cell.textLabel!.text = queryResult?.points ?? "0"
-                cell.detailTextLabel!.text = "Points Left 😏"
+                cell.detailTextLabel!.text = "Points Left"
             case 3:
                 cell.textLabel!.text = queryResult?.totalCatCash ?? "0.00"
-                cell.detailTextLabel!.text = "Cat Cash Left 🤑"
+                cell.detailTextLabel!.text = "Cat Cash Left"
             default:
                 break
             }
@@ -124,7 +126,10 @@ class TableViewController: UITableViewController {
     }
 
     func beginRefrshing() {
-        self.refreshControl!.beginRefreshing()
+        DispatchQueue.main.async {
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl!.frame.height), animated: true)
+            self.refreshControl!.beginRefreshing()
+        }
         refresh()
     }
 
@@ -132,8 +137,10 @@ class TableViewController: UITableViewController {
         if Datastore.canQuery {
             Datastore.query {queryResult in
                 self.queryResult = queryResult
-                self.tableView!.reloadData()
-                self.refreshControl!.endRefreshing()
+                DispatchQueue.main.async {
+                    self.tableView!.reloadData()
+                    self.refreshControl!.endRefreshing()
+                }
 
                 if queryResult.error != nil {
                     let alertController = UIAlertController(title: "Oops!", message: queryResult.errorString, preferredStyle: .alert)
@@ -152,30 +159,34 @@ class TableViewController: UITableViewController {
     }
 
     func showLoginAlert() {
-        let alertController = UIAlertController(title: "Login to Northwestern", message: "Your NetID and password will only be sent to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
-        alertController.addTextField {textField in
-            textField.placeholder = "NetID"
-            textField.text = Datastore.netID
-        }
-        alertController.addTextField {textField in
-            textField.placeholder = "Password"
-            textField.isSecureTextEntry = true
-        }
-
-        let loginAction = UIAlertAction(title: "Login", style: .default) {[weak alertController] alertAction in
-            if let alertController = alertController {
-                let netID = alertController.textFields![0].text ?? ""
-                let password = alertController.textFields![1].text ?? ""
-                Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
-                self.beginRefrshing()
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Login to Northwestern", message: "Your NetID and password will only be sent to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
+            alertController.addTextField {textField in
+                textField.placeholder = "NetID"
+                textField.text = Datastore.netID
             }
+            alertController.addTextField {textField in
+                textField.placeholder = "Password"
+                textField.isSecureTextEntry = true
+            }
+
+            let loginAction = UIAlertAction(title: "Login", style: .default) {[weak alertController] alertAction in
+                if let alertController = alertController {
+                    let netID = alertController.textFields![0].text ?? ""
+                    let password = alertController.textFields![1].text ?? ""
+                    Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
+                    self.beginRefrshing()
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+            alertController.addAction(loginAction)
+            alertController.addAction(cancelAction)
+
+            self.present(alertController, animated: true)
+            // Change tint color after presenting to make it the right color
+            alertController.view.tintColor = self.view.tintColor
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        alertController.addAction(loginAction)
-        alertController.addAction(cancelAction)
-
-        self.present(alertController, animated: true)
     }
 
 }
