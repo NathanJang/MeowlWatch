@@ -40,7 +40,6 @@ class TableViewController: UITableViewController {
         bannerView.adUnitID = Datastore.adMobAdUnitID
         bannerView.rootViewController = self
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID]
         bannerView.load(request)
     }
 
@@ -61,11 +60,11 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 1:
+        case 0:
             return 2
-        case 2:
+        case 1:
             return 4
-        case 3:
+        case 2:
             return 1
         default:
             return 0
@@ -74,9 +73,9 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 1:
+        case 0:
             return "Plan"
-        case 2:
+        case 1:
             return "Balance"
         default:
             return nil
@@ -89,7 +88,7 @@ class TableViewController: UITableViewController {
         // Configure the cell...
         // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
         switch indexPath.section {
-        case 1:
+        case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
             switch indexPath.row {
             case 0:
@@ -99,7 +98,7 @@ class TableViewController: UITableViewController {
             default:
                 break
             }
-        case 2:
+        case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "LeftDetailCell")!
             switch indexPath.row {
             case 0:
@@ -121,7 +120,7 @@ class TableViewController: UITableViewController {
             default:
                 break
             }
-        case 3:
+        case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
             cell.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "N/A")"
         default:
@@ -133,24 +132,13 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
-        case 0:
-            return queryResult?.error != nil ? queryResult!.errorString : nil
-        case 3:
+        case 2:
             return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
+        case 3:
+            return queryResult?.errorString ?? ""
         default:
             return nil
         }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && queryResult?.error == nil { return 17.5 } // TODO: Find dynamic height
-            // This is hardcoded to be 17.5 because that's the difference between the header heights of the 0th section and the other sections.
-        else { return UITableViewAutomaticDimension }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 0 && queryResult?.error == nil { return CGFloat.leastNormalMagnitude } // Returning 0 means default behavior
-        else { return UITableViewAutomaticDimension }
     }
 
     /// Updates the UI to show the spinner and then refresh.
@@ -175,8 +163,8 @@ class TableViewController: UITableViewController {
         if Datastore.canQuery {
             Datastore.query {queryResult in
                 self.queryResult = queryResult
+                self.tableView.reloadData()
                 DispatchQueue.main.async {
-                    self.tableView!.reloadData()
                     self.endRefreshing()
                 }
 
@@ -223,11 +211,9 @@ class TableViewController: UITableViewController {
         alertController.addAction(loginAction)
         alertController.addAction(cancelAction)
 
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true)
-            // Change tint color after presenting to make it the right color
-            alertController.view.tintColor = self.view.tintColor
-        }
+        self.present(alertController, animated: true)
+        // Change tint color after presenting to make it the right color
+        alertController.view.tintColor = self.view.tintColor
     }
 
 }
