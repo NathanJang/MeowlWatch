@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let netID = KeychainWrapper.standard.string(forKey: "netID")
         let password = KeychainWrapper.standard.string(forKey: "password")
         Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: false)
+
+        GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
 
         return true
     }

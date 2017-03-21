@@ -345,6 +345,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 207FF311151D28D56CE8C835 /* Pods-MeowlWatch.debug.xcconfig */;
 			buildSettings = {
+				ADMOB_AD_UNIT_ID = "ca-app-pub-3940256099942544/2934735716";
+				ADMOB_APP_ID = "ca-app-pub-3940256099942544~1458002511";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "NU Points/Info.plist";
@@ -359,6 +361,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F42CA8E0306E5BC32F033E35 /* Pods-MeowlWatch.release.xcconfig */;
 			buildSettings = {
+				ADMOB_AD_UNIT_ID = "ca-app-pub-4696126784921255/1175622524";
+				ADMOB_APP_ID = "ca-app-pub-4696126784921255~8698889323";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "NU Points/Info.plist";

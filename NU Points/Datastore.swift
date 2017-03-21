@@ -91,4 +91,12 @@ struct Datastore {
         return dateFormatter
     }()
 
+    static var adMobAppID: String {
+        return Bundle.main.infoDictionary!["ADMOB_APP_ID"] as! String
+    }
+
+    static var adMobAdUnitID: String {
+        return Bundle.main.infoDictionary!["ADMOB_AD_UNIT_ID"] as! String
+    }
+
 }
