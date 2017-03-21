@@ -130,10 +130,18 @@ class TableViewController: UITableViewController {
     /// Updates the UI to show the spinner and then refresh.
     func beginRefrshing() {
         DispatchQueue.main.async {
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl!.frame.height), animated: true)
             self.refreshControl!.beginRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: true)
         }
         refresh()
+    }
+
+    /// Updates the UI to hide the spinner.
+    func endRefreshing() {
+        DispatchQueue.main.async {
+            self.refreshControl!.endRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+        }
     }
 
     /// Calls `Datastore.query` and then provides the appropriate UI feedback.
@@ -143,7 +151,7 @@ class TableViewController: UITableViewController {
                 self.queryResult = queryResult
                 DispatchQueue.main.async {
                     self.tableView!.reloadData()
-                    self.refreshControl!.endRefreshing()
+                    self.endRefreshing()
                 }
 
                 if queryResult.error != nil {
@@ -153,7 +161,7 @@ class TableViewController: UITableViewController {
                 }
             }
         } else {
-            refreshControl!.endRefreshing()
+            self.endRefreshing()
             showLoginAlert()
         }
     }
