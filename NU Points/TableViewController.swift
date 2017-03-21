@@ -1,6 +1,6 @@
 //
 //  TableViewController.swift
-//  NU Points
+//  MeowlWatch
 //
 //  Created by Jonathan Chan on 2017-03-18.
 //  Copyright © 2017 Jonathan Chan. All rights reserved.
@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
+    /// The query result that the table view will work with.
     var queryResult: QueryResult?
 
     override func viewDidLoad() {
@@ -21,7 +22,7 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(didTapAccountButton(sender:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(didTapAccountButton))
 
         self.queryResult = Datastore.lastQuery
 
@@ -72,6 +73,7 @@ class TableViewController: UITableViewController {
         let cell: UITableViewCell
 
         // Configure the cell...
+        // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
         switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
@@ -118,13 +120,14 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 2 {
             if queryResult?.error != nil {
-                return queryResult?.errorString
+                return queryResult!.errorString
             } else {
                 return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
             }
         } else { return nil }
     }
 
+    /// Updates the UI to show the spinner and then refresh.
     func beginRefrshing() {
         DispatchQueue.main.async {
             self.tableView.setContentOffset(CGPoint(x: 0, y: -self.refreshControl!.frame.height), animated: true)
@@ -133,6 +136,7 @@ class TableViewController: UITableViewController {
         refresh()
     }
 
+    /// Calls `Datastore.query` and then provides the appropriate UI feedback.
     func refresh() {
         if Datastore.canQuery {
             Datastore.query {queryResult in
@@ -154,35 +158,38 @@ class TableViewController: UITableViewController {
         }
     }
 
-    func didTapAccountButton(sender: Any?) {
+    /// The callback for when the account button is pressed.
+    func didTapAccountButton() {
         showLoginAlert()
     }
 
+    /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
     func showLoginAlert() {
+        let alertController = UIAlertController(title: "Login to Northwestern", message: "Your NetID and password will only be sent securely to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
+        alertController.addTextField {textField in
+            textField.placeholder = "NetID"
+            textField.text = Datastore.netID
+        }
+        alertController.addTextField {textField in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+            textField.text = Datastore.password
+        }
+
+        let loginAction = UIAlertAction(title: "Login", style: .default) {[weak alertController] alertAction in
+            if let alertController = alertController {
+                let netID = alertController.textFields![0].text ?? ""
+                let password = alertController.textFields![1].text ?? ""
+                Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
+                self.beginRefrshing()
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(loginAction)
+        alertController.addAction(cancelAction)
+
         DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "Login to Northwestern", message: "Your NetID and password will only be sent to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
-            alertController.addTextField {textField in
-                textField.placeholder = "NetID"
-                textField.text = Datastore.netID
-            }
-            alertController.addTextField {textField in
-                textField.placeholder = "Password"
-                textField.isSecureTextEntry = true
-            }
-
-            let loginAction = UIAlertAction(title: "Login", style: .default) {[weak alertController] alertAction in
-                if let alertController = alertController {
-                    let netID = alertController.textFields![0].text ?? ""
-                    let password = alertController.textFields![1].text ?? ""
-                    Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
-                    self.beginRefrshing()
-                }
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-            alertController.addAction(loginAction)
-            alertController.addAction(cancelAction)
-
             self.present(alertController, animated: true)
             // Change tint color after presenting to make it the right color
             alertController.view.tintColor = self.view.tintColor

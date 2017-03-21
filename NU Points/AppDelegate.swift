@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  NU Points
+//  MeowlWatch
 //
 //  Created by Jonathan Chan on 2017-03-17.
 //  Copyright © 2017 Jonathan Chan. All rights reserved.
@@ -17,9 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let data = UserDefaults.standard.object(forKey: "lastQuery") as? Data
-        if data != nil {
-            let lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data!) as? QueryResult
+        if let data = UserDefaults.standard.object(forKey: "lastQuery") as? Data {
+            let lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
             Datastore.lastQuery = lastQuery
         }
 

@@ -1,6 +1,6 @@
 //
 //  Datastore.swift
-//  NU Points
+//  MeowlWatch
 //
 //  Created by Jonathan Chan on 2017-03-17.
 //  Copyright © 2017 Jonathan Chan. All rights reserved.
@@ -9,29 +9,30 @@
 import Foundation
 import SwiftKeychainWrapper
 
+/// The main controller for getting data from the server.
 struct Datastore {
 
     private init() {}
 
+    /// A boolean representing whether we're prepared to query the server.
     static var canQuery: Bool { return netID != nil && password != nil }
 
-    static var netID: String? {
-        get {
-            return _netID
-        }
-    }
-    private static var _netID: String?
+    /// The user's NetID.
+    private(set) static var netID: String?
 
-    static var password: String? {
-        get {
-            return _password
-        }
-    }
-    private static var _password: String?
+    /// The user's password.
+    /// This should be stored securely and handled with care.
+    private(set) static var password: String?
 
-    @discardableResult static func updateCredentials(netID: String?, password: String?, persistToKeychain shouldPersist: Bool) -> Bool {
-        self._netID = netID
-        self._password = password
+    /// Sets the NetID and password variables, and persists it across sessions to the keychain if required.
+    /// - Parameter netID: The user's NetID.
+    /// - Parameter password: The user's password.
+    /// - Parameter shouldPersist: Whether to persist the result to the keychain.
+    /// - Returns: Whether the result was successful.
+    @discardableResult
+    static func updateCredentials(netID: String?, password: String?, persistToKeychain shouldPersist: Bool) -> Bool {
+        self.netID = netID
+        self.password = password
         if shouldPersist {
             var success: Bool
             if netID == nil || password == nil {
@@ -43,9 +44,13 @@ struct Datastore {
         } else { return true }
     }
 
-    static let url: URL = URL(string: "https://go.dosa.northwestern.edu/uhfs/foodservice/balancecheck")!
+    /// The URL object to query at.
+    /// Since this server only supports TLSv1.0, an appropriate exception should be made in `Info.plist`.
+    private static let url: URL = URL(string: "https://go.dosa.northwestern.edu/uhfs/foodservice/balancecheck")!
 
-    static func query(onCompletion: @escaping (QueryResult) -> Void) {
+    /// Queries the server and calls the completion handler with a query result.
+    /// - Parameter onCompletion: The completion handler.
+    static func query(onCompletion: @escaping (_ result: QueryResult) -> Void) {
         print("Querying...")
         guard canQuery else { return onCompletion(QueryResult(error: .authenticationError)) }
 
@@ -75,192 +80,15 @@ struct Datastore {
         task.resume()
     }
 
+    /// The result of the last query to the server.
     static var lastQuery: QueryResult?
 
+    /// The date formatter for displaying dates to the user.
+    /// Not to be confused with the date formatter used when parsing the HTML.
     static var displayDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E MMM d, h:mm a"
         return dateFormatter
     }()
-
-}
-
-class QueryResult: NSObject, NSCoding {
-
-    init?(html: String) {
-        self.dateRetrieved = Date()
-
-        let contentString: String
-        let matches: [String]
-
-        do {
-            contentString = try html.firstMatch(regexPattern: "<!--startindex-->.*<!--stopindex-->").first!
-            matches = try contentString.firstMatch(regexPattern: "<td.*Name:.*</td>.*<td>([A-Za-z ]*)</td>.*<td.*Current Plan:.*</td>.*<td>([A-Za-z\\d ]*)</td>.*<td.*Board Meals:.*</td>.*<td>(\\d*)</td>.*<td.*Equivalency Meals:.*</td>.*<td>(\\d*)</td>.*<td.*Points:.*</td>.*<td>(\\d*.\\d{2})</td>.*<td.*Cat Cash:.*</td>.*<td>(\\d*.\\d{2})</td>.*<td.*Cat Cash Bonus:.*</td>.*<td>(\\d*.\\d{2})</td>.*Last Updated ([A-Za-z\\d,: ]*)")
-        } catch { return nil }
-
-        if matches.count != 9 { return nil }
-
-        self.name = matches[1]
-        self.currentPlanName = matches[2]
-        self.numberOfBoardMeals = UInt(matches[3])!
-        self.numberOfEquivalencyMeals = UInt(matches[4])!
-        self.pointsInCents = UInt(toCentsWithString: matches[5])!
-        self.catCashInCents = UInt(toCentsWithString: matches[6])!
-        self.catCashBonusInCents = UInt(toCentsWithString: matches[7])!
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "EEEE, MMMM d, yyyy hh:mm a"
-        self.dateUpdated = dateFormatter.date(from: matches[8])
-
-        self.error = nil
-    }
-
-    override convenience init() {
-        self.init(error: nil)
-    }
-
-    init(error: Error?) {
-        self.dateRetrieved = Date()
-        self.name = "--"
-        self.currentPlanName = "--"
-        self.numberOfBoardMeals = 0
-        self.numberOfEquivalencyMeals = 0
-        self.pointsInCents = 0
-        self.catCashInCents = 0
-        self.catCashBonusInCents = 0
-        self.dateUpdated = nil
-        self.error = error
-    }
-
-    let dateRetrieved: Date
-    let name: String
-    let currentPlanName: String
-
-    fileprivate let numberOfBoardMeals: UInt
-    fileprivate let numberOfEquivalencyMeals: UInt
-    fileprivate let pointsInCents: UInt
-    fileprivate let catCashInCents: UInt
-    fileprivate let catCashBonusInCents: UInt
-
-    let dateUpdated: Date?
-
-    enum Error: UInt {
-        case connectionError = 0
-        case authenticationError
-        case parseError
-    }
-
-    let error: Error?
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(dateRetrieved, forKey: "dateRetrieved")
-        aCoder.encode(name, forKey: "name")
-        aCoder.encode(currentPlanName, forKey: "currentPlanName")
-        aCoder.encode(numberOfBoardMeals, forKey: "numberOfBoardMeals")
-        aCoder.encode(numberOfEquivalencyMeals, forKey: "numberOfEquivalencyMeals")
-        aCoder.encode(pointsInCents, forKey: "pointsInCents")
-        aCoder.encode(catCashInCents, forKey: "catCashInCents")
-        aCoder.encode(catCashBonusInCents, forKey: "catCashBonusInCents")
-        aCoder.encode(dateUpdated, forKey: "dateUpdated")
-        aCoder.encode(error, forKey: "error")
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        self.dateRetrieved = aDecoder.decodeObject(forKey: "dateRetrieved") as! Date
-        self.name = aDecoder.decodeObject(forKey: "name") as! String
-        self.currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as! String
-        self.numberOfBoardMeals = aDecoder.decodeObject(forKey: "numberOfBoardMeals") as! UInt
-        self.numberOfEquivalencyMeals = aDecoder.decodeObject(forKey: "numberOfEquivalencyMeals") as! UInt
-        self.pointsInCents = aDecoder.decodeObject(forKey: "pointsInCents") as! UInt
-        self.catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as! UInt
-        self.catCashBonusInCents = aDecoder.decodeObject(forKey: "catCashBonusInCents") as! UInt
-        self.dateUpdated = aDecoder.decodeObject(forKey: "dateUpdated") as? Date
-        if let error = aDecoder.decodeObject(forKey: "error") as? UInt {
-            self.error = QueryResult.Error(rawValue: error)
-        } else {
-            self.error = nil
-        }
-    }
-
-}
-
-extension QueryResult {
-
-    var boardMeals: String { return "\(numberOfBoardMeals)" }
-    var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
-    var points: String { return pointsInCents.centsToString() }
-    var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
-    var totalCatCash: String { return totalCatCashInCents.centsToString() }
-
-    var isUnlimited: Bool {
-        let match = try! currentPlanName.firstMatch(regexPattern: "Unlimited").first
-        return match != nil
-    }
-
-    var dateRetrievedString: String { return Datastore.displayDateFormatter.string(from: dateRetrieved) }
-    var dateUpdatedString: String? { return dateUpdated != nil ? Datastore.displayDateFormatter.string(from: dateUpdated!) : nil }
-
-    var errorString: String? {
-        if let error = error {
-            switch error {
-            case .connectionError:
-                return "Unable to connect to the server. Please make sure your device is connected to the internet."
-            case .authenticationError:
-                return "Unable to login to server. Please tap \"Account\" to make sure your NetID and password are correct."
-            case .parseError:
-                return "An unknown error has occurred. Please contact the developer of this app."
-            }
-        } else { return nil }
-    }
-
-}
-
-extension String {
-
-    func firstMatch(regexPattern: String) throws -> [String] {
-        var strings: [String] = []
-        let regex = try NSRegularExpression(pattern: regexPattern, options: [.dotMatchesLineSeparators, .caseInsensitive])
-        let resultOptional = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
-        guard let result = resultOptional else { return [] }
-
-        for index in 0..<result.numberOfRanges {
-            let range = self.index(self.startIndex, offsetBy: result.rangeAt(index).location)..<self.index(self.startIndex, offsetBy: result.rangeAt(index).location + result.rangeAt(index).length)
-            let string = self.substring(with: range)
-            strings.append(string)
-        }
-
-        return strings
-    }
-
-}
-
-extension UInt {
-
-    init?(toCentsWithString string: String) {
-        let matches: [String]
-        do {
-            matches = try string.firstMatch(regexPattern: "(\\d*).(\\d{2})")
-        } catch { return nil }
-
-        if matches.count != 3 { return nil }
-
-        let wholeComponent = UInt(matches[1])! * 100
-        let fractionalComponent = UInt(matches[2])!
-        self = wholeComponent + fractionalComponent
-    }
-
-    func centsToString() -> String {
-        let fractionalComponent = self % 100
-        let fractionalString: String
-        if fractionalComponent < 10 {
-            fractionalString = "0\(fractionalComponent)"
-        } else if fractionalComponent % 10 == 0 {
-            fractionalString = "\(fractionalComponent)0"
-        } else {
-            fractionalString = "\(fractionalComponent)"
-        }
-        return "\(self / 100).\(fractionalString)"
-    }
 
 }

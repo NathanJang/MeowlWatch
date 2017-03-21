@@ -14,6 +14,7 @@
 		AB27C1F01E7CCCAC00A90072 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB27C1EE1E7CCCAC00A90072 /* LaunchScreen.storyboard */; };
 		AB27C1F81E7CD09400A90072 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27C1F71E7CD09400A90072 /* Datastore.swift */; };
 		AB27C1FA1E7DB00100A90072 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27C1F91E7DB00100A90072 /* TableViewController.swift */; };
+		AB7782A51E80DAEE00925F72 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782A41E80DAEE00925F72 /* QueryResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AB27C1F71E7CD09400A90072 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
 		AB27C1F91E7DB00100A90072 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		AB27C1FC1E7E0E3500A90072 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		AB7782A41E80DAEE00925F72 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryResult.swift; sourceTree = "<group>"; };
 		F42CA8E0306E5BC32F033E35 /* Pods-MeowlWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				AB27C1E51E7CCCAC00A90072 /* AppDelegate.swift */,
 				AB27C1F91E7DB00100A90072 /* TableViewController.swift */,
 				AB27C1F71E7CD09400A90072 /* Datastore.swift */,
+				AB7782A41E80DAEE00925F72 /* QueryResult.swift */,
 				AB27C1E91E7CCCAC00A90072 /* Main.storyboard */,
 				AB27C1EC1E7CCCAC00A90072 /* Assets.xcassets */,
 				AB27C1EE1E7CCCAC00A90072 /* LaunchScreen.storyboard */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB27C1E61E7CCCAC00A90072 /* AppDelegate.swift in Sources */,
+				AB7782A51E80DAEE00925F72 /* QueryResult.swift in Sources */,
 				AB27C1F81E7CD09400A90072 /* Datastore.swift in Sources */,
 				AB27C1FA1E7DB00100A90072 /* TableViewController.swift in Sources */,
 			);
