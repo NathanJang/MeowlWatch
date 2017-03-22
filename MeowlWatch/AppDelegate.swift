@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftKeychainWrapper
-import Firebase
 import GoogleMobileAds
 
 @UIApplicationMain
@@ -19,13 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let netID: String?, password: String?
         if let data = UserDefaults.standard.object(forKey: "lastQuery") as? Data {
             let lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
             Datastore.lastQuery = lastQuery
+
+            netID = KeychainWrapper.standard.string(forKey: "netID")
+            password = KeychainWrapper.standard.string(forKey: "password")
+        } else {
+            // This is the first launch
+            let _ = KeychainWrapper.standard.removeAllKeys()
+            netID = nil
+            password = nil
         }
 
-        let netID = KeychainWrapper.standard.string(forKey: "netID")
-        let password = KeychainWrapper.standard.string(forKey: "password")
         Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: false)
 
         GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)

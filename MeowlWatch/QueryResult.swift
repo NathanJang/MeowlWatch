@@ -146,7 +146,7 @@ class QueryResult: NSObject, NSCoding {
     enum Error: UInt {
 
         /// Failed to connect or securely connect to the server.
-        case connectionError = 0
+        case connectionError
 
         /// Failed to authenticate with the given NetID and password.
         case authenticationError
@@ -170,8 +170,12 @@ class QueryResult: NSObject, NSCoding {
         aCoder.encode(pointsInCents, forKey: "pointsInCents")
         aCoder.encode(catCashInCents, forKey: "catCashInCents")
         aCoder.encode(catCashBonusInCents, forKey: "catCashBonusInCents")
-        aCoder.encode(dateUpdated, forKey: "dateUpdated")
-        aCoder.encode(error, forKey: "error")
+        if let dateUpdated = dateUpdated {
+            aCoder.encode(dateUpdated, forKey: "dateUpdated")
+        }
+        if let errorValue = error?.rawValue {
+            aCoder.encode(errorValue, forKey: "error")
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

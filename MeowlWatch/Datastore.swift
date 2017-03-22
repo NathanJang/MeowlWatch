@@ -15,7 +15,7 @@ struct Datastore {
     private init() {}
 
     /// A boolean representing whether we're prepared to query the server.
-    static var canQuery: Bool { return netID != nil && password != nil }
+    static var canQuery: Bool { return netID != nil && !netID!.isEmpty && password != nil }
 
     /// The user's NetID.
     private(set) static var netID: String?
@@ -31,17 +31,27 @@ struct Datastore {
     /// - Returns: Whether the result was successful.
     @discardableResult
     static func updateCredentials(netID: String?, password: String?, persistToKeychain shouldPersist: Bool) -> Bool {
-        self.netID = netID
-        self.password = password
-        if shouldPersist {
-            var success: Bool
-            if netID == nil || password == nil {
-                success = KeychainWrapper.standard.removeObject(forKey: "netID") && KeychainWrapper.standard.removeObject(forKey: "password")
-            } else {
-                success = KeychainWrapper.standard.set(netID!, forKey: "netID") && KeychainWrapper.standard.set(password!, forKey: "password")
+        var success = true
+        if netID == nil || netID!.isEmpty || password == nil {
+            self.netID = nil
+            self.password = nil
+
+            if shouldPersist {
+                success = KeychainWrapper.standard.removeObject(forKey: "netID") && success
+                success = KeychainWrapper.standard.removeObject(forKey: "password") && success
             }
-            return success
-        } else { return true }
+        } else {
+            let netID = netID!, password = password!
+            self.netID = netID
+            self.password = password
+
+            if shouldPersist {
+                success = KeychainWrapper.standard.set(netID, forKey: "netID") && success
+                success = KeychainWrapper.standard.set(password, forKey: "password") && success
+            }
+        }
+
+        return success
     }
 
     /// The URL object to query at.
@@ -52,7 +62,12 @@ struct Datastore {
     /// - Parameter onCompletion: The completion handler.
     static func query(onCompletion: @escaping (_ result: QueryResult) -> Void) {
         print("Querying...")
-        guard canQuery else { return onCompletion(QueryResult(error: .authenticationError)) }
+        guard canQuery else {
+            let result = QueryResult(error: .authenticationError)
+            self.lastQuery = result
+            onCompletion(result)
+            return
+        }
 
         let credentialsString = "\(netID!):\(password!)"
         let credentialsData = credentialsString.data(using: .utf8)!
@@ -64,17 +79,28 @@ struct Datastore {
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             print("Query finished.")
 
-            guard let response = response as? HTTPURLResponse, let data = data else { return onCompletion(QueryResult(error: .connectionError)) }
+            guard let response = response as? HTTPURLResponse, let data = data else {
+                return onCompletion(QueryResult(error: .connectionError))
+            }
 
-            if response.statusCode == 401 { return onCompletion(QueryResult(error: .authenticationError)) }
-            else if response.statusCode != 200 { return onCompletion(QueryResult(error: .parseError)) }
+            if response.statusCode != 200 {
+                let result: QueryResult
+                if response.statusCode == 401 {
+                    result = QueryResult(error: .authenticationError)
+                } else {
+                    result = QueryResult(error: .parseError)
+                }
+                self.lastQuery = result
+                onCompletion(result)
+                return
+            }
 
             let html = String(data: data, encoding: .utf8)!
 
-            let result = QueryResult(html: html)
+            let result = QueryResult(html: html) ?? QueryResult(error: .parseError)
             self.lastQuery = result
 
-            onCompletion(result ?? QueryResult(error: .parseError))
+            onCompletion(result)
         }
 
         task.resume()
@@ -87,16 +113,34 @@ struct Datastore {
     /// Not to be confused with the date formatter used when parsing the HTML.
     static var displayDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "E MMM d, h:mm a"
         return dateFormatter
     }()
 
-    static var adMobAppID: String {
-        return Bundle.main.infoDictionary!["ADMOB_APP_ID"] as! String
+    /// Reads from the AdMobKeys property list files depending on compile-time configuration.
+    /// The `AdMobKeys-Release.plist` file should be configured similarly to `AdMobKeys-Debug.plist`.
+    /// - Parameter key: The key in the `plist` file.
+    /// - Returns: The object stored in the `plist` file for the give key.
+    private static func adMobObject(forKey key: String) -> Any {
+        let path: String
+        #if DEBUG
+        path = Bundle.main.path(forResource: "AdMobKeys-Debug", ofType: "plist")!
+        #else
+        path = Bundle.main.path(forResource: "AdMobKeys-Release", ofType: "plist")!
+        #endif
+
+        return NSDictionary(contentsOfFile: path)!.value(forKey: key)!
     }
 
+    /// The app ID for AdMob.
+    static var adMobAppID: String {
+        return adMobObject(forKey: "AdMobAppID") as! String
+    }
+
+    /// The main ad unit ID for AdMob.
     static var adMobAdUnitID: String {
-        return Bundle.main.infoDictionary!["ADMOB_AD_UNIT_ID"] as! String
+        return adMobObject(forKey: "AdMobAdUnitID") as! String
     }
 
 }
