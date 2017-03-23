@@ -53,7 +53,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "The MeowlWatch widget may be added to the Today View on the Notification Center. The top two items arranged here will be shown on the widget."
+        return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will reflect how the widget is shown."
     }
 
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {

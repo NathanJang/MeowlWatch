@@ -10,21 +10,25 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-    
+
     @IBOutlet weak var leftNumberLabel: UILabel!
     @IBOutlet weak var leftDescriptionLabel: UILabel!
     @IBOutlet weak var rightNumberLabel: UILabel!
     @IBOutlet weak var rightDescriptionLabel: UILabel!
+    @IBOutlet weak var secondaryLeftNumberLabel: UILabel!
+    @IBOutlet weak var secondaryLeftDescriptionLabel: UILabel!
+    @IBOutlet weak var secondaryRightNumberLabel: UILabel!
+    @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
 
-    var leftItem: Datastore.WidgetItem?
-    var rightItem: Datastore.WidgetItem?
-
+    /// A flag representing whether this is the widget's initial setup.
+    /// Once the widget performs an update for the first time, this will be set to `false`.
     var isFirstRun = true
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
         Datastore.loadFromDefaults()
+        self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,34 +42,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        /*
-        if let lastQuery = Datastore.lastQuery {
-            guard !isFirstRun else {
-                updateLabels(with: lastQuery)
-                self.isFirstRun = false
-                return completionHandler(.newData)
-            }
-            // Only update after 30 minutes
-            guard Datastore.shouldRefresh else {
-                return completionHandler(.noData)
-            }
-        }
-        guard Datastore.canQuery else {
-            updateLabels(with: nil)
-            return completionHandler(.failed)
-        }
-        Datastore.query {result in
-            self.updateLabels(with: result)
-
-            Datastore.persistToUserDefaults()
-
-            completionHandler(.newData)
-        }
-
-        //guard let lastQuery = Datastore.lastQuery else {
-
-        //}
-         */
         guard !isFirstRun else {
             updateLabels(with: Datastore.lastQuery)
             isFirstRun = false
@@ -86,31 +62,47 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     }
 
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        UIView.animate(withDuration: 0.25) {
+            if activeDisplayMode == .expanded {
+                self.preferredContentSize = CGSize(width: maxSize.width, height: 220)
+            } else {
+                self.preferredContentSize = maxSize
+            }
+        }
+    }
+
+    /// Sets the label text to the appropriate content given a query result.
+    /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
         leftDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[0])
         rightDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[1])
+        secondaryLeftDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[2])
+        secondaryRightDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[3])
 
         if let query = query {
-            switch Datastore.widgetArrangement[0] {
-            case .boardMeals:
-                self.leftNumberLabel.text = query.boardMeals
-            case .equivalencyMeals:
-                self.leftNumberLabel.text = query.equivalencyMeals
-            case .points:
-                self.leftNumberLabel.text = query.points
-            case .catCash:
-                self.leftNumberLabel.text = query.totalCatCash
-            }
+            updateNumberLabel(leftNumberLabel, asItem: Datastore.widgetArrangement[0], withQuery: query)
+            updateNumberLabel(rightNumberLabel, asItem: Datastore.widgetArrangement[1], withQuery: query)
+            updateNumberLabel(secondaryLeftNumberLabel, asItem: Datastore.widgetArrangement[2], withQuery: query)
+            updateNumberLabel(secondaryRightNumberLabel, asItem: Datastore.widgetArrangement[3], withQuery: query)
+        }
+    }
 
-            switch Datastore.widgetArrangement[1] {
+    /// Sets the content of a number label given a desired widget item and a query result object.
+    /// - Parameter label: The number label.
+    /// - Parameter item: The widget item type.
+    /// - Parameter query: The query result to use.
+    func updateNumberLabel(_ label: UILabel, asItem item: Datastore.WidgetItem, withQuery query: QueryResult) {
+        DispatchQueue.main.async {
+            switch item {
             case .boardMeals:
-                self.rightNumberLabel.text = query.boardMeals
+                label.text = query.boardMeals
             case .equivalencyMeals:
-                self.rightNumberLabel.text = query.equivalencyMeals
+                label.text = query.equivalencyMeals
             case .points:
-                self.rightNumberLabel.text = query.points
+                label.text = query.points
             case .catCash:
-                self.rightNumberLabel.text = query.totalCatCash
+                label.text = query.totalCatCash
             }
         }
     }

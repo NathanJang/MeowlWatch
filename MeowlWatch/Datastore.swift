@@ -14,10 +14,16 @@ struct Datastore {
 
     private init() {}
 
+    /// The constant group name for shared defaults and keychain.
     private static let accessGroupName = "group.caviar.respect.MeowlWatch"
-    private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
-    private static let keychain = KeychainWrapper(serviceName: "keychain", accessGroup: accessGroupName)
 
+    /// The shared user defaults object.
+    private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
+
+    /// The shared keychain wrapper object.
+    private static let keychain = KeychainWrapper(serviceName: "MeowlWatch", accessGroup: accessGroupName)
+
+    /// Configures the datastore initially by reading from (and writing to, if necessary) user defaults and the keychain.
     static func loadFromDefaults() {
         if NSKeyedUnarchiver.class(forClassName: QueryResult.sharedClassName) != QueryResult.self {
             NSKeyedUnarchiver.setClass(QueryResult.self, forClassName: QueryResult.sharedClassName)
@@ -36,6 +42,7 @@ struct Datastore {
         }
     }
 
+    /// Writes data from the datastore to user defaults.
     static func persistToUserDefaults() {
         if NSKeyedArchiver.className(for: QueryResult.self) != QueryResult.sharedClassName {
             NSKeyedArchiver.setClassName(QueryResult.sharedClassName, for: QueryResult.self)
@@ -60,31 +67,26 @@ struct Datastore {
     /// This should be stored securely and handled with care.
     private(set) static var password: String?
 
-    /// Sets the NetID and password variables, and persists it across sessions to the keychain if required.
+    /// Sets the NetID and password variables, and persists it across sessions to the keychain.
     /// - Parameter netID: The user's NetID.
     /// - Parameter password: The user's password.
-    /// - Parameter shouldPersist: Whether to persist the result to the keychain.
     /// - Returns: Whether the result was successful.
     @discardableResult
-    static func updateCredentials(netID: String?, password: String?, persistToKeychain shouldPersist: Bool) -> Bool {
+    static func updateCredentials(netID: String?, password: String?) -> Bool {
         var success = true
         if netID == nil || netID!.isEmpty || password == nil {
             self.netID = nil
             self.password = nil
 
-            if shouldPersist {
-                success = keychain.removeObject(forKey: "netID") && success
-                success = keychain.removeObject(forKey: "password") && success
-            }
+            success = keychain.removeObject(forKey: "netID") && success
+            success = keychain.removeObject(forKey: "password") && success
         } else {
             let netID = netID!, password = password!
             self.netID = netID
             self.password = password
 
-            if shouldPersist {
-                success = keychain.set(netID, forKey: "netID") && success
-                success = keychain.set(password, forKey: "password") && success
-            }
+            success = keychain.set(netID, forKey: "netID") && success
+            success = keychain.set(password, forKey: "password") && success
         }
 
         return success
@@ -189,15 +191,23 @@ struct Datastore {
 
     // MARK: Widget
 
+    /// An enum representing the each displayed item on the widget.
     enum WidgetItem: Int {
+
         case boardMeals
         case equivalencyMeals
         case points
         case catCash
+
     }
 
+    /// An array representing the user's arrangement of the widget items.
+    /// The default is shown here, and then modified once user defaults are loaded.
     static var widgetArrangement: [WidgetItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
 
+    /// Returns the display description given an item type.
+    /// - Parameter item: The type of widget item.
+    /// - Returns: The display string.
     static func stringForWidgetItem(_ item: WidgetItem) -> String {
         switch item {
         case .boardMeals:
@@ -211,6 +221,9 @@ struct Datastore {
         }
     }
 
+    /// Rearranges the widget arrangement preferences given indices in `widgetArrangement`.
+    /// - Parameter fromIndex: The index from which the item originated.
+    /// - Parameter toIndex: The index to which the item should be moved.
     static func moveWidgetArrangement(fromIndex: Int, toIndex: Int) {
         let item = widgetArrangement.remove(at: fromIndex)
         widgetArrangement.insert(item, at: toIndex)

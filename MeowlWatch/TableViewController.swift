@@ -217,7 +217,7 @@ class TableViewController: UITableViewController {
             if let alertController = alertController {
                 let netID = alertController.textFields![0].text ?? ""
                 let password = alertController.textFields![1].text ?? ""
-                Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
+                Datastore.updateCredentials(netID: netID, password: password)
                 self.beginRefrshing(animated: true)
             }
         }
