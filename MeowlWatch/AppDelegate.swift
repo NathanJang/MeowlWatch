@@ -8,7 +8,10 @@
 
 import UIKit
 import SwiftKeychainWrapper
+
+#if !NO_ADS
 import GoogleMobileAds
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,28 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let netID: String?, password: String?
-        if let data = UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.object(forKey: "lastQuery") as? Data {
-            let lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
-            Datastore.lastQuery = lastQuery
+        Datastore.loadFromDefaults()
 
-            netID = KeychainWrapper.standard.string(forKey: "netID")
-            password = KeychainWrapper.standard.string(forKey: "password")
-        } else {
-            // This is the first launch
-            let _ = KeychainWrapper.standard.removeAllKeys()
-            netID = nil
-            password = nil
-        }
-
-        Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: false)
-
+        #if !NO_ADS
         GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
-
-        if let data = UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.object(forKey: "widgetArrangement") as? Data {
-            let intArray = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Int]
-            Datastore.widgetArrangement = intArray.flatMap { return Datastore.WidgetItem(rawValue: $0)! }
-        }
+        #endif
 
         return true
     }
@@ -53,14 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        if let lastQuery = Datastore.lastQuery {
-            let data = NSKeyedArchiver.archivedData(withRootObject: lastQuery)
-            UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.set(data, forKey: "lastQuery")
-        }
-
-        let widgetArrangement = Datastore.widgetArrangement
-        let intArray = widgetArrangement.flatMap { return $0.rawValue }
-        UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.set(intArray, forKey: "widgetArrangement")
+        Datastore.persistToUserDefaults()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

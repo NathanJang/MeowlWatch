@@ -12,6 +12,8 @@ import Foundation
 /// Inherits from `NSObject` and conforms to `NSCoding` to encode and decode to and from user defaults.
 class QueryResult: NSObject, NSCoding {
 
+    static let sharedClassName = "MeowlWatch.QueryResult"
+
     // MARK: Initializers
 
     /// Parses an HTML string from the server.

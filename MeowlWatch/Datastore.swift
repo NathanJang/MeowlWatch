@@ -14,6 +14,42 @@ struct Datastore {
 
     private init() {}
 
+    private static let accessGroupName = "group.caviar.respect.MeowlWatch"
+    private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
+    private static let keychain = KeychainWrapper(serviceName: "keychain", accessGroup: accessGroupName)
+
+    static func loadFromDefaults() {
+        if NSKeyedUnarchiver.class(forClassName: QueryResult.sharedClassName) != QueryResult.self {
+            NSKeyedUnarchiver.setClass(QueryResult.self, forClassName: QueryResult.sharedClassName)
+        }
+        if let data = userDefaults.object(forKey: "lastQuery") as? Data {
+            self.lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
+            self.netID = keychain.string(forKey: "netID")
+            self.password = keychain.string(forKey: "password")
+        } else {
+            // This is the first launch
+            let _ = keychain.removeAllKeys()
+        }
+
+        if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int] {
+            Datastore.widgetArrangement = intArray.flatMap { return Datastore.WidgetItem(rawValue: $0)! }
+        }
+    }
+
+    static func persistToUserDefaults() {
+        if NSKeyedArchiver.className(for: QueryResult.self) != QueryResult.sharedClassName {
+            NSKeyedArchiver.setClassName(QueryResult.sharedClassName, for: QueryResult.self)
+        }
+
+        if let lastQuery = lastQuery {
+            let data = NSKeyedArchiver.archivedData(withRootObject: lastQuery)
+            userDefaults.set(data, forKey: "lastQuery")
+        }
+
+        let intArray = widgetArrangement.flatMap { return $0.rawValue }
+        userDefaults.set(intArray, forKey: "widgetArrangement")
+    }
+
     /// A boolean representing whether we're prepared to query the server.
     static var canQuery: Bool { return netID != nil && !netID!.isEmpty && password != nil }
 
@@ -37,8 +73,8 @@ struct Datastore {
             self.password = nil
 
             if shouldPersist {
-                success = KeychainWrapper.standard.removeObject(forKey: "netID") && success
-                success = KeychainWrapper.standard.removeObject(forKey: "password") && success
+                success = keychain.removeObject(forKey: "netID") && success
+                success = keychain.removeObject(forKey: "password") && success
             }
         } else {
             let netID = netID!, password = password!
@@ -46,8 +82,8 @@ struct Datastore {
             self.password = password
 
             if shouldPersist {
-                success = KeychainWrapper.standard.set(netID, forKey: "netID") && success
-                success = KeychainWrapper.standard.set(password, forKey: "password") && success
+                success = keychain.set(netID, forKey: "netID") && success
+                success = keychain.set(password, forKey: "password") && success
             }
         }
 
@@ -109,6 +145,12 @@ struct Datastore {
     /// The result of the last query to the server.
     static var lastQuery: QueryResult?
 
+    private static let refreshThreshold: TimeInterval = 60 * 30
+    static var shouldRefresh: Bool {
+        guard let lastQuery = lastQuery else { return true }
+        return Date().timeIntervalSince(lastQuery.dateUpdated ?? lastQuery.dateRetrieved) > refreshThreshold
+    }
+
     /// The date formatter for displaying dates to the user.
     /// Not to be confused with the date formatter used when parsing the HTML.
     static var displayDateFormatter: DateFormatter = {
@@ -159,14 +201,19 @@ struct Datastore {
     static func stringForWidgetItem(_ item: WidgetItem) -> String {
         switch item {
         case .boardMeals:
-            return "Board Meals"
+            return "Meal Swipes"
         case .equivalencyMeals:
-            return "Equivalency Meals"
+            return "Equivalencies"
         case .points:
             return "Points"
         case .catCash:
             return "Cat Cash"
         }
+    }
+
+    static func moveWidgetArrangement(fromIndex: Int, toIndex: Int) {
+        let item = widgetArrangement.remove(at: fromIndex)
+        widgetArrangement.insert(item, at: toIndex)
     }
 
 }

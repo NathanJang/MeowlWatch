@@ -11,3 +11,15 @@ target 'MeowlWatch' do
   pod 'Firebase/AdMob'
 
 end
+
+target 'MeowlWatch-No Ads' do
+  use_frameworks!
+
+  pod 'SwiftKeychainWrapper'
+end
+
+target 'MeowlWatch Widget' do
+  use_frameworks!
+
+  pod 'SwiftKeychainWrapper'
+end

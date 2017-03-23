@@ -7,12 +7,17 @@
 //
 
 import UIKit
+
+#if !NO_ADS
 import GoogleMobileAds
+#endif
 
 class TableViewController: UITableViewController {
 
+    #if !NO_ADS
     /// The Google ad banner.
     var bannerView: GADBannerView?
+    #endif
 
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
@@ -34,6 +39,7 @@ class TableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
 
+        #if !NO_ADS
         self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         let bannerView = self.bannerView!
         self.navigationController!.setToolbarHidden(false, animated: false)
@@ -42,11 +48,15 @@ class TableViewController: UITableViewController {
         bannerView.rootViewController = self
         let request = GADRequest()
         bannerView.load(request)
+        #endif
+
+        if Datastore.shouldRefresh {
+            beginRefrshing(animated: false)
+        }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        beginRefrshing()
-    }
+    //override func viewDidAppear(_ animated: Bool) {
+    //}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -147,10 +157,10 @@ class TableViewController: UITableViewController {
     }
 
     /// Updates the UI to show the spinner and then refresh.
-    func beginRefrshing() {
+    func beginRefrshing(animated: Bool) {
         DispatchQueue.main.async {
             self.refreshControl!.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: true)
+            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: animated)
         }
         refresh()
     }
@@ -208,7 +218,7 @@ class TableViewController: UITableViewController {
                 let netID = alertController.textFields![0].text ?? ""
                 let password = alertController.textFields![1].text ?? ""
                 Datastore.updateCredentials(netID: netID, password: password, persistToKeychain: true)
-                self.beginRefrshing()
+                self.beginRefrshing(animated: true)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
