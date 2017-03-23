@@ -27,6 +27,7 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(didTapAccountButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(didTapSettingsButton))
 
         self.queryResult = Datastore.lastQuery
 
@@ -135,7 +136,11 @@ class TableViewController: UITableViewController {
         case 2:
             return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
         case 3:
-            return queryResult?.errorString ?? ""
+            if Datastore.canQuery {
+                return queryResult?.errorString ?? ""
+            } else {
+                return "Please tap \"Account\" and enter your NetID and password."
+            }
         default:
             return nil
         }
@@ -214,6 +219,10 @@ class TableViewController: UITableViewController {
         self.present(alertController, animated: true)
         // Change tint color after presenting to make it the right color
         alertController.view.tintColor = self.view.tintColor
+    }
+
+    func didTapSettingsButton() {
+        performSegue(withIdentifier: "ShowSettings", sender: self)
     }
 
 }

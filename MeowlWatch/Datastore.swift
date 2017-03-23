@@ -133,6 +133,8 @@ struct Datastore {
         return NSDictionary(contentsOfFile: path)!.value(forKey: key)!
     }
 
+    // MARK: AdMob
+
     /// The app ID for AdMob.
     static var adMobAppID: String {
         return adMobObject(forKey: "AdMobAppID") as! String
@@ -141,6 +143,30 @@ struct Datastore {
     /// The main ad unit ID for AdMob.
     static var adMobAdUnitID: String {
         return adMobObject(forKey: "AdMobAdUnitID") as! String
+    }
+
+    // MARK: Widget
+
+    enum WidgetItem: Int {
+        case boardMeals
+        case equivalencyMeals
+        case points
+        case catCash
+    }
+
+    static var widgetArrangement: [WidgetItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
+
+    static func stringForWidgetItem(_ item: WidgetItem) -> String {
+        switch item {
+        case .boardMeals:
+            return "Board Meals"
+        case .equivalencyMeals:
+            return "Equivalency Meals"
+        case .points:
+            return "Points"
+        case .catCash:
+            return "Cat Cash"
+        }
     }
 
 }

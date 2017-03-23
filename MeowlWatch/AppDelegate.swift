@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let netID: String?, password: String?
-        if let data = UserDefaults.standard.object(forKey: "lastQuery") as? Data {
+        if let data = UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.object(forKey: "lastQuery") as? Data {
             let lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
             Datastore.lastQuery = lastQuery
 
@@ -36,12 +36,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
 
+        if let data = UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.object(forKey: "widgetArrangement") as? Data {
+            let intArray = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Int]
+            Datastore.widgetArrangement = intArray.flatMap { return Datastore.WidgetItem(rawValue: $0)! }
+        }
+
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -49,8 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         if let lastQuery = Datastore.lastQuery {
             let data = NSKeyedArchiver.archivedData(withRootObject: lastQuery)
-            UserDefaults.standard.set(data, forKey: "lastQuery")
+            UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.set(data, forKey: "lastQuery")
         }
+
+        let widgetArrangement = Datastore.widgetArrangement
+        let intArray = widgetArrangement.flatMap { return $0.rawValue }
+        UserDefaults(suiteName: "group.caviar.respect.MeowlWatch")!.set(intArray, forKey: "widgetArrangement")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
