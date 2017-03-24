@@ -8,13 +8,13 @@
 
 import UIKit
 
-#if !NO_ADS
+#if MEOWLWATCH_FREE
 import GoogleMobileAds
 #endif
 
 class TableViewController: UITableViewController {
 
-    #if !NO_ADS
+    #if MEOWLWATCH_FREE
     /// The Google ad banner.
     var bannerView: GADBannerView?
     #endif
@@ -41,7 +41,7 @@ class TableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
 
-        #if !NO_ADS
+        #if MEOWLWATCH_FREE
         self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         let bannerView = self.bannerView!
         self.navigationController!.setToolbarHidden(false, animated: false)

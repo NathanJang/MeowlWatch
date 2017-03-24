@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_MeowlWatch_No_AdsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_MeowlWatch_No_AdsVersionString[];
+FOUNDATION_EXPORT double Pods_MeowlWatch_FreeVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_MeowlWatch_FreeVersionString[];
 

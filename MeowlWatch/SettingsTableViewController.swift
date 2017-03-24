@@ -30,15 +30,29 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        switch section {
+        case 0:
+            return 0
+        case 1:
+            return 4
+        default:
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Widget Settings"
+        switch section {
+        case 0:
+            return ""
+        case 1:
+            return "Widget Settings"
+        default:
+            return nil
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +67,14 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will reflect how the widget is shown."
+        switch section {
+        case 0:
+            return "The MeowlWatch logo was designed by Isabel Nygard. Visit http://example.com to see more."
+        case 1:
+            return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will reflect how the widget is shown."
+        default:
+            return nil
+        }
     }
 
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -88,7 +109,12 @@ class SettingsTableViewController: UITableViewController {
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
+        switch indexPath.section {
+        case 1:
+            return true
+        default:
+            return false
+        }
     }
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
