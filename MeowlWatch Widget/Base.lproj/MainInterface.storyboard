@@ -138,6 +138,7 @@
                             <constraint firstItem="uX0-jY-xCu" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" constant="8" id="fdV-Q8-T94"/>
                             <constraint firstItem="uX0-jY-xCu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="8" id="fvw-bc-tTT"/>
                             <constraint firstItem="QII-MZ-5nP" firstAttribute="centerX" secondItem="KUB-f2-HvF" secondAttribute="centerX" id="gkA-Mq-LfQ"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="KUB-f2-HvF" secondAttribute="bottom" constant="25" id="hSs-eB-YDh"/>
                             <constraint firstItem="cRm-RX-vfu" firstAttribute="centerX" secondItem="2gX-C0-KcY" secondAttribute="centerX" id="hls-AH-xob"/>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="centerY" secondItem="QII-MZ-5nP" secondAttribute="centerY" id="m37-J9-GXN"/>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="centerX" secondItem="RWY-hX-emE" secondAttribute="centerX" id="nZl-Mf-wN7"/>
@@ -147,6 +148,11 @@
                             <constraint firstItem="gWw-o7-na7" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="8" id="ut4-Tc-Kvr"/>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="bottom" secondItem="QII-MZ-5nP" secondAttribute="bottom" id="y8G-Iy-dNR"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hSs-eB-YDh"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>

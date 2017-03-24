@@ -22,6 +22,8 @@ class TableViewController: UITableViewController {
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
 
+    var hasAppeared = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,10 +54,13 @@ class TableViewController: UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        if self.isBeingPresented || self.isMovingToParentViewController {
+        super.viewDidAppear(animated)
+        
+        if !hasAppeared {
             if Datastore.shouldRefresh {
                 beginRefrshing()
             }
+            hasAppeared = true
         }
     }
 

@@ -55,6 +55,8 @@ struct Datastore {
 
         let intArray = widgetArrangement.flatMap { return $0.rawValue }
         userDefaults.set(intArray, forKey: "widgetArrangement")
+
+        if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
     }
 
     /// A boolean representing whether we're prepared to query the server.

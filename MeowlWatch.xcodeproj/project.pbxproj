@@ -682,6 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caviar.respect.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -699,6 +700,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caviar.respect.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -714,6 +716,7 @@
 				CODE_SIGN_ENTITLEMENTS = "MeowlWatch Widget/MeowlWatch Widget.entitlements";
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "caviar.respect.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -731,6 +734,7 @@
 				CODE_SIGN_ENTITLEMENTS = "MeowlWatch Widget/MeowlWatch Widget.entitlements";
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "caviar.respect.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -748,6 +752,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caviar.respect.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -766,6 +771,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 9Z4VM84YX9;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caviar.respect.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";

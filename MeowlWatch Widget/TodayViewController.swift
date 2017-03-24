@@ -28,7 +28,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
         Datastore.loadFromDefaults()
-        self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
+        if #available(iOSApplicationExtension 10.0, *) {
+            self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
+        } else {
+            // Fallback on earlier versions
+            self.preferredContentSize = CGSize(width: preferredContentSize.width, height: 220)
+            let descriptionColor = UIColor.white
+            leftDescriptionLabel.textColor = descriptionColor
+            rightDescriptionLabel.textColor = descriptionColor
+            secondaryLeftDescriptionLabel.textColor = descriptionColor
+            secondaryRightDescriptionLabel.textColor = descriptionColor
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,6 +72,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     }
 
+    @available(iOSApplicationExtension 10.0, *)
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         UIView.animate(withDuration: 0.25) {
             if activeDisplayMode == .expanded {
@@ -70,6 +81,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self.preferredContentSize = maxSize
             }
         }
+    }
+
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
     }
 
     /// Sets the label text to the appropriate content given a query result.
