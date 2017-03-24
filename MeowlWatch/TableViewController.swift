@@ -9,14 +9,14 @@
 import UIKit
 
 #if MEOWLWATCH_FREE
-import GoogleMobileAds
+    import GoogleMobileAds
 #endif
 
 class TableViewController: UITableViewController {
 
     #if MEOWLWATCH_FREE
-    /// The Google ad banner.
-    var bannerView: GADBannerView?
+        /// The Google ad banner.
+        var bannerView: GADBannerView?
     #endif
 
     /// The query result that the table view will work with.
@@ -42,14 +42,14 @@ class TableViewController: UITableViewController {
         refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
 
         #if MEOWLWATCH_FREE
-        self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        let bannerView = self.bannerView!
-        self.navigationController!.setToolbarHidden(false, animated: false)
-        self.navigationController!.toolbar.addSubview(bannerView)
-        bannerView.adUnitID = Datastore.adMobAdUnitID
-        bannerView.rootViewController = self
-        let request = GADRequest()
-        bannerView.load(request)
+            self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+            let bannerView = self.bannerView!
+            self.navigationController!.setToolbarHidden(false, animated: false)
+            self.navigationController!.toolbar.addSubview(bannerView)
+            bannerView.adUnitID = Datastore.adMobAdUnitID
+            bannerView.rootViewController = self
+            let request = GADRequest()
+            bannerView.load(request)
         #endif
     }
 
@@ -235,9 +235,9 @@ class TableViewController: UITableViewController {
 
     func didTapSettingsButton() {
         #if MEOWLWATCH_FREE
-        performSegue(withIdentifier: "ShowFreeSettings", sender: self)
+            performSegue(withIdentifier: "ShowFreeSettings", sender: self)
         #else
-        performSegue(withIdentifier: "ShowSettings", sender: self)
+            performSegue(withIdentifier: "ShowSettings", sender: self)
         #endif
     }
 

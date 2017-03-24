@@ -30,34 +30,82 @@ class FreeSettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if indexPath == IndexPath(row: 0, section: 1) {
+        if indexPath.section == 0 {
             // TODO: Link to page
+        } else if indexPath.section == 2 {
+
         }
     }
 
-    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 3
     }
-     */
 
-    /*
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
-     */
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell: UITableViewCell
 
         // Configure the cell...
+        switch indexPath.section {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+            cell.textLabel!.text = "Full Version ($0.99) in App Store"
+        case 1:
+            cell = UITableViewCell()
+            cell.isUserInteractionEnabled = false
+            let imageView = UIImageView(image: #imageLiteral(resourceName: "WidgetPreviewFull"))
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.contentMode = .scaleToFill
+            cell.addSubview(imageView)
+            cell.addConstraints([
+                NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: cell, attribute: .left, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: cell, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: cell, attribute: .right, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: cell, attribute: .bottom, multiplier: 1, constant: 0)
+            ])
+        case 2:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+            cell.textLabel!.text = "Visit Designer's Website"
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+        }
 
         return cell
     }
-    */
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath == IndexPath(row: 0, section: 1) {
+            let imageSize = #imageLiteral(resourceName: "WidgetPreviewFull").size
+            return imageSize.height * tableView.contentSize.width / imageSize.width
+        } else {
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Full Version"
+        case 2:
+            return "Logo"
+        default:
+            return nil
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Developing useful apps like MeowlWatch is hard work. Please consider supporting me by buying the full version, which includes more features like a Notification Center widget. Support through Venmo is also appreciated @jonchanyc."
+        case 2:
+            return "The MeowlWatch logo was designed by Isabel Nygard. Visit http://example.com to see more."
+        default:
+            return nil
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

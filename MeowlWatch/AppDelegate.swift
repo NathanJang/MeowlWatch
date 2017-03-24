@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 
 #if MEOWLWATCH_FREE
-import GoogleMobileAds
+    import GoogleMobileAds
 #endif
 
 @UIApplicationMain
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Datastore.loadFromDefaults()
 
         #if MEOWLWATCH_FREE
-        GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
+            GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
         #endif
 
         return true

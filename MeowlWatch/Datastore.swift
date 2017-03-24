@@ -18,17 +18,17 @@ struct Datastore {
     private static let accessGroupName = "group.caviar.respect.MeowlWatch"
 
     #if MEOWLWATCH_FREE
-    /// The shared user defaults object.
-    private static let userDefaults = UserDefaults.standard
+        /// The shared user defaults object.
+        private static let userDefaults = UserDefaults.standard
 
-    /// The shared keychain wrapper object.
-    private static let keychain = KeychainWrapper.standard
+        /// The shared keychain wrapper object.
+        private static let keychain = KeychainWrapper.standard
     #else
-    /// The shared user defaults object.
-    private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
+        /// The shared user defaults object.
+        private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
 
-    /// The shared keychain wrapper object.
-    private static let keychain = KeychainWrapper(serviceName: "caviar.respect.MeowlWatch", accessGroup: accessGroupName)
+        /// The shared keychain wrapper object.
+        private static let keychain = KeychainWrapper(serviceName: "caviar.respect.MeowlWatch", accessGroup: accessGroupName)
     #endif
 
 
