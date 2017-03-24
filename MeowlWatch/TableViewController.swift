@@ -119,11 +119,7 @@ class TableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "LeftDetailCell")!
             switch indexPath.row {
             case 0:
-                if let queryResult = queryResult, queryResult.isUnlimited {
-                    cell.textLabel!.text = "∞"
-                } else {
-                    cell.textLabel!.text = queryResult?.boardMeals ?? "0"
-                }
+                cell.textLabel!.text = queryResult?.boardMeals ?? "0"
                 cell.detailTextLabel!.text = "Meal Swipes Left"
             case 1:
                 cell.textLabel!.text = queryResult?.equivalencyMeals ?? "0"
@@ -238,7 +234,11 @@ class TableViewController: UITableViewController {
     }
 
     func didTapSettingsButton() {
+        #if MEOWLWATCH_FREE
+        performSegue(withIdentifier: "ShowFreeSettings", sender: self)
+        #else
         performSegue(withIdentifier: "ShowSettings", sender: self)
+        #endif
     }
 
 }

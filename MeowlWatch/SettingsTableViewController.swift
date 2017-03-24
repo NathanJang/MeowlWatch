@@ -36,9 +36,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 0
-        case 1:
             return 4
+        case 1:
+            return 1
         default:
             return 0
         }
@@ -47,21 +47,30 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return ""
-        case 1:
             return "Widget Settings"
+        case 1:
+            return "Logo"
         default:
             return nil
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
+        let cell: UITableViewCell
+        switch indexPath.section {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
 
-        // Configure the cell...
-        let item = Datastore.widgetArrangement[indexPath.row]
-        cell.textLabel!.text = Datastore.stringForWidgetItem(item)
-        cell.tag = item.rawValue
+            // Configure the cell...
+            let item = Datastore.widgetArrangement[indexPath.row]
+            cell.textLabel!.text = Datastore.stringForWidgetItem(item)
+            cell.tag = item.rawValue
+        case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+            cell.textLabel!.text = "Visit Designer's Website"
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+        }
 
         return cell
     }
@@ -69,9 +78,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "The MeowlWatch logo was designed by Isabel Nygard. Visit http://example.com to see more."
-        case 1:
             return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will reflect how the widget is shown."
+        case 1:
+            return "The MeowlWatch logo was designed by Isabel Nygard. Visit http://example.com to see more."
         default:
             return nil
         }
@@ -110,7 +119,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         switch indexPath.section {
-        case 1:
+        case 0:
             return true
         default:
             return false
@@ -119,6 +128,14 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .none
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if indexPath == IndexPath(row: 0, section: 1) {
+            // TODO: website
+        }
     }
 
     /*

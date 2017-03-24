@@ -34,6 +34,7 @@
 		AB7783081E84460B00925F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782BF1E81083D00925F72 /* Main.storyboard */; };
 		AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */; };
 		AB77830D1E84460B00925F72 /* MeowlWatch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AB8FA5761E84EB750099AFCF /* FreeSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FA5751E84EB750099AFCF /* FreeSettingsTableViewController.swift */; };
 		CF9C3B860C8ACC73878B1928 /* Pods_MeowlWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6D8D6B610A9B74C9EC1B96 /* Pods_MeowlWatch.framework */; };
 		EB510D87EBF6CE1ED5B22393 /* Pods_MeowlWatch_Free.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444A92040FFC21B5D9C4368C /* Pods_MeowlWatch_Free.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		AB7782F41E83D99600925F72 /* MeowlWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = MeowlWatch.entitlements; path = MeowlWatch/MeowlWatch.entitlements; sourceTree = SOURCE_ROOT; };
 		AB7782F51E83DA4F00925F72 /* MeowlWatch Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MeowlWatch Widget.entitlements"; path = "MeowlWatch Widget/MeowlWatch Widget.entitlements"; sourceTree = SOURCE_ROOT; };
 		AB7783111E84460B00925F72 /* MeowlWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowlWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB8FA5751E84EB750099AFCF /* FreeSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FreeSettingsTableViewController.swift; path = MeowlWatch/FreeSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B896B6F89D7893FA5FE441AB /* Pods-MeowlWatch Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		F42CA8E0306E5BC32F033E35 /* Pods-MeowlWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				AB7782B71E8107FB00925F72 /* AppDelegate.swift */,
 				AB7782BA1E8107FB00925F72 /* TableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
+				AB8FA5751E84EB750099AFCF /* FreeSettingsTableViewController.swift */,
 				AB7782B81E8107FB00925F72 /* Datastore.swift */,
 				AB7782B91E8107FB00925F72 /* QueryResult.swift */,
 				AB7782BF1E81083D00925F72 /* Main.storyboard */,
@@ -493,6 +496,7 @@
 			files = (
 				AB7782BD1E8107FB00925F72 /* QueryResult.swift in Sources */,
 				AB7782F31E83CCD400925F72 /* SettingsTableViewController.swift in Sources */,
+				AB8FA5761E84EB750099AFCF /* FreeSettingsTableViewController.swift in Sources */,
 				AB7782BB1E8107FB00925F72 /* AppDelegate.swift in Sources */,
 				AB7782BC1E8107FB00925F72 /* Datastore.swift in Sources */,
 				AB7782BE1E8107FB00925F72 /* TableViewController.swift in Sources */,

@@ -204,7 +204,7 @@ extension QueryResult {
     // MARK: Computed Properties
 
     /// The number of board meals as a string.
-    var boardMeals: String { return "\(numberOfBoardMeals)" }
+    var boardMeals: String { return isUnlimited ? "∞" : "\(numberOfBoardMeals)" }
 
     /// The number of equivalency meals as a string.
     var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
