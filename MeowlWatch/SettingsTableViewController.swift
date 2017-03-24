@@ -63,7 +63,7 @@ class SettingsTableViewController: UITableViewController {
 
             // Configure the cell...
             let item = Datastore.widgetArrangement[indexPath.row]
-            cell.textLabel!.text = Datastore.stringForWidgetItem(item)
+            cell.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
             cell.tag = item.rawValue
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)

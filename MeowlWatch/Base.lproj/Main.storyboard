@@ -141,7 +141,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Full Version" id="v8K-Gh-77a">
-                                <string key="footerTitle">Developing useful apps like these takes a lot of effort. Please consider supporting the developer by buying the full version for $0.99, which includes more features like this Notification Center widget.</string>
+                                <string key="footerTitle">Developing useful apps like MeowlWatch is hard work. Please consider supporting me by buying the full version, which includes more features like a Notification Center widget. Support through Venmo is also appreciated @jonchanyc.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="48g-oT-gK8" style="IBUITableViewCellStyleDefault" id="kvZ-CQ-Jib">
                                         <rect key="frame" x="0.0" y="56" width="375" height="44"/>
@@ -150,7 +150,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="See Full Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="48g-oT-gK8">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="See Full Version in App Store ($0.99)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="48g-oT-gK8">
                                                     <rect key="frame" x="15" y="0.0" width="325" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -165,7 +165,7 @@
                             <tableViewSection id="wF0-5P-Fld">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="668" id="4Dy-py-J5m">
-                                        <rect key="frame" x="0.0" y="196" width="375" height="668"/>
+                                        <rect key="frame" x="0.0" y="212" width="375" height="668"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Dy-py-J5m" id="vNg-mG-s2V">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -189,7 +189,7 @@
                             <tableViewSection headerTitle="Logo" footerTitle="The MeowlWatch logo was designed by Isabel Nygard. Visit http://example.com to see more." id="9dA-vC-tmk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Q5E-z6-JQG" style="IBUITableViewCellStyleDefault" id="MnE-wC-b3f">
-                                        <rect key="frame" x="0.0" y="928" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="944" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MnE-wC-b3f" id="OlA-iN-EdD">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>

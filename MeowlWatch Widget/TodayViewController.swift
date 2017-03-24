@@ -90,10 +90,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
-        leftDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[0])
-        rightDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[1])
-        secondaryLeftDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[2])
-        secondaryRightDescriptionLabel.text = Datastore.stringForWidgetItem(Datastore.widgetArrangement[3])
+        leftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[0], withQuery: query)
+        rightDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[1], withQuery: query)
+        secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[2], withQuery: query)
+        secondaryRightDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[3], withQuery: query)
 
         if let query = query {
             updateNumberLabel(leftNumberLabel, asItem: Datastore.widgetArrangement[0], withQuery: query)
@@ -107,7 +107,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// - Parameter label: The number label.
     /// - Parameter item: The widget item type.
     /// - Parameter query: The query result to use.
-    func updateNumberLabel(_ label: UILabel, asItem item: Datastore.WidgetItem, withQuery query: QueryResult) {
+    func updateNumberLabel(_ label: UILabel, asItem item: QueryResult.DisplayItem, withQuery query: QueryResult) {
         DispatchQueue.main.async {
             switch item {
             case .boardMeals:

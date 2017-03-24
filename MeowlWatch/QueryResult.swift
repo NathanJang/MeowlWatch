@@ -206,17 +206,33 @@ extension QueryResult {
     /// The number of board meals as a string.
     var boardMeals: String { return isUnlimited ? "∞" : "\(numberOfBoardMeals)" }
 
+    var boardMealsIsPlural: Bool { return numberOfBoardMeals != 1 }
+    static var boardMealSingularDescription: String { return "Meal Swipe" }
+    static var boardMealsPluralDescription: String { return "Meal Swipes" }
+    var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
+
     /// The number of equivalency meals as a string.
     var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
 
+    var equivalencyMealsIsPlural: Bool { return numberOfEquivalencyMeals != 1 }
+    static var equivalencyMealSingularDescription: String { return "Equivalency" }
+    static var equivalencyMealsPluralDescription: String { return "Equivalencies" }
+    var equivalencyMealsDescription: String { return equivalencyMealsIsPlural ? QueryResult.equivalencyMealsPluralDescription : QueryResult.equivalencyMealSingularDescription }
+
     /// The points as a string.
     var points: String { return pointsInCents.centsToString() }
+
+    var pointsDescription: String { return "Points" }
+    static var pointsDescription: String { return "Points" }
 
     /// The Cat Cash and Cat Cash bonus added together.
     var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
 
     /// The total Cat Cash as a string.
     var totalCatCash: String { return totalCatCashInCents.centsToString() }
+
+    var catCashDescription: String { return "Cat Cash" }
+    static var catCashDescription: String { return "Cat Cash" }
 
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
@@ -240,6 +256,43 @@ extension QueryResult {
             return "Unable to login to server. Please tap \"Account\" to make sure your NetID and password are correct."
         case .parseError:
             return "An unknown error has occurred. Please contact the developer of this app."
+        }
+    }
+
+
+    /// An enum representing the each displayed item.
+    enum DisplayItem: Int {
+
+        case boardMeals
+        case equivalencyMeals
+        case points
+        case catCash
+        
+    }
+
+    func description(forItem item: DisplayItem) -> String {
+        switch item {
+        case .boardMeals:
+            return boardMealsDescription
+        case .equivalencyMeals:
+            return equivalencyMealsDescription
+        case .points:
+            return QueryResult.pointsDescription
+        case .catCash:
+            return QueryResult.catCashDescription
+        }
+    }
+
+    static func description(forItem item: DisplayItem, withQuery query: QueryResult?) -> String {
+        switch item {
+        case .boardMeals:
+            return query?.description(forItem: .boardMeals) ?? boardMealsPluralDescription
+        case .equivalencyMeals:
+            return query?.description(forItem: .equivalencyMeals) ?? equivalencyMealsPluralDescription
+        case .points:
+            return pointsDescription
+        case .catCash:
+            return catCashDescription
         }
     }
 

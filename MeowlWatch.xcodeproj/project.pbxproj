@@ -324,8 +324,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB27C1E11E7CCCAC00A90072 /* MeowlWatch Free */,
 				AB7782F81E84460B00925F72 /* MeowlWatch */,
+				AB27C1E11E7CCCAC00A90072 /* MeowlWatch Free */,
 				AB7782D01E8242B000925F72 /* MeowlWatch Widget */,
 			);
 		};

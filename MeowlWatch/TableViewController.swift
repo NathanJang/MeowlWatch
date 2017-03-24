@@ -120,16 +120,16 @@ class TableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 cell.textLabel!.text = queryResult?.boardMeals ?? "0"
-                cell.detailTextLabel!.text = "Meal Swipes Left"
+                cell.detailTextLabel!.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
             case 1:
                 cell.textLabel!.text = queryResult?.equivalencyMeals ?? "0"
-                cell.detailTextLabel!.text = "Equivalencies Left"
+                cell.detailTextLabel!.text = "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left"
             case 2:
                 cell.textLabel!.text = queryResult?.points ?? "0"
-                cell.detailTextLabel!.text = "Points Left"
+                cell.detailTextLabel!.text = "\(QueryResult.pointsDescription) Left"
             case 3:
                 cell.textLabel!.text = queryResult?.totalCatCash ?? "0.00"
-                cell.detailTextLabel!.text = "Cat Cash Left"
+                cell.detailTextLabel!.text = "\(QueryResult.catCashDescription) Left"
             default:
                 break
             }

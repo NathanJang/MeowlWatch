@@ -47,7 +47,7 @@ struct Datastore {
         }
 
         if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int] {
-            Datastore.widgetArrangement = intArray.flatMap { return Datastore.WidgetItem(rawValue: $0)! }
+            Datastore.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
         }
     }
 
@@ -202,35 +202,26 @@ struct Datastore {
 
     // MARK: Widget
 
-    /// An enum representing the each displayed item on the widget.
-    enum WidgetItem: Int {
-
-        case boardMeals
-        case equivalencyMeals
-        case points
-        case catCash
-
-    }
 
     /// An array representing the user's arrangement of the widget items.
     /// The default is shown here, and then modified once user defaults are loaded.
-    static var widgetArrangement: [WidgetItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
+    static var widgetArrangement: [QueryResult.DisplayItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
 
     /// Returns the display description given an item type.
     /// - Parameter item: The type of widget item.
     /// - Returns: The display string.
-    static func stringForWidgetItem(_ item: WidgetItem) -> String {
-        switch item {
-        case .boardMeals:
-            return "Meal Swipes"
-        case .equivalencyMeals:
-            return "Equivalencies"
-        case .points:
-            return "Points"
-        case .catCash:
-            return "Cat Cash"
-        }
-    }
+//    static func stringForWidgetItem(_ item: WidgetItem, plural: Bool) -> String {
+//        switch item {
+//        case .boardMeals:
+//            return plural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription
+//        case .equivalencyMeals:
+//            return plural ? QueryResult.equivalencyMealPluralDescription : QueryResult.equivalencyMealSingularDescription
+//        case .points:
+//            return QueryResult.pointsDescription
+//        case .catCash:
+//            return QueryResult.catCashDescription
+//        }
+//    }
 
     /// Rearranges the widget arrangement preferences given indices in `widgetArrangement`.
     /// - Parameter fromIndex: The index from which the item originated.
