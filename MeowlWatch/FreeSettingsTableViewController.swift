@@ -52,7 +52,7 @@ class FreeSettingsTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
-            cell.textLabel!.text = "Full Version ($0.99) in App Store"
+            cell.textLabel!.text = "Full Version ($0.99) on App Store"
         case 1:
             cell = UITableViewCell()
             cell.isUserInteractionEnabled = false

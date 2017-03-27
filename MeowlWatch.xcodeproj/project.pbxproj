@@ -8,19 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		92809430279CD09F96AADDE7 /* Pods_MeowlWatch_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */; };
-		AB7782BB1E8107FB00925F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B71E8107FB00925F72 /* AppDelegate.swift */; };
-		AB7782BC1E8107FB00925F72 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
-		AB7782BD1E8107FB00925F72 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
-		AB7782BE1E8107FB00925F72 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782BA1E8107FB00925F72 /* TableViewController.swift */; };
-		AB7782C11E81083D00925F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782BF1E81083D00925F72 /* Main.storyboard */; };
-		AB7782C41E81084F00925F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */; };
-		AB7782C71E81087D00925F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C61E81087D00925F72 /* Assets.xcassets */; };
-		AB7782C91E8203EF00925F72 /* AdMobKeys-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C81E8203EF00925F72 /* AdMobKeys-Debug.plist */; };
-		AB7782CB1E82062900925F72 /* AdMobKeys-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* TodayViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
-		AB7782F31E83CCD400925F72 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */; };
 		AB7782F61E83E44800925F72 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
 		AB7782F71E83E4F700925F72 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
 		AB7782FD1E84460B00925F72 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
@@ -34,9 +24,15 @@
 		AB7783081E84460B00925F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782BF1E81083D00925F72 /* Main.storyboard */; };
 		AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */; };
 		AB77830D1E84460B00925F72 /* MeowlWatch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AB8FA5761E84EB750099AFCF /* FreeSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FA5751E84EB750099AFCF /* FreeSettingsTableViewController.swift */; };
+		ABA971461E88E4C8001A6AD8 /* MeowlWatch Watch App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ABFC38AE1E85970300F40F37 /* MeowlWatch Watch App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ABFC38A61E85970300F40F37 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABFC38A41E85970300F40F37 /* Interface.storyboard */; };
+		ABFC38A81E85970300F40F37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABFC38A71E85970300F40F37 /* Assets.xcassets */; };
+		ABFC38B41E85970300F40F37 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC38B31E85970300F40F37 /* InterfaceController.swift */; };
+		ABFC38B61E85970300F40F37 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC38B51E85970300F40F37 /* ExtensionDelegate.swift */; };
+		ABFC38B81E85970300F40F37 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC38B71E85970300F40F37 /* ComplicationController.swift */; };
+		ABFC38BA1E85970300F40F37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABFC38B91E85970300F40F37 /* Assets.xcassets */; };
+		ABFC38BE1E85970300F40F37 /* MeowlWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ABFC38A21E85970300F40F37 /* MeowlWatch Watch App.app */; };
 		CF9C3B860C8ACC73878B1928 /* Pods_MeowlWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6D8D6B610A9B74C9EC1B96 /* Pods_MeowlWatch.framework */; };
-		EB510D87EBF6CE1ED5B22393 /* Pods_MeowlWatch_Free.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444A92040FFC21B5D9C4368C /* Pods_MeowlWatch_Free.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +42,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = AB7782D01E8242B000925F72;
 			remoteInfo = MeowlWatchToday;
+		};
+		ABA971471E88E4C8001A6AD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABFC38AD1E85970300F40F37;
+			remoteInfo = "MeowlWatch Watch App Extension";
+		};
+		ABFC38BC1E85970300F40F37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABFC38A11E85970300F40F37;
+			remoteInfo = "MeowlWatch Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -61,16 +71,34 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABA971491E88E4C8001A6AD8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ABA971461E88E4C8001A6AD8 /* MeowlWatch Watch App Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABFC38C61E85970300F40F37 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				ABFC38BE1E85970300F40F37 /* MeowlWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		09B9EC67070FFC4B6E476599 /* Pods-MeowlWatch Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget.release.xcconfig"; sourceTree = "<group>"; };
-		0AE72B19E3783A1395C0F92A /* Pods-MeowlWatch Free.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Free.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Free/Pods-MeowlWatch Free.debug.xcconfig"; sourceTree = "<group>"; };
 		207FF311151D28D56CE8C835 /* Pods-MeowlWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch.debug.xcconfig"; sourceTree = "<group>"; };
-		444A92040FFC21B5D9C4368C /* Pods_MeowlWatch_Free.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Free.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C6D8D6B610A9B74C9EC1B96 /* Pods_MeowlWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		86F5E08EC20D5F5C40BF3B02 /* Pods-MeowlWatch Free.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Free.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Free/Pods-MeowlWatch Free.release.xcconfig"; sourceTree = "<group>"; };
-		AB27C1E21E7CCCAC00A90072 /* MeowlWatch Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeowlWatch Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB27C1F11E7CCCAC00A90072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = MeowlWatch/Info.plist; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B81E8107FB00925F72 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Datastore.swift; path = MeowlWatch/Datastore.swift; sourceTree = SOURCE_ROOT; };
@@ -92,17 +120,27 @@
 		AB7782F51E83DA4F00925F72 /* MeowlWatch Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MeowlWatch Widget.entitlements"; path = "MeowlWatch Widget/MeowlWatch Widget.entitlements"; sourceTree = SOURCE_ROOT; };
 		AB7783111E84460B00925F72 /* MeowlWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowlWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8FA5751E84EB750099AFCF /* FreeSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FreeSettingsTableViewController.swift; path = MeowlWatch/FreeSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		AB939CD01E88DC8A005652F4 /* MeowlWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeowlWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		ABFC38A21E85970300F40F37 /* MeowlWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeowlWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABFC38A51E85970300F40F37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		ABFC38A71E85970300F40F37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABFC38A91E85970300F40F37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABFC38AE1E85970300F40F37 /* MeowlWatch Watch App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MeowlWatch Watch App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABFC38B31E85970300F40F37 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		ABFC38B51E85970300F40F37 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		ABFC38B71E85970300F40F37 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		ABFC38B91E85970300F40F37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABFC38BB1E85970300F40F37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B896B6F89D7893FA5FE441AB /* Pods-MeowlWatch Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		F42CA8E0306E5BC32F033E35 /* Pods-MeowlWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AB27C1DF1E7CCCAC00A90072 /* Frameworks */ = {
+		2A226E47A41AEDB64579A761 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB510D87EBF6CE1ED5B22393 /* Pods_MeowlWatch_Free.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +161,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABFC38AB1E85970300F40F37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -133,8 +178,6 @@
 				F42CA8E0306E5BC32F033E35 /* Pods-MeowlWatch.release.xcconfig */,
 				B896B6F89D7893FA5FE441AB /* Pods-MeowlWatch Widget.debug.xcconfig */,
 				09B9EC67070FFC4B6E476599 /* Pods-MeowlWatch Widget.release.xcconfig */,
-				0AE72B19E3783A1395C0F92A /* Pods-MeowlWatch Free.debug.xcconfig */,
-				86F5E08EC20D5F5C40BF3B02 /* Pods-MeowlWatch Free.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -145,6 +188,8 @@
 				AB7782CC1E82085900925F72 /* .gitignore */,
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
+				ABFC38A31E85970300F40F37 /* MeowlWatch Watch App */,
+				ABFC38B21E85970300F40F37 /* MeowlWatch Watch App Extension */,
 				AB27C1E31E7CCCAC00A90072 /* Products */,
 				AB27C1FB1E7E0E3500A90072 /* Frameworks */,
 				9569A7D3A1BF4D6D13048F97 /* Pods */,
@@ -154,9 +199,10 @@
 		AB27C1E31E7CCCAC00A90072 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB27C1E21E7CCCAC00A90072 /* MeowlWatch Free.app */,
 				AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */,
 				AB7783111E84460B00925F72 /* MeowlWatch.app */,
+				ABFC38A21E85970300F40F37 /* MeowlWatch Watch App.app */,
+				ABFC38AE1E85970300F40F37 /* MeowlWatch Watch App Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,7 +234,6 @@
 				7C6D8D6B610A9B74C9EC1B96 /* Pods_MeowlWatch.framework */,
 				AB7782D21E8242B000925F72 /* NotificationCenter.framework */,
 				AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */,
-				444A92040FFC21B5D9C4368C /* Pods_MeowlWatch_Free.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,29 +250,32 @@
 			path = MeowlWatchToday;
 			sourceTree = "<group>";
 		};
+		ABFC38A31E85970300F40F37 /* MeowlWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				AB939CD01E88DC8A005652F4 /* MeowlWatch Watch App.entitlements */,
+				ABFC38A41E85970300F40F37 /* Interface.storyboard */,
+				ABFC38A71E85970300F40F37 /* Assets.xcassets */,
+				ABFC38A91E85970300F40F37 /* Info.plist */,
+			);
+			path = "MeowlWatch Watch App";
+			sourceTree = "<group>";
+		};
+		ABFC38B21E85970300F40F37 /* MeowlWatch Watch App Extension */ = {
+			isa = PBXGroup;
+			children = (
+				ABFC38B31E85970300F40F37 /* InterfaceController.swift */,
+				ABFC38B51E85970300F40F37 /* ExtensionDelegate.swift */,
+				ABFC38B71E85970300F40F37 /* ComplicationController.swift */,
+				ABFC38B91E85970300F40F37 /* Assets.xcassets */,
+				ABFC38BB1E85970300F40F37 /* Info.plist */,
+			);
+			path = "MeowlWatch Watch App Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB27C1E11E7CCCAC00A90072 /* MeowlWatch Free */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AB27C1F41E7CCCAC00A90072 /* Build configuration list for PBXNativeTarget "MeowlWatch Free" */;
-			buildPhases = (
-				2537730EA07E64776D831921 /* [CP] Check Pods Manifest.lock */,
-				AB27C1DE1E7CCCAC00A90072 /* Sources */,
-				AB27C1DF1E7CCCAC00A90072 /* Frameworks */,
-				AB27C1E01E7CCCAC00A90072 /* Resources */,
-				5B42BD77BE853148BD631CD8 /* [CP] Embed Pods Frameworks */,
-				0E8518865289BD4127DA8E1C /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "MeowlWatch Free";
-			productName = "NU Points";
-			productReference = AB27C1E21E7CCCAC00A90072 /* MeowlWatch Free.app */;
-			productType = "com.apple.product-type.application";
-		};
 		AB7782D01E8242B000925F72 /* MeowlWatch Widget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB7782DE1E8242B000925F72 /* Build configuration list for PBXNativeTarget "MeowlWatch Widget" */;
@@ -258,16 +306,53 @@
 				AB77830A1E84460B00925F72 /* [CP] Embed Pods Frameworks */,
 				AB77830B1E84460B00925F72 /* [CP] Copy Pods Resources */,
 				AB77830C1E84460B00925F72 /* Embed App Extensions */,
+				ABFC38C61E85970300F40F37 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				AB7782F91E84460B00925F72 /* PBXTargetDependency */,
+				ABFC38BD1E85970300F40F37 /* PBXTargetDependency */,
 			);
 			name = MeowlWatch;
 			productName = "NU Points";
 			productReference = AB7783111E84460B00925F72 /* MeowlWatch.app */;
 			productType = "com.apple.product-type.application";
+		};
+		ABFC38A11E85970300F40F37 /* MeowlWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABFC38C51E85970300F40F37 /* Build configuration list for PBXNativeTarget "MeowlWatch Watch App" */;
+			buildPhases = (
+				ABFC38A01E85970300F40F37 /* Resources */,
+				ABA971491E88E4C8001A6AD8 /* Embed App Extensions */,
+				2A226E47A41AEDB64579A761 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABA971481E88E4C8001A6AD8 /* PBXTargetDependency */,
+			);
+			name = "MeowlWatch Watch App";
+			productName = "MeowlWatch Watch App";
+			productReference = ABFC38A21E85970300F40F37 /* MeowlWatch Watch App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		ABFC38AD1E85970300F40F37 /* MeowlWatch Watch App Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABFC38C31E85970300F40F37 /* Build configuration list for PBXNativeTarget "MeowlWatch Watch App Extension" */;
+			buildPhases = (
+				ABFC38AA1E85970300F40F37 /* Sources */,
+				ABFC38AB1E85970300F40F37 /* Frameworks */,
+				ABFC38AC1E85970300F40F37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MeowlWatch Watch App Extension";
+			productName = "MeowlWatch Watch App Extension";
+			productReference = ABFC38AE1E85970300F40F37 /* MeowlWatch Watch App Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -279,20 +364,9 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Jonathan Chan";
 				TargetAttributes = {
-					AB27C1E11E7CCCAC00A90072 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9Z4VM84YX9;
-						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
-							};
-						};
-					};
 					AB7782D01E8242B000925F72 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9Z4VM84YX9;
+						DevelopmentTeam = 3A2N53KSLM;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -302,12 +376,27 @@
 						};
 					};
 					AB7782F81E84460B00925F72 = {
-						DevelopmentTeam = 9Z4VM84YX9;
+						DevelopmentTeam = 3A2N53KSLM;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 						};
+					};
+					ABFC38A11E85970300F40F37 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3A2N53KSLM;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					ABFC38AD1E85970300F40F37 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3A2N53KSLM;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -325,25 +414,14 @@
 			projectRoot = "";
 			targets = (
 				AB7782F81E84460B00925F72 /* MeowlWatch */,
-				AB27C1E11E7CCCAC00A90072 /* MeowlWatch Free */,
 				AB7782D01E8242B000925F72 /* MeowlWatch Widget */,
+				ABFC38A11E85970300F40F37 /* MeowlWatch Watch App */,
+				ABFC38AD1E85970300F40F37 /* MeowlWatch Watch App Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AB27C1E01E7CCCAC00A90072 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AB7782C91E8203EF00925F72 /* AdMobKeys-Debug.plist in Resources */,
-				AB7782C41E81084F00925F72 /* LaunchScreen.storyboard in Resources */,
-				AB7782C71E81087D00925F72 /* Assets.xcassets in Resources */,
-				AB7782C11E81083D00925F72 /* Main.storyboard in Resources */,
-				AB7782CB1E82062900925F72 /* AdMobKeys-Release.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AB7782CF1E8242B000925F72 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,24 +442,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABFC38A01E85970300F40F37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABFC38A81E85970300F40F37 /* Assets.xcassets in Resources */,
+				ABFC38A61E85970300F40F37 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABFC38AC1E85970300F40F37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABFC38BA1E85970300F40F37 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E8518865289BD4127DA8E1C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch Free/Pods-MeowlWatch Free-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0F871CCA3CAA594945BF7EEA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -395,36 +475,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2537730EA07E64776D831921 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5B42BD77BE853148BD631CD8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch Free/Pods-MeowlWatch Free-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		82DA28C773478B52B844974D /* [CP] Check Pods Manifest.lock */ = {
@@ -490,19 +540,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AB27C1DE1E7CCCAC00A90072 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AB7782BD1E8107FB00925F72 /* QueryResult.swift in Sources */,
-				AB7782F31E83CCD400925F72 /* SettingsTableViewController.swift in Sources */,
-				AB8FA5761E84EB750099AFCF /* FreeSettingsTableViewController.swift in Sources */,
-				AB7782BB1E8107FB00925F72 /* AppDelegate.swift in Sources */,
-				AB7782BC1E8107FB00925F72 /* Datastore.swift in Sources */,
-				AB7782BE1E8107FB00925F72 /* TableViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AB7782CD1E8242B000925F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,6 +562,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABFC38AA1E85970300F40F37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABFC38B61E85970300F40F37 /* ExtensionDelegate.swift in Sources */,
+				ABFC38B41E85970300F40F37 /* InterfaceController.swift in Sources */,
+				ABFC38B81E85970300F40F37 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -532,6 +579,16 @@
 			isa = PBXTargetDependency;
 			target = AB7782D01E8242B000925F72 /* MeowlWatch Widget */;
 			targetProxy = AB7782FA1E84460B00925F72 /* PBXContainerItemProxy */;
+		};
+		ABA971481E88E4C8001A6AD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABFC38AD1E85970300F40F37 /* MeowlWatch Watch App Extension */;
+			targetProxy = ABA971471E88E4C8001A6AD8 /* PBXContainerItemProxy */;
+		};
+		ABFC38BD1E85970300F40F37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABFC38A11E85970300F40F37 /* MeowlWatch Watch App */;
+			targetProxy = ABFC38BC1E85970300F40F37 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -558,6 +615,14 @@
 				AB7782ED1E83C1AD00925F72 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		ABFC38A41E85970300F40F37 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABFC38A51E85970300F40F37 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -654,54 +719,17 @@
 			};
 			name = Release;
 		};
-		AB27C1F51E7CCCAC00A90072 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AE72B19E3783A1395C0F92A /* Pods-MeowlWatch Free.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CUSTOM_DISPLAY_NAME = "MeowlWatch Free";
-				DEVELOPMENT_TEAM = 9Z4VM84YX9;
-				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "caviar.respect.MeowlWatch-Free";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) MEOWLWATCH_FREE";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		AB27C1F61E7CCCAC00A90072 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86F5E08EC20D5F5C40BF3B02 /* Pods-MeowlWatch Free.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CUSTOM_DISPLAY_NAME = "MeowlWatch Free";
-				DEVELOPMENT_TEAM = 9Z4VM84YX9;
-				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "caviar.respect.MeowlWatch-Free";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) MEOWLWATCH_FREE";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		AB7782DF1E8242B000925F72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B896B6F89D7893FA5FE441AB /* Pods-MeowlWatch Widget.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "MeowlWatch Widget/MeowlWatch Widget.entitlements";
-				DEVELOPMENT_TEAM = 9Z4VM84YX9;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "caviar.respect.MeowlWatch.MeowlWatch-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -715,11 +743,11 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "MeowlWatch Widget/MeowlWatch Widget.entitlements";
-				DEVELOPMENT_TEAM = 9Z4VM84YX9;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "caviar.respect.MeowlWatch.MeowlWatch-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -733,12 +761,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
-				CUSTOM_DISPLAY_NAME = MeowlWatch;
-				DEVELOPMENT_TEAM = 9Z4VM84YX9;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = caviar.respect.MeowlWatch;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -752,14 +779,85 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
-				CUSTOM_DISPLAY_NAME = MeowlWatch;
-				DEVELOPMENT_TEAM = 9Z4VM84YX9;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = caviar.respect.MeowlWatch;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		ABFC38BF1E85970300F40F37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MeowlWatch Watch App/MeowlWatch Watch App.entitlements";
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				IBSC_MODULE = MeowlWatch_Watch_App_Extension;
+				INFOPLIST_FILE = "MeowlWatch Watch App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
+			};
+			name = Debug;
+		};
+		ABFC38C01E85970300F40F37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MeowlWatch Watch App/MeowlWatch Watch App.entitlements";
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				IBSC_MODULE = MeowlWatch_Watch_App_Extension;
+				INFOPLIST_FILE = "MeowlWatch Watch App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
+			};
+			name = Release;
+		};
+		ABFC38C11E85970300F40F37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				INFOPLIST_FILE = "MeowlWatch Watch App Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
+			};
+			name = Debug;
+		};
+		ABFC38C21E85970300F40F37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				INFOPLIST_FILE = "MeowlWatch Watch App Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
 			name = Release;
 		};
@@ -771,15 +869,6 @@
 			buildConfigurations = (
 				AB27C1F21E7CCCAC00A90072 /* Debug */,
 				AB27C1F31E7CCCAC00A90072 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AB27C1F41E7CCCAC00A90072 /* Build configuration list for PBXNativeTarget "MeowlWatch Free" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AB27C1F51E7CCCAC00A90072 /* Debug */,
-				AB27C1F61E7CCCAC00A90072 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -798,6 +887,24 @@
 			buildConfigurations = (
 				AB77830F1E84460B00925F72 /* Debug */,
 				AB7783101E84460B00925F72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABFC38C31E85970300F40F37 /* Build configuration list for PBXNativeTarget "MeowlWatch Watch App Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABFC38C11E85970300F40F37 /* Debug */,
+				ABFC38C21E85970300F40F37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABFC38C51E85970300F40F37 /* Build configuration list for PBXNativeTarget "MeowlWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABFC38BF1E85970300F40F37 /* Debug */,
+				ABFC38C01E85970300F40F37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,17 +7,12 @@
 //
 
 import UIKit
-
-#if MEOWLWATCH_FREE
-    import GoogleMobileAds
-#endif
+import GoogleMobileAds
 
 class TableViewController: UITableViewController {
 
-    #if MEOWLWATCH_FREE
-        /// The Google ad banner.
-        var bannerView: GADBannerView?
-    #endif
+    /// The Google ad banner.
+    var bannerView: GADBannerView?
 
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
@@ -41,16 +36,14 @@ class TableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
 
-        #if MEOWLWATCH_FREE
-            self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-            let bannerView = self.bannerView!
-            self.navigationController!.setToolbarHidden(false, animated: false)
-            self.navigationController!.toolbar.addSubview(bannerView)
-            bannerView.adUnitID = Datastore.adMobAdUnitID
-            bannerView.rootViewController = self
-            let request = GADRequest()
-            bannerView.load(request)
-        #endif
+        self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        let bannerView = self.bannerView!
+        self.navigationController!.setToolbarHidden(false, animated: false)
+        self.navigationController!.toolbar.addSubview(bannerView)
+        bannerView.adUnitID = Datastore.adMobAdUnitID
+        bannerView.rootViewController = self
+        let request = GADRequest()
+        bannerView.load(request)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -234,11 +227,7 @@ class TableViewController: UITableViewController {
     }
 
     func didTapSettingsButton() {
-        #if MEOWLWATCH_FREE
-            performSegue(withIdentifier: "ShowFreeSettings", sender: self)
-        #else
-            performSegue(withIdentifier: "ShowSettings", sender: self)
-        #endif
+        performSegue(withIdentifier: "ShowSettings", sender: self)
     }
 
 }

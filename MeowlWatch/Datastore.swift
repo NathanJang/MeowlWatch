@@ -17,20 +17,11 @@ struct Datastore {
     /// The constant group name for shared defaults and keychain.
     private static let accessGroupName = "group.caviar.respect.MeowlWatch"
 
-    #if MEOWLWATCH_FREE
-        /// The shared user defaults object.
-        private static let userDefaults = UserDefaults.standard
+    /// The shared user defaults object.
+    private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
 
-        /// The shared keychain wrapper object.
-        private static let keychain = KeychainWrapper.standard
-    #else
-        /// The shared user defaults object.
-        private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
-
-        /// The shared keychain wrapper object.
-        private static let keychain = KeychainWrapper(serviceName: "caviar.respect.MeowlWatch", accessGroup: accessGroupName)
-    #endif
-
+    /// The shared keychain wrapper object.
+    private static let keychain = KeychainWrapper(serviceName: "caviar.respect.MeowlWatch", accessGroup: accessGroupName)
 
     /// Configures the datastore initially by reading from (and writing to, if necessary) user defaults and the keychain.
     static func loadFromDefaults() {
