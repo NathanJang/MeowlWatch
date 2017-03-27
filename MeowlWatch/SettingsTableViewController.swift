@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// import StoreKit
 
 class SettingsTableViewController: UITableViewController {
 
@@ -148,4 +149,48 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
+    /*
+    func localizedPrice(for product: SKProduct) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = product.priceLocale
+        return numberFormatter.string(from: product.price)!
+    }
+     */
+
 }
+
+/*
+
+extension SettingsTableViewController: SKProductsRequestDelegate {
+
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        guard let product = response.products.first else { return }
+        let localizedPrice = self.localizedPrice(for: product)
+    }
+
+}
+
+extension SettingsTableViewController: SKPaymentTransactionObserver {
+
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased:
+                break
+            case .failed:
+                break
+            case .restored:
+                break
+            default:
+                break
+            }
+        }
+    }
+
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+
+    }
+
+}
+ */

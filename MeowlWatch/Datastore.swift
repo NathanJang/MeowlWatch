@@ -15,13 +15,13 @@ struct Datastore {
     private init() {}
 
     /// The constant group name for shared defaults and keychain.
-    private static let accessGroupName = "group.caviar.respect.MeowlWatch"
+    private static let accessGroupName = "group.me.jonathanchan.MeowlWatch"
 
     /// The shared user defaults object.
     private static let userDefaults = UserDefaults(suiteName: accessGroupName)!
 
     /// The shared keychain wrapper object.
-    private static let keychain = KeychainWrapper(serviceName: "caviar.respect.MeowlWatch", accessGroup: accessGroupName)
+    private static let keychain = KeychainWrapper(serviceName: "me.jonathanchan.MeowlWatch", accessGroup: accessGroupName)
 
     /// Configures the datastore initially by reading from (and writing to, if necessary) user defaults and the keychain.
     static func loadFromDefaults() {
