@@ -100,7 +100,7 @@ struct Datastore {
 
     /// Queries the server and calls the completion handler with a query result.
     /// - Parameter onCompletion: The completion handler.
-    static func query(onCompletion: @escaping (_ result: QueryResult) -> Void) {
+    static func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
         print("Querying...")
         guard canQuery else {
             let result = QueryResult(error: .authenticationError)
@@ -139,6 +139,7 @@ struct Datastore {
 
             let result = QueryResult(html: html) ?? QueryResult(error: .parseError)
             self.lastQuery = result
+            persistToUserDefaults()
 
             onCompletion(result)
         }
@@ -168,7 +169,7 @@ struct Datastore {
     /// The `AdMobKeys-Release.plist` file should be configured similarly to `AdMobKeys-Debug.plist`.
     /// - Parameter key: The key in the `plist` file.
     /// - Returns: The object stored in the `plist` file for the give key.
-    private static func adMobObject(forKey key: String) -> Any {
+    private static func adMobObject(forKey key: String) -> Any? {
         let path: String
         #if DEBUG
         path = Bundle.main.path(forResource: "AdMobKeys-Debug", ofType: "plist")!
@@ -176,7 +177,7 @@ struct Datastore {
         path = Bundle.main.path(forResource: "AdMobKeys-Release", ofType: "plist")!
         #endif
 
-        return NSDictionary(contentsOfFile: path)!.value(forKey: key)!
+        return NSDictionary(contentsOfFile: path)!.value(forKey: key)
     }
 
     // MARK: AdMob
@@ -197,22 +198,6 @@ struct Datastore {
     /// An array representing the user's arrangement of the widget items.
     /// The default is shown here, and then modified once user defaults are loaded.
     static var widgetArrangement: [QueryResult.DisplayItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
-
-    /// Returns the display description given an item type.
-    /// - Parameter item: The type of widget item.
-    /// - Returns: The display string.
-//    static func stringForWidgetItem(_ item: WidgetItem, plural: Bool) -> String {
-//        switch item {
-//        case .boardMeals:
-//            return plural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription
-//        case .equivalencyMeals:
-//            return plural ? QueryResult.equivalencyMealPluralDescription : QueryResult.equivalencyMealSingularDescription
-//        case .points:
-//            return QueryResult.pointsDescription
-//        case .catCash:
-//            return QueryResult.catCashDescription
-//        }
-//    }
 
     /// Rearranges the widget arrangement preferences given indices in `widgetArrangement`.
     /// - Parameter fromIndex: The index from which the item originated.
