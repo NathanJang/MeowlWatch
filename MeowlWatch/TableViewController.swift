@@ -154,7 +154,7 @@ class TableViewController: UITableViewController {
             return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
         case 3:
             if Datastore.canQuery {
-                return queryResult?.errorString ?? ""
+                return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }

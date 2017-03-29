@@ -111,8 +111,6 @@ class SettingsTableViewController: UITableViewController {
             } else {
                 switch indexPath.row {
                 case 0:
-                    cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
-                case 1:
                     if self.isRequestingProducts {
                         cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
                         cell.textLabel!.text = "Loading..."
@@ -124,9 +122,12 @@ class SettingsTableViewController: UITableViewController {
                             cell.textLabel!.text = "(In-App Purchase Unavailable)"
                         }
                     }
-                case 2:
+                case 1:
                     cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
                     cell.textLabel!.text = "Restore Purchases"
+
+                case 2:
+                    cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
 
                 default:
                     cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
@@ -135,6 +136,7 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             cell.textLabel!.text = "Visit Designer's Website"
+            
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
         }
@@ -143,7 +145,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !Datastore.widgetPurchased && indexPath == IndexPath(row: 0, section: 0) {
+        if !Datastore.widgetPurchased && indexPath == IndexPath(row: 2, section: 0) {
             let imageSize = #imageLiteral(resourceName: "WidgetPreviewFull").size
             return self.view.frame.width * imageSize.height / imageSize.width
         }
@@ -157,7 +159,7 @@ class SettingsTableViewController: UITableViewController {
             if Datastore.widgetPurchased {
                 return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will be reflected on the widget."
             } else {
-                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Ads will also be disabled upon purchase."
+                return "Making useful apps like MeowlWatch is hard. Please consider supporting me by enabling the widget! Ads will also be disabled."
             }
         case 1:
             return "The MeowlWatch logo was designed by Isabel Nygard. Visit \(isabelURLString) to see more."
@@ -227,14 +229,14 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             if !Datastore.widgetPurchased {
                 switch indexPath.row {
-                case 1:
+                case 0:
                     if canMakePayments {
                         buyWidget()
                     } else {
                         showCannotMakePaymentsAlert()
                     }
 
-                case 2:
+                case 1:
                     self.isRequestingProducts = true
                     SKPaymentQueue.default().restoreCompletedTransactions()
 
@@ -285,17 +287,17 @@ class SettingsTableViewController: UITableViewController {
 
     func beginRefreshing() {
         DispatchQueue.main.async {
-            guard self.refreshControl != nil else { return }
-            self.refreshControl!.beginRefreshing()
+            guard let refreshControl = self.refreshControl else { return }
+            refreshControl.beginRefreshing()
             self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
         }
     }
 
     func endRefreshing() {
         DispatchQueue.main.async {
-            guard self.refreshControl != nil else { return }
-            self.refreshControl!.endRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+            guard let refreshControl = self.refreshControl else { return }
+            refreshControl.endRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y + self.tableView.contentInset.top), animated: true)
         }
     }
 

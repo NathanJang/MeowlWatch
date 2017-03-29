@@ -86,7 +86,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="LoadingButtonCell" textLabel="7Yb-pI-Zp7" style="IBUITableViewCellStyleDefault" id="4ID-oh-Uwo">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ID-oh-Uwo" id="c4S-V9-cIA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -102,15 +102,15 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetPreviewCell" rowHeight="667" id="icm-xG-jaw">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="667"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetPreviewCell" rowHeight="488" id="icm-xG-jaw">
+                                <rect key="frame" x="0.0" y="100" width="375" height="488"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="icm-xG-jaw" id="8zQ-Ac-aUV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="666.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="487"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WidgetPreviewFull" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-nX-rJB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="666.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="487.5"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -123,7 +123,7 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="ButtonCell" editingAccessoryType="disclosureIndicator" textLabel="qIM-p1-kay" style="IBUITableViewCellStyleDefault" id="0pj-wV-Qw2">
-                                <rect key="frame" x="0.0" y="766.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="588" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0pj-wV-Qw2" id="EWv-yG-Yib">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -140,7 +140,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetArrangementCell" textLabel="dhZ-Ys-l4W" style="IBUITableViewCellStyleDefault" id="mly-JE-AMy">
-                                <rect key="frame" x="0.0" y="810.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="632" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mly-JE-AMy" id="saZ-I7-H9M">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -187,7 +187,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="WidgetPreviewFull" width="250" height="444"/>
+        <image name="WidgetPreviewFull" width="250" height="325"/>
     </resources>
     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
