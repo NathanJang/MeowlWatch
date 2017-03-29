@@ -7,9 +7,26 @@
 //
 
 import UIKit
-// import StoreKit
+import StoreKit
 
 class SettingsTableViewController: UITableViewController {
+
+    var inAppPurchasesEnabled = false
+
+    let widgetProductIdentifier = "MeowlWatch_Widget" // "MeowlWatch_Widget_Consumable"
+
+    var widgetProduct: SKProduct?
+
+    var isRequestingProducts = false {
+        didSet {
+            if isRequestingProducts { self.beginRefreshing() }
+            else { self.endRefreshing() }
+        }
+    }
+
+    var canMakePayments = false
+
+    let isabelURLString = "https://isabel6389.wixsite.com/website"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +38,22 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         self.setEditing(true, animated: false)
+
+        if !Datastore.widgetPurchased {
+            requestProductData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !Datastore.widgetPurchased && !canMakePayments {
+            showCannotMakePaymentsAlert()
+        }
     }
 
     // MARK: - Table view data source
@@ -37,7 +65,15 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 4
+            if Datastore.widgetPurchased {
+                return 4
+            } else {
+                if isRequestingProducts {
+                    return 2
+                } else {
+                    return 3
+                }
+            }
         case 1:
             return 1
         default:
@@ -58,19 +94,43 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
+        // Configure the cell...
         switch indexPath.section {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
+            if Datastore.widgetPurchased {
+                cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
 
-            // Configure the cell...
-            let item = Datastore.widgetArrangement[indexPath.row]
-            cell.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
-            cell.tag = item.rawValue
+                let item = Datastore.widgetArrangement[indexPath.row]
+                cell.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
+            } else {
+                switch indexPath.row {
+                case 0:
+                    cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
+                case 1:
+                    if self.isRequestingProducts {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                        cell.textLabel!.text = "Loading..."
+                    } else {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+                        if let widgetProduct = widgetProduct {
+                            cell.textLabel!.text = "Enable \(widgetProduct.localizedTitle) (\(self.localizedPrice(for: widgetProduct)))"
+                        } else {
+                            cell.textLabel!.text = "(In-App Purchase Unavailable)"
+                        }
+                    }
+                case 2:
+                    cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+                    cell.textLabel!.text = "Restore Purchases"
+
+                default:
+                    cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                }
+            }
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             cell.textLabel!.text = "Visit Designer's Website"
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteButtonCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
         }
 
         return cell
@@ -79,9 +139,13 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will reflect how the widget is shown."
+            if Datastore.widgetPurchased {
+                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will be reflected on the widget."
+            } else {
+                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Ads will be disabled on purchase."
+            }
         case 1:
-            return "The MeowlWatch logo was designed by Isabel Nygard. Visit http://example.com to see more."
+            return "The MeowlWatch logo was designed by Isabel Nygard. Visit \(isabelURLString) to see more."
         default:
             return nil
         }
@@ -91,13 +155,16 @@ class SettingsTableViewController: UITableViewController {
         return false
     }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        switch indexPath.section {
+        case 0:
+            return Datastore.widgetPurchased
+        default:
+            return false
+        }
     }
-    */
 
     /*
     // Override to support editing the table view.
@@ -127,16 +194,68 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+            let row = sourceIndexPath.section < proposedDestinationIndexPath.section ? tableView.numberOfRows(inSection: sourceIndexPath.section) - 1 : 0
+            return IndexPath(row: row, section: sourceIndexPath.section)
+        }
+
+        return proposedDestinationIndexPath
+    }
+
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .none
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.section {
+        case 0:
+            if !Datastore.widgetPurchased {
+                switch indexPath.row {
+                case 1:
+                    if canMakePayments {
+                        buyWidget()
+                    } else {
+                        showCannotMakePaymentsAlert()
+                    }
 
-        if indexPath == IndexPath(row: 0, section: 1) {
-            // TODO: website
+                case 2:
+                    self.isRequestingProducts = true
+                    SKPaymentQueue.default().restoreCompletedTransactions()
+
+                default:
+                    break
+                }
+            }
+
+        case 1:
+            let alertController = UIAlertController(title: "Open Designer's Website?", message: nil, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default) {action in
+                let url = URL(string: self.isabelURLString)!
+                UIApplication.shared.openURL(url)
+            })
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+
+
+        default:
+            break
         }
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func buyWidget() {
+        let payment = SKPayment(product: widgetProduct!)
+        SKPaymentQueue.default().add(payment)
+        self.isRequestingProducts = true
+    }
+
+    func showCannotMakePaymentsAlert() {
+        self.isRequestingProducts = false
+        let alertController = UIAlertController(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     /*
@@ -149,24 +268,69 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    func beginRefreshing() {
+        DispatchQueue.main.async {
+            guard self.refreshControl == nil else { return }
+            self.refreshControl = UIRefreshControl()
+            self.refreshControl!.beginRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: true)
+        }
+    }
+
+    func endRefreshing() {
+        DispatchQueue.main.async {
+            guard self.refreshControl != nil else { return }
+            self.refreshControl!.endRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+            self.refreshControl!.removeFromSuperview()
+            self.refreshControl = nil
+        }
+    }
+
+}
+
+extension SettingsTableViewController: SKProductsRequestDelegate {
+
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        // Show list of available purchases
+        self.isRequestingProducts = false
+        for product in response.products {
+            if product.productIdentifier == widgetProductIdentifier {
+                self.widgetProduct = product
+            }
+        }
+        self.tableView.reloadData()
+    }
+
     func localizedPrice(for product: SKProduct) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         numberFormatter.locale = product.priceLocale
         return numberFormatter.string(from: product.price)!
     }
-     */
 
-}
+    func requestProductData() {
+        guard SKPaymentQueue.canMakePayments() else { return }
+        self.isRequestingProducts = true
+        self.canMakePayments = true
+        self.inAppPurchasesEnabled = true
+        SKPaymentQueue.default().add(self)
+        let request = SKProductsRequest(productIdentifiers: [widgetProductIdentifier])
+        request.delegate = self
+        request.start()
+    }
 
-/*
+    func didPurchaseWidget() {
+        let alertController = UIAlertController(title: "Thank you for your support!", message: "It may take a few minutes for the widget to be enabled.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
 
-extension SettingsTableViewController: SKProductsRequestDelegate {
-
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        guard let product = response.products.first else { return }
-        let localizedPrice = self.localizedPrice(for: product)
+        Datastore.widgetPurchased = true
+        Datastore.persistToUserDefaults()
+        let parentViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! TableViewController
+        parentViewController.bannerView = nil
+        parentViewController.navigationController!.setToolbarHidden(true, animated: false)
+        self.tableView.reloadData()
     }
 
 }
@@ -174,14 +338,28 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
 extension SettingsTableViewController: SKPaymentTransactionObserver {
 
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        // Maybe user purchased
+        self.isRequestingProducts = false
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
-                break
+                if transaction.payment.productIdentifier == widgetProductIdentifier {
+                    didPurchaseWidget()
+                    queue.finishTransaction(transaction)
+                }
+
             case .failed:
-                break
+                let alertController = UIAlertController(title: "Unable To Purchase", message: "Please try again.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+                queue.finishTransaction(transaction)
+
             case .restored:
-                break
+                if transaction.payment.productIdentifier == widgetProductIdentifier {
+                    didPurchaseWidget()
+                    queue.finishTransaction(transaction)
+                }
+
             default:
                 break
             }
@@ -189,8 +367,18 @@ extension SettingsTableViewController: SKPaymentTransactionObserver {
     }
 
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        if !Datastore.widgetPurchased {
+            let alertController = UIAlertController(title: "Unable To Restore Purchases", message: "No previous purchases could be found.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            self.isRequestingProducts = false
+        }
+    }
 
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        let alertController = UIAlertController(title: "Unable To Restore Purchases", message: "Please try again.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }
- */

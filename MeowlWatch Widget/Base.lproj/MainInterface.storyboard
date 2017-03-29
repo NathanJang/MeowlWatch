@@ -96,6 +96,12 @@
                                 <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In-App Purchase Required" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfC-3X-LcA">
+                                <rect key="frame" x="59.5" y="8" width="201" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="top" secondItem="QII-MZ-5nP" secondAttribute="top" id="176-Hu-1xo"/>
@@ -151,10 +157,12 @@
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="centerY" secondItem="QII-MZ-5nP" secondAttribute="centerY" id="m37-J9-GXN"/>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="centerX" secondItem="RWY-hX-emE" secondAttribute="centerX" id="nZl-Mf-wN7"/>
                             <constraint firstItem="gWw-o7-na7" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="8" id="ov1-On-VKp"/>
+                            <constraint firstItem="EfC-3X-LcA" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="s2c-T6-bKw"/>
                             <constraint firstItem="w02-My-Ekv" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" multiplier="0.5" id="sf6-Fh-205"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2gX-C0-KcY" secondAttribute="trailing" id="tmC-Bn-9iy"/>
                             <constraint firstItem="cRm-RX-vfu" firstAttribute="centerX" secondItem="RWY-hX-emE" secondAttribute="centerX" id="u72-GF-d7t"/>
                             <constraint firstItem="gWw-o7-na7" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="8" id="ut4-Tc-Kvr"/>
+                            <constraint firstItem="EfC-3X-LcA" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="xAu-RS-77k"/>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="bottom" secondItem="QII-MZ-5nP" secondAttribute="bottom" id="y8G-Iy-dNR"/>
                         </constraints>
                         <variation key="default">
@@ -172,6 +180,7 @@
                     <connections>
                         <outlet property="leftDescriptionLabel" destination="KUB-f2-HvF" id="do4-yY-yPu"/>
                         <outlet property="leftNumberLabel" destination="QII-MZ-5nP" id="R9O-fa-CQR"/>
+                        <outlet property="purchaseRequiredLabel" destination="EfC-3X-LcA" id="Ykb-vU-GQz"/>
                         <outlet property="rightDescriptionLabel" destination="RWY-hX-emE" id="Krs-BG-Pl0"/>
                         <outlet property="rightNumberLabel" destination="2gX-C0-KcY" id="rAj-Xg-F5V"/>
                         <outlet property="secondaryLeftDescriptionLabel" destination="w02-My-Ekv" id="SE2-nw-vKD"/>

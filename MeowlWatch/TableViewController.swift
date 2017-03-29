@@ -34,16 +34,18 @@ class TableViewController: UITableViewController {
         self.queryResult = Datastore.lastQuery
 
         self.refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(beginRefrshing), for: .valueChanged)
+        refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
-        self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        let bannerView = self.bannerView!
-        self.navigationController!.setToolbarHidden(false, animated: false)
-        self.navigationController!.toolbar.addSubview(bannerView)
-        bannerView.adUnitID = Datastore.adMobAdUnitID
-        bannerView.rootViewController = self
-        let request = GADRequest()
-        bannerView.load(request)
+        if Datastore.shouldDisplayAds {
+            self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+            let bannerView = self.bannerView!
+            self.navigationController!.setToolbarHidden(false, animated: false)
+            self.navigationController!.toolbar.addSubview(bannerView)
+            bannerView.adUnitID = Datastore.adMobAdUnitID
+            bannerView.rootViewController = self
+            let request = GADRequest()
+            bannerView.load(request)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

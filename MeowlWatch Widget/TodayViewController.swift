@@ -19,15 +19,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var secondaryLeftDescriptionLabel: UILabel!
     @IBOutlet weak var secondaryRightNumberLabel: UILabel!
     @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
+    @IBOutlet weak var purchaseRequiredLabel: UILabel!
 
     /// A flag representing whether this is the widget's initial setup.
     /// Once the widget performs an update for the first time, this will be set to `false`.
-    var isFirstRun = true
+//    var isFirstRun = true
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-        Datastore.loadFromDefaults()
+//        Datastore.loadFromDefaults()
         if #available(iOSApplicationExtension 10.0, *) {
             self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
         } else {
@@ -38,6 +39,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             rightDescriptionLabel.textColor = descriptionColor
             secondaryLeftDescriptionLabel.textColor = descriptionColor
             secondaryRightDescriptionLabel.textColor = descriptionColor
+            purchaseRequiredLabel.textColor = descriptionColor
         }
     }
     
@@ -52,10 +54,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        guard !isFirstRun else {
-            updateLabels(with: Datastore.lastQuery)
-            isFirstRun = false
-            return completionHandler(.newData)
+        Datastore.loadFromDefaults()
+//        guard !isFirstRun else {
+//            updateLabels(with: Datastore.lastQuery)
+//            isFirstRun = false
+//            return completionHandler(.newData)
+//        }
+
+        if Datastore.widgetPurchased {
+            purchaseRequiredLabel.isHidden = true
         }
         guard Datastore.shouldRefresh else {
             updateLabels(with: Datastore.lastQuery)
@@ -90,6 +97,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
+        guard Datastore.widgetPurchased else { return }
         leftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[0], withQuery: query)
         rightDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[1], withQuery: query)
         secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[2], withQuery: query)

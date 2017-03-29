@@ -38,8 +38,10 @@ struct Datastore {
         }
 
         if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int] {
-            Datastore.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
+            self.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
         }
+
+        self.widgetPurchased = userDefaults.bool(forKey: "widgetPurchased")
     }
 
     /// Writes data from the datastore to user defaults.
@@ -55,6 +57,8 @@ struct Datastore {
 
         let intArray = widgetArrangement.flatMap { return $0.rawValue }
         userDefaults.set(intArray, forKey: "widgetArrangement")
+
+        userDefaults.set(self.widgetPurchased, forKey: "widgetPurchased")
 
         if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
     }
@@ -172,9 +176,9 @@ struct Datastore {
     private static func adMobObject(forKey key: String) -> Any? {
         let path: String
         #if DEBUG
-        path = Bundle.main.path(forResource: "AdMobKeys-Debug", ofType: "plist")!
+            path = Bundle.main.path(forResource: "AdMobKeys-Debug", ofType: "plist")!
         #else
-        path = Bundle.main.path(forResource: "AdMobKeys-Release", ofType: "plist")!
+            path = Bundle.main.path(forResource: "AdMobKeys-Release", ofType: "plist")!
         #endif
 
         return NSDictionary(contentsOfFile: path)!.value(forKey: key)
@@ -194,7 +198,6 @@ struct Datastore {
 
     // MARK: Widget
 
-
     /// An array representing the user's arrangement of the widget items.
     /// The default is shown here, and then modified once user defaults are loaded.
     static var widgetArrangement: [QueryResult.DisplayItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
@@ -206,5 +209,11 @@ struct Datastore {
         let item = widgetArrangement.remove(at: fromIndex)
         widgetArrangement.insert(item, at: toIndex)
     }
+
+    // MARK: IAPs
+
+    static var widgetPurchased = false
+
+    static var shouldDisplayAds: Bool { return !widgetPurchased }
 
 }
