@@ -136,13 +136,22 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !Datastore.widgetPurchased && indexPath == IndexPath(row: 0, section: 0) {
+            let imageSize = #imageLiteral(resourceName: "WidgetPreviewFull").size
+            return self.view.frame.width * imageSize.height / imageSize.width
+        }
+
+        return UITableViewAutomaticDimension
+    }
+
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
             if Datastore.widgetPurchased {
                 return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will be reflected on the widget."
             } else {
-                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Ads will be disabled on purchase."
+                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Ads will also be disabled upon purchase."
             }
         case 1:
             return "The MeowlWatch logo was designed by Isabel Nygard. Visit \(isabelURLString) to see more."
@@ -321,7 +330,7 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
     }
 
     func didPurchaseWidget() {
-        let alertController = UIAlertController(title: "Thank you for your support!", message: "It may take a few minutes for the widget to be enabled.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
 

@@ -81,7 +81,7 @@
             <objects>
                 <tableViewController title="Settings" id="feM-RP-uNa" customClass="SettingsTableViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RAC-RS-cpv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1334"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -102,15 +102,15 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetPreviewCell" id="icm-xG-jaw">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetPreviewCell" rowHeight="667" id="icm-xG-jaw">
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="icm-xG-jaw" id="8zQ-Ac-aUV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="666.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-nX-rJB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WidgetPreviewFull" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-nX-rJB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="666.5"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -120,9 +120,10 @@
                                         <constraint firstItem="wXO-nX-rJB" firstAttribute="leading" secondItem="8zQ-Ac-aUV" secondAttribute="leading" id="tdy-oj-9ka"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="ButtonCell" editingAccessoryType="disclosureIndicator" textLabel="qIM-p1-kay" style="IBUITableViewCellStyleDefault" id="0pj-wV-Qw2">
-                                <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="766.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0pj-wV-Qw2" id="EWv-yG-Yib">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -139,7 +140,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetArrangementCell" textLabel="dhZ-Ys-l4W" style="IBUITableViewCellStyleDefault" id="mly-JE-AMy">
-                                <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="810.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mly-JE-AMy" id="saZ-I7-H9M">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -161,6 +162,8 @@
                             <outlet property="delegate" destination="feM-RP-uNa" id="okR-Or-i9z"/>
                         </connections>
                     </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1334"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEJ-fd-YGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -183,5 +186,8 @@
             <point key="canvasLocation" x="137" y="832"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="WidgetPreviewFull" width="250" height="444"/>
+    </resources>
     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
