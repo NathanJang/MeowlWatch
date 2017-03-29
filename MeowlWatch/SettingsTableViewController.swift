@@ -11,8 +11,6 @@ import StoreKit
 
 class SettingsTableViewController: UITableViewController {
 
-    var inAppPurchasesEnabled = false
-
     let widgetProductIdentifier = "MeowlWatch_Widget" // "MeowlWatch_Widget_Consumable"
 
     var widgetProduct: SKProduct?
@@ -40,6 +38,9 @@ class SettingsTableViewController: UITableViewController {
         self.setEditing(true, animated: false)
 
         if !Datastore.widgetPurchased {
+            self.refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
+            SKPaymentQueue.default().add(self)
             requestProductData()
         }
     }
@@ -54,6 +55,11 @@ class SettingsTableViewController: UITableViewController {
         if !Datastore.widgetPurchased && !canMakePayments {
             showCannotMakePaymentsAlert()
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SKPaymentQueue.default().remove(self)
     }
 
     // MARK: - Table view data source
@@ -279,10 +285,9 @@ class SettingsTableViewController: UITableViewController {
 
     func beginRefreshing() {
         DispatchQueue.main.async {
-            guard self.refreshControl == nil else { return }
-            self.refreshControl = UIRefreshControl()
+            guard self.refreshControl != nil else { return }
             self.refreshControl!.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: true)
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
         }
     }
 
@@ -291,8 +296,6 @@ class SettingsTableViewController: UITableViewController {
             guard self.refreshControl != nil else { return }
             self.refreshControl!.endRefreshing()
             self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-            self.refreshControl!.removeFromSuperview()
-            self.refreshControl = nil
         }
     }
 
@@ -322,8 +325,6 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
         guard SKPaymentQueue.canMakePayments() else { return }
         self.isRequestingProducts = true
         self.canMakePayments = true
-        self.inAppPurchasesEnabled = true
-        SKPaymentQueue.default().add(self)
         let request = SKProductsRequest(productIdentifiers: [widgetProductIdentifier])
         request.delegate = self
         request.start()
@@ -333,6 +334,9 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
         let alertController = UIAlertController(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+
+        self.refreshControl!.removeFromSuperview()
+        self.refreshControl = nil
 
         Datastore.widgetPurchased = true
         Datastore.persistToUserDefaults()

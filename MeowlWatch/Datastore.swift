@@ -192,8 +192,12 @@ struct Datastore {
     }
 
     /// The main ad unit ID for AdMob.
-    static var adMobAdUnitID: String {
-        return adMobObject(forKey: "AdMobAdUnitID") as! String
+    static var adMobBannerAdUnitID: String {
+        return adMobObject(forKey: "AdMobBannerAdUnitID") as! String
+    }
+
+    static var adMobInterstitialAdUnitID: String {
+        return adMobObject(forKey: "AdMobInterstitialAdUnitID") as! String
     }
 
     // MARK: Widget

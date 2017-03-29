@@ -4,7 +4,9 @@
 <dict>
 	<key>AdMobAppID</key>
 	<string>ca-app-pub-3940256099942544~1458002511</string>
-	<key>AdMobAdUnitID</key>
+	<key>AdMobBannerAdUnitID</key>
 	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AdMobInterstitialAdUnitID</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 </dict>
 </plist>

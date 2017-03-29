@@ -61,10 +61,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 //            return completionHandler(.newData)
 //        }
 
-        guard Datastore.widgetPurchased else {
-            purchaseRequiredLabel.isHidden = false
-            return
-        }
+        guard Datastore.widgetPurchased else { return }
+        purchaseRequiredLabel.isHidden = true
         guard Datastore.shouldRefresh else {
             updateLabels(with: Datastore.lastQuery)
             return completionHandler(.noData)

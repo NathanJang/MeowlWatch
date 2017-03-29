@@ -14,6 +14,8 @@ class TableViewController: UITableViewController {
     /// The Google ad banner.
     var bannerView: GADBannerView?
 
+    var interstitial: GADInterstitial?
+
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
 
@@ -41,10 +43,17 @@ class TableViewController: UITableViewController {
             let bannerView = self.bannerView!
             self.navigationController!.setToolbarHidden(false, animated: false)
             self.navigationController!.toolbar.addSubview(bannerView)
-            bannerView.adUnitID = Datastore.adMobAdUnitID
+            bannerView.adUnitID = Datastore.adMobBannerAdUnitID
             bannerView.rootViewController = self
-            let request = GADRequest()
-            bannerView.load(request)
+            let bannerRequest = GADRequest()
+            bannerView.load(bannerRequest)
+
+            if arc4random_uniform(4) < 1 {
+                self.interstitial = GADInterstitial(adUnitID: Datastore.adMobInterstitialAdUnitID)
+                interstitial!.delegate = self
+                let interstitialRequest = GADRequest()
+                interstitial!.load(interstitialRequest)
+            }
         }
     }
 
@@ -55,6 +64,7 @@ class TableViewController: UITableViewController {
             if Datastore.shouldRefresh {
                 beginRefrshing()
             }
+
             hasAppeared = true
         }
     }
@@ -230,6 +240,20 @@ class TableViewController: UITableViewController {
 
     func didTapSettingsButton() {
         performSegue(withIdentifier: "ShowSettings", sender: self)
+    }
+
+}
+
+extension TableViewController: GADInterstitialDelegate {
+
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        if Datastore.shouldDisplayAds && Datastore.canQuery && ad.isReady {
+            ad.present(fromRootViewController: self)
+
+            if ad.adUnitID == Datastore.adMobInterstitialAdUnitID {
+                self.interstitial = nil
+            }
+        }
     }
 
 }
