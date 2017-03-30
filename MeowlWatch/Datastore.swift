@@ -41,7 +41,7 @@ struct Datastore {
             self.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
         }
 
-        self.widgetPurchased = userDefaults.bool(forKey: "widgetPurchased")
+        self.widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
     }
 
     /// Writes data from the datastore to user defaults.
@@ -58,7 +58,7 @@ struct Datastore {
         let intArray = widgetArrangement.flatMap { return $0.rawValue }
         userDefaults.set(intArray, forKey: "widgetArrangement")
 
-        userDefaults.set(self.widgetPurchased, forKey: "widgetPurchased")
+        userDefaults.set(self.widgetIsPurchased, forKey: "widgetPurchased")
 
         if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
     }
@@ -216,8 +216,8 @@ struct Datastore {
 
     // MARK: IAPs
 
-    static var widgetPurchased = false
+    static var widgetIsPurchased = false
 
-    static var shouldDisplayAds: Bool { return !widgetPurchased }
+    static var shouldDisplayAds: Bool { return !widgetIsPurchased }
 
 }

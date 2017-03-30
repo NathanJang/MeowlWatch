@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		92809430279CD09F96AADDE7 /* Pods_MeowlWatch_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */; };
+		AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB009E631E8CC00A0096C625 /* LegalViewController.swift */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* TodayViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -56,6 +57,7 @@
 		09B9EC67070FFC4B6E476599 /* Pods-MeowlWatch Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget.release.xcconfig"; sourceTree = "<group>"; };
 		207FF311151D28D56CE8C835 /* Pods-MeowlWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		7C6D8D6B610A9B74C9EC1B96 /* Pods_MeowlWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB009E631E8CC00A0096C625 /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LegalViewController.swift; path = MeowlWatch/LegalViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB27C1F11E7CCCAC00A90072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = MeowlWatch/Info.plist; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B81E8107FB00925F72 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Datastore.swift; path = MeowlWatch/Datastore.swift; sourceTree = SOURCE_ROOT; };
@@ -142,6 +144,7 @@
 				AB7782B71E8107FB00925F72 /* AppDelegate.swift */,
 				AB7782BA1E8107FB00925F72 /* TableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
+				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB7782B81E8107FB00925F72 /* Datastore.swift */,
 				AB7782B91E8107FB00925F72 /* QueryResult.swift */,
 				AB7782BF1E81083D00925F72 /* Main.storyboard */,
@@ -396,6 +399,7 @@
 				AB7782FE1E84460B00925F72 /* SettingsTableViewController.swift in Sources */,
 				AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */,
 				AB7783001E84460B00925F72 /* Datastore.swift in Sources */,
+				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				AB7783011E84460B00925F72 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

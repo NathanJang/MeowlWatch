@@ -7,8 +7,7 @@ target 'MeowlWatch' do
 
   # Pods for MeowlWatch
   pod 'SwiftKeychainWrapper'
-  pod 'Firebase/Core'
-  pod 'Firebase/AdMob'
+  pod 'Google-Mobile-Ads-SDK'
 
 end
 

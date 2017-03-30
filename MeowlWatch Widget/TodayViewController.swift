@@ -61,7 +61,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 //            return completionHandler(.newData)
 //        }
 
-        guard Datastore.widgetPurchased else { return }
+        guard Datastore.widgetIsPurchased else { return }
         purchaseRequiredLabel.isHidden = true
         guard Datastore.shouldRefresh else {
             updateLabels(with: Datastore.lastQuery)
@@ -96,7 +96,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
-        guard Datastore.widgetPurchased else { return }
+        guard Datastore.widgetIsPurchased else { return }
         leftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[0], withQuery: query)
         rightDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[1], withQuery: query)
         secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[2], withQuery: query)
