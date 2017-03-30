@@ -18,7 +18,7 @@
 		AB7782FE1E84460B00925F72 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */; };
 		AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B71E8107FB00925F72 /* AppDelegate.swift */; };
 		AB7783001E84460B00925F72 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
-		AB7783011E84460B00925F72 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782BA1E8107FB00925F72 /* TableViewController.swift */; };
+		AB7783011E84460B00925F72 /* MeowlWatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */; };
 		AB7783051E84460B00925F72 /* AdMobKeys-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C81E8203EF00925F72 /* AdMobKeys-Debug.plist */; };
 		AB7783061E84460B00925F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */; };
 		AB7783071E84460B00925F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C61E81087D00925F72 /* Assets.xcassets */; };
@@ -62,7 +62,7 @@
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B81E8107FB00925F72 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Datastore.swift; path = MeowlWatch/Datastore.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B91E8107FB00925F72 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryResult.swift; path = MeowlWatch/QueryResult.swift; sourceTree = SOURCE_ROOT; };
-		AB7782BA1E8107FB00925F72 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = MeowlWatch/TableViewController.swift; sourceTree = SOURCE_ROOT; };
+		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		AB7782C31E81084F00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		AB7782C61E81087D00925F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MeowlWatch/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7782B71E8107FB00925F72 /* AppDelegate.swift */,
-				AB7782BA1E8107FB00925F72 /* TableViewController.swift */,
+				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB7782B81E8107FB00925F72 /* Datastore.swift */,
@@ -400,7 +400,7 @@
 				AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */,
 				AB7783001E84460B00925F72 /* Datastore.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
-				AB7783011E84460B00925F72 /* TableViewController.swift in Sources */,
+				AB7783011E84460B00925F72 /* MeowlWatchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

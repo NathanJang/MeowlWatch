@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// The view controller displaying a text view with legal text.
 class LegalViewController: UIViewController {
 
+    /// The text view.
     @IBOutlet weak var textView: UITextView!
 
     override func viewDidLoad() {

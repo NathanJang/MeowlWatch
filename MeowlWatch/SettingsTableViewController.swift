@@ -9,12 +9,16 @@
 import UIKit
 import StoreKit
 
+/// A view controller for the settings.
 class SettingsTableViewController: UITableViewController {
 
+    /// The product identifier for the IAP for the widget.
     let widgetProductIdentifier = "MeowlWatch_Widget" // "MeowlWatch_Widget_Consumable"
 
+    /// The widget's IAP product, which will exist after we query the app store.
     var widgetProduct: SKProduct?
 
+    /// Whether we are currently performing some task, to show or hide the spinner.
     var isLoading = false {
         didSet {
             if isLoading { self.beginRefreshing() }
@@ -22,8 +26,10 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
+    /// Whether StoreKit can make payments, set before querying the app store.
     var canMakePayments = false
 
+    /// The logo designer's website's URL.
     let isabelURLString = "https://isabel6389.wixsite.com/website"
 
     override func viewDidLoad() {
@@ -37,7 +43,7 @@ class SettingsTableViewController: UITableViewController {
 
         self.setEditing(true, animated: false)
 
-        if !Datastore.widgetIsPurchased {
+        if !Datastore.anythingIsPurchased {
             self.refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
             SKPaymentQueue.default().add(self)
@@ -52,7 +58,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !Datastore.widgetIsPurchased && !canMakePayments {
+        if !Datastore.anythingIsPurchased && !canMakePayments {
             showCannotMakePaymentsAlert()
         }
     }
@@ -97,7 +103,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
+        var cell: UITableViewCell? = nil
         // Configure the cell...
         switch indexPath.section {
         case 0:
@@ -105,52 +111,52 @@ class SettingsTableViewController: UITableViewController {
                 cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
 
                 let item = Datastore.widgetArrangement[indexPath.row]
-                cell.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
+                cell!.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
             } else {
                 switch indexPath.row {
                 case 0:
                     if self.isLoading {
                         cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
-                        cell.textLabel!.text = "Loading..."
+                        cell!.textLabel!.text = "Loading..."
                     } else {
                         cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
                         if let widgetProduct = widgetProduct {
-                            cell.textLabel!.text = "Enable \(widgetProduct.localizedTitle) (\(self.localizedPrice(for: widgetProduct)))"
+                            cell!.textLabel!.text = "Enable \(widgetProduct.localizedTitle) (\(self.localizedPrice(for: widgetProduct)))"
                         } else {
-                            cell.textLabel!.text = "(In-App Purchase Unavailable)"
+                            cell!.textLabel!.text = "(In-App Purchase Unavailable)"
                         }
                     }
                 case 1:
                     cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                    cell.textLabel!.text = "Restore Purchases"
+                    cell!.textLabel!.text = "Restore Purchases"
 
                 case 2:
                     cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
 
                 default:
-                    cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                    break
                 }
             }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-            cell.textLabel!.text = "Visit Designer's Website"
+            cell!.textLabel!.text = "Visit Designer's Website"
 
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             switch indexPath.row {
             case 0:
-                cell.textLabel!.text = "Send Feedback by Email"
+                cell!.textLabel!.text = "Send Feedback by Email"
             case 1:
-                cell.textLabel!.text = "Show Legal"
+                cell!.textLabel!.text = "Show Legal"
             default:
                 break
             }
             
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+            break
         }
 
-        return cell
+        return cell!
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -192,6 +198,17 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        switch indexPath.section {
+        case 0:
+            return Datastore.widgetIsPurchased
+        default:
+            return false
+        }
+    }
+
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -204,22 +221,6 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        Datastore.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
-    }
-
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        switch indexPath.section {
-        case 0:
-            return Datastore.widgetIsPurchased
-        default:
-            return false
-        }
-    }
-
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             let row = sourceIndexPath.section < proposedDestinationIndexPath.section ? tableView.numberOfRows(inSection: sourceIndexPath.section) - 1 : 0
@@ -227,6 +228,11 @@ class SettingsTableViewController: UITableViewController {
         }
 
         return proposedDestinationIndexPath
+    }
+
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        Datastore.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
     }
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -255,26 +261,18 @@ class SettingsTableViewController: UITableViewController {
             }
 
         case 1:
-            let alertController = UIAlertController(title: "Open Designer's Website?", message: "Doodler, daydreamer, and adventure seeker. Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Go", style: .default) {action in
+            self.showActionPrompt(title: "Open Designer's Website?", message: "Doodler, daydreamer, and adventure seeker. Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
                 let url = URL(string: self.isabelURLString)!
                 UIApplication.shared.openURL(url)
-            })
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            alertController.view.tintColor = self.view.tintColor
+            }
 
         case 2:
             switch indexPath.row {
             case 0:
-                let alertController = UIAlertController(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+meowlwatch@u.northwestern.edu.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Go", style: .default) {action in
+                self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+meowlwatch@u.northwestern.edu.") {
                     let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+meowlwatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v1.0)")!
                     UIApplication.shared.openURL(url)
-                })
-                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                alertController.view.tintColor = self.view.tintColor
+                }
 
             case 1:
                 self.performSegue(withIdentifier: "ShowLegal", sender: self)
@@ -290,6 +288,7 @@ class SettingsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    /// Prompts the user to purchase the widget if `widgetProduct` is not nil, i.e., if it is available from the app store.
     func buyWidgetIfAvailable() {
         guard let widgetProduct = widgetProduct else { return }
         let payment = SKPayment(product: widgetProduct)
@@ -297,12 +296,10 @@ class SettingsTableViewController: UITableViewController {
         self.isLoading = true
     }
 
+    /// Shows an alert to notify the user that we cannot make purchases.
     func showCannotMakePaymentsAlert() {
         self.isLoading = false
-        let alertController = UIAlertController(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = self.view.tintColor
+        self.showMessageAlert(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.")
     }
 
     /*
@@ -315,6 +312,7 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
+    /// Makes the refresh control start refreshing, if it exists.
     func beginRefreshing() {
         DispatchQueue.main.async {
             guard let refreshControl = self.refreshControl else { return }
@@ -323,11 +321,34 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
+    /// Makes the refresh control stop spinning, if it exists.
     func endRefreshing() {
         DispatchQueue.main.async {
             guard let refreshControl = self.refreshControl else { return }
             refreshControl.endRefreshing()
         }
+    }
+
+    /// Prompts the user whether to perform an action.
+    /// - Paramter title: The title of the alert controller.
+    /// - Parameter message: The message in the alert controller.
+    /// - Parameter action: The action to perform if the user chooses.
+    func showActionPrompt(title: String, message: String?, action: (() -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Go", style: .default) { _ in action?() })
+        self.present(alertController, animated: true, completion: nil)
+        alertController.view.tintColor = self.view.tintColor
+    }
+
+    /// Shows a message alert controller to the user.
+    /// - Paramter title: The title of the alert controller.
+    /// - Parameter message: The message in the alert controller.
+    func showMessageAlert(title: String, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+        alertController.view.tintColor = self.view.tintColor
     }
 
 }
@@ -346,14 +367,14 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
     }
 
     func request(_ request: SKRequest, didFailWithError error: Error) {
-        let alertController = UIAlertController(title: "Unable to Fetch In-App Purchases", message: "Please try again later.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = self.view.tintColor
+        self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
         self.isLoading = false
         self.tableView.reloadData()
     }
 
+    /// The localized string for the price of a product.
+    /// - Parameter product: The StoreKit product.
+    /// - Returns: A localized string for the product's price.
     func localizedPrice(for product: SKProduct) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
@@ -361,6 +382,7 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
         return numberFormatter.string(from: product.price)!
     }
 
+    /// Query the app store for the IAPs.
     func requestProductData() {
         guard SKPaymentQueue.canMakePayments() else {
             return
@@ -373,20 +395,18 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
         self.tableView.reloadData()
     }
 
+    /// What to do once the widget is purchased.
     func didPurchaseWidget() {
-        let alertController = UIAlertController(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = self.view.tintColor
+        self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
 
         self.refreshControl!.removeFromSuperview()
         self.refreshControl = nil
 
         Datastore.widgetIsPurchased = true
         Datastore.persistToUserDefaults()
-        let parentViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! TableViewController
-        parentViewController.bannerView = nil
-        parentViewController.navigationController!.setToolbarHidden(true, animated: false)
+        let meowlWatchViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! MeowlWatchTableViewController
+        meowlWatchViewController.bannerView = nil
+        meowlWatchViewController.navigationController!.setToolbarHidden(true, animated: false)
         self.tableView.reloadData()
     }
 
@@ -408,22 +428,19 @@ extension SettingsTableViewController: SKPaymentTransactionObserver {
         }
 
         if !Datastore.widgetIsPurchased {
-            let alertController = UIAlertController(title: "Unable To Restore Purchases", message: "No previous purchases could be found.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            alertController.view.tintColor = self.view.tintColor
+            self.showMessageAlert(title: "Unable To Restore Purchases", message: "No previous purchases could be found.")
             self.isLoading = false
         }
     }
 
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        let alertController = UIAlertController(title: "Unable To Restore Purchases", message: "Please try again later.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = self.view.tintColor
+        self.showMessageAlert(title: "Unable To Restore Purchases", message: "Please try again later.")
         self.isLoading = false
     }
 
+    /// What to do once we receive a transaction.
+    /// - Parameter transaction: The StoreKit transaction.
+    /// - Parameter queue: The StoreKit payment queue.
     func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
         switch transaction.transactionState {
         case .purchased:
@@ -433,10 +450,7 @@ extension SettingsTableViewController: SKPaymentTransactionObserver {
             }
 
         case .failed:
-            let alertController = UIAlertController(title: "Unable To Purchase", message: "Please try again.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            alertController.view.tintColor = self.view.tintColor
+            self.showMessageAlert(title: "Unable To Purchase", message: "Please try again.")
             queue.finishTransaction(transaction)
 
         case .restored:

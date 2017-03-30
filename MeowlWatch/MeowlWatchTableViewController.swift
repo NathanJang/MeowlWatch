@@ -9,16 +9,19 @@
 import UIKit
 import GoogleMobileAds
 
-class TableViewController: UITableViewController {
+/// The main table view controller for MeowlWatch, displaying the user's meal plan.
+class MeowlWatchTableViewController: UITableViewController {
 
     /// The Google ad banner.
     var bannerView: GADBannerView?
 
+    /// The Google interstitial controller.
     var interstitial: GADInterstitial?
 
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
 
+    /// Whether `viewDidAppear(_:)` has been called for the first time.
     var hasAppeared = false
 
     override func viewDidLoad() {
@@ -238,13 +241,14 @@ class TableViewController: UITableViewController {
         alertController.view.tintColor = self.view.tintColor
     }
 
+    /// Called when the settings button is tapped.
     func didTapSettingsButton() {
         performSegue(withIdentifier: "ShowSettings", sender: self)
     }
 
 }
 
-extension TableViewController: GADInterstitialDelegate {
+extension MeowlWatchTableViewController: GADInterstitialDelegate {
 
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
         if Datastore.shouldDisplayAds && Datastore.canQuery && ad.isReady {

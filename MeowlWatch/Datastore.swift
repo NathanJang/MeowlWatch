@@ -216,8 +216,13 @@ struct Datastore {
 
     // MARK: IAPs
 
+    /// Whether the user purchased the widget.
     static var widgetIsPurchased = false
 
-    static var shouldDisplayAds: Bool { return !widgetIsPurchased }
+    /// Whether anything is purchased.
+    static var anythingIsPurchased: Bool { return widgetIsPurchased }
+
+    /// Whether we should display ads.
+    static var shouldDisplayAds: Bool { return !anythingIsPurchased }
 
 }
