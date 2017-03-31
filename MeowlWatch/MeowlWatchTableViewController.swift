@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  MeowlWatchTableViewController.swift
 //  MeowlWatch
 //
 //  Created by Jonathan Chan on 2017-03-18.
@@ -186,7 +186,7 @@ class MeowlWatchTableViewController: UITableViewController {
     /// Calls `Datastore.query` and then provides the appropriate UI feedback.
     func refresh() {
         if Datastore.canQuery {
-            Datastore.query {queryResult in
+            Datastore.query { queryResult in
                 self.queryResult = queryResult
                 self.tableView.reloadData()
                 DispatchQueue.main.async {

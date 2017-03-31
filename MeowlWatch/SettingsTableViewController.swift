@@ -12,9 +12,6 @@ import StoreKit
 /// A view controller for the settings.
 class SettingsTableViewController: UITableViewController {
 
-    /// The product identifier for the IAP for the widget.
-    let widgetProductIdentifier = "MeowlWatch_Widget" // "MeowlWatch_Widget_Consumable"
-
     /// The widget's IAP product, which will exist after we query the app store.
     var widgetProduct: SKProduct?
 
@@ -159,6 +156,14 @@ class SettingsTableViewController: UITableViewController {
         return cell!
     }
 
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !Datastore.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
+            return 488
+        }
+
+        return UITableViewAutomaticDimension
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !Datastore.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
             let imageSize = #imageLiteral(resourceName: "WidgetPreviewFull").size
@@ -269,8 +274,8 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             switch indexPath.row {
             case 0:
-                self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+meowlwatch@u.northwestern.edu.") {
-                    let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+meowlwatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v1.0)")!
+                self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+MeowlWatch@u.northwestern.edu.") {
+                    let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+MeowlWatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v\(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!))")!
                     UIApplication.shared.openURL(url)
                 }
 
@@ -359,7 +364,7 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
         // Show list of available purchases
         self.isLoading = false
         for product in response.products {
-            if product.productIdentifier == widgetProductIdentifier {
+            if product.productIdentifier == Datastore.widgetProductIdentifier {
                 self.widgetProduct = product
             }
         }
@@ -389,7 +394,7 @@ extension SettingsTableViewController: SKProductsRequestDelegate {
         }
         self.isLoading = true
         self.canMakePayments = true
-        let request = SKProductsRequest(productIdentifiers: [widgetProductIdentifier])
+        let request = SKProductsRequest(productIdentifiers: [Datastore.widgetProductIdentifier])
         request.delegate = self
         request.start()
         self.tableView.reloadData()
@@ -444,7 +449,7 @@ extension SettingsTableViewController: SKPaymentTransactionObserver {
     func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
         switch transaction.transactionState {
         case .purchased:
-            if transaction.payment.productIdentifier == widgetProductIdentifier {
+            if transaction.payment.productIdentifier == Datastore.widgetProductIdentifier {
                 didPurchaseWidget()
                 queue.finishTransaction(transaction)
             }
@@ -454,7 +459,7 @@ extension SettingsTableViewController: SKPaymentTransactionObserver {
             queue.finishTransaction(transaction)
 
         case .restored:
-            if transaction.payment.productIdentifier == widgetProductIdentifier {
+            if transaction.payment.productIdentifier == Datastore.widgetProductIdentifier {
                 didPurchaseWidget()
                 queue.finishTransaction(transaction)
             }

@@ -206,27 +206,44 @@ extension QueryResult {
     /// The number of board meals as a string.
     var boardMeals: String { return isUnlimited ? "∞" : "\(numberOfBoardMeals)" }
 
-    var boardMealsIsPlural: Bool { return numberOfBoardMeals != 1 }
-    static var boardMealSingularDescription: String { return "Meal Swipe" }
-    static var boardMealsPluralDescription: String { return "Meal Swipes" }
+    /// Whether we should display the board meals description in plural form.
+    private var boardMealsIsPlural: Bool { return numberOfBoardMeals != 1 }
+
+    /// The description for 1 board meal.
+    private static var boardMealSingularDescription: String { return "Meal Swipe" }
+
+    /// The description for many board meals.
+    private static var boardMealsPluralDescription: String { return "Meal Swipes" }
+
+    /// The pluralized/singular description for board meals.
     var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
 
     /// The number of equivalency meals as a string.
     var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
 
-    var equivalencyMealsIsPlural: Bool { return numberOfEquivalencyMeals != 1 }
-    static var equivalencyMealSingularDescription: String { return "Equivalency" }
-    static var equivalencyMealsPluralDescription: String { return "Equivalencies" }
+    /// Whether we should display the board meals description in plural form.
+    private var equivalencyMealsIsPlural: Bool { return numberOfEquivalencyMeals != 1 }
+
+    /// The description for 1 equivalency meal.
+    private static var equivalencyMealSingularDescription: String { return "Equivalency" }
+
+    /// The description for many equivalency meals.
+    private static var equivalencyMealsPluralDescription: String { return "Equivalencies" }
+
+    /// The pluralized/singular description for equivalency meals.
     var equivalencyMealsDescription: String { return equivalencyMealsIsPlural ? QueryResult.equivalencyMealsPluralDescription : QueryResult.equivalencyMealSingularDescription }
 
     /// The points as a string.
     var points: String { return pointsInCents.centsToString() }
 
+    /// The description for points.
     var pointsDescription: String { return "Points" }
+
+    /// The description for points, also available when the controller does not have a query result object.
     static var pointsDescription: String { return "Points" }
 
     /// The Cat Cash and Cat Cash bonus added together.
-    var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
+    private var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
 
     /// The total Cat Cash as a string.
     var totalCatCash: String { return totalCatCashInCents.centsToString() }
@@ -263,14 +280,24 @@ extension QueryResult {
     /// An enum representing the each displayed item.
     enum DisplayItem: Int {
 
+        /// Board meals.
         case boardMeals
+
+        /// Equivalency meals.
         case equivalencyMeals
+
+        /// Points.
         case points
+
+        /// Cat Cash.
         case catCash
         
     }
 
-    func description(forItem item: DisplayItem) -> String {
+    /// The displayed description given an item type.
+    /// - Parameter item: The display item type.
+    /// - Returns: A string to display.
+    private func description(forItem item: DisplayItem) -> String {
         switch item {
         case .boardMeals:
             return boardMealsDescription
@@ -283,6 +310,10 @@ extension QueryResult {
         }
     }
 
+    /// The displayed description given an item type and a query result to pluralize it if needed.
+    /// - Parameter item: The display item type.
+    /// - Parameter query: A query result.
+    /// - Returns: A string to display.
     static func description(forItem item: DisplayItem, withQuery query: QueryResult?) -> String {
         switch item {
         case .boardMeals:
@@ -305,7 +336,7 @@ extension String {
     /// This function throws if given an invalid regex pattern.
     /// - Parameter regexPattern: The regex pattern.
     /// - Returns: An array of strings representing the first match, if found.
-    func firstMatch(regexPattern: String) throws -> [String] {
+    fileprivate func firstMatch(regexPattern: String) throws -> [String] {
         var strings: [String] = []
         let regex = try NSRegularExpression(pattern: regexPattern, options: [.dotMatchesLineSeparators, .caseInsensitive])
         let resultOptional = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
@@ -328,7 +359,7 @@ extension UInt {
     /// Returns nil if the string is invalid.
     /// Example: `"42.45" -> 4245`.
     /// - Parameter string: The string to parse.
-    init?(toCentsWithString string: String) {
+    fileprivate init?(toCentsWithString string: String) {
         let matches: [String]
         do {
             matches = try string.firstMatch(regexPattern: "(\\d*).(\\d{2})")
@@ -344,7 +375,7 @@ extension UInt {
     /// Converts `self` into a two-decimal-place string representation.
     /// Example: `4245 -> "42.45"`.
     /// - Returns: The two-decimal-string representation.
-    func centsToString() -> String {
+    fileprivate func centsToString() -> String {
         let fractionalComponent = self % 100
         let fractionalString: String
         if fractionalComponent < 10 {

@@ -191,11 +191,12 @@ struct Datastore {
         return adMobObject(forKey: "AdMobAppID") as! String
     }
 
-    /// The main ad unit ID for AdMob.
+    /// The banner ad unit ID for AdMob.
     static var adMobBannerAdUnitID: String {
         return adMobObject(forKey: "AdMobBannerAdUnitID") as! String
     }
 
+    /// The interstitial ad unit ID for AdMob.
     static var adMobInterstitialAdUnitID: String {
         return adMobObject(forKey: "AdMobInterstitialAdUnitID") as! String
     }
@@ -216,6 +217,9 @@ struct Datastore {
 
     // MARK: IAPs
 
+    /// The product identifier for the IAP for the widget.
+    static let widgetProductIdentifier = "me.jonathanchan.MeowlWatch.MeowlWatch_Widget"
+    
     /// Whether the user purchased the widget.
     static var widgetIsPurchased = false
 

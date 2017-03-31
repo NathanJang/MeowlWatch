@@ -28,8 +28,8 @@ class LegalViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        textView.contentInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
-        textView.contentSize.width -= 8
+        textView.contentInset = UIEdgeInsets.zero
+        textView.textContainerInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         textView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 

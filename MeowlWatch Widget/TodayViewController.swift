@@ -20,15 +20,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var secondaryRightNumberLabel: UILabel!
     @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
     @IBOutlet weak var purchaseRequiredLabel: UILabel!
-
-    /// A flag representing whether this is the widget's initial setup.
-    /// Once the widget performs an update for the first time, this will be set to `false`.
-//    var isFirstRun = true
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-//        Datastore.loadFromDefaults()
         if #available(iOSApplicationExtension 10.0, *) {
             self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
         } else {
@@ -55,11 +50,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         Datastore.loadFromDefaults()
-//        guard !isFirstRun else {
-//            updateLabels(with: Datastore.lastQuery)
-//            isFirstRun = false
-//            return completionHandler(.newData)
-//        }
 
         guard Datastore.widgetIsPurchased else { return }
         purchaseRequiredLabel.isHidden = true
@@ -71,8 +61,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             updateLabels(with: Datastore.lastQuery)
             return completionHandler(.failed)
         }
-        Datastore.query {result in
-            self.updateLabels(with: result)
+        Datastore.query { queryResult in
+            self.updateLabels(with: queryResult)
             completionHandler(.newData)
         }
 
