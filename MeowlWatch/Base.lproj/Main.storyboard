@@ -19,14 +19,14 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="JNr-Me-8b5" style="IBUITableViewCellStyleDefault" id="IdQ-qg-hvD">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IdQ-qg-hvD" id="qIy-ne-Uj3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JNr-Me-8b5">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -36,21 +36,21 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeftDetailCell" textLabel="bS3-5c-j3W" detailTextLabel="75v-NB-ykW" style="IBUITableViewCellStyleValue2" id="mNG-3m-wV9">
-                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mNG-3m-wV9" id="iJ7-R8-DEl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bS3-5c-j3W">
-                                            <rect key="frame" x="15" y="8" width="91" height="27"/>
+                                            <rect key="frame" x="15" y="9" width="91" height="26.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                             <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="75v-NB-ykW">
-                                            <rect key="frame" x="112" y="13" width="44" height="21"/>
+                                            <rect key="frame" x="112" y="14" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -81,19 +81,19 @@
             <objects>
                 <tableViewController title="Settings" id="feM-RP-uNa" customClass="SettingsTableViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RAC-RS-cpv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="LoadingButtonCell" textLabel="7Yb-pI-Zp7" style="IBUITableViewCellStyleDefault" id="4ID-oh-Uwo">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ID-oh-Uwo" id="c4S-V9-cIA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Yb-pI-Zp7">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -103,10 +103,10 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetPreviewCell" rowHeight="488" id="icm-xG-jaw">
-                                <rect key="frame" x="0.0" y="100" width="375" height="488"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="488"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="icm-xG-jaw" id="8zQ-Ac-aUV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="487"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="487.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WidgetPreviewFull" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-nX-rJB">
@@ -123,14 +123,14 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="ButtonCell" editingAccessoryType="disclosureIndicator" textLabel="qIM-p1-kay" style="IBUITableViewCellStyleDefault" id="0pj-wV-Qw2">
-                                <rect key="frame" x="0.0" y="588" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="587.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0pj-wV-Qw2" id="EWv-yG-Yib">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qIM-p1-kay">
-                                            <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -140,14 +140,14 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="WidgetArrangementCell" textLabel="dhZ-Ys-l4W" style="IBUITableViewCellStyleDefault" id="mly-JE-AMy">
-                                <rect key="frame" x="0.0" y="632" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="631.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mly-JE-AMy" id="saZ-I7-H9M">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dhZ-Ys-l4W">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -163,14 +163,14 @@
                         </connections>
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1334"/>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <segue destination="kF4-Xw-Rxe" kind="show" identifier="ShowLegal" id="8uo-Nw-gqD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEJ-fd-YGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768.8" y="831.63418290854577"/>
+            <point key="canvasLocation" x="1774" y="831"/>
         </scene>
         <!--Legal-->
         <scene sceneID="hMH-ph-97S">
@@ -181,14 +181,29 @@
                         <viewControllerLayoutGuide type="bottom" id="DUk-iT-0Fl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GCp-qB-LO6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rid-em-Kl6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1226"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="692"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="MeowlWatch © 2017 Jonathan Chan">
+                                    <fragment content="MeowlWatch">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
+                                            <font key="NSOriginalFont" size="12" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">:
+Copyright </string>
+                                        <attributes>
+                                            <font key="NSFont" size="12" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="© 2017 Jonathan Chan">
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <font key="NSOriginalFont" size="12" name=".SFNSText"/>
@@ -197,10 +212,17 @@
                                     </fragment>
                                     <fragment>
                                         <string key="content">
+Class of 2020, Northwestern University</string>
+                                        <attributes>
+                                            <font key="NSFont" size="12" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
 
-The MeowlWatch app icon and logo is
-© 2017 Isabel Nygard, used with permission.
-
+MeowlWatch App Icon and Logo:
+Copyright © 2017 Isabel Nygard, used with permission.
 </string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -208,7 +230,7 @@ The MeowlWatch app icon and logo is
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">Class of 2020 at Northwestern University
+                                        <string key="content">Class of 2020, Northwestern University
 </string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -227,10 +249,18 @@ Third-Party Software</string>
                                         <string key="content">
 
 MeowlWatch utilizes third-party software under the following license:
-
 </string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -242,7 +272,7 @@ MeowlWatch utilizes third-party software under the following license:
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
+                                        <mutableString key="content">
 
 The MIT License (MIT)
 
@@ -252,7 +282,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -276,7 +306,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJR-V3-aGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608.8000000000002" y="831.18440779610205"/>
+            <point key="canvasLocation" x="2614" y="831"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cnj-cN-UFd">

@@ -29,7 +29,7 @@ class LegalViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         textView.contentInset = UIEdgeInsets.zero
-        textView.textContainerInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        textView.textContainerInset = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
         textView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
