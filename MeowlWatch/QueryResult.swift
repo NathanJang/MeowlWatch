@@ -248,7 +248,10 @@ extension QueryResult {
     /// The total Cat Cash as a string.
     var totalCatCash: String { return totalCatCashInCents.centsToString() }
 
+    /// The description for Cat Cash.
     var catCashDescription: String { return "Cat Cash" }
+
+    /// The description for Cat Cash, also available when the controller does not have a query result object.
     static var catCashDescription: String { return "Cat Cash" }
 
     /// Whether the user is on an unlimited meal plan or not.
