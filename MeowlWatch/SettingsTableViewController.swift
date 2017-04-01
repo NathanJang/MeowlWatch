@@ -286,7 +286,7 @@ class SettingsTableViewController: UITableViewController {
             }
 
         case 1:
-            self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Doodler, daydreamer, and adventure seeker. Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
+            self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
                 let url = URL(string: self.isabelURLString)!
                 UIApplication.shared.openURL(url)
             }
