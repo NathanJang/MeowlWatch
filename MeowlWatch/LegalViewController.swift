@@ -31,6 +31,8 @@ class LegalViewController: UIViewController {
         textView.contentInset = UIEdgeInsets.zero
         textView.textContainerInset = UIEdgeInsets(top: 8, left: 4, bottom: 8, right: 4)
         textView.scrollIndicatorInsets = UIEdgeInsets.zero
+
+        textView.setContentOffset(CGPoint.zero, animated: false)
     }
 
     /*

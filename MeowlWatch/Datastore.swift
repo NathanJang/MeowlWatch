@@ -41,7 +41,11 @@ struct Datastore {
             self.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
         }
 
-        self.widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+        #if !MEOWLWATCH_FULL
+            self.widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+        #else
+            self.widgetIsPurchased = true
+        #endif
     }
 
     /// Writes data from the datastore to user defaults.
@@ -120,7 +124,7 @@ struct Datastore {
         var request = URLRequest(url: url)
         request.setValue(authorizationString, forHTTPHeaderField: "Authorization")
 
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             print("Query finished.")
 
             guard let response = response as? HTTPURLResponse, let data = data else {
@@ -219,7 +223,7 @@ struct Datastore {
 
     /// The product identifier for the IAP for the widget.
     static let widgetProductIdentifier = "me.jonathanchan.MeowlWatch.MeowlWatch_Widget"
-    
+
     /// Whether the user purchased the widget.
     static var widgetIsPurchased = false
 

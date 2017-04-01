@@ -9,20 +9,40 @@
 /* Begin PBXBuildFile section */
 		0B123A9105E747919356F5C29CC486C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		18A6B118ECC8A7FA63216AB0BA83C70B /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADCD085F71232E397CE09A8237F9713 /* KeychainItemAccessibility.swift */; };
-		21AC3BC583FEC27270A68A4F3397D822 /* Pods-MeowlWatch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EEB450AD8F57443B4E9D1A8B5C7CE4D9 /* Pods-MeowlWatch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		39F1D75F45AC2EAAAF853100DC4A2ECE /* Pods-MeowlWatch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0EFA83294B69DFD02771B0AA742352 /* Pods-MeowlWatch-dummy.m */; };
+		21AC3BC583FEC27270A68A4F3397D822 /* Pods-MeowlWatch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F32A81146B940F086D393D4CC30C88 /* Pods-MeowlWatch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		39F1D75F45AC2EAAAF853100DC4A2ECE /* Pods-MeowlWatch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2215E47A4DD8B60ED105037263660B /* Pods-MeowlWatch-dummy.m */; };
 		3E42A1ABB3D793FB35295C24101F3905 /* SwiftKeychainWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9DBDEA6D0FC78548805D243C7DD29E /* SwiftKeychainWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43DBEDEC9895B7D217CD6379A3FB099C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		44A2F6792A7C91524D1FF4A5FD3925C6 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4069D82A65A6850142DAEC13F7D6DB /* KeychainWrapper.swift */; };
 		51DDED8811FD9260C3BFBF9BC24377D3 /* SwiftKeychainWrapper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF955E69F8E51795B015AD1785D2E277 /* SwiftKeychainWrapper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7359DB82453B7279007036D424C8EA54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		73EE031870629787BC59F7F42B433E6B /* Pods-MeowlWatch Widget-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FE897918AB709F79559F1F4A7EDB3 /* Pods-MeowlWatch Widget-dummy.m */; };
-		97A210DB5D85A5DF5C28093ECA57F564 /* Pods-MeowlWatch Widget-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC4598D93DF7B4C51B2BC279F2FE165 /* Pods-MeowlWatch Widget-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73EE031870629787BC59F7F42B433E6B /* Pods-MeowlWatch Widget-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1592424CF5497A16FBEC2B55029289 /* Pods-MeowlWatch Widget-dummy.m */; };
+		8671A18F93914E7D93FD0D9363310528 /* Pods-MeowlWatch Full Widget-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C664D34304D3CC6B6FE6905EADFF0202 /* Pods-MeowlWatch Full Widget-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B0208410672322955CBDFFF82159579 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		97A210DB5D85A5DF5C28093ECA57F564 /* Pods-MeowlWatch Widget-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 16BAA2EB8FB7B3AEDC75D5C4CFC72E94 /* Pods-MeowlWatch Widget-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9EDB4AC3770B333CE87573CEA356300E /* Pods-MeowlWatch Full-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B1AD3DC5FF38FD3CB508C26F4CAB72 /* Pods-MeowlWatch Full-dummy.m */; };
 		C92F97FD216F64D2E97052E5A0A3FD84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		DDC5B1FACE3C13471E1ACE235E8FC65F /* Pods-MeowlWatch Full Widget-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF897087AEECBD32AA40D137E6A21A3 /* Pods-MeowlWatch Full Widget-dummy.m */; };
+		F3E64D9E1F5157693C8D9670993F36C3 /* Pods-MeowlWatch Full-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C27603DA32A88FDE671F3B40965CAB2 /* Pods-MeowlWatch Full-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6AF2C73F66BDDF80462A7B1F2AC49D4 /* SwiftKeychainWrapper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47476AE192B25712E27327E59D5FB4AC /* SwiftKeychainWrapper-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		6EDDA677A71EA65512369E0D7FDAD9AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D12B159BE7945E66CD31E8944FC5B31E;
+			remoteInfo = SwiftKeychainWrapper;
+		};
+		8A40D91E718193E362982E19042185D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D12B159BE7945E66CD31E8944FC5B31E;
+			remoteInfo = SwiftKeychainWrapper;
+		};
+		998DAF53F5977642FE447B1063E5DD07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -40,42 +60,71 @@
 
 /* Begin PBXFileReference section */
 		04DDE961D960EA1B56AB7C43EDDC8223 /* SwiftKeychainWrapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftKeychainWrapper.modulemap; sourceTree = "<group>"; };
-		07107FDB5FC4C4B2ADEE750176253CB4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A4069D82A65A6850142DAEC13F7D6DB /* KeychainWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainWrapper.swift; path = SwiftKeychainWrapper/KeychainWrapper.swift; sourceTree = "<group>"; };
 		0ADCD085F71232E397CE09A8237F9713 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainItemAccessibility.swift; path = SwiftKeychainWrapper/KeychainItemAccessibility.swift; sourceTree = "<group>"; };
-		10E6DE37F48BAA5C1661DDF5F7C17737 /* Pods_MeowlWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MeowlWatch.framework; path = "Pods-MeowlWatch.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		16BAA2EB8FB7B3AEDC75D5C4CFC72E94 /* Pods-MeowlWatch Widget-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MeowlWatch Widget-umbrella.h"; sourceTree = "<group>"; };
+		185A2D7CE4720037E28B5AB922CD2A3C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		257ED604730ABAE1DB0DB400179EF3D6 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
-		2FC4598D93DF7B4C51B2BC279F2FE165 /* Pods-MeowlWatch Widget-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MeowlWatch Widget-umbrella.h"; sourceTree = "<group>"; };
-		3F2567FE647482AA00DE46A637CDC7AA /* Pods-MeowlWatch-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch-resources.sh"; sourceTree = "<group>"; };
+		26B72E73D23D7B43A179FA1C58AF049B /* Pods-MeowlWatch Full Widget.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MeowlWatch Full Widget.modulemap"; sourceTree = "<group>"; };
+		2C5CDBCBF7BFBCB50F3000E6B806F383 /* Pods-MeowlWatch Full Widget-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MeowlWatch Full Widget-acknowledgements.markdown"; sourceTree = "<group>"; };
+		395F642E0B2E51EBF283AF91833EA4C3 /* Pods-MeowlWatch Widget.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MeowlWatch Widget.modulemap"; sourceTree = "<group>"; };
+		44F6C47C96C7B4BE98BB2A4DD531549A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47476AE192B25712E27327E59D5FB4AC /* SwiftKeychainWrapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftKeychainWrapper-dummy.m"; sourceTree = "<group>"; };
-		47C5EF3FDF755FBDD4D5517E073A5FD7 /* Pods-MeowlWatch Widget.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MeowlWatch Widget.modulemap"; sourceTree = "<group>"; };
-		4ED071C35FB58BB70D69043F7134398B /* Pods-MeowlWatch-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MeowlWatch-acknowledgements.plist"; sourceTree = "<group>"; };
-		5681FBC91E67EE860C04C89B80429D17 /* Pods-MeowlWatch-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch-frameworks.sh"; sourceTree = "<group>"; };
-		56859CF0A04521B77E211E68582C67C4 /* Pods-MeowlWatch-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MeowlWatch-acknowledgements.markdown"; sourceTree = "<group>"; };
-		59C4B63D1CD69825ADF74A13CA0910E3 /* Pods-MeowlWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch.release.xcconfig"; sourceTree = "<group>"; };
-		63B88A1C1A8CE0F5DD19CE38335A82C8 /* Pods-MeowlWatch Widget-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MeowlWatch Widget-acknowledgements.plist"; sourceTree = "<group>"; };
-		65A4A3F3CFEF6E6FA2C574D70E35C02B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		787FE897918AB709F79559F1F4A7EDB3 /* Pods-MeowlWatch Widget-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MeowlWatch Widget-dummy.m"; sourceTree = "<group>"; };
+		48B1AD3DC5FF38FD3CB508C26F4CAB72 /* Pods-MeowlWatch Full-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MeowlWatch Full-dummy.m"; sourceTree = "<group>"; };
+		50F85D137B7FC98FCB458B7394D0533F /* Pods_MeowlWatch_Full.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MeowlWatch_Full.framework; path = "Pods-MeowlWatch Full.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53140D6CEE4B10B60D76660B9AB81892 /* Pods-MeowlWatch Full-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch Full-frameworks.sh"; sourceTree = "<group>"; };
+		5D32AD7E8B2EC91C0BB35EDBADB60BF4 /* Pods_MeowlWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MeowlWatch.framework; path = "Pods-MeowlWatch.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67EB8246DBC6F510F50B1B4ADF317A59 /* Pods-MeowlWatch Widget-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MeowlWatch Widget-acknowledgements.plist"; sourceTree = "<group>"; };
+		74F32A81146B940F086D393D4CC30C88 /* Pods-MeowlWatch-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MeowlWatch-umbrella.h"; sourceTree = "<group>"; };
 		7917E1588E98823EB77BB7FDBCE906B1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C27603DA32A88FDE671F3B40965CAB2 /* Pods-MeowlWatch Full-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MeowlWatch Full-umbrella.h"; sourceTree = "<group>"; };
+		804156978556AF2379E48E285454C944 /* Pods-MeowlWatch Full Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Full Widget.debug.xcconfig"; sourceTree = "<group>"; };
+		866A1246E16535775320563067D029BF /* Pods-MeowlWatch Full Widget-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MeowlWatch Full Widget-acknowledgements.plist"; sourceTree = "<group>"; };
+		880ABF9994426F305A65EB7D05D9662A /* Pods-MeowlWatch Full.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Full.debug.xcconfig"; sourceTree = "<group>"; };
+		8A42DFB92E60EDD445790CCCF9FA2991 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B9DBDEA6D0FC78548805D243C7DD29E /* SwiftKeychainWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftKeychainWrapper.h; path = SwiftKeychainWrapper/SwiftKeychainWrapper.h; sourceTree = "<group>"; };
+		8FDC55D6C8B73A1A792E5B6E2BE7D6A5 /* Pods-MeowlWatch Widget-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MeowlWatch Widget-acknowledgements.markdown"; sourceTree = "<group>"; };
+		90E36BDFD6EB8679F503B5DAD31F5589 /* Pods-MeowlWatch Full-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MeowlWatch Full-acknowledgements.markdown"; sourceTree = "<group>"; };
 		929882A040742A2535590EDA28809695 /* SwiftKeychainWrapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftKeychainWrapper-prefix.pch"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		98B85F0CA979D28AD17A80CFC2FA5D99 /* Pods-MeowlWatch Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Widget.debug.xcconfig"; sourceTree = "<group>"; };
-		A7424D6BB6BFD0A2CDC07F9025C20B2D /* Pods-MeowlWatch Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Widget.release.xcconfig"; sourceTree = "<group>"; };
-		AF0EFA83294B69DFD02771B0AA742352 /* Pods-MeowlWatch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MeowlWatch-dummy.m"; sourceTree = "<group>"; };
-		BBBC7F729A822F75B1B7738BD1FFE0B2 /* Pods-MeowlWatch Widget-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MeowlWatch Widget-acknowledgements.markdown"; sourceTree = "<group>"; };
+		99D1205230FBED872720EF6DBF239436 /* Pods-MeowlWatch Full-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MeowlWatch Full-acknowledgements.plist"; sourceTree = "<group>"; };
+		9C4C25A8C8F4EEB36EE6A5B5A72075DE /* Pods-MeowlWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch.debug.xcconfig"; sourceTree = "<group>"; };
+		A8FEB32F8BCD5BE8A35EA2DA9EC84F86 /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftKeychainWrapper.framework; path = SwiftKeychainWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB56E189BEB39FCA49A74ED139A9A1A9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEE5B25BB3FA7AADF3F30F81D79F7FC2 /* Pods-MeowlWatch-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch-frameworks.sh"; sourceTree = "<group>"; };
+		B06C83C04FE8FC95E843A91BB320B526 /* Pods-MeowlWatch-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch-resources.sh"; sourceTree = "<group>"; };
+		B0BEF727952E68AF9439BC38D8D730DA /* Pods-MeowlWatch Widget-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch Widget-resources.sh"; sourceTree = "<group>"; };
+		B4B870A8BA103E890D707217095A08E6 /* Pods-MeowlWatch Full-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch Full-resources.sh"; sourceTree = "<group>"; };
+		BD84747C4418C21DA897725A99D52F4D /* Pods-MeowlWatch Full Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Full Widget.release.xcconfig"; sourceTree = "<group>"; };
+		BE74362018C13931C659DB425D9E0E8F /* Pods-MeowlWatch-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MeowlWatch-acknowledgements.plist"; sourceTree = "<group>"; };
+		BF2215E47A4DD8B60ED105037263660B /* Pods-MeowlWatch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MeowlWatch-dummy.m"; sourceTree = "<group>"; };
+		BF6B637051D30FC171922405F10BC8C8 /* Pods-MeowlWatch Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		BF955E69F8E51795B015AD1785D2E277 /* SwiftKeychainWrapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftKeychainWrapper-umbrella.h"; sourceTree = "<group>"; };
+		BFC641DDCBD11F82D03268EA29C29F4D /* Pods-MeowlWatch Full.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MeowlWatch Full.modulemap"; sourceTree = "<group>"; };
+		C664D34304D3CC6B6FE6905EADFF0202 /* Pods-MeowlWatch Full Widget-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MeowlWatch Full Widget-umbrella.h"; sourceTree = "<group>"; };
 		C9183227DB948D030B1C51F144CCA0CC /* SwiftKeychainWrapper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftKeychainWrapper.xcconfig; sourceTree = "<group>"; };
+		CAF897087AEECBD32AA40D137E6A21A3 /* Pods-MeowlWatch Full Widget-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MeowlWatch Full Widget-dummy.m"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D3970B58CFD218F51E68E2C9F0007D17 /* Pods-MeowlWatch.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MeowlWatch.modulemap"; sourceTree = "<group>"; };
-		D99881B5126574325542612B89C40D83 /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftKeychainWrapper.framework; path = SwiftKeychainWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD0A67D8FEF166ABA67D867EC84FBAC6 /* Pods_MeowlWatch_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MeowlWatch_Widget.framework; path = "Pods-MeowlWatch Widget.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8892196D344D67DF91A3C1E00AD385A /* Pods-MeowlWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch.debug.xcconfig"; sourceTree = "<group>"; };
-		EEB450AD8F57443B4E9D1A8B5C7CE4D9 /* Pods-MeowlWatch-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MeowlWatch-umbrella.h"; sourceTree = "<group>"; };
-		FB4C775D2854030DE1604E935F8FBE80 /* Pods-MeowlWatch Widget-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch Widget-resources.sh"; sourceTree = "<group>"; };
+		D22CDB9CB8057A1CFCB5FB4A5867B960 /* Pods-MeowlWatch Full.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Full.release.xcconfig"; sourceTree = "<group>"; };
+		D336F97FF4EBDB99458A18545610605F /* Pods_MeowlWatch_Full_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MeowlWatch_Full_Widget.framework; path = "Pods-MeowlWatch Full Widget.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D445DE6D9B2E00E01C261C262063DF40 /* Pods-MeowlWatch.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MeowlWatch.modulemap"; sourceTree = "<group>"; };
+		D6648BFA53766E839F0361E37F6E7695 /* Pods-MeowlWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch.release.xcconfig"; sourceTree = "<group>"; };
+		FC357812BDA6379FFF9AFF102BFC0BA5 /* Pods-MeowlWatch Full Widget-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MeowlWatch Full Widget-resources.sh"; sourceTree = "<group>"; };
+		FDE255B0D5785DDEA2387852F40BCDAA /* Pods-MeowlWatch Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MeowlWatch Widget.release.xcconfig"; sourceTree = "<group>"; };
+		FE1592424CF5497A16FBEC2B55029289 /* Pods-MeowlWatch Widget-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MeowlWatch Widget-dummy.m"; sourceTree = "<group>"; };
+		FE8DF9509749771225185E4BB8E6CDE3 /* Pods_MeowlWatch_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MeowlWatch_Widget.framework; path = "Pods-MeowlWatch Widget.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3B6D857BE955DEE1FF3A64364D17FE /* Pods-MeowlWatch-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MeowlWatch-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		06519436BFFB69B7AF1376D3E3667457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43DBEDEC9895B7D217CD6379A3FB099C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE381F1770EBC592ACAAB0EB4C70358 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,6 +149,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68E860A86E13B0D70621E342E8A1D055 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B0208410672322955CBDFFF82159579 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -110,15 +167,6 @@
 				D7E833C14919750E49DC5297BBDB2F72 /* SwiftKeychainWrapper */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		14BF1072C8726CEC4D154A8E43B7B55E /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F1D17905A6B7DC1C51FA149395BED84D /* Pods-MeowlWatch */,
-				7915D130584E5D104B05D40E2F0CF093 /* Pods-MeowlWatch Widget */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		3B9160B72E19C4723A7E171968503FA2 /* Google-Mobile-Ads-SDK */ = {
@@ -152,6 +200,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		58EB8D4B2B85FF42D0BFA94FCA7CE89D /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F66C7F8F537EF24BD89082FFF008E99 /* Pods-MeowlWatch */,
+				A41AF43FC156DA1F7938AE990C0F1BDC /* Pods-MeowlWatch Full */,
+				C4FBA4469B48A14EC804C6D20D43883D /* Pods-MeowlWatch Full Widget */,
+				8138A80179FED6CCDCAC87567F036EA7 /* Pods-MeowlWatch Widget */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,32 +219,80 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		7915D130584E5D104B05D40E2F0CF093 /* Pods-MeowlWatch Widget */ = {
-			isa = PBXGroup;
-			children = (
-				65A4A3F3CFEF6E6FA2C574D70E35C02B /* Info.plist */,
-				47C5EF3FDF755FBDD4D5517E073A5FD7 /* Pods-MeowlWatch Widget.modulemap */,
-				BBBC7F729A822F75B1B7738BD1FFE0B2 /* Pods-MeowlWatch Widget-acknowledgements.markdown */,
-				63B88A1C1A8CE0F5DD19CE38335A82C8 /* Pods-MeowlWatch Widget-acknowledgements.plist */,
-				787FE897918AB709F79559F1F4A7EDB3 /* Pods-MeowlWatch Widget-dummy.m */,
-				FB4C775D2854030DE1604E935F8FBE80 /* Pods-MeowlWatch Widget-resources.sh */,
-				2FC4598D93DF7B4C51B2BC279F2FE165 /* Pods-MeowlWatch Widget-umbrella.h */,
-				98B85F0CA979D28AD17A80CFC2FA5D99 /* Pods-MeowlWatch Widget.debug.xcconfig */,
-				A7424D6BB6BFD0A2CDC07F9025C20B2D /* Pods-MeowlWatch Widget.release.xcconfig */,
-			);
-			name = "Pods-MeowlWatch Widget";
-			path = "Target Support Files/Pods-MeowlWatch Widget";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				0CB71455E7DE9DC28CDF4C0C1E112F52 /* Pods */,
-				BC7C5275162F4C6FFC724B6856C519A6 /* Products */,
-				14BF1072C8726CEC4D154A8E43B7B55E /* Targets Support Files */,
+				91BAFF830F911FAE245511B948F38FEC /* Products */,
+				58EB8D4B2B85FF42D0BFA94FCA7CE89D /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		7F66C7F8F537EF24BD89082FFF008E99 /* Pods-MeowlWatch */ = {
+			isa = PBXGroup;
+			children = (
+				8A42DFB92E60EDD445790CCCF9FA2991 /* Info.plist */,
+				D445DE6D9B2E00E01C261C262063DF40 /* Pods-MeowlWatch.modulemap */,
+				FF3B6D857BE955DEE1FF3A64364D17FE /* Pods-MeowlWatch-acknowledgements.markdown */,
+				BE74362018C13931C659DB425D9E0E8F /* Pods-MeowlWatch-acknowledgements.plist */,
+				BF2215E47A4DD8B60ED105037263660B /* Pods-MeowlWatch-dummy.m */,
+				AEE5B25BB3FA7AADF3F30F81D79F7FC2 /* Pods-MeowlWatch-frameworks.sh */,
+				B06C83C04FE8FC95E843A91BB320B526 /* Pods-MeowlWatch-resources.sh */,
+				74F32A81146B940F086D393D4CC30C88 /* Pods-MeowlWatch-umbrella.h */,
+				9C4C25A8C8F4EEB36EE6A5B5A72075DE /* Pods-MeowlWatch.debug.xcconfig */,
+				D6648BFA53766E839F0361E37F6E7695 /* Pods-MeowlWatch.release.xcconfig */,
+			);
+			name = "Pods-MeowlWatch";
+			path = "Target Support Files/Pods-MeowlWatch";
+			sourceTree = "<group>";
+		};
+		8138A80179FED6CCDCAC87567F036EA7 /* Pods-MeowlWatch Widget */ = {
+			isa = PBXGroup;
+			children = (
+				44F6C47C96C7B4BE98BB2A4DD531549A /* Info.plist */,
+				395F642E0B2E51EBF283AF91833EA4C3 /* Pods-MeowlWatch Widget.modulemap */,
+				8FDC55D6C8B73A1A792E5B6E2BE7D6A5 /* Pods-MeowlWatch Widget-acknowledgements.markdown */,
+				67EB8246DBC6F510F50B1B4ADF317A59 /* Pods-MeowlWatch Widget-acknowledgements.plist */,
+				FE1592424CF5497A16FBEC2B55029289 /* Pods-MeowlWatch Widget-dummy.m */,
+				B0BEF727952E68AF9439BC38D8D730DA /* Pods-MeowlWatch Widget-resources.sh */,
+				16BAA2EB8FB7B3AEDC75D5C4CFC72E94 /* Pods-MeowlWatch Widget-umbrella.h */,
+				BF6B637051D30FC171922405F10BC8C8 /* Pods-MeowlWatch Widget.debug.xcconfig */,
+				FDE255B0D5785DDEA2387852F40BCDAA /* Pods-MeowlWatch Widget.release.xcconfig */,
+			);
+			name = "Pods-MeowlWatch Widget";
+			path = "Target Support Files/Pods-MeowlWatch Widget";
+			sourceTree = "<group>";
+		};
+		91BAFF830F911FAE245511B948F38FEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5D32AD7E8B2EC91C0BB35EDBADB60BF4 /* Pods_MeowlWatch.framework */,
+				50F85D137B7FC98FCB458B7394D0533F /* Pods_MeowlWatch_Full.framework */,
+				D336F97FF4EBDB99458A18545610605F /* Pods_MeowlWatch_Full_Widget.framework */,
+				FE8DF9509749771225185E4BB8E6CDE3 /* Pods_MeowlWatch_Widget.framework */,
+				A8FEB32F8BCD5BE8A35EA2DA9EC84F86 /* SwiftKeychainWrapper.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A41AF43FC156DA1F7938AE990C0F1BDC /* Pods-MeowlWatch Full */ = {
+			isa = PBXGroup;
+			children = (
+				AB56E189BEB39FCA49A74ED139A9A1A9 /* Info.plist */,
+				BFC641DDCBD11F82D03268EA29C29F4D /* Pods-MeowlWatch Full.modulemap */,
+				90E36BDFD6EB8679F503B5DAD31F5589 /* Pods-MeowlWatch Full-acknowledgements.markdown */,
+				99D1205230FBED872720EF6DBF239436 /* Pods-MeowlWatch Full-acknowledgements.plist */,
+				48B1AD3DC5FF38FD3CB508C26F4CAB72 /* Pods-MeowlWatch Full-dummy.m */,
+				53140D6CEE4B10B60D76660B9AB81892 /* Pods-MeowlWatch Full-frameworks.sh */,
+				B4B870A8BA103E890D707217095A08E6 /* Pods-MeowlWatch Full-resources.sh */,
+				7C27603DA32A88FDE671F3B40965CAB2 /* Pods-MeowlWatch Full-umbrella.h */,
+				880ABF9994426F305A65EB7D05D9662A /* Pods-MeowlWatch Full.debug.xcconfig */,
+				D22CDB9CB8057A1CFCB5FB4A5867B960 /* Pods-MeowlWatch Full.release.xcconfig */,
+			);
+			name = "Pods-MeowlWatch Full";
+			path = "Target Support Files/Pods-MeowlWatch Full";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -196,14 +303,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BC7C5275162F4C6FFC724B6856C519A6 /* Products */ = {
+		C4FBA4469B48A14EC804C6D20D43883D /* Pods-MeowlWatch Full Widget */ = {
 			isa = PBXGroup;
 			children = (
-				10E6DE37F48BAA5C1661DDF5F7C17737 /* Pods_MeowlWatch.framework */,
-				DD0A67D8FEF166ABA67D867EC84FBAC6 /* Pods_MeowlWatch_Widget.framework */,
-				D99881B5126574325542612B89C40D83 /* SwiftKeychainWrapper.framework */,
+				185A2D7CE4720037E28B5AB922CD2A3C /* Info.plist */,
+				26B72E73D23D7B43A179FA1C58AF049B /* Pods-MeowlWatch Full Widget.modulemap */,
+				2C5CDBCBF7BFBCB50F3000E6B806F383 /* Pods-MeowlWatch Full Widget-acknowledgements.markdown */,
+				866A1246E16535775320563067D029BF /* Pods-MeowlWatch Full Widget-acknowledgements.plist */,
+				CAF897087AEECBD32AA40D137E6A21A3 /* Pods-MeowlWatch Full Widget-dummy.m */,
+				FC357812BDA6379FFF9AFF102BFC0BA5 /* Pods-MeowlWatch Full Widget-resources.sh */,
+				C664D34304D3CC6B6FE6905EADFF0202 /* Pods-MeowlWatch Full Widget-umbrella.h */,
+				804156978556AF2379E48E285454C944 /* Pods-MeowlWatch Full Widget.debug.xcconfig */,
+				BD84747C4418C21DA897725A99D52F4D /* Pods-MeowlWatch Full Widget.release.xcconfig */,
 			);
-			name = Products;
+			name = "Pods-MeowlWatch Full Widget";
+			path = "Target Support Files/Pods-MeowlWatch Full Widget";
 			sourceTree = "<group>";
 		};
 		D7E833C14919750E49DC5297BBDB2F72 /* SwiftKeychainWrapper */ = {
@@ -216,24 +330,6 @@
 			);
 			name = SwiftKeychainWrapper;
 			path = SwiftKeychainWrapper;
-			sourceTree = "<group>";
-		};
-		F1D17905A6B7DC1C51FA149395BED84D /* Pods-MeowlWatch */ = {
-			isa = PBXGroup;
-			children = (
-				07107FDB5FC4C4B2ADEE750176253CB4 /* Info.plist */,
-				D3970B58CFD218F51E68E2C9F0007D17 /* Pods-MeowlWatch.modulemap */,
-				56859CF0A04521B77E211E68582C67C4 /* Pods-MeowlWatch-acknowledgements.markdown */,
-				4ED071C35FB58BB70D69043F7134398B /* Pods-MeowlWatch-acknowledgements.plist */,
-				AF0EFA83294B69DFD02771B0AA742352 /* Pods-MeowlWatch-dummy.m */,
-				5681FBC91E67EE860C04C89B80429D17 /* Pods-MeowlWatch-frameworks.sh */,
-				3F2567FE647482AA00DE46A637CDC7AA /* Pods-MeowlWatch-resources.sh */,
-				EEB450AD8F57443B4E9D1A8B5C7CE4D9 /* Pods-MeowlWatch-umbrella.h */,
-				E8892196D344D67DF91A3C1E00AD385A /* Pods-MeowlWatch.debug.xcconfig */,
-				59C4B63D1CD69825ADF74A13CA0910E3 /* Pods-MeowlWatch.release.xcconfig */,
-			);
-			name = "Pods-MeowlWatch";
-			path = "Target Support Files/Pods-MeowlWatch";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +349,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				97A210DB5D85A5DF5C28093ECA57F564 /* Pods-MeowlWatch Widget-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		592EABA8EF930FB3FCF1A286EFA95A62 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8671A18F93914E7D93FD0D9363310528 /* Pods-MeowlWatch Full Widget-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6D85A768210ECA76545C33FA1DCC836 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3E64D9E1F5157693C8D9670993F36C3 /* Pods-MeowlWatch Full-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +394,25 @@
 			);
 			name = "Pods-MeowlWatch";
 			productName = "Pods-MeowlWatch";
-			productReference = 10E6DE37F48BAA5C1661DDF5F7C17737 /* Pods_MeowlWatch.framework */;
+			productReference = 5D32AD7E8B2EC91C0BB35EDBADB60BF4 /* Pods_MeowlWatch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4B64249D1B1965B07B868040A0471FE7 /* Pods-MeowlWatch Full */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D64D8B40726046C87EFA744771DF677 /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full" */;
+			buildPhases = (
+				EB1BF2435D549DE1B3CC728FBC738615 /* Sources */,
+				06519436BFFB69B7AF1376D3E3667457 /* Frameworks */,
+				A6D85A768210ECA76545C33FA1DCC836 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5D7746A44CDBC0C23CF54A0D31E09DE9 /* PBXTargetDependency */,
+			);
+			name = "Pods-MeowlWatch Full";
+			productName = "Pods-MeowlWatch Full";
+			productReference = 50F85D137B7FC98FCB458B7394D0533F /* Pods_MeowlWatch_Full.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BEBFF67D2EC534F7A0C9436EAE59BA08 /* Pods-MeowlWatch Widget */ = {
@@ -300,7 +430,7 @@
 			);
 			name = "Pods-MeowlWatch Widget";
 			productName = "Pods-MeowlWatch Widget";
-			productReference = DD0A67D8FEF166ABA67D867EC84FBAC6 /* Pods_MeowlWatch_Widget.framework */;
+			productReference = FE8DF9509749771225185E4BB8E6CDE3 /* Pods_MeowlWatch_Widget.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D12B159BE7945E66CD31E8944FC5B31E /* SwiftKeychainWrapper */ = {
@@ -317,7 +447,25 @@
 			);
 			name = SwiftKeychainWrapper;
 			productName = SwiftKeychainWrapper;
-			productReference = D99881B5126574325542612B89C40D83 /* SwiftKeychainWrapper.framework */;
+			productReference = A8FEB32F8BCD5BE8A35EA2DA9EC84F86 /* SwiftKeychainWrapper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E3A9C62BD136AF2098AB6E07922F9635 /* Pods-MeowlWatch Full Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36A4E6E2985C4A8B3D2471630AA3C879 /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full Widget" */;
+			buildPhases = (
+				2600B6BA004353CCF96EEAD232D674D0 /* Sources */,
+				68E860A86E13B0D70621E342E8A1D055 /* Frameworks */,
+				592EABA8EF930FB3FCF1A286EFA95A62 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03381708953654E3366B3CE3A086EB6D /* PBXTargetDependency */,
+			);
+			name = "Pods-MeowlWatch Full Widget";
+			productName = "Pods-MeowlWatch Full Widget";
+			productReference = D336F97FF4EBDB99458A18545610605F /* Pods_MeowlWatch_Full_Widget.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -337,11 +485,13 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = BC7C5275162F4C6FFC724B6856C519A6 /* Products */;
+			productRefGroup = 91BAFF830F911FAE245511B948F38FEC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1D74EADAE61AC6A338C61986545092F5 /* Pods-MeowlWatch */,
+				4B64249D1B1965B07B868040A0471FE7 /* Pods-MeowlWatch Full */,
+				E3A9C62BD136AF2098AB6E07922F9635 /* Pods-MeowlWatch Full Widget */,
 				BEBFF67D2EC534F7A0C9436EAE59BA08 /* Pods-MeowlWatch Widget */,
 				D12B159BE7945E66CD31E8944FC5B31E /* SwiftKeychainWrapper */,
 			);
@@ -354,6 +504,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EE031870629787BC59F7F42B433E6B /* Pods-MeowlWatch Widget-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2600B6BA004353CCF96EEAD232D674D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC5B1FACE3C13471E1ACE235E8FC65F /* Pods-MeowlWatch Full Widget-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,9 +533,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB1BF2435D549DE1B3CC728FBC738615 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EDB4AC3770B333CE87573CEA356300E /* Pods-MeowlWatch Full-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		03381708953654E3366B3CE3A086EB6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftKeychainWrapper;
+			target = D12B159BE7945E66CD31E8944FC5B31E /* SwiftKeychainWrapper */;
+			targetProxy = 998DAF53F5977642FE447B1063E5DD07 /* PBXContainerItemProxy */;
+		};
 		26806F330FC223C5E3E5FF223C0C1D8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftKeychainWrapper;
@@ -389,6 +561,12 @@
 			name = SwiftKeychainWrapper;
 			target = D12B159BE7945E66CD31E8944FC5B31E /* SwiftKeychainWrapper */;
 			targetProxy = 6EDDA677A71EA65512369E0D7FDAD9AD /* PBXContainerItemProxy */;
+		};
+		5D7746A44CDBC0C23CF54A0D31E09DE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftKeychainWrapper;
+			target = D12B159BE7945E66CD31E8944FC5B31E /* SwiftKeychainWrapper */;
+			targetProxy = 8A40D91E718193E362982E19042185D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -421,6 +599,43 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6B111D4ECCABCF96E451E9199F8B4909 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 804156978556AF2379E48E285454C944 /* Pods-MeowlWatch Full Widget.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MeowlWatch Full Widget/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MeowlWatch Full Widget/Pods-MeowlWatch Full Widget.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MeowlWatch_Full_Widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -462,7 +677,7 @@
 		};
 		8BA93E1326B5C9C42CEB6D51908D7A13 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59C4B63D1CD69825ADF74A13CA0910E3 /* Pods-MeowlWatch.release.xcconfig */;
+			baseConfigurationReference = D6648BFA53766E839F0361E37F6E7695 /* Pods-MeowlWatch.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -487,6 +702,42 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_MeowlWatch;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9FC79E990DEE984CFE89380A6953D64B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD84747C4418C21DA897725A99D52F4D /* Pods-MeowlWatch Full Widget.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MeowlWatch Full Widget/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MeowlWatch Full Widget/Pods-MeowlWatch Full Widget.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MeowlWatch_Full_Widget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,7 +792,7 @@
 		};
 		B8356679B992467204B67714169B1F3E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8892196D344D67DF91A3C1E00AD385A /* Pods-MeowlWatch.debug.xcconfig */;
+			baseConfigurationReference = 9C4C25A8C8F4EEB36EE6A5B5A72075DE /* Pods-MeowlWatch.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -577,7 +828,7 @@
 		};
 		CA7A565020FC8D564CE500A8BFA371FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98B85F0CA979D28AD17A80CFC2FA5D99 /* Pods-MeowlWatch Widget.debug.xcconfig */;
+			baseConfigurationReference = BF6B637051D30FC171922405F10BC8C8 /* Pods-MeowlWatch Widget.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -603,6 +854,77 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_MeowlWatch_Widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DD2A7F845364938A0FA553509DB9B46C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D22CDB9CB8057A1CFCB5FB4A5867B960 /* Pods-MeowlWatch Full.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MeowlWatch Full/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MeowlWatch_Full;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DED472ECDF8AEB5704873E1E0D994A5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 880ABF9994426F305A65EB7D05D9662A /* Pods-MeowlWatch Full.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MeowlWatch Full/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MeowlWatch_Full;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -654,7 +976,7 @@
 		};
 		F714F1A883CDC49678147333DB9D22E2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7424D6BB6BFD0A2CDC07F9025C20B2D /* Pods-MeowlWatch Widget.release.xcconfig */;
+			baseConfigurationReference = FDE255B0D5785DDEA2387852F40BCDAA /* Pods-MeowlWatch Widget.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -700,6 +1022,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		1D64D8B40726046C87EFA744771DF677 /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DED472ECDF8AEB5704873E1E0D994A5D /* Debug */,
+				DD2A7F845364938A0FA553509DB9B46C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1D7B23635AF4625997863A171F15A672 /* Build configuration list for PBXNativeTarget "SwiftKeychainWrapper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -714,6 +1045,15 @@
 			buildConfigurations = (
 				A435E3C35B2666C25C53422D898980A7 /* Debug */,
 				F2C4F47FC8AD76198661C5EFDE751899 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36A4E6E2985C4A8B3D2471630AA3C879 /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B111D4ECCABCF96E451E9199F8B4909 /* Debug */,
+				9FC79E990DEE984CFE89380A6953D64B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

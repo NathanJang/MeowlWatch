@@ -7,24 +7,29 @@
 //
 
 import UIKit
-import StoreKit
+
+#if !MEOWLWATCH_FULL
+    import StoreKit
+#endif
 
 /// A view controller for the settings.
 class SettingsTableViewController: UITableViewController {
 
-    /// The widget's IAP product, which will exist after we query the app store.
-    var widgetProduct: SKProduct?
+    #if !MEOWLWATCH_FULL
+        /// The widget's IAP product, which will exist after we query the app store.
+        var widgetProduct: SKProduct?
 
-    /// Whether we are currently performing some task, to show or hide the spinner.
-    var isLoading = false {
-        didSet {
-            if isLoading { self.beginRefreshing() }
-            else { self.endRefreshing() }
+        /// Whether we are currently performing some task, to show or hide the spinner.
+        var isLoading = false {
+            didSet {
+                if isLoading { self.beginRefreshing() }
+                else { self.endRefreshing() }
+            }
         }
-    }
 
-    /// Whether StoreKit can make payments, set before querying the app store.
-    var canMakePayments = false
+        /// Whether StoreKit can make payments, set before querying the app store.
+        var canMakePayments = false
+    #endif
 
     /// The logo designer's website's URL.
     let isabelURLString = "https://isabel6389.wixsite.com/website"
@@ -40,12 +45,14 @@ class SettingsTableViewController: UITableViewController {
 
         self.setEditing(true, animated: false)
 
-        if !Datastore.anythingIsPurchased {
-            self.refreshControl = UIRefreshControl()
-            refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
-            SKPaymentQueue.default().add(self)
-            requestProductData()
-        }
+        #if !MEOWLWATCH_FULL
+            if !Datastore.anythingIsPurchased {
+                self.refreshControl = UIRefreshControl()
+                refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
+                SKPaymentQueue.default().add(self)
+                requestProductData()
+            }
+        #endif
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,14 +62,18 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !Datastore.anythingIsPurchased && !canMakePayments {
-            showCannotMakePaymentsAlert()
-        }
+        #if !MEOWLWATCH_FULL
+            if !Datastore.anythingIsPurchased && !canMakePayments {
+                showCannotMakePaymentsAlert()
+            }
+        #endif
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        SKPaymentQueue.default().remove(self)
+        #if !MEOWLWATCH_FULL
+            SKPaymentQueue.default().remove(self)
+        #endif
     }
 
     // MARK: - Table view data source
@@ -110,29 +121,31 @@ class SettingsTableViewController: UITableViewController {
                 let item = Datastore.widgetArrangement[indexPath.row]
                 cell!.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
             } else {
-                switch indexPath.row {
-                case 0:
-                    if self.isLoading {
-                        cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
-                        cell!.textLabel!.text = "Loading..."
-                    } else {
-                        cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                        if let widgetProduct = widgetProduct {
-                            cell!.textLabel!.text = "Enable \(widgetProduct.localizedTitle) (\(self.localizedPrice(for: widgetProduct)))"
+                #if !MEOWLWATCH_FULL
+                    switch indexPath.row {
+                    case 0:
+                        if self.isLoading {
+                            cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                            cell!.textLabel!.text = "Loading..."
                         } else {
-                            cell!.textLabel!.text = "(In-App Purchase Unavailable)"
+                            cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+                            if let widgetProduct = widgetProduct {
+                                cell!.textLabel!.text = widgetProduct.localizedTitle
+                            } else {
+                                cell!.textLabel!.text = "(In-App Purchase Unavailable)"
+                            }
                         }
+                    case 1:
+                        cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+                        cell!.textLabel!.text = "Restore Purchases"
+
+                    case 2:
+                        cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
+
+                    default:
+                        break
                     }
-                case 1:
-                    cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                    cell!.textLabel!.text = "Restore Purchases"
-
-                case 2:
-                    cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
-
-                default:
-                    break
-                }
+                #endif
             }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
@@ -248,25 +261,31 @@ class SettingsTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             if !Datastore.widgetIsPurchased {
-                switch indexPath.row {
-                case 0:
-                    if canMakePayments {
-                        buyWidgetIfAvailable()
-                    } else {
-                        showCannotMakePaymentsAlert()
+                #if !MEOWLWATCH_FULL
+                    switch indexPath.row {
+                    case 0:
+                        if canMakePayments {
+                            if widgetProduct != nil {
+                                buyWidgetIfAvailable()
+                            } else {
+                                self.showMessageAlert(title: "In-App Purchase Unavailable", message: "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.")
+                            }
+                        } else {
+                            showCannotMakePaymentsAlert()
+                        }
+
+                    case 1:
+                        self.isLoading = true
+                        SKPaymentQueue.default().restoreCompletedTransactions()
+
+                    default:
+                        break
                     }
-
-                case 1:
-                    self.isLoading = true
-                    SKPaymentQueue.default().restoreCompletedTransactions()
-
-                default:
-                    break
-                }
+                #endif
             }
 
         case 1:
-            self.showActionPrompt(title: "Open Designer's Website?", message: "Doodler, daydreamer, and adventure seeker. Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
+            self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Doodler, daydreamer, and adventure seeker. Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
                 let url = URL(string: self.isabelURLString)!
                 UIApplication.shared.openURL(url)
             }
@@ -293,46 +312,42 @@ class SettingsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    /// Prompts the user to purchase the widget if `widgetProduct` is not nil, i.e., if it is available from the app store.
-    func buyWidgetIfAvailable() {
-        guard let widgetProduct = widgetProduct else { return }
-        let payment = SKPayment(product: widgetProduct)
-        SKPaymentQueue.default().add(payment)
-        self.isLoading = true
-    }
-
-    /// Shows an alert to notify the user that we cannot make purchases.
-    func showCannotMakePaymentsAlert() {
-        self.isLoading = false
-        self.showMessageAlert(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.")
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    /// Makes the refresh control start refreshing, if it exists.
-    func beginRefreshing() {
-        DispatchQueue.main.async {
-            guard let refreshControl = self.refreshControl else { return }
-            refreshControl.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+    #if !MEOWLWATCH_FULL
+        /// Prompts the user to purchase the widget if `widgetProduct` is not nil, i.e., if it is available from the app store.
+        func buyWidgetIfAvailable() {
+            guard let widgetProduct = widgetProduct else { return }
+            let payment = SKPayment(product: widgetProduct)
+            SKPaymentQueue.default().add(payment)
+            self.isLoading = true
         }
-    }
 
-    /// Makes the refresh control stop spinning, if it exists.
-    func endRefreshing() {
-        DispatchQueue.main.async {
-            guard let refreshControl = self.refreshControl else { return }
-            refreshControl.endRefreshing()
+        /// Shows an alert to notify the user that we cannot make purchases.
+        func showCannotMakePaymentsAlert() {
+            self.isLoading = false
+            self.showMessageAlert(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.")
         }
-    }
+
+
+        /// Makes the refresh control start refreshing, if it exists.
+        func beginRefreshing() {
+            DispatchQueue.main.async {
+                guard let refreshControl = self.refreshControl else { return }
+                refreshControl.beginRefreshing()
+                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+            }
+        }
+
+        /// Makes the refresh control stop spinning, if it exists.
+        func endRefreshing() {
+            DispatchQueue.main.async {
+                guard let refreshControl = self.refreshControl else { return }
+                refreshControl.endRefreshing()
+                if self.tableView.contentOffset.y < 0 {
+                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+                }
+            }
+        }
+    #endif
 
     /// Prompts the user whether to perform an action.
     /// - Paramter title: The title of the alert controller.
@@ -358,115 +373,115 @@ class SettingsTableViewController: UITableViewController {
 
 }
 
-extension SettingsTableViewController: SKProductsRequestDelegate {
+#if !MEOWLWATCH_FULL
+    extension SettingsTableViewController: SKProductsRequestDelegate {
 
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        // Show list of available purchases
-        self.isLoading = false
-        for product in response.products {
-            if product.productIdentifier == Datastore.widgetProductIdentifier {
-                self.widgetProduct = product
+        func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+            // Show list of available purchases
+            self.isLoading = false
+            for product in response.products {
+                if product.productIdentifier == Datastore.widgetProductIdentifier {
+                    self.widgetProduct = product
+                }
+            }
+            self.tableView.reloadData()
+        }
+
+        func request(_ request: SKRequest, didFailWithError error: Error) {
+            self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
+            self.isLoading = false
+            self.tableView.reloadData()
+        }
+
+        /// The localized string for the price of a product.
+        /// - Parameter product: The StoreKit product.
+        /// - Returns: A localized string for the product's price.
+        func localizedPrice(for product: SKProduct) -> String {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .currency
+            numberFormatter.locale = product.priceLocale
+            return numberFormatter.string(from: product.price)!
+        }
+
+        /// Query the app store for the IAPs.
+        func requestProductData() {
+            guard SKPaymentQueue.canMakePayments() else {
+                return
+            }
+            self.isLoading = true
+            self.canMakePayments = true
+            let request = SKProductsRequest(productIdentifiers: [Datastore.widgetProductIdentifier])
+            request.delegate = self
+            request.start()
+            self.tableView.reloadData()
+        }
+
+        /// What to do once the widget is purchased.
+        func didPurchaseWidget() {
+            self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
+
+            self.refreshControl!.removeFromSuperview()
+            self.refreshControl = nil
+
+            Datastore.widgetIsPurchased = true
+            Datastore.persistToUserDefaults()
+            let meowlWatchViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! MeowlWatchTableViewController
+            meowlWatchViewController.bannerView = nil
+            meowlWatchViewController.navigationController!.setToolbarHidden(true, animated: false)
+            self.tableView.reloadData()
+        }
+
+    }
+
+    extension SettingsTableViewController: SKPaymentTransactionObserver {
+
+        func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+            // Maybe user purchased
+            for transaction in transactions {
+                handleTransaction(transaction, withQueue: queue)
             }
         }
-        self.tableView.reloadData()
-    }
 
-    func request(_ request: SKRequest, didFailWithError error: Error) {
-        self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
-        self.isLoading = false
-        self.tableView.reloadData()
-    }
+        func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+            for transaction in queue.transactions {
+                if transaction.transactionState == .restored {
+                    didPurchaseWidget()
+                    queue.finishTransaction(transaction)
+                }
+            }
 
-    /// The localized string for the price of a product.
-    /// - Parameter product: The StoreKit product.
-    /// - Returns: A localized string for the product's price.
-    func localizedPrice(for product: SKProduct) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        numberFormatter.locale = product.priceLocale
-        return numberFormatter.string(from: product.price)!
-    }
-
-    /// Query the app store for the IAPs.
-    func requestProductData() {
-        guard SKPaymentQueue.canMakePayments() else {
-            return
-        }
-        self.isLoading = true
-        self.canMakePayments = true
-        let request = SKProductsRequest(productIdentifiers: [Datastore.widgetProductIdentifier])
-        request.delegate = self
-        request.start()
-        self.tableView.reloadData()
-    }
-
-    /// What to do once the widget is purchased.
-    func didPurchaseWidget() {
-        self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
-
-        self.refreshControl!.removeFromSuperview()
-        self.refreshControl = nil
-
-        Datastore.widgetIsPurchased = true
-        Datastore.persistToUserDefaults()
-        let meowlWatchViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! MeowlWatchTableViewController
-        meowlWatchViewController.bannerView = nil
-        meowlWatchViewController.navigationController!.setToolbarHidden(true, animated: false)
-        self.tableView.reloadData()
-    }
-
-}
-
-extension SettingsTableViewController: SKPaymentTransactionObserver {
-
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        // Maybe user purchased
-        self.isLoading = false
-        for transaction in transactions {
-            handleTransaction(transaction, withQueue: queue)
-        }
-    }
-
-    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        for transaction in queue.transactions {
-            handleTransaction(transaction, withQueue: queue)
+            if !Datastore.widgetIsPurchased {
+                self.showMessageAlert(title: "Unable To Restore Purchases", message: "No previous purchases could be found.")
+                self.isLoading = false
+            }
         }
 
-        if !Datastore.widgetIsPurchased {
-            self.showMessageAlert(title: "Unable To Restore Purchases", message: "No previous purchases could be found.")
+        func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+            self.showMessageAlert(title: "Unable To Restore Purchases", message: "Please try again later.")
             self.isLoading = false
         }
-    }
 
-    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        self.showMessageAlert(title: "Unable To Restore Purchases", message: "Please try again later.")
-        self.isLoading = false
-    }
+        /// What to do once we receive a transaction.
+        /// - Parameter transaction: The StoreKit transaction.
+        /// - Parameter queue: The StoreKit payment queue.
+        func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
+            switch transaction.transactionState {
+            case .purchased, .restored:
+                self.isLoading = false
+                if transaction.payment.productIdentifier == Datastore.widgetProductIdentifier {
+                    didPurchaseWidget()
+                    queue.finishTransaction(transaction)
+                }
 
-    /// What to do once we receive a transaction.
-    /// - Parameter transaction: The StoreKit transaction.
-    /// - Parameter queue: The StoreKit payment queue.
-    func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
-        switch transaction.transactionState {
-        case .purchased:
-            if transaction.payment.productIdentifier == Datastore.widgetProductIdentifier {
-                didPurchaseWidget()
+            case .failed:
+                self.isLoading = false
+                self.showMessageAlert(title: "Unable To Purchase", message: "Please try again.")
                 queue.finishTransaction(transaction)
+
+            default:
+                break
             }
-
-        case .failed:
-            self.showMessageAlert(title: "Unable To Purchase", message: "Please try again.")
-            queue.finishTransaction(transaction)
-
-        case .restored:
-            if transaction.payment.productIdentifier == Datastore.widgetProductIdentifier {
-                didPurchaseWidget()
-                queue.finishTransaction(transaction)
-            }
-
-        default:
-            break
         }
-    }
 
-}
+    }
+#endif

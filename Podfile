@@ -16,3 +16,15 @@ target 'MeowlWatch Widget' do
 
   pod 'SwiftKeychainWrapper'
 end
+
+target 'MeowlWatch Full' do
+    use_frameworks!
+
+    pod 'SwiftKeychainWrapper'
+end
+
+target 'MeowlWatch Full Widget' do
+    use_frameworks!
+
+    pod 'SwiftKeychainWrapper'
+end

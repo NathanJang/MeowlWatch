@@ -8,7 +8,10 @@
 
 import UIKit
 import SwiftKeychainWrapper
-import GoogleMobileAds
+
+#if !MEOWLWATCH_FULL
+    import GoogleMobileAds
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,9 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Datastore.loadFromDefaults()
 
-        if Datastore.shouldDisplayAds {
-            GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
-        }
+        #if !MEOWLWATCH_FULL
+            if Datastore.shouldDisplayAds {
+                GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
+            }
+        #endif
 
         return true
     }

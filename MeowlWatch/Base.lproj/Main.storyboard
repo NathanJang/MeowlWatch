@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dVB-Lu-zgW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dVB-Lu-zgW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -188,41 +188,14 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="692"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="MeowlWatch">
-                                        <attributes>
-                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
-                                            <font key="NSOriginalFont" size="12" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
                                     <fragment>
-                                        <string key="content">:
-Copyright </string>
-                                        <attributes>
-                                            <font key="NSFont" size="12" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="© 2017 Jonathan Chan">
-                                        <attributes>
-                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
-                                            <font key="NSOriginalFont" size="12" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-Class of 2020, Northwestern University</string>
-                                        <attributes>
-                                            <font key="NSFont" size="12" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
+                                        <string key="content">MeowlWatch:
+Copyright © 2017 Jonathan Chan
+Class of 2020, Northwestern University
 
 MeowlWatch App Icon and Logo:
 Copyright © 2017 Isabel Nygard, used with permission.
+Class of 2020, Northwestern University
 </string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -230,18 +203,33 @@ Copyright © 2017 Isabel Nygard, used with permission.
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">Class of 2020, Northwestern University
-</string>
+                                        <string key="content">
+Privacy Policy</string>
+                                        <attributes>
+                                            <font key="NSFont" size="18" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">
+
+Your NetID and password will be sent securely to https://go.dosa.northwestern.edu, Northwestern Dining's online portal, to check your meal plan balance. Your NetID and password will also be stored securely on your iOS device, so you can open the app every time without re-entering your password. Your credentials will NOT be used for any other purpose or sent to any other destination.
+
+Your meal plan balance will be stored on your device and will not be sent online.
+
+The free version of this app will display advertisements by Google, which may track your browsing habits (independently of MeowlWatch) to show more relevant ads, unless you opt out. You may do so in Settings &gt; Privacy &gt; Advertising &gt; Limit Ad Tracking. Upon any successful in-app purchase, advertisements will be disabled.
+</mutableString>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
                                         <string key="content">
 Third-Party Software</string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
+                                            <font key="NSFont" size="18" name=".SFNSText"/>
+                                            <font key="NSOriginalFont" size="18" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -251,20 +239,13 @@ Third-Party Software</string>
 MeowlWatch utilizes third-party software under the following license:
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="12" name=".SFNSText"/>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <font key="NSFont" size="14" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="SwiftKeychainWrapper">
+                                        <string key="content">
+SwiftKeychainWrapper</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name=".SFNSText"/>
                                             <font key="NSOriginalFont" size="14" name=".SFNSText"/>
@@ -284,7 +265,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <attributes>
-                                            <font key="NSFont" size="12" name=".SFNSText"/>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>

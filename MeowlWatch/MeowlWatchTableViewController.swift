@@ -7,16 +7,21 @@
 //
 
 import UIKit
-import GoogleMobileAds
+
+#if !MEOWLWATCH_FULL
+    import GoogleMobileAds
+#endif
 
 /// The main table view controller for MeowlWatch, displaying the user's meal plan.
 class MeowlWatchTableViewController: UITableViewController {
 
-    /// The Google ad banner.
-    var bannerView: GADBannerView?
+    #if !MEOWLWATCH_FULL
+        /// The Google ad banner.
+        var bannerView: GADBannerView?
 
-    /// The Google interstitial controller.
-    var interstitial: GADInterstitial?
+        /// The Google interstitial controller.
+        var interstitial: GADInterstitial?
+    #endif
 
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
@@ -41,23 +46,25 @@ class MeowlWatchTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
-        if Datastore.shouldDisplayAds {
-            self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-            let bannerView = self.bannerView!
-            self.navigationController!.setToolbarHidden(false, animated: false)
-            self.navigationController!.toolbar.addSubview(bannerView)
-            bannerView.adUnitID = Datastore.adMobBannerAdUnitID
-            bannerView.rootViewController = self
-            let bannerRequest = GADRequest()
-            bannerView.load(bannerRequest)
+        #if !MEOWLWATCH_FULL
+            if Datastore.shouldDisplayAds {
+                self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+                let bannerView = self.bannerView!
+                self.navigationController!.setToolbarHidden(false, animated: false)
+                self.navigationController!.toolbar.addSubview(bannerView)
+                bannerView.adUnitID = Datastore.adMobBannerAdUnitID
+                bannerView.rootViewController = self
+                let bannerRequest = GADRequest()
+                bannerView.load(bannerRequest)
 
-            if arc4random_uniform(4) < 1 {
-                self.interstitial = GADInterstitial(adUnitID: Datastore.adMobInterstitialAdUnitID)
-                interstitial!.delegate = self
-                let interstitialRequest = GADRequest()
-                interstitial!.load(interstitialRequest)
+                if arc4random_uniform(4) < 1 {
+                    self.interstitial = GADInterstitial(adUnitID: Datastore.adMobInterstitialAdUnitID)
+                    interstitial!.delegate = self
+                    let interstitialRequest = GADRequest()
+                    interstitial!.load(interstitialRequest)
+                }
             }
-        }
+        #endif
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -195,7 +202,9 @@ class MeowlWatchTableViewController: UITableViewController {
 
                 if queryResult.error != nil {
                     let alertController = UIAlertController(title: "Oops!", message: queryResult.errorString, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
+                        self.showLoginAlert()
+                    })
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
@@ -212,18 +221,18 @@ class MeowlWatchTableViewController: UITableViewController {
 
     /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
     func showLoginAlert() {
-        let alertController = UIAlertController(title: "Login to Northwestern", message: "Your NetID and password will only be sent securely to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
-        alertController.addTextField {textField in
+        let alertController = UIAlertController(title: "Sign In to Northwestern", message: "Your NetID and password will only be sent securely to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
+        alertController.addTextField { textField in
             textField.placeholder = "NetID"
             textField.text = Datastore.netID
         }
-        alertController.addTextField {textField in
+        alertController.addTextField { textField in
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
             textField.text = Datastore.password
         }
 
-        let loginAction = UIAlertAction(title: "Login", style: .default) {[weak alertController] alertAction in
+        let loginAction = UIAlertAction(title: "Login", style: .default) { [weak alertController] alertAction in
             if let alertController = alertController {
                 let netID = alertController.textFields![0].text ?? ""
                 let password = alertController.textFields![1].text ?? ""
@@ -248,16 +257,18 @@ class MeowlWatchTableViewController: UITableViewController {
 
 }
 
-extension MeowlWatchTableViewController: GADInterstitialDelegate {
+#if !MEOWLWATCH_FULL
+    extension MeowlWatchTableViewController: GADInterstitialDelegate {
 
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        if Datastore.shouldDisplayAds && Datastore.canQuery && ad.isReady {
-            ad.present(fromRootViewController: self)
+        func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+            if Datastore.shouldDisplayAds && Datastore.canQuery && ad.isReady {
+                ad.present(fromRootViewController: self)
 
-            if ad.adUnitID == Datastore.adMobInterstitialAdUnitID {
-                self.interstitial = nil
+                if ad.adUnitID == Datastore.adMobInterstitialAdUnitID {
+                    self.interstitial = nil
+                }
             }
         }
-    }
 
-}
+    }
+#endif
