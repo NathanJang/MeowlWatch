@@ -22,9 +22,3 @@ target 'MeowlWatch Full' do
 
     pod 'SwiftKeychainWrapper'
 end
-
-target 'MeowlWatch Full Widget' do
-    use_frameworks!
-
-    pod 'SwiftKeychainWrapper'
-end

@@ -189,14 +189,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">MeowlWatch:
+                                        <mutableString key="content">MeowlWatch:
 Copyright © 2017 Jonathan Chan
 Class of 2020, Northwestern University
 
 MeowlWatch App Icon and Logo:
 Copyright © 2017 Isabel Nygard, used with permission.
 Class of 2020, Northwestern University
-</string>
+
+While the developer, Jonathan Chan, is a student at Northwestern, he is unaffiliated with the Northwestern administration and Northwestern Dining. This app was developed independently of Northwestern, and its content does not necessarily reflect the views of Northwestern University. Although the developer will make the best effort to ensure that the app functions as expected, he has no control over the web servers and cannot guarantee 100% uptime.
+</mutableString>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
