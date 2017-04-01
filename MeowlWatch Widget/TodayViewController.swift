@@ -51,7 +51,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's an update, use NCUpdateResult.NewData
         Datastore.loadFromDefaults()
 
-        guard Datastore.widgetIsPurchased else { return }
+        guard Datastore.widgetIsPurchased else { return completionHandler(.noData) }
         purchaseRequiredLabel.isHidden = true
         guard Datastore.shouldRefresh else {
             updateLabels(with: Datastore.lastQuery)
