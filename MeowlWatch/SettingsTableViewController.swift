@@ -251,6 +251,7 @@ class SettingsTableViewController: UITableViewController {
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         Datastore.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
+        Datastore.persistToUserDefaults()
     }
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
