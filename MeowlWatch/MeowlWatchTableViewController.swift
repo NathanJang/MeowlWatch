@@ -27,9 +27,6 @@ class MeowlWatchTableViewController: UITableViewController {
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
 
-    /// Whether `viewDidAppear(_:)` has been called for the first time.
-    var hasAppeared = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,13 +67,9 @@ class MeowlWatchTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if !hasAppeared {
-            if MeowlWatchData.shouldRefresh {
-                beginRefrshing()
-            }
 
-            hasAppeared = true
+        if MeowlWatchData.shouldRefresh {
+            beginRefrshing()
         }
     }
 
