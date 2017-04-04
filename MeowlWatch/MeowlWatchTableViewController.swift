@@ -42,24 +42,24 @@ class MeowlWatchTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(didTapAccountButton))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(didTapSettingsButton))
 
-        self.queryResult = Datastore.lastQuery
+        self.queryResult = MeowlWatchData.lastQuery
 
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
         #if !MEOWLWATCH_FULL
-            if Datastore.shouldDisplayAds {
+            if MeowlWatchData.shouldDisplayAds {
                 self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
                 let bannerView = self.bannerView!
                 self.navigationController!.setToolbarHidden(false, animated: false)
                 self.navigationController!.toolbar.addSubview(bannerView)
-                bannerView.adUnitID = Datastore.adMobBannerAdUnitID
+                bannerView.adUnitID = MeowlWatchData.adMobBannerAdUnitID
                 bannerView.rootViewController = self
                 let bannerRequest = GADRequest()
                 bannerView.load(bannerRequest)
 
                 if arc4random_uniform(4) < 1 {
-                    self.interstitial = GADInterstitial(adUnitID: Datastore.adMobInterstitialAdUnitID)
+                    self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
                     interstitial!.delegate = self
                     let interstitialRequest = GADRequest()
                     interstitial!.load(interstitialRequest)
@@ -72,7 +72,7 @@ class MeowlWatchTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         if !hasAppeared {
-            if Datastore.shouldRefresh {
+            if MeowlWatchData.shouldRefresh {
                 beginRefrshing()
             }
 
@@ -164,7 +164,7 @@ class MeowlWatchTableViewController: UITableViewController {
         case 2:
             return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
         case 3:
-            if Datastore.canQuery {
+            if MeowlWatchData.canQuery {
                 return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
@@ -191,10 +191,10 @@ class MeowlWatchTableViewController: UITableViewController {
         }
     }
 
-    /// Calls `Datastore.query` and then provides the appropriate UI feedback.
+    /// Calls `MeowlWatchData.query` and then provides the appropriate UI feedback.
     func refresh() {
-        if Datastore.canQuery {
-            Datastore.query { queryResult in
+        if MeowlWatchData.canQuery {
+            MeowlWatchData.query { queryResult in
                 self.queryResult = queryResult
                 self.tableView.reloadData()
                 DispatchQueue.main.async {
@@ -225,19 +225,19 @@ class MeowlWatchTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Sign In to Northwestern", message: "Your NetID and password will only be sent securely to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "NetID"
-            textField.text = Datastore.netID
+            textField.text = MeowlWatchData.netID
         }
         alertController.addTextField { textField in
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
-            textField.text = Datastore.password
+            textField.text = MeowlWatchData.password
         }
 
         let loginAction = UIAlertAction(title: "Login", style: .default) { [weak alertController] alertAction in
             if let alertController = alertController {
                 let netID = alertController.textFields![0].text ?? ""
                 let password = alertController.textFields![1].text ?? ""
-                Datastore.updateCredentials(netID: netID, password: password)
+                MeowlWatchData.updateCredentials(netID: netID, password: password)
                 self.beginRefrshing()
             }
         }
@@ -262,10 +262,10 @@ class MeowlWatchTableViewController: UITableViewController {
     extension MeowlWatchTableViewController: GADInterstitialDelegate {
 
         func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-            if Datastore.shouldDisplayAds && Datastore.canQuery && ad.isReady {
+            if MeowlWatchData.shouldDisplayAds && MeowlWatchData.canQuery && ad.isReady {
                 ad.present(fromRootViewController: self)
 
-                if ad.adUnitID == Datastore.adMobInterstitialAdUnitID {
+                if ad.adUnitID == MeowlWatchData.adMobInterstitialAdUnitID {
                     self.interstitial = nil
                 }
             }

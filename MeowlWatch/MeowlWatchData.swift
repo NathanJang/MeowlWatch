@@ -1,5 +1,5 @@
 //
-//  Datastore.swift
+//  MeowlWatchData.swift
 //  MeowlWatchData
 //
 //  Created by Jonathan Chan on 2017-03-17.
@@ -10,7 +10,7 @@ import Foundation
 import SwiftKeychainWrapper
 
 /// The main controller for getting data from the server.
-public struct Datastore {
+public struct MeowlWatchData {
 
     private init() {}
 
@@ -23,7 +23,7 @@ public struct Datastore {
     /// The shared keychain wrapper object.
     private static let keychain = KeychainWrapper(serviceName: "me.jonathanchan.MeowlWatch", accessGroup: accessGroupName)
 
-    /// Configures the datastore initially by reading from (and writing to, if necessary) user defaults and the keychain.
+    /// Configures the MeowlWatchData initially by reading from (and writing to, if necessary) user defaults and the keychain.
     public static func loadFromDefaults() {
         if NSKeyedUnarchiver.class(forClassName: QueryResult.sharedClassName) != QueryResult.self {
             NSKeyedUnarchiver.setClass(QueryResult.self, forClassName: QueryResult.sharedClassName)
@@ -48,7 +48,7 @@ public struct Datastore {
         #endif
     }
 
-    /// Writes data from the datastore to user defaults.
+    /// Writes data from the MeowlWatchData to user defaults.
     public static func persistToUserDefaults() {
         if NSKeyedArchiver.className(for: QueryResult.self) != QueryResult.sharedClassName {
             NSKeyedArchiver.setClassName(QueryResult.sharedClassName, for: QueryResult.self)

@@ -47,7 +47,7 @@ class SettingsTableViewController: UITableViewController {
         self.setEditing(true, animated: false)
 
         #if !MEOWLWATCH_FULL
-            if !Datastore.anythingIsPurchased {
+            if !MeowlWatchData.anythingIsPurchased {
                 self.refreshControl = UIRefreshControl()
                 refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
                 SKPaymentQueue.default().add(self)
@@ -64,7 +64,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         #if !MEOWLWATCH_FULL
-            if !Datastore.anythingIsPurchased && !canMakePayments {
+            if !MeowlWatchData.anythingIsPurchased && !canMakePayments {
                 showCannotMakePaymentsAlert()
             }
         #endif
@@ -86,7 +86,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if Datastore.widgetIsPurchased {
+            if MeowlWatchData.widgetIsPurchased {
                 return 4
             } else {
                 return 3
@@ -116,10 +116,10 @@ class SettingsTableViewController: UITableViewController {
         // Configure the cell...
         switch indexPath.section {
         case 0:
-            if Datastore.widgetIsPurchased {
+            if MeowlWatchData.widgetIsPurchased {
                 cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
 
-                let item = Datastore.widgetArrangement[indexPath.row]
+                let item = MeowlWatchData.widgetArrangement[indexPath.row]
                 cell!.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
             } else {
                 #if !MEOWLWATCH_FULL
@@ -171,7 +171,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !Datastore.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
+        if !MeowlWatchData.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
             return 488
         }
 
@@ -179,7 +179,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !Datastore.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
+        if !MeowlWatchData.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
             let imageSize = #imageLiteral(resourceName: "WidgetPreviewFull").size
             return self.view.frame.width * imageSize.height / imageSize.width
         }
@@ -190,7 +190,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            if Datastore.widgetIsPurchased {
+            if MeowlWatchData.widgetIsPurchased {
                 return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will be reflected on the widget."
             } else {
                 return "Making useful apps like MeowlWatch is hard work. Please consider supporting me by enabling the widget! :) Ads will also be disabled."
@@ -211,7 +211,7 @@ class SettingsTableViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         switch indexPath.section {
         case 0:
-            return Datastore.widgetIsPurchased
+            return MeowlWatchData.widgetIsPurchased
         default:
             return false
         }
@@ -222,7 +222,7 @@ class SettingsTableViewController: UITableViewController {
         // Return false if you do not want the item to be re-orderable.
         switch indexPath.section {
         case 0:
-            return Datastore.widgetIsPurchased
+            return MeowlWatchData.widgetIsPurchased
         default:
             return false
         }
@@ -251,8 +251,8 @@ class SettingsTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        Datastore.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
-        Datastore.persistToUserDefaults()
+        MeowlWatchData.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
+        MeowlWatchData.persistToUserDefaults()
     }
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -262,7 +262,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            if !Datastore.widgetIsPurchased {
+            if !MeowlWatchData.widgetIsPurchased {
                 #if !MEOWLWATCH_FULL
                     switch indexPath.row {
                     case 0:
@@ -360,7 +360,7 @@ class SettingsTableViewController: UITableViewController {
             // Show list of available purchases
             self.isLoading = false
             for product in response.products {
-                if product.productIdentifier == Datastore.widgetProductIdentifier {
+                if product.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     self.widgetProduct = product
                 }
             }
@@ -390,7 +390,7 @@ class SettingsTableViewController: UITableViewController {
             }
             self.isLoading = true
             self.canMakePayments = true
-            let request = SKProductsRequest(productIdentifiers: [Datastore.widgetProductIdentifier])
+            let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.widgetProductIdentifier])
             request.delegate = self
             request.start()
             self.tableView.reloadData()
@@ -406,8 +406,8 @@ class SettingsTableViewController: UITableViewController {
                 self.refreshControl!.removeFromSuperview()
             }
 
-            Datastore.widgetIsPurchased = true
-            Datastore.persistToUserDefaults()
+            MeowlWatchData.widgetIsPurchased = true
+            MeowlWatchData.persistToUserDefaults()
             let meowlWatchViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! MeowlWatchTableViewController
             meowlWatchViewController.bannerView = nil
             meowlWatchViewController.navigationController!.setToolbarHidden(true, animated: false)
@@ -433,7 +433,7 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
 
-            if !Datastore.widgetIsPurchased {
+            if !MeowlWatchData.widgetIsPurchased {
                 self.showMessageAlert(title: "Unable To Restore Purchases", message: "No previous purchases could be found.")
                 self.isLoading = false
             }
@@ -451,7 +451,7 @@ class SettingsTableViewController: UITableViewController {
             switch transaction.transactionState {
             case .purchased, .restored:
                 self.isLoading = false
-                if transaction.payment.productIdentifier == Datastore.widgetProductIdentifier {
+                if transaction.payment.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     didPurchaseWidget()
                     queue.finishTransaction(transaction)
                 }

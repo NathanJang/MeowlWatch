@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Datastore.loadFromDefaults()
+        MeowlWatchData.loadFromDefaults()
 
         #if !MEOWLWATCH_FULL
-            if Datastore.shouldDisplayAds {
-                GADMobileAds.configure(withApplicationID: Datastore.adMobAppID)
+            if MeowlWatchData.shouldDisplayAds {
+                GADMobileAds.configure(withApplicationID: MeowlWatchData.adMobAppID)
             }
         #endif
 

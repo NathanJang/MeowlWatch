@@ -14,7 +14,7 @@
 		AB2990061E93F293003020CD /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2990041E93F293003020CD /* UIViewController+Alerts.swift */; };
 		AB2990101E93F356003020CD /* MeowlWatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = AB29900E1E93F356003020CD /* MeowlWatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB2990151E93F3B4003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
-		AB2990171E93F3C9003020CD /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
+		AB2990171E93F3C9003020CD /* MeowlWatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* MeowlWatchData.swift */; };
 		AB2990181E93F3CD003020CD /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
 		AB2990191E93F495003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB29901A1E93F495003020CD /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -145,7 +145,7 @@
 		AB29900E1E93F356003020CD /* MeowlWatchData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeowlWatchData.h; sourceTree = "<group>"; };
 		AB29900F1E93F356003020CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		AB7782B81E8107FB00925F72 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Datastore.swift; path = MeowlWatch/Datastore.swift; sourceTree = SOURCE_ROOT; };
+		AB7782B81E8107FB00925F72 /* MeowlWatchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchData.swift; path = MeowlWatch/MeowlWatchData.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B91E8107FB00925F72 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryResult.swift; path = MeowlWatch/QueryResult.swift; sourceTree = SOURCE_ROOT; };
 		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -290,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				AB29900E1E93F356003020CD /* MeowlWatchData.h */,
-				AB7782B81E8107FB00925F72 /* Datastore.swift */,
+				AB7782B81E8107FB00925F72 /* MeowlWatchData.swift */,
 				AB7782B91E8107FB00925F72 /* QueryResult.swift */,
 				AB29900F1E93F356003020CD /* Info.plist */,
 			);
@@ -674,7 +674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB2990171E93F3C9003020CD /* Datastore.swift in Sources */,
+				AB2990171E93F3C9003020CD /* MeowlWatchData.swift in Sources */,
 				AB2990181E93F3CD003020CD /* QueryResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

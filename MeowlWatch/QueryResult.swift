@@ -262,10 +262,10 @@ extension QueryResult {
     }
 
     /// The date retrieved as a formatted string.
-    public var dateRetrievedString: String { return Datastore.displayDateFormatter.string(from: dateRetrieved) }
+    public var dateRetrievedString: String { return MeowlWatchData.displayDateFormatter.string(from: dateRetrieved) }
 
     /// The date updated as a formatted string.
-    public var dateUpdatedString: String? { return dateUpdated != nil ? Datastore.displayDateFormatter.string(from: dateUpdated!) : nil }
+    public var dateUpdatedString: String? { return dateUpdated != nil ? MeowlWatchData.displayDateFormatter.string(from: dateUpdated!) : nil }
 
     /// The message to display if there is an error.
     public var errorString: String? {

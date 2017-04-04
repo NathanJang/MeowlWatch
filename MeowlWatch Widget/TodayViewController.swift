@@ -50,19 +50,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        Datastore.loadFromDefaults()
+        MeowlWatchData.loadFromDefaults()
 
-        guard Datastore.widgetIsPurchased else { return completionHandler(.noData) }
+        guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
         purchaseRequiredLabel.isHidden = true
-        guard Datastore.shouldRefresh else {
-            updateLabels(with: Datastore.lastQuery)
+        guard MeowlWatchData.shouldRefresh else {
+            updateLabels(with: MeowlWatchData.lastQuery)
             return completionHandler(.noData)
         }
-        guard Datastore.canQuery else {
-            updateLabels(with: Datastore.lastQuery)
+        guard MeowlWatchData.canQuery else {
+            updateLabels(with: MeowlWatchData.lastQuery)
             return completionHandler(.failed)
         }
-        Datastore.query { queryResult in
+        MeowlWatchData.query { queryResult in
             self.updateLabels(with: queryResult)
             completionHandler(.newData)
         }
@@ -87,17 +87,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
-        guard Datastore.widgetIsPurchased else { return }
-        leftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[0], withQuery: query)
-        rightDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[1], withQuery: query)
-        secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[2], withQuery: query)
-        secondaryRightDescriptionLabel.text = QueryResult.description(forItem: Datastore.widgetArrangement[3], withQuery: query)
+        guard MeowlWatchData.widgetIsPurchased else { return }
+        leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+        rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+        secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+        secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
         if let query = query {
-            updateNumberLabel(leftNumberLabel, asItem: Datastore.widgetArrangement[0], withQuery: query)
-            updateNumberLabel(rightNumberLabel, asItem: Datastore.widgetArrangement[1], withQuery: query)
-            updateNumberLabel(secondaryLeftNumberLabel, asItem: Datastore.widgetArrangement[2], withQuery: query)
-            updateNumberLabel(secondaryRightNumberLabel, asItem: Datastore.widgetArrangement[3], withQuery: query)
+            updateNumberLabel(leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+            updateNumberLabel(rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+            updateNumberLabel(secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+            updateNumberLabel(secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
         }
     }
 
