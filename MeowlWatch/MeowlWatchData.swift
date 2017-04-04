@@ -41,11 +41,7 @@ public struct MeowlWatchData {
             self.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
         }
 
-        #if !MEOWLWATCH_FULL
-            self.widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
-        #else
-            self.widgetIsPurchased = true
-        #endif
+        self.widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
     }
 
     /// Writes data from the MeowlWatchData to user defaults.

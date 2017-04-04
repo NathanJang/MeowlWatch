@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if MeowlWatchData.shouldDisplayAds {
                 GADMobileAds.configure(withApplicationID: MeowlWatchData.adMobAppID)
             }
+        #else
+            MeowlWatchData.widgetIsPurchased = true
         #endif
 
         return true
