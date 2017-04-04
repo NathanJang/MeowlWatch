@@ -25,9 +25,6 @@ public struct MeowlWatchData {
 
     /// Configures the MeowlWatchData initially by reading from (and writing to, if necessary) user defaults and the keychain.
     public static func loadFromDefaults() {
-        if NSKeyedUnarchiver.class(forClassName: QueryResult.sharedClassName) != QueryResult.self {
-            NSKeyedUnarchiver.setClass(QueryResult.self, forClassName: QueryResult.sharedClassName)
-        }
         if let data = userDefaults.object(forKey: "lastQuery") as? Data {
             self.lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
             self.netID = keychain.string(forKey: "netID")
@@ -46,10 +43,6 @@ public struct MeowlWatchData {
 
     /// Writes data from the MeowlWatchData to user defaults.
     public static func persistToUserDefaults() {
-        if NSKeyedArchiver.className(for: QueryResult.self) != QueryResult.sharedClassName {
-            NSKeyedArchiver.setClassName(QueryResult.sharedClassName, for: QueryResult.self)
-        }
-
         if let lastQuery = lastQuery {
             let data = NSKeyedArchiver.archivedData(withRootObject: lastQuery)
             userDefaults.set(data, forKey: "lastQuery")

@@ -13,7 +13,7 @@ import Foundation
 public class QueryResult: NSObject, NSCoding {
 
     /// The constant class name of this class with the module name.
-    static let sharedClassName = "MeowlWatch.QueryResult"
+//    static let sharedClassName = "MeowlWatch.QueryResult"
 
     // MARK: Initializers
 

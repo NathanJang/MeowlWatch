@@ -10,6 +10,10 @@ target 'MeowlWatch' do
 
 end
 
+target 'MeowlWatch Full' do
+  use_frameworks!
+end
+
 target 'MeowlWatchData' do
   use_frameworks!
 
