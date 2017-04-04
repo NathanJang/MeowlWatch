@@ -27,7 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 GADMobileAds.configure(withApplicationID: MeowlWatchData.adMobAppID)
             }
         #else
-            MeowlWatchData.widgetIsPurchased = true
+            if !MeowlWatchData.widgetIsPurchased {
+                MeowlWatchData.widgetIsPurchased = true
+                MeowlWatchData.persistToUserDefaults()
+            }
         #endif
 
         return true
