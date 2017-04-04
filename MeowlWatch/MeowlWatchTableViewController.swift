@@ -65,6 +65,12 @@ class MeowlWatchTableViewController: UITableViewController {
         #endif
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Retrieved: \(self.queryResult?.dateRetrievedString ?? "Never")")
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -81,7 +87,7 @@ class MeowlWatchTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,8 +161,6 @@ class MeowlWatchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 2:
-            return "Data Retrieved: \(queryResult?.dateRetrievedString ?? "Never")"
-        case 3:
             if MeowlWatchData.canQuery {
                 return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes."
             } else {
@@ -179,6 +183,7 @@ class MeowlWatchTableViewController: UITableViewController {
     /// Updates the UI to hide the spinner.
     func endRefreshing() {
         DispatchQueue.main.async {
+            self.refreshControl!.attributedTitle = NSAttributedString(string: "Retrieved: \(self.queryResult?.dateRetrievedString ?? "Never")")
             self.refreshControl!.endRefreshing()
             self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
         }

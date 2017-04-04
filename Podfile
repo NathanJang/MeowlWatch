@@ -10,8 +10,13 @@ target 'MeowlWatch' do
 
 end
 
-target 'MeowlWatchData' do
-    use_frameworks!
+target 'MeowlWatch Full' do
+  use_frameworks!
 
-    pod 'SwiftKeychainWrapper'
+end
+
+target 'MeowlWatchData' do
+  use_frameworks!
+
+  pod 'SwiftKeychainWrapper'
 end
