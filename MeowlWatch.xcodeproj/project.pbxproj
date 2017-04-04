@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72C7D2455EE842A976307628 /* Pods_MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E17F0A7124818FDF0C9742 /* Pods_MeowlWatchData.framework */; };
 		92809430279CD09F96AADDE7 /* Pods_MeowlWatch_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */; };
 		AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB009E631E8CC00A0096C625 /* LegalViewController.swift */; };
+		AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2990041E93F293003020CD /* UIViewController+Alerts.swift */; };
+		AB2990061E93F293003020CD /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2990041E93F293003020CD /* UIViewController+Alerts.swift */; };
+		AB2990101E93F356003020CD /* MeowlWatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = AB29900E1E93F356003020CD /* MeowlWatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB2990151E93F3B4003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
+		AB2990171E93F3C9003020CD /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
+		AB2990181E93F3CD003020CD /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
+		AB2990191E93F495003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
+		AB29901A1E93F495003020CD /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB29901E1E93F4C0003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
+		AB29901F1E93F4C0003020CD /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* TodayViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
-		AB7782F61E83E44800925F72 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
-		AB7782F71E83E4F700925F72 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
-		AB7782FD1E84460B00925F72 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
 		AB7782FE1E84460B00925F72 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */; };
 		AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B71E8107FB00925F72 /* AppDelegate.swift */; };
-		AB7783001E84460B00925F72 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
 		AB7783011E84460B00925F72 /* MeowlWatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */; };
 		AB7783051E84460B00925F72 /* AdMobKeys-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C81E8203EF00925F72 /* AdMobKeys-Debug.plist */; };
 		AB7783061E84460B00925F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */; };
@@ -25,10 +32,8 @@
 		AB7783081E84460B00925F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782BF1E81083D00925F72 /* Main.storyboard */; };
 		AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */; };
 		AB77830D1E84460B00925F72 /* MeowlWatch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AB7B7FC51E8E9F0500272655 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B91E8107FB00925F72 /* QueryResult.swift */; };
 		AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */; };
 		AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B71E8107FB00925F72 /* AppDelegate.swift */; };
-		AB7B7FC81E8E9F0500272655 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782B81E8107FB00925F72 /* Datastore.swift */; };
 		AB7B7FC91E8E9F0500272655 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB009E631E8CC00A0096C625 /* LegalViewController.swift */; };
 		AB7B7FCA1E8E9F0500272655 /* MeowlWatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */; };
 		AB7B7FCF1E8E9F0500272655 /* AdMobKeys-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782C81E8203EF00925F72 /* AdMobKeys-Debug.plist */; };
@@ -43,6 +48,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AB29901B1E93F495003020CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB29900B1E93F356003020CD;
+			remoteInfo = MeowlWatchData;
+		};
+		AB2990201E93F4C0003020CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB29900B1E93F356003020CD;
+			remoteInfo = MeowlWatchData;
+		};
 		AB7782FA1E84460B00925F72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
@@ -60,6 +79,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AB29901D1E93F496003020CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AB29901A1E93F495003020CD /* MeowlWatchData.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB2990221E93F4C1003020CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AB29901F1E93F4C0003020CD /* MeowlWatchData.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB77830C1E84460B00925F72 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -87,15 +128,22 @@
 /* Begin PBXFileReference section */
 		09B9EC67070FFC4B6E476599 /* Pods-MeowlWatch Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget.release.xcconfig"; sourceTree = "<group>"; };
 		207FF311151D28D56CE8C835 /* Pods-MeowlWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch.debug.xcconfig"; sourceTree = "<group>"; };
+		25E17F0A7124818FDF0C9742 /* Pods_MeowlWatchData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatchData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E1FDB643FE4451EF38B022 /* Pods-MeowlWatch Full Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Full Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Full Widget/Pods-MeowlWatch Full Widget.debug.xcconfig"; sourceTree = "<group>"; };
+		4C850EB6A247526B4B2DEFC8 /* Pods-MeowlWatchData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatchData.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData.debug.xcconfig"; sourceTree = "<group>"; };
 		4DA5D0557F341EADA7573E67 /* Pods-MeowlWatch Full.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Full.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full.release.xcconfig"; sourceTree = "<group>"; };
 		65F0CA37AB1A629F6FA1E530 /* Pods_MeowlWatch_Full_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Full_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67C3D1C9D5B6B136280269E2 /* Pods-MeowlWatch Full.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Full.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full.debug.xcconfig"; sourceTree = "<group>"; };
 		6C0D9CF299CEB518E888C777 /* Pods_MeowlWatch_Full.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Full.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		755111215EE9F0427D704702 /* Pods-MeowlWatch Full Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatch Full Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatch Full Widget/Pods-MeowlWatch Full Widget.release.xcconfig"; sourceTree = "<group>"; };
 		7C6D8D6B610A9B74C9EC1B96 /* Pods_MeowlWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		956110E1574DB7A2AE73F8B3 /* Pods-MeowlWatchData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatchData.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData.release.xcconfig"; sourceTree = "<group>"; };
 		AB009E631E8CC00A0096C625 /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LegalViewController.swift; path = MeowlWatch/LegalViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB27C1F11E7CCCAC00A90072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = MeowlWatch/Info.plist; sourceTree = "<group>"; };
+		AB2990041E93F293003020CD /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Alerts.swift"; path = "MeowlWatch/UIViewController+Alerts.swift"; sourceTree = SOURCE_ROOT; };
+		AB29900C1E93F356003020CD /* MeowlWatchData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeowlWatchData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB29900E1E93F356003020CD /* MeowlWatchData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeowlWatchData.h; sourceTree = "<group>"; };
+		AB29900F1E93F356003020CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B81E8107FB00925F72 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Datastore.swift; path = MeowlWatch/Datastore.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B91E8107FB00925F72 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryResult.swift; path = MeowlWatch/QueryResult.swift; sourceTree = SOURCE_ROOT; };
@@ -123,10 +171,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB2990081E93F356003020CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72C7D2455EE842A976307628 /* Pods_MeowlWatchData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB7782CE1E8242B000925F72 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2990151E93F3B4003020CD /* MeowlWatchData.framework in Frameworks */,
 				AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */,
 				92809430279CD09F96AADDE7 /* Pods_MeowlWatch_Widget.framework in Frameworks */,
 			);
@@ -137,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF9C3B860C8ACC73878B1928 /* Pods_MeowlWatch.framework in Frameworks */,
+				AB2990191E93F495003020CD /* MeowlWatchData.framework in Frameworks */,
 				ABA9714B1E898ADB001A6AD8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EABD9BB2FFCD62FE97CB80B2 /* Pods_MeowlWatch_Full.framework in Frameworks */,
+				AB29901E1E93F4C0003020CD /* MeowlWatchData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +222,8 @@
 				4DA5D0557F341EADA7573E67 /* Pods-MeowlWatch Full.release.xcconfig */,
 				31E1FDB643FE4451EF38B022 /* Pods-MeowlWatch Full Widget.debug.xcconfig */,
 				755111215EE9F0427D704702 /* Pods-MeowlWatch Full Widget.release.xcconfig */,
+				4C850EB6A247526B4B2DEFC8 /* Pods-MeowlWatchData.debug.xcconfig */,
+				956110E1574DB7A2AE73F8B3 /* Pods-MeowlWatchData.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -173,6 +234,7 @@
 				AB7782CC1E82085900925F72 /* .gitignore */,
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
+				AB29900D1E93F356003020CD /* MeowlWatchData */,
 				AB27C1E31E7CCCAC00A90072 /* Products */,
 				AB27C1FB1E7E0E3500A90072 /* Frameworks */,
 				9569A7D3A1BF4D6D13048F97 /* Pods */,
@@ -185,6 +247,7 @@
 				AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */,
 				AB7783111E84460B00925F72 /* MeowlWatch.app */,
 				AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */,
+				AB29900C1E93F356003020CD /* MeowlWatchData.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,8 +259,7 @@
 				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
-				AB7782B81E8107FB00925F72 /* Datastore.swift */,
-				AB7782B91E8107FB00925F72 /* QueryResult.swift */,
+				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
 				AB7782BF1E81083D00925F72 /* Main.storyboard */,
 				AB7782C61E81087D00925F72 /* Assets.xcassets */,
 				AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */,
@@ -219,8 +281,21 @@
 				AC94746EA8545263E1BBE0F3 /* Pods_MeowlWatch_Widget.framework */,
 				6C0D9CF299CEB518E888C777 /* Pods_MeowlWatch_Full.framework */,
 				65F0CA37AB1A629F6FA1E530 /* Pods_MeowlWatch_Full_Widget.framework */,
+				25E17F0A7124818FDF0C9742 /* Pods_MeowlWatchData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB29900D1E93F356003020CD /* MeowlWatchData */ = {
+			isa = PBXGroup;
+			children = (
+				AB29900E1E93F356003020CD /* MeowlWatchData.h */,
+				AB7782B81E8107FB00925F72 /* Datastore.swift */,
+				AB7782B91E8107FB00925F72 /* QueryResult.swift */,
+				AB29900F1E93F356003020CD /* Info.plist */,
+			);
+			name = MeowlWatchData;
+			path = "MeowlWatch Data";
 			sourceTree = "<group>";
 		};
 		AB7782D41E8242B000925F72 /* MeowlWatch Widget */ = {
@@ -237,7 +312,38 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		AB2990091E93F356003020CD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB2990101E93F356003020CD /* MeowlWatchData.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		AB29900B1E93F356003020CD /* MeowlWatchData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB2990111E93F357003020CD /* Build configuration list for PBXNativeTarget "MeowlWatchData" */;
+			buildPhases = (
+				5A53A2ABDAA0C5F2CFA01C98 /* [CP] Check Pods Manifest.lock */,
+				AB2990071E93F356003020CD /* Sources */,
+				AB2990081E93F356003020CD /* Frameworks */,
+				AB2990091E93F356003020CD /* Headers */,
+				AB29900A1E93F356003020CD /* Resources */,
+				8368509888584618B2104189 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MeowlWatchData;
+			productName = "MeowlWatch Data";
+			productReference = AB29900C1E93F356003020CD /* MeowlWatchData.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		AB7782D01E8242B000925F72 /* MeowlWatch Widget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB7782DE1E8242B000925F72 /* Build configuration list for PBXNativeTarget "MeowlWatch Widget" */;
@@ -268,11 +374,13 @@
 				AB77830A1E84460B00925F72 /* [CP] Embed Pods Frameworks */,
 				AB77830B1E84460B00925F72 /* [CP] Copy Pods Resources */,
 				AB77830C1E84460B00925F72 /* Embed App Extensions */,
+				AB29901D1E93F496003020CD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				AB7782F91E84460B00925F72 /* PBXTargetDependency */,
+				AB29901C1E93F495003020CD /* PBXTargetDependency */,
 			);
 			name = MeowlWatch;
 			productName = "NU Points";
@@ -290,11 +398,13 @@
 				AB7B7FD41E8E9F0500272655 /* [CP] Embed Pods Frameworks */,
 				AB7B7FD51E8E9F0500272655 /* [CP] Copy Pods Resources */,
 				AB7B7FF51E8F26B400272655 /* Embed App Extensions */,
+				AB2990221E93F4C1003020CD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				AB7B7FF41E8F26B300272655 /* PBXTargetDependency */,
+				AB2990211E93F4C0003020CD /* PBXTargetDependency */,
 			);
 			name = "MeowlWatch Full";
 			productName = "NU Points";
@@ -311,6 +421,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Jonathan Chan";
 				TargetAttributes = {
+					AB29900B1E93F356003020CD = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 3A2N53KSLM;
+						ProvisioningStyle = Automatic;
+					};
 					AB7782D01E8242B000925F72 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3A2N53KSLM;
@@ -354,11 +469,19 @@
 				AB7782F81E84460B00925F72 /* MeowlWatch */,
 				AB7782D01E8242B000925F72 /* MeowlWatch Widget */,
 				AB7B7FC01E8E9F0500272655 /* MeowlWatch Full */,
+				AB29900B1E93F356003020CD /* MeowlWatchData */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AB29900A1E93F356003020CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB7782CF1E8242B000925F72 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +532,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch Widget/Pods-MeowlWatch Widget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5A53A2ABDAA0C5F2CFA01C98 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		82DA28C773478B52B844974D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,6 +560,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8368509888584618B2104189 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB7782FB1E84460B00925F72 /* [CP] Check Pods Manifest.lock */ = {
@@ -517,13 +670,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB2990071E93F356003020CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB2990171E93F3C9003020CD /* Datastore.swift in Sources */,
+				AB2990181E93F3CD003020CD /* QueryResult.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB7782CD1E8242B000925F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7782F71E83E4F700925F72 /* QueryResult.swift in Sources */,
 				AB7782E31E83C18900925F72 /* TodayViewController.swift in Sources */,
-				AB7782F61E83E44800925F72 /* Datastore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,11 +691,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7782FD1E84460B00925F72 /* QueryResult.swift in Sources */,
 				AB7782FE1E84460B00925F72 /* SettingsTableViewController.swift in Sources */,
 				AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */,
-				AB7783001E84460B00925F72 /* Datastore.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
+				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB7783011E84460B00925F72 /* MeowlWatchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,11 +703,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7B7FC51E8E9F0500272655 /* QueryResult.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
-				AB7B7FC81E8E9F0500272655 /* Datastore.swift in Sources */,
 				AB7B7FC91E8E9F0500272655 /* LegalViewController.swift in Sources */,
+				AB2990061E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB7B7FCA1E8E9F0500272655 /* MeowlWatchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +714,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AB29901C1E93F495003020CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB29900B1E93F356003020CD /* MeowlWatchData */;
+			targetProxy = AB29901B1E93F495003020CD /* PBXContainerItemProxy */;
+		};
+		AB2990211E93F4C0003020CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB29900B1E93F356003020CD /* MeowlWatchData */;
+			targetProxy = AB2990201E93F4C0003020CD /* PBXContainerItemProxy */;
+		};
 		AB7782F91E84460B00925F72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AB7782D01E8242B000925F72 /* MeowlWatch Widget */;
@@ -687,6 +855,60 @@
 			};
 			name = Release;
 		};
+		AB2990121E93F357003020CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C850EB6A247526B4B2DEFC8 /* Pods-MeowlWatchData.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "MeowlWatch Data/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch-Data";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AB2990131E93F357003020CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 956110E1574DB7A2AE73F8B3 /* Pods-MeowlWatchData.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "MeowlWatch Data/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch-Data";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		AB7782DF1E8242B000925F72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B896B6F89D7893FA5FE441AB /* Pods-MeowlWatch Widget.debug.xcconfig */;
@@ -763,7 +985,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 67C3D1C9D5B6B136280269E2 /* Pods-MeowlWatch Full.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -784,7 +1005,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DA5D0557F341EADA7573E67 /* Pods-MeowlWatch Full.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -808,6 +1028,15 @@
 			buildConfigurations = (
 				AB27C1F21E7CCCAC00A90072 /* Debug */,
 				AB27C1F31E7CCCAC00A90072 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB2990111E93F357003020CD /* Build configuration list for PBXNativeTarget "MeowlWatchData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB2990121E93F357003020CD /* Debug */,
+				AB2990131E93F357003020CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

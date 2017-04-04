@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_MeowlWatch_Full_WidgetVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_MeowlWatch_Full_WidgetVersionString[];
+FOUNDATION_EXPORT double Pods_MeowlWatchDataVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_MeowlWatchDataVersionString[];
 

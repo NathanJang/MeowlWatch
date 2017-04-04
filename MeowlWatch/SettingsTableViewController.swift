@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MeowlWatchData
 
 #if !MEOWLWATCH_FULL
     import StoreKit
@@ -350,28 +351,6 @@ class SettingsTableViewController: UITableViewController {
         }
     #endif
 
-    /// Prompts the user whether to perform an action.
-    /// - Paramter title: The title of the alert controller.
-    /// - Parameter message: The message in the alert controller.
-    /// - Parameter action: The action to perform if the user chooses.
-    func showActionPrompt(title: String, message: String?, action: (() -> Void)?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Go", style: .default) { _ in action?() })
-        self.present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = self.view.tintColor
-    }
-
-    /// Shows a message alert controller to the user.
-    /// - Paramter title: The title of the alert controller.
-    /// - Parameter message: The message in the alert controller.
-    func showMessageAlert(title: String, message: String?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-        alertController.view.tintColor = self.view.tintColor
-    }
-
 }
 
 #if !MEOWLWATCH_FULL
@@ -421,8 +400,11 @@ class SettingsTableViewController: UITableViewController {
         func didPurchaseWidget() {
             self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
 
-            self.refreshControl!.removeFromSuperview()
-            self.refreshControl = nil
+            self.isLoading = false
+            self.tableView.setContentOffset(CGPoint.zero, animated: true)
+            DispatchQueue.main.async {
+                self.refreshControl!.removeFromSuperview()
+            }
 
             Datastore.widgetIsPurchased = true
             Datastore.persistToUserDefaults()

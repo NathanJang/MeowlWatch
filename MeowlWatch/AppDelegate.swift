@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
+import MeowlWatchData
 
 #if !MEOWLWATCH_FULL
     import GoogleMobileAds

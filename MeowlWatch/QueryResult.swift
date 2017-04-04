@@ -1,6 +1,6 @@
 //
 //  QueryResult.swift
-//  MeowlWatch
+//  MeowlWatchData
 //
 //  Created by Jonathan Chan on 2017-03-20.
 //  Copyright © 2017 Jonathan Chan. All rights reserved.
@@ -10,9 +10,10 @@ import Foundation
 
 /// An object representing the result from querying the server.
 /// Inherits from `NSObject` and conforms to `NSCoding` to encode and decode to and from user defaults.
-class QueryResult: NSObject, NSCoding {
+public class QueryResult: NSObject, NSCoding {
 
-    static let sharedClassName = "MeowlWatch.QueryResult"
+    /// The constant class name of this class with the module name.
+    static let sharedClassName = "MeowlWatchData.QueryResult"
 
     // MARK: Initializers
 
@@ -114,13 +115,13 @@ class QueryResult: NSObject, NSCoding {
 
     /// The date the data was fetched from the server.
     /// Not to be confused with `dateUpdated`.
-    let dateRetrieved: Date
+    public let dateRetrieved: Date
 
     /// The user's name.
-    let name: String
+    public let name: String
 
     /// The meal plan's name.
-    let currentPlanName: String
+    public let currentPlanName: String
 
     /// The number of board meals left.
     fileprivate let numberOfBoardMeals: UInt
@@ -145,7 +146,7 @@ class QueryResult: NSObject, NSCoding {
     let dateUpdated: Date?
 
     /// A type for the different errors involved.
-    enum Error: UInt {
+    public enum Error: UInt {
 
         /// Failed to connect or securely connect to the server.
         case connectionError
@@ -159,11 +160,11 @@ class QueryResult: NSObject, NSCoding {
     }
 
     /// The error, if present.
-    let error: Error?
+    public let error: Error?
 
     // MARK: NSCoding
 
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         aCoder.encode(dateRetrieved, forKey: "dateRetrieved")
         aCoder.encode(name, forKey: "name")
         aCoder.encode(currentPlanName, forKey: "currentPlanName")
@@ -180,7 +181,7 @@ class QueryResult: NSObject, NSCoding {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         self.dateRetrieved = aDecoder.decodeObject(forKey: "dateRetrieved") as! Date
         self.name = aDecoder.decodeObject(forKey: "name") as! String
         self.currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as! String
@@ -204,7 +205,7 @@ extension QueryResult {
     // MARK: Computed Properties
 
     /// The number of board meals as a string.
-    var boardMeals: String { return isUnlimited ? "∞" : "\(numberOfBoardMeals)" }
+    public var boardMeals: String { return isUnlimited ? "∞" : "\(numberOfBoardMeals)" }
 
     /// Whether we should display the board meals description in plural form.
     private var boardMealsIsPlural: Bool { return numberOfBoardMeals != 1 }
@@ -219,7 +220,7 @@ extension QueryResult {
     var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
 
     /// The number of equivalency meals as a string.
-    var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
+    public var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
 
     /// Whether we should display the board meals description in plural form.
     private var equivalencyMealsIsPlural: Bool { return numberOfEquivalencyMeals != 1 }
@@ -234,25 +235,25 @@ extension QueryResult {
     var equivalencyMealsDescription: String { return equivalencyMealsIsPlural ? QueryResult.equivalencyMealsPluralDescription : QueryResult.equivalencyMealSingularDescription }
 
     /// The points as a string.
-    var points: String { return pointsInCents.centsToString() }
+    public var points: String { return pointsInCents.centsToString() }
 
     /// The description for points.
-    var pointsDescription: String { return "Points" }
+    public var pointsDescription: String { return "Points" }
 
     /// The description for points, also available when the controller does not have a query result object.
-    static var pointsDescription: String { return "Points" }
+    public static var pointsDescription: String { return "Points" }
 
     /// The Cat Cash and Cat Cash bonus added together.
     private var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
 
     /// The total Cat Cash as a string.
-    var totalCatCash: String { return totalCatCashInCents.centsToString() }
+    public var totalCatCash: String { return totalCatCashInCents.centsToString() }
 
     /// The description for Cat Cash.
-    var catCashDescription: String { return "Cat Cash" }
+    public var catCashDescription: String { return "Cat Cash" }
 
     /// The description for Cat Cash, also available when the controller does not have a query result object.
-    static var catCashDescription: String { return "Cat Cash" }
+    public static var catCashDescription: String { return "Cat Cash" }
 
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
@@ -261,13 +262,13 @@ extension QueryResult {
     }
 
     /// The date retrieved as a formatted string.
-    var dateRetrievedString: String { return Datastore.displayDateFormatter.string(from: dateRetrieved) }
+    public var dateRetrievedString: String { return Datastore.displayDateFormatter.string(from: dateRetrieved) }
 
     /// The date updated as a formatted string.
-    var dateUpdatedString: String? { return dateUpdated != nil ? Datastore.displayDateFormatter.string(from: dateUpdated!) : nil }
+    public var dateUpdatedString: String? { return dateUpdated != nil ? Datastore.displayDateFormatter.string(from: dateUpdated!) : nil }
 
     /// The message to display if there is an error.
-    var errorString: String? {
+    public var errorString: String? {
         guard let error = error else { return nil }
         switch error {
         case .connectionError:
@@ -281,7 +282,7 @@ extension QueryResult {
 
 
     /// An enum representing the each displayed item.
-    enum DisplayItem: Int {
+    public enum DisplayItem: Int {
 
         /// Board meals.
         case boardMeals
@@ -317,7 +318,7 @@ extension QueryResult {
     /// - Parameter item: The display item type.
     /// - Parameter query: A query result.
     /// - Returns: A string to display.
-    static func description(forItem item: DisplayItem, withQuery query: QueryResult?) -> String {
+    public static func description(forItem item: DisplayItem, withQuery query: QueryResult?) -> String {
         switch item {
         case .boardMeals:
             return query?.description(forItem: .boardMeals) ?? boardMealsPluralDescription

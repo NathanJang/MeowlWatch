@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MeowlWatchData
 
 #if !MEOWLWATCH_FULL
     import GoogleMobileAds

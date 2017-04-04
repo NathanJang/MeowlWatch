@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationCenter
+import MeowlWatchData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 

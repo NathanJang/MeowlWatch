@@ -1,6 +1,6 @@
 //
 //  Datastore.swift
-//  MeowlWatch
+//  MeowlWatchData
 //
 //  Created by Jonathan Chan on 2017-03-17.
 //  Copyright © 2017 Jonathan Chan. All rights reserved.
@@ -10,7 +10,7 @@ import Foundation
 import SwiftKeychainWrapper
 
 /// The main controller for getting data from the server.
-struct Datastore {
+public struct Datastore {
 
     private init() {}
 
@@ -24,7 +24,7 @@ struct Datastore {
     private static let keychain = KeychainWrapper(serviceName: "me.jonathanchan.MeowlWatch", accessGroup: accessGroupName)
 
     /// Configures the datastore initially by reading from (and writing to, if necessary) user defaults and the keychain.
-    static func loadFromDefaults() {
+    public static func loadFromDefaults() {
         if NSKeyedUnarchiver.class(forClassName: QueryResult.sharedClassName) != QueryResult.self {
             NSKeyedUnarchiver.setClass(QueryResult.self, forClassName: QueryResult.sharedClassName)
         }
@@ -49,7 +49,7 @@ struct Datastore {
     }
 
     /// Writes data from the datastore to user defaults.
-    static func persistToUserDefaults() {
+    public static func persistToUserDefaults() {
         if NSKeyedArchiver.className(for: QueryResult.self) != QueryResult.sharedClassName {
             NSKeyedArchiver.setClassName(QueryResult.sharedClassName, for: QueryResult.self)
         }
@@ -68,21 +68,21 @@ struct Datastore {
     }
 
     /// A boolean representing whether we're prepared to query the server.
-    static var canQuery: Bool { return netID != nil && !netID!.isEmpty && password != nil }
+    public static var canQuery: Bool { return netID != nil && !netID!.isEmpty && password != nil }
 
     /// The user's NetID.
-    private(set) static var netID: String?
+    public private(set) static var netID: String?
 
     /// The user's password.
     /// This should be stored securely and handled with care.
-    private(set) static var password: String?
+    public private(set) static var password: String?
 
     /// Sets the NetID and password variables, and persists it across sessions to the keychain.
     /// - Parameter netID: The user's NetID.
     /// - Parameter password: The user's password.
     /// - Returns: Whether the result was successful.
     @discardableResult
-    static func updateCredentials(netID: String?, password: String?) -> Bool {
+    public static func updateCredentials(netID: String?, password: String?) -> Bool {
         var success = true
         if netID == nil || netID!.isEmpty || password == nil {
             self.netID = nil
@@ -108,7 +108,7 @@ struct Datastore {
 
     /// Queries the server and calls the completion handler with a query result.
     /// - Parameter onCompletion: The completion handler.
-    static func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
+    public static func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
         print("Querying...")
         guard canQuery else {
             let result = QueryResult(error: .authenticationError)
@@ -156,10 +156,13 @@ struct Datastore {
     }
 
     /// The result of the last query to the server.
-    static var lastQuery: QueryResult?
+    public static var lastQuery: QueryResult?
 
+    /// The time interval before we should refresh from the server.
     private static let refreshThreshold: TimeInterval = 60 * 30
-    static var shouldRefresh: Bool {
+
+    /// Whether we should refresh.
+    public static var shouldRefresh: Bool {
         guard let lastQuery = lastQuery else { return true }
         return Date().timeIntervalSince(lastQuery.dateUpdated ?? lastQuery.dateRetrieved) > refreshThreshold
     }
@@ -191,17 +194,17 @@ struct Datastore {
     // MARK: AdMob
 
     /// The app ID for AdMob.
-    static var adMobAppID: String {
+    public static var adMobAppID: String {
         return adMobObject(forKey: "AdMobAppID") as! String
     }
 
     /// The banner ad unit ID for AdMob.
-    static var adMobBannerAdUnitID: String {
+    public static var adMobBannerAdUnitID: String {
         return adMobObject(forKey: "AdMobBannerAdUnitID") as! String
     }
 
     /// The interstitial ad unit ID for AdMob.
-    static var adMobInterstitialAdUnitID: String {
+    public static var adMobInterstitialAdUnitID: String {
         return adMobObject(forKey: "AdMobInterstitialAdUnitID") as! String
     }
 
@@ -209,12 +212,12 @@ struct Datastore {
 
     /// An array representing the user's arrangement of the widget items.
     /// The default is shown here, and then modified once user defaults are loaded.
-    static var widgetArrangement: [QueryResult.DisplayItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
+    public private(set) static var widgetArrangement: [QueryResult.DisplayItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
 
     /// Rearranges the widget arrangement preferences given indices in `widgetArrangement`.
     /// - Parameter fromIndex: The index from which the item originated.
     /// - Parameter toIndex: The index to which the item should be moved.
-    static func moveWidgetArrangement(fromIndex: Int, toIndex: Int) {
+    public static func moveWidgetArrangement(fromIndex: Int, toIndex: Int) {
         let item = widgetArrangement.remove(at: fromIndex)
         widgetArrangement.insert(item, at: toIndex)
     }
@@ -222,15 +225,15 @@ struct Datastore {
     // MARK: IAPs
 
     /// The product identifier for the IAP for the widget.
-    static let widgetProductIdentifier = "me.jonathanchan.MeowlWatch.MeowlWatch_Widget"
+    public static let widgetProductIdentifier = "me.jonathanchan.MeowlWatch.MeowlWatch_Widget"
 
     /// Whether the user purchased the widget.
-    static var widgetIsPurchased = false
+    public static var widgetIsPurchased = false
 
     /// Whether anything is purchased.
-    static var anythingIsPurchased: Bool { return widgetIsPurchased }
+    public static var anythingIsPurchased: Bool { return widgetIsPurchased }
 
     /// Whether we should display ads.
-    static var shouldDisplayAds: Bool { return !anythingIsPurchased }
+    public static var shouldDisplayAds: Bool { return !anythingIsPurchased }
 
 }
