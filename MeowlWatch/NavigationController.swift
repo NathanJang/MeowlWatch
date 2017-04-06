@@ -50,10 +50,10 @@ class NavigationController: UINavigationController {
                     interstitial!.load(adRequest)
                 }
             } else {
-                self.navigationController!.setToolbarHidden(true, animated: false)
+                self.setToolbarHidden(true, animated: false)
             }
         #else
-            self.navigationController!.setToolbarHidden(true, animated: false)
+            self.setToolbarHidden(true, animated: false)
         #endif
     }
 
