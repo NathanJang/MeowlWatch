@@ -202,24 +202,25 @@ class MeowlWatchTableViewController: UITableViewController {
                 if queryResult.error != nil {
                     let alertController = UIAlertController(title: "Oops!", message: queryResult.errorString, preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
-                        self.showLoginAlert()
+                        self.showSignInAlert()
                     })
                     self.present(alertController, animated: true, completion: nil)
+                    alertController.view.tintColor = self.view.tintColor
                 }
             }
         } else {
             self.endRefreshing()
-            showLoginAlert()
+            showSignInAlert()
         }
     }
 
     /// The callback for when the account button is pressed.
     func didTapAccountButton() {
-        showLoginAlert()
+        showSignInAlert()
     }
 
     /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
-    func showLoginAlert() {
+    func showSignInAlert() {
         let alertController = UIAlertController(title: "Sign In to Northwestern", message: "Your NetID and password will only be sent securely to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "NetID"
