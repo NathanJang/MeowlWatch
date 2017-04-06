@@ -294,7 +294,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <!--Navigation Controller-->
         <scene sceneID="cnj-cN-UFd">
             <objects>
-                <navigationController toolbarHidden="NO" id="dVB-Lu-zgW" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="dVB-Lu-zgW" customClass="NavigationController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gw8-d6-ia0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

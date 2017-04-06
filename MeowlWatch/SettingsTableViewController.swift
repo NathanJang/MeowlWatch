@@ -409,9 +409,9 @@ class SettingsTableViewController: UITableViewController {
 
             MeowlWatchData.widgetIsPurchased = true
             MeowlWatchData.persistToUserDefaults()
-            let meowlWatchViewController = self.navigationController!.viewControllers[navigationController!.viewControllers.count - 2] as! MeowlWatchTableViewController
-            meowlWatchViewController.bannerView = nil
-            meowlWatchViewController.navigationController!.setToolbarHidden(true, animated: false)
+            let navigationController = self.navigationController as! NavigationController
+            navigationController.bannerView = nil
+            navigationController.navigationController!.setToolbarHidden(true, animated: false)
             self.tableView.reloadData()
         }
 

@@ -9,20 +9,8 @@
 import UIKit
 import MeowlWatchData
 
-#if !MEOWLWATCH_FULL
-    import GoogleMobileAds
-#endif
-
 /// The main table view controller for MeowlWatch, displaying the user's meal plan.
 class MeowlWatchTableViewController: UITableViewController {
-
-    #if !MEOWLWATCH_FULL
-        /// The Google ad banner.
-        var bannerView: GADBannerView?
-
-        /// The Google interstitial controller.
-        var interstitial: GADInterstitial?
-    #endif
 
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
@@ -43,29 +31,6 @@ class MeowlWatchTableViewController: UITableViewController {
 
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
-
-        #if !MEOWLWATCH_FULL
-            if MeowlWatchData.shouldDisplayAds {
-                self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-                let bannerView = self.bannerView!
-                self.navigationController!.toolbar.addSubview(bannerView)
-                bannerView.adUnitID = MeowlWatchData.adMobBannerAdUnitID
-                bannerView.rootViewController = self
-                let bannerRequest = GADRequest()
-                bannerView.load(bannerRequest)
-
-                if arc4random_uniform(3) < 1 {
-                    self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
-                    interstitial!.delegate = self
-                    let interstitialRequest = GADRequest()
-                    interstitial!.load(interstitialRequest)
-                }
-            } else {
-                self.navigationController!.setToolbarHidden(true, animated: false)
-            }
-        #else
-            self.navigationController!.setToolbarHidden(true, animated: false)
-        #endif
     }
 
     override func viewDidLayoutSubviews() {
@@ -252,19 +217,3 @@ class MeowlWatchTableViewController: UITableViewController {
     }
 
 }
-
-#if !MEOWLWATCH_FULL
-    extension MeowlWatchTableViewController: GADInterstitialDelegate {
-
-        func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-            if MeowlWatchData.shouldDisplayAds && MeowlWatchData.canQuery && ad.isReady {
-                ad.present(fromRootViewController: self)
-
-                if ad.adUnitID == MeowlWatchData.adMobInterstitialAdUnitID {
-                    self.interstitial = nil
-                }
-            }
-        }
-
-    }
-#endif
