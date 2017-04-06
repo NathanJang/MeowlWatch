@@ -48,20 +48,23 @@ class MeowlWatchTableViewController: UITableViewController {
             if MeowlWatchData.shouldDisplayAds {
                 self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
                 let bannerView = self.bannerView!
-                self.navigationController!.setToolbarHidden(false, animated: false)
                 self.navigationController!.toolbar.addSubview(bannerView)
                 bannerView.adUnitID = MeowlWatchData.adMobBannerAdUnitID
                 bannerView.rootViewController = self
                 let bannerRequest = GADRequest()
                 bannerView.load(bannerRequest)
 
-                if arc4random_uniform(4) < 1 {
+                if arc4random_uniform(3) < 1 {
                     self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
                     interstitial!.delegate = self
                     let interstitialRequest = GADRequest()
                     interstitial!.load(interstitialRequest)
                 }
+            } else {
+                self.navigationController!.setToolbarHidden(true, animated: false)
             }
+        #else
+            self.navigationController!.setToolbarHidden(true, animated: false)
         #endif
     }
 
@@ -200,12 +203,7 @@ class MeowlWatchTableViewController: UITableViewController {
                 }
 
                 if queryResult.error != nil {
-                    let alertController = UIAlertController(title: "Oops!", message: queryResult.errorString, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
-                        self.showSignInAlert()
-                    })
-                    self.present(alertController, animated: true, completion: nil)
-                    alertController.view.tintColor = self.view.tintColor
+                    self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
                 }
             }
         } else {
@@ -232,17 +230,15 @@ class MeowlWatchTableViewController: UITableViewController {
             textField.text = MeowlWatchData.password
         }
 
-        let loginAction = UIAlertAction(title: "Sign In", style: .default) { [weak alertController] alertAction in
-            if let alertController = alertController {
-                let netID = alertController.textFields![0].text ?? ""
-                let password = alertController.textFields![1].text ?? ""
-                MeowlWatchData.updateCredentials(netID: netID, password: password)
-                self.beginRefrshing()
-            }
+        let signInAction = UIAlertAction(title: "Sign In", style: .default) { alertAction in
+            let netID = alertController.textFields![0].text ?? ""
+            let password = alertController.textFields![1].text ?? ""
+            MeowlWatchData.updateCredentials(netID: netID, password: password)
+            self.beginRefrshing()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        alertController.addAction(loginAction)
+        alertController.addAction(signInAction)
         alertController.addAction(cancelAction)
 
         self.present(alertController, animated: true)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dVB-Lu-zgW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dVB-Lu-zgW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -189,7 +189,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">MeowlWatch:
+                                        <string key="content">MeowlWatch:
 Copyright © 2017 Jonathan Chan
 Class of 2020, Northwestern University
 
@@ -198,7 +198,7 @@ Copyright © 2017 Isabel Nygard, used with permission.
 Class of 2020, Northwestern University
 
 While the developer, Jonathan Chan, is a student at Northwestern, he is unaffiliated with the Northwestern administration and Northwestern Dining. This app was developed independently of Northwestern, and its content does not necessarily reflect the views of Northwestern University. Although the developer will make the best effort to ensure that the app functions as expected, he has no control over the web servers and cannot guarantee 100% uptime.
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -213,14 +213,14 @@ Privacy Policy</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 
 Your NetID and password will be sent securely to https://go.dosa.northwestern.edu, Northwestern Dining's online portal, to check your meal plan balance. Your NetID and password will also be stored securely on your iOS device, so you can open the app every time without re-entering your password. Your credentials will NOT be used for any other purpose or sent to any other destination.
 
 Your meal plan balance will be stored on your device and will not be sent online.
 
 The free version of this app will display advertisements by Google, which may track your browsing habits (independently of MeowlWatch) to show more relevant ads, unless you opt out. You may do so in Settings &gt; Privacy &gt; Advertising &gt; Limit Ad Tracking. Upon any successful in-app purchase, advertisements will be disabled.
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -255,7 +255,7 @@ SwiftKeychainWrapper</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 
 The MIT License (MIT)
 
@@ -265,7 +265,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -294,11 +294,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <!--Navigation Controller-->
         <scene sceneID="cnj-cN-UFd">
             <objects>
-                <navigationController id="dVB-Lu-zgW" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="dVB-Lu-zgW" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gw8-d6-ia0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="URL-jM-0Zv" customClass="BannerAdToolbar" customModule="MeowlWatch" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="dln-vn-aka" kind="relationship" relationship="rootViewController" id="i3C-yY-xwT"/>
                     </connections>

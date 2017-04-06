@@ -272,7 +272,7 @@ extension QueryResult {
         case .connectionError:
             return "Unable to connect to the server. Please make sure your device is connected to the internet."
         case .authenticationError:
-            return "Unable to login to server. Please tap \"Account\" to make sure your NetID and password are correct."
+            return "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
         case .parseError:
             return "An unknown error has occurred. Please contact the developer of this app."
         }
