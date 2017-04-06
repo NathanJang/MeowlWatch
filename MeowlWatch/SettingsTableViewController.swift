@@ -428,7 +428,7 @@ class SettingsTableViewController: UITableViewController {
 
         func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
             for transaction in queue.transactions {
-                if transaction.transactionState == .purchased {
+                if transaction.transactionState == .purchased || transaction.transactionState == .restored {
                     handleTransaction(transaction, withQueue: queue)
                 } else if transaction.transactionState == .failed {
                     queue.finishTransaction(transaction)
