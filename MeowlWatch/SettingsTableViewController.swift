@@ -411,7 +411,7 @@ class SettingsTableViewController: UITableViewController {
             MeowlWatchData.persistToUserDefaults()
             let navigationController = self.navigationController as! NavigationController
             navigationController.bannerView = nil
-            navigationController.navigationController!.setToolbarHidden(true, animated: false)
+            navigationController.setToolbarHidden(true, animated: false)
             self.tableView.reloadData()
         }
 
@@ -428,8 +428,9 @@ class SettingsTableViewController: UITableViewController {
 
         func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
             for transaction in queue.transactions {
-                if transaction.transactionState == .restored {
-                    didPurchaseWidget()
+                if transaction.transactionState == .purchased {
+                    handleTransaction(transaction, withQueue: queue)
+                } else if transaction.transactionState == .failed {
                     queue.finishTransaction(transaction)
                 }
             }
