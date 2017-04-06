@@ -21,6 +21,14 @@ class NavigationController: UINavigationController {
 
         /// The Google interstitial controller.
         var interstitial: GADInterstitial?
+
+        var adRequest: GADRequest = {
+            let adRequest = GADRequest()
+            adRequest.birthday = Date(timeIntervalSince1970: 60 * 60 * 24 * 365 * (1998 - 1970))
+            adRequest.setLocationWithLatitude(42.0565262, longitude: -87.6745328, accuracy: 3000)
+            adRequest.contentURL = "https://northwestern.sodexomyway.com"
+            return adRequest
+        }()
     #endif
 
     override func viewDidLoad() {
@@ -34,14 +42,12 @@ class NavigationController: UINavigationController {
                 self.toolbar.addSubview(bannerView)
                 bannerView.adUnitID = MeowlWatchData.adMobBannerAdUnitID
                 bannerView.rootViewController = self
-                let bannerRequest = GADRequest()
-                bannerView.load(bannerRequest)
+                bannerView.load(adRequest)
 
                 if arc4random_uniform(3) < 1 {
                     self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
                     interstitial!.delegate = self
-                    let interstitialRequest = GADRequest()
-                    interstitial!.load(interstitialRequest)
+                    interstitial!.load(adRequest)
                 }
             } else {
                 self.navigationController!.setToolbarHidden(true, animated: false)

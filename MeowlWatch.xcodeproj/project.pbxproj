@@ -251,11 +251,11 @@
 			children = (
 				AB7782B71E8107FB00925F72 /* AppDelegate.swift */,
 				AB3DEF841E969FED0035F000 /* NavigationController.swift */,
+				AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */,
 				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
-				AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */,
 				AB7782BF1E81083D00925F72 /* Main.storyboard */,
 				AB7782C61E81087D00925F72 /* Assets.xcassets */,
 				AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */,
