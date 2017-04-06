@@ -112,7 +112,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell? = nil
+        var cell: UITableViewCell?
         // Configure the cell...
         switch indexPath.section {
         case 0:
@@ -136,6 +136,7 @@ class SettingsTableViewController: UITableViewController {
                                 cell!.textLabel!.text = "(In-App Purchase Unavailable)"
                             }
                         }
+
                     case 1:
                         cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
                         cell!.textLabel!.text = "Restore Purchases"

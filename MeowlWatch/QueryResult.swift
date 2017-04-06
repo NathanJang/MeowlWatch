@@ -82,6 +82,7 @@ public class QueryResult: NSObject, NSCoding {
 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "America/Chicago")!
         dateFormatter.dateFormat = "EEEE, MMMM d, yyyy hh:mm a"
         self.dateUpdated = dateFormatter.date(from: matches[8])
 

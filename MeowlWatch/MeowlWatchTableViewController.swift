@@ -162,7 +162,7 @@ class MeowlWatchTableViewController: UITableViewController {
         switch section {
         case 2:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes."
+                return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }
@@ -231,7 +231,7 @@ class MeowlWatchTableViewController: UITableViewController {
             textField.text = MeowlWatchData.password
         }
 
-        let loginAction = UIAlertAction(title: "Login", style: .default) { [weak alertController] alertAction in
+        let loginAction = UIAlertAction(title: "Sign In", style: .default) { [weak alertController] alertAction in
             if let alertController = alertController {
                 let netID = alertController.textFields![0].text ?? ""
                 let password = alertController.textFields![1].text ?? ""
