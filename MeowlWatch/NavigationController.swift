@@ -24,7 +24,11 @@ class NavigationController: UINavigationController {
 
         lazy var adRequest: GADRequest = {
             let adRequest = GADRequest()
-            adRequest.birthday = Date(timeIntervalSince1970: 60 * 60 * 24 * 365 * (1998 - 1970))
+            var birthdayComponents = DateComponents()
+            birthdayComponents.year = Calendar.current.dateComponents([.year], from: Date()).year! - 18 - Int(arc4random_uniform(4)) // Random year 18 to 22 years ago
+            birthdayComponents.month = 1 + Int(arc4random_uniform(12))
+            birthdayComponents.day = 1 + Int(arc4random_uniform(28))
+            adRequest.birthday = Calendar.current.date(from: birthdayComponents)
             adRequest.setLocationWithLatitude(42.0565262, longitude: -87.6745328, accuracy: 3000)
             adRequest.contentURL = "https://northwestern.sodexomyway.com"
             return adRequest

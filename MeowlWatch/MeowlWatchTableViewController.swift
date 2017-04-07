@@ -39,17 +39,22 @@ class MeowlWatchTableViewController: UITableViewController {
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Retrieved: \(self.queryResult?.dateRetrievedString ?? "Never")")
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if MeowlWatchData.shouldRefresh {
-            beginRefrshing()
-        }
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.refreshIfNeeded()
+    }
+
+    /// Begins frefreshing if needed.
+    func refreshIfNeeded() {
+        if MeowlWatchData.shouldRefresh {
+            beginRefrshing()
+        }
     }
 
     // MARK: - Table view data source
