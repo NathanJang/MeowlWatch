@@ -267,7 +267,7 @@ class SettingsTableViewController: UITableViewController {
                 #if !MEOWLWATCH_FULL
                     switch indexPath.row {
                     case 0:
-                        if canMakePayments {
+                        if canMakePayments && !isLoading {
                             if widgetProduct != nil {
                                 buyWidgetIfAvailable()
                             } else {
@@ -278,8 +278,10 @@ class SettingsTableViewController: UITableViewController {
                         }
 
                     case 1:
-                        self.isLoading = true
-                        SKPaymentQueue.default().restoreCompletedTransactions()
+                        if !isLoading {
+                            self.isLoading = true
+                            SKPaymentQueue.default().restoreCompletedTransactions()
+                        }
 
                     default:
                         break
