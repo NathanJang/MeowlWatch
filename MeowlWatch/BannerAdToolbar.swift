@@ -22,7 +22,7 @@ class BannerAdToolbar: UIToolbar {
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var newSize = super.sizeThatFits(size)
 
-        newSize.height = bannerAdHeight
+        newSize.height = min(bannerAdHeight, newSize.height)
         return newSize
     }
 

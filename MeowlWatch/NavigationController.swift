@@ -22,7 +22,7 @@ class NavigationController: UINavigationController {
         /// The Google interstitial controller.
         var interstitial: GADInterstitial?
 
-        var adRequest: GADRequest = {
+        lazy var adRequest: GADRequest = {
             let adRequest = GADRequest()
             adRequest.birthday = Date(timeIntervalSince1970: 60 * 60 * 24 * 365 * (1998 - 1970))
             adRequest.setLocationWithLatitude(42.0565262, longitude: -87.6745328, accuracy: 3000)
@@ -44,11 +44,7 @@ class NavigationController: UINavigationController {
                 bannerView.rootViewController = self
                 bannerView.load(adRequest)
 
-                if arc4random_uniform(3) < 1 {
-                    self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
-                    interstitial!.delegate = self
-                    interstitial!.load(adRequest)
-                }
+                maybeShowInterstitial()
             } else {
                 self.setToolbarHidden(true, animated: false)
             }
@@ -87,6 +83,15 @@ class NavigationController: UINavigationController {
                 }
             }
         }
-        
+
+        /// Loads the interstitial if the RNG allows.
+        func maybeShowInterstitial() {
+            if arc4random_uniform(3) < 1 && self.presentedViewController == nil {
+                self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
+                interstitial!.delegate = self
+                interstitial!.load(adRequest)
+            }
+        }
+
     }
 #endif
