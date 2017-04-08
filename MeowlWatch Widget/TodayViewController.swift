@@ -37,6 +37,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             secondaryLeftDescriptionLabel.textColor = descriptionColor
             secondaryRightDescriptionLabel.textColor = descriptionColor
             purchaseRequiredLabel.textColor = descriptionColor
+            updatedLabel.textColor = descriptionColor
         }
     }
     
