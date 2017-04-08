@@ -123,7 +123,7 @@ class MeowlWatchTableViewController: UITableViewController {
             }
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
-            cell.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "N/A")"
+            cell.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "Never")"
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
         }
@@ -167,10 +167,8 @@ class MeowlWatchTableViewController: UITableViewController {
         if MeowlWatchData.canQuery {
             MeowlWatchData.query { queryResult in
                 self.queryResult = queryResult
+                self.endRefreshing()
                 self.tableView.reloadData()
-                DispatchQueue.main.async {
-                    self.endRefreshing()
-                }
 
                 if queryResult.error != nil {
                     self.showMessageAlert(title: "Oops!", message: queryResult.errorString)

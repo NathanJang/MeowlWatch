@@ -100,10 +100,7 @@ public struct MeowlWatchData {
     public static func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
         print("Querying...")
         guard canQuery else {
-            let result = QueryResult(error: .authenticationError)
-            self.lastQuery = result
-            onCompletion(result)
-            return
+            return finishQuery(result: QueryResult(error: .authenticationError), onCompletion: onCompletion)
         }
 
         let credentialsString = "\(netID!):\(password!)"
@@ -117,7 +114,7 @@ public struct MeowlWatchData {
             print("Query finished.")
 
             guard let response = response as? HTTPURLResponse, let data = data else {
-                return onCompletion(QueryResult(error: .connectionError))
+                return finishQuery(result: QueryResult(error: .connectionError), onCompletion: onCompletion)
             }
 
             if response.statusCode != 200 {
@@ -127,21 +124,25 @@ public struct MeowlWatchData {
                 } else {
                     result = QueryResult(error: .parseError)
                 }
-                self.lastQuery = result
-                onCompletion(result)
-                return
+                return finishQuery(result: result, onCompletion: onCompletion)
             }
 
             let html = String(data: data, encoding: .utf8)!
 
             let result = QueryResult(html: html) ?? QueryResult(error: .parseError)
-            self.lastQuery = result
-            persistToUserDefaults()
-
-            onCompletion(result)
+            return finishQuery(result: result, onCompletion: onCompletion)
         }
 
         task.resume()
+    }
+
+    /// What to do when query is finished.
+    /// - Parameter result: The query result.
+    /// - Parameter onCompletion: The callback for when the query completes.
+    private static func finishQuery(result: QueryResult, onCompletion: ((_ result: QueryResult) -> Void)) {
+        self.lastQuery = result
+        persistToUserDefaults()
+        return onCompletion(result)
     }
 
     /// The result of the last query to the server.
