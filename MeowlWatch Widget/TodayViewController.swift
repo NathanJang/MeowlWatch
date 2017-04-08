@@ -12,13 +12,13 @@ import MeowlWatchData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-    @IBOutlet weak var leftNumberButton: UIButton!
+    @IBOutlet weak var leftNumberLabel: UILabel!
     @IBOutlet weak var leftDescriptionLabel: UILabel!
-    @IBOutlet weak var rightNumberButton: UIButton!
+    @IBOutlet weak var rightNumberLabel: UILabel!
     @IBOutlet weak var rightDescriptionLabel: UILabel!
-    @IBOutlet weak var secondaryLeftNumberButton: UIButton!
+    @IBOutlet weak var secondaryLeftNumberLabel: UILabel!
     @IBOutlet weak var secondaryLeftDescriptionLabel: UILabel!
-    @IBOutlet weak var secondaryRightNumberButton: UIButton!
+    @IBOutlet weak var secondaryRightNumberLabel: UILabel!
     @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
     @IBOutlet weak var purchaseRequiredLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
@@ -95,30 +95,30 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
         if let query = query {
-            updateNumberButton(leftNumberButton, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
-            updateNumberButton(rightNumberButton, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
-            updateNumberButton(secondaryLeftNumberButton, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-            updateNumberButton(secondaryRightNumberButton, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+            updateNumberLabel(leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+            updateNumberLabel(rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+            updateNumberLabel(secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+            updateNumberLabel(secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
             updatedLabel.text = "Updated: \(query.dateUpdatedString ?? "Never")"
         }
     }
 
-    /// Sets the content of a number button given a desired widget item and a query result object.
-    /// - Parameter button: The number button.
+    /// Sets the content of a number label given a desired widget item and a query result object.
+    /// - Parameter label: The number label.
     /// - Parameter item: The widget item type.
     /// - Parameter query: The query result to use.
-    func updateNumberButton(_ button: UIButton, asItem item: QueryResult.DisplayItem, withQuery query: QueryResult) {
+    func updateNumberLabel(_ label: UILabel, asItem item: QueryResult.DisplayItem, withQuery query: QueryResult) {
         DispatchQueue.main.async {
             switch item {
             case .boardMeals:
-                button.setTitle(query.boardMeals, for: .normal)
+                label.text = query.boardMeals
             case .equivalencyMeals:
-                button.setTitle(query.equivalencyMeals, for: .normal)
+                label.text = query.equivalencyMeals
             case .points:
-                button.setTitle(query.points, for: .normal)
+                label.text = query.points
             case .catCash:
-                button.setTitle(query.totalCatCash, for: .normal)
+                label.text = query.totalCatCash
             }
         }
     }
