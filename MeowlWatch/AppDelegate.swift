@@ -52,7 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let navigationController = window!.rootViewController as! NavigationController
         if let meowlWatchViewController = navigationController.topViewController as? MeowlWatchTableViewController {
-            navigationController.maybeShowInterstitial()
+
+            #if !MEOWLWATCH_FULL
+                navigationController.maybeShowInterstitial()
+            #endif
+
             meowlWatchViewController.refreshIfNeeded()
         }
     }
