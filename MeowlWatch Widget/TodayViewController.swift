@@ -57,16 +57,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
         purchaseRequiredLabel.isHidden = true
         guard MeowlWatchData.shouldRefresh else {
-            updateLabels(with: MeowlWatchData.lastQuery)
-            return completionHandler(.noData)
+            updateLabels(with: MeowlWatchData.lastQuery) {
+                completionHandler(.noData)
+            }
+            return
         }
         guard MeowlWatchData.canQuery else {
-            updateLabels(with: MeowlWatchData.lastQuery)
-            return completionHandler(.failed)
+            updateLabels(with: MeowlWatchData.lastQuery) {
+                completionHandler(.failed)
+            }
+            return
         }
         MeowlWatchData.query { queryResult in
-            self.updateLabels(with: queryResult)
-            completionHandler(.newData)
+            self.updateLabels(with: queryResult) {
+                completionHandler(.newData)
+            }
         }
 
     }
@@ -88,7 +93,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
-    func updateLabels(with query: QueryResult?) {
+    func updateLabels(with query: QueryResult?, onCompletion: (@escaping () -> Void)) {
         guard MeowlWatchData.widgetIsPurchased else { return }
         DispatchQueue.main.async {
             self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
@@ -104,6 +109,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
                 self.updatedLabel.text = "Updated: \(query.dateUpdatedString ?? "Never")"
             }
+
+            onCompletion()
         }
     }
 
