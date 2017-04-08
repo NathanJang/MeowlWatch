@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -102,10 +102,17 @@
                                 <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: Never" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHj-DV-aIM">
+                                <rect key="frame" x="115.5" y="197.5" width="89.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="top" secondItem="QII-MZ-5nP" secondAttribute="top" id="176-Hu-1xo"/>
                             <constraint firstItem="RWY-hX-emE" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" multiplier="1.5" id="3T6-2Q-pR5"/>
+                            <constraint firstItem="mHj-DV-aIM" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="45e-cP-8ny"/>
                             <constraint firstItem="2gX-C0-KcY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="8" id="4Ci-ob-4J0"/>
                             <constraint firstItem="cRm-RX-vfu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="4" id="5K9-rt-nEy"/>
                             <constraint firstItem="KUB-f2-HvF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="4" id="6Gi-eR-5m8"/>
@@ -127,6 +134,7 @@
                             <constraint firstItem="cRm-RX-vfu" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" multiplier="1.5" id="Gnv-fw-BNF"/>
                             <constraint firstItem="uX0-jY-xCu" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" multiplier="1.5" id="Ibh-g2-i1e"/>
                             <constraint firstItem="KUB-f2-HvF" firstAttribute="bottom" secondItem="RWY-hX-emE" secondAttribute="bottom" id="IhF-JU-ST6"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="mHj-DV-aIM" secondAttribute="bottom" constant="8" id="IkH-hP-XfX"/>
                             <constraint firstItem="RWY-hX-emE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S3S-Oj-5AN" secondAttribute="centerXWithinMargins" constant="4" id="Iyf-3b-T3u"/>
                             <constraint firstItem="uX0-jY-xCu" firstAttribute="centerX" secondItem="2gX-C0-KcY" secondAttribute="centerX" id="Jtv-X9-rj0"/>
                             <constraint firstItem="uX0-jY-xCu" firstAttribute="top" secondItem="RWY-hX-emE" secondAttribute="bottom" constant="37" id="K6h-FY-9qO"/>
@@ -187,6 +195,7 @@
                         <outlet property="secondaryLeftNumberLabel" destination="gWw-o7-na7" id="z4P-DK-Ng3"/>
                         <outlet property="secondaryRightDescriptionLabel" destination="cRm-RX-vfu" id="1ut-Ip-wPC"/>
                         <outlet property="secondaryRightNumberLabel" destination="uX0-jY-xCu" id="hLQ-VJ-CqI"/>
+                        <outlet property="updatedLabel" destination="mHj-DV-aIM" id="NMF-fP-C0R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>

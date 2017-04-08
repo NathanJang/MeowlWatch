@@ -21,6 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var secondaryRightNumberLabel: UILabel!
     @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
     @IBOutlet weak var purchaseRequiredLabel: UILabel!
+    @IBOutlet weak var updatedLabel: UILabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +99,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             updateNumberLabel(rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
             updateNumberLabel(secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
             updateNumberLabel(secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+
+            updatedLabel.text = "Updated: \(query.dateUpdatedString ?? "Never")"
         }
     }
 
