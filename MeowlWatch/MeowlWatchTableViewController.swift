@@ -167,8 +167,10 @@ class MeowlWatchTableViewController: UITableViewController {
         if MeowlWatchData.canQuery {
             MeowlWatchData.query { queryResult in
                 self.queryResult = queryResult
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 self.endRefreshing()
-                self.tableView.reloadData()
 
                 if queryResult.error != nil {
                     self.showMessageAlert(title: "Oops!", message: queryResult.errorString)

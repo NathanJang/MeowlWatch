@@ -20,14 +20,6 @@ class SettingsTableViewController: UITableViewController {
         /// The widget's IAP product, which will exist after we query the app store.
         var widgetProduct: SKProduct?
 
-        /// Whether we are currently performing some task, to show or hide the spinner.
-        var isLoading = false {
-            didSet {
-                if isLoading { self.beginRefreshing() }
-                else { self.endRefreshing() }
-            }
-        }
-
         /// Whether StoreKit can make payments, set before querying the app store.
         var canMakePayments = false
     #endif
@@ -125,7 +117,7 @@ class SettingsTableViewController: UITableViewController {
                 #if !MEOWLWATCH_FULL
                     switch indexPath.row {
                     case 0:
-                        if self.isLoading {
+                        if self.refreshControl!.isRefreshing {
                             cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
                             cell!.textLabel!.text = "Loading..."
                         } else {
@@ -265,26 +257,26 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             if !MeowlWatchData.widgetIsPurchased {
                 #if !MEOWLWATCH_FULL
-                    switch indexPath.row {
-                    case 0:
-                        if canMakePayments && !isLoading {
-                            if widgetProduct != nil {
-                                buyWidgetIfAvailable()
+                    if !self.refreshControl!.isRefreshing {
+                        switch indexPath.row {
+                        case 0:
+                            if canMakePayments {
+                                if widgetProduct != nil {
+                                    buyWidgetIfAvailable()
+                                } else {
+                                    self.showMessageAlert(title: "In-App Purchase Unavailable", message: "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.")
+                                }
                             } else {
-                                self.showMessageAlert(title: "In-App Purchase Unavailable", message: "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.")
+                                showCannotMakePaymentsAlert()
                             }
-                        } else {
-                            showCannotMakePaymentsAlert()
-                        }
 
-                    case 1:
-                        if !isLoading {
-                            self.isLoading = true
+                        case 1:
+                            self.beginRefreshing()
                             SKPaymentQueue.default().restoreCompletedTransactions()
-                        }
 
-                    default:
-                        break
+                        default:
+                            break
+                        }
                     }
                 #endif
             }
@@ -317,18 +309,24 @@ class SettingsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+
     #if !MEOWLWATCH_FULL
         /// Prompts the user to purchase the widget if `widgetProduct` is not nil, i.e., if it is available from the app store.
         func buyWidgetIfAvailable() {
             guard let widgetProduct = widgetProduct else { return }
             let payment = SKPayment(product: widgetProduct)
             SKPaymentQueue.default().add(payment)
-            self.isLoading = true
+            self.beginRefreshing()
         }
 
         /// Shows an alert to notify the user that we cannot make purchases.
         func showCannotMakePaymentsAlert() {
-            self.isLoading = false
+            self.endRefreshing()
             self.showMessageAlert(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.")
         }
 
@@ -347,9 +345,6 @@ class SettingsTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 guard let refreshControl = self.refreshControl else { return }
                 refreshControl.endRefreshing()
-                if self.tableView.contentOffset.y < 0 {
-                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-                }
             }
         }
     #endif
@@ -361,19 +356,19 @@ class SettingsTableViewController: UITableViewController {
 
         func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
             // Show list of available purchases
-            self.isLoading = false
+            self.endRefreshing()
             for product in response.products {
                 if product.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     self.widgetProduct = product
                 }
             }
-            self.tableView.reloadData()
+            self.reloadData()
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
             self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
-            self.isLoading = false
-            self.tableView.reloadData()
+            self.endRefreshing()
+            self.reloadData()
         }
 
         /// The localized string for the price of a product.
@@ -391,19 +386,21 @@ class SettingsTableViewController: UITableViewController {
             guard SKPaymentQueue.canMakePayments() else {
                 return
             }
-            self.isLoading = true
+            if !self.refreshControl!.isRefreshing {
+                self.beginRefreshing()
+            }
             self.canMakePayments = true
             let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.widgetProductIdentifier])
             request.delegate = self
             request.start()
-            self.tableView.reloadData()
+            self.reloadData()
         }
 
         /// What to do once the widget is purchased.
         func didPurchaseWidget() {
             self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
 
-            self.isLoading = false
+            self.endRefreshing()
             self.tableView.setContentOffset(CGPoint.zero, animated: true)
             DispatchQueue.main.async {
                 self.refreshControl!.removeFromSuperview()
@@ -414,7 +411,7 @@ class SettingsTableViewController: UITableViewController {
             let navigationController = self.navigationController as! NavigationController
             navigationController.bannerView = nil
             navigationController.setToolbarHidden(true, animated: false)
-            self.tableView.reloadData()
+            self.reloadData()
         }
 
     }
@@ -439,13 +436,13 @@ class SettingsTableViewController: UITableViewController {
 
             if !MeowlWatchData.widgetIsPurchased {
                 self.showMessageAlert(title: "Unable To Restore Purchases", message: "No previous purchases could be found.")
-                self.isLoading = false
+                self.endRefreshing()
             }
         }
 
         func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
             self.showMessageAlert(title: "Unable To Restore Purchases", message: "Please try again later.")
-            self.isLoading = false
+            self.endRefreshing()
         }
 
         /// What to do once we receive a transaction.
@@ -454,14 +451,14 @@ class SettingsTableViewController: UITableViewController {
         func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
             switch transaction.transactionState {
             case .purchased, .restored:
-                self.isLoading = false
+                self.endRefreshing()
                 if transaction.payment.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     didPurchaseWidget()
                     queue.finishTransaction(transaction)
                 }
 
             case .failed:
-                self.isLoading = false
+                self.endRefreshing()
                 self.showMessageAlert(title: "Unable To Purchase", message: "Please try again.")
                 queue.finishTransaction(transaction)
 
