@@ -90,18 +90,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
         guard MeowlWatchData.widgetIsPurchased else { return }
-        leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
-        rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
-        secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-        secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+        DispatchQueue.main.async {
+            self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+            self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+            self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+            self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
-        if let query = query {
-            updateNumberLabel(leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
-            updateNumberLabel(rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
-            updateNumberLabel(secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-            updateNumberLabel(secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+            if let query = query {
+                self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+                self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+                self.updateNumberLabel(self.secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+                self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
-            updatedLabel.text = "Updated: \(query.dateUpdatedString ?? "Never")"
+                self.updatedLabel.text = "Updated: \(query.dateUpdatedString ?? "Never")"
+            }
         }
     }
 
@@ -110,17 +112,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// - Parameter item: The widget item type.
     /// - Parameter query: The query result to use.
     func updateNumberLabel(_ label: UILabel, asItem item: QueryResult.DisplayItem, withQuery query: QueryResult) {
-        DispatchQueue.main.async {
-            switch item {
-            case .boardMeals:
-                label.text = query.boardMeals
-            case .equivalencyMeals:
-                label.text = query.equivalencyMeals
-            case .points:
-                label.text = query.points
-            case .catCash:
-                label.text = query.totalCatCash
-            }
+        switch item {
+        case .boardMeals:
+            label.text = query.boardMeals
+        case .equivalencyMeals:
+            label.text = query.equivalencyMeals
+        case .points:
+            label.text = query.points
+        case .catCash:
+            label.text = query.totalCatCash
         }
     }
 
