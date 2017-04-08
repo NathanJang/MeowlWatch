@@ -91,21 +91,22 @@ public class QueryResult: NSObject, NSCoding {
 
     /// Initialize an empty object with no error.
     private override convenience init() {
-        self.init(error: nil)
+        self.init(lastQuery: nil, error: nil)
     }
 
-    /// Initialize an empty object with an error value.
+    /// Initialize a possibly empty object with an error value.
     /// - Parameter error: The error value.
-    init(error: Error?) {
+    /// - Parameter lastQuery: The result of the previous query.
+    public init(lastQuery: QueryResult?, error: Error?) {
         self.dateRetrieved = Date()
-        self.name = "--"
-        self.currentPlanName = "--"
-        self.numberOfBoardMeals = 0
-        self.numberOfEquivalencyMeals = 0
-        self.pointsInCents = 0
-        self.catCashInCents = 0
-        self.catCashBonusInCents = 0
-        self.dateUpdated = nil
+        self.name = lastQuery?.name ?? "--"
+        self.currentPlanName = lastQuery?.currentPlanName ?? "--"
+        self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0
+        self.numberOfEquivalencyMeals = lastQuery?.numberOfEquivalencyMeals ?? 0
+        self.pointsInCents = lastQuery?.pointsInCents ?? 0
+        self.catCashInCents = lastQuery?.catCashInCents ?? 0
+        self.catCashBonusInCents = lastQuery?.catCashBonusInCents ?? 0
+        self.dateUpdated = lastQuery?.dateUpdated
         self.error = error
     }
 

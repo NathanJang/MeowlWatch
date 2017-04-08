@@ -100,7 +100,7 @@ public struct MeowlWatchData {
     public static func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
         print("Querying...")
         guard canQuery else {
-            return finishQuery(result: QueryResult(error: .authenticationError), onCompletion: onCompletion)
+            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
         }
 
         let credentialsString = "\(netID!):\(password!)"
@@ -110,26 +110,26 @@ public struct MeowlWatchData {
         var request = URLRequest(url: url)
         request.setValue(authorizationString, forHTTPHeaderField: "Authorization")
 
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             print("Query finished.")
 
             guard let response = response as? HTTPURLResponse, let data = data else {
-                return finishQuery(result: QueryResult(error: .connectionError), onCompletion: onCompletion)
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
             }
 
             if response.statusCode != 200 {
                 let result: QueryResult
                 if response.statusCode == 401 {
-                    result = QueryResult(error: .authenticationError)
+                    result = QueryResult(lastQuery: lastQuery, error: .authenticationError)
                 } else {
-                    result = QueryResult(error: .parseError)
+                    result = QueryResult(lastQuery: lastQuery, error: .parseError)
                 }
                 return finishQuery(result: result, onCompletion: onCompletion)
             }
 
             let html = String(data: data, encoding: .utf8)!
 
-            let result = QueryResult(html: html) ?? QueryResult(error: .parseError)
+            let result = QueryResult(html: html) ?? QueryResult(lastQuery: lastQuery, error: .parseError)
             return finishQuery(result: result, onCompletion: onCompletion)
         }
 
