@@ -39,6 +39,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             purchaseRequiredLabel.textColor = descriptionColor
             updatedLabel.textColor = descriptionColor
         }
+
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView(sender:))))
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,6 +130,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             label.text = query.points
         case .catCash:
             label.text = query.totalCatCash
+        }
+    }
+
+    /// What to do when the gesture recognizer gets a tap.
+    /// - Parameter sender: The gesture recognizer.
+    func didTapView(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            self.extensionContext!.open(URL(string: "meowlwatch://")!, completionHandler: nil)
         }
     }
 
