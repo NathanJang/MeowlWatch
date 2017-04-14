@@ -79,7 +79,7 @@ class SettingsTableViewController: UITableViewController {
         switch section {
         case 0:
             if MeowlWatchData.widgetIsPurchased {
-                return 4
+                return MeowlWatchData.widgetArrangement.count
             } else {
                 return 3
             }
@@ -184,7 +184,7 @@ class SettingsTableViewController: UITableViewController {
         switch section {
         case 0:
             if MeowlWatchData.widgetIsPurchased {
-                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Your preferences here will be reflected on the widget."
+                return "The MeowlWatch widget may be added to the Today View on the Notification Center. The first four items here will be shown on the widget."
             } else {
                 return "Making useful apps like MeowlWatch is hard work. Please consider supporting me by enabling the widget! :) Ads will also be disabled."
             }

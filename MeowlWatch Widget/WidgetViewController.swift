@@ -127,7 +127,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     /// - Parameter label: The number label.
     /// - Parameter item: The widget item type.
     /// - Parameter query: The query result to use.
-    func updateNumberLabel(_ label: UILabel, asItem item: QueryResult.DisplayItem, withQuery query: QueryResult) {
+    func updateNumberLabel(_ label: UILabel, asItem item: QueryResult.WidgetDisplayItem, withQuery query: QueryResult) {
         switch item {
         case .boardMeals:
             label.text = query.boardMeals
@@ -137,6 +137,12 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
             label.text = query.points
         case .catCash:
             label.text = query.totalCatCash
+        case .equivalencyExchangeRate:
+            if let exchangeRate = QueryResult.equivalencyExchangeRateString(at: Date()){
+                label.text = exchangeRate
+            } else {
+                label.text = "--"
+            }
         }
     }
 

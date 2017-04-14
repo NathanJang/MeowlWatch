@@ -87,7 +87,7 @@ class MeowlWatchTableViewController: UITableViewController {
         case 1:
             return "Balance"
         case 2:
-            return "Equivalencies"
+            return "Equivalency Rate"
         default:
             return nil
         }
@@ -136,7 +136,7 @@ class MeowlWatchTableViewController: UITableViewController {
                 cell = meowlWatchCell
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
-                cell!.textLabel!.text = "Equivalencies Not Available Now"
+                cell!.textLabel!.text = "Equivalencies Unavailable"
             }
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
@@ -152,7 +152,7 @@ class MeowlWatchTableViewController: UITableViewController {
         switch section {
         case 3:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM."
+                return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }

@@ -254,6 +254,9 @@ extension QueryResult {
     /// The description for Cat Cash, also available when the controller does not have a query result object.
     public static var catCashDescription: String { return "Cat Cash" }
 
+    /// The short description for equivalency rate.
+    public static var equivalencyExchangeRateDescription: String { return "Per Equiv. Now" }
+
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
         let match = try! currentPlanName.firstMatch(regexPattern: "Unlimited").first
@@ -280,8 +283,8 @@ extension QueryResult {
     }
 
 
-    /// An enum representing the each displayed item.
-    public enum DisplayItem: Int {
+    /// An enum representing the each displayed item on the widget.
+    public enum WidgetDisplayItem: Int {
 
         /// Board meals.
         case boardMeals
@@ -294,13 +297,16 @@ extension QueryResult {
 
         /// Cat Cash.
         case catCash
+
+        /// Equivalency exchange rate.
+        case equivalencyExchangeRate
         
     }
 
-    /// The displayed description given an item type.
+    /// The displayed description given a widget item type.
     /// - Parameter item: The display item type.
     /// - Returns: A string to display.
-    private func description(forItem item: DisplayItem) -> String {
+    private func description(forItem item: WidgetDisplayItem) -> String {
         switch item {
         case .boardMeals:
             return boardMealsDescription
@@ -310,14 +316,16 @@ extension QueryResult {
             return QueryResult.pointsDescription
         case .catCash:
             return QueryResult.catCashDescription
+        case .equivalencyExchangeRate:
+            return QueryResult.equivalencyExchangeRateDescription
         }
     }
 
-    /// The displayed description given an item type and a query result to pluralize it if needed.
+    /// The displayed description given a widget item type and a query result to pluralize it if needed.
     /// - Parameter item: The display item type.
     /// - Parameter query: A query result.
     /// - Returns: A string to display.
-    public static func description(forItem item: DisplayItem, withQuery query: QueryResult?) -> String {
+    public static func description(forItem item: WidgetDisplayItem, withQuery query: QueryResult?) -> String {
         switch item {
         case .boardMeals:
             return query?.description(forItem: .boardMeals) ?? boardMealsPluralDescription
@@ -327,6 +335,8 @@ extension QueryResult {
             return pointsDescription
         case .catCash:
             return catCashDescription
+        case .equivalencyExchangeRate:
+            return equivalencyExchangeRateDescription
         }
     }
 
@@ -374,33 +384,21 @@ extension QueryResult {
         }
     }
 
-    /// Returns the equivalency exchange rate in cents based on a date.
-    /// - Parameter date: The date to calculate from.
-    /// - Returns: The exchange rate in cents, or nil if unavailable.
-    private static func equivalencyExchangeRateInCents(at date: Date) -> UInt? {
-        let equivalencyPeriod = self.equivalencyPeriod(at: date)
-        switch equivalencyPeriod {
-        case .breakfast:
-            return 500
-        case .lunch:
-            return 700
-        case .dinner:
-            return 900
-        case .lateNight:
-            return 700
-        case .unavailable:
-            return nil
-        }
-    }
-
     /// Returns the exchange rate string (with "$") given a date.
     /// - Parameter date: The date to calculate from.
     /// - Returns: The string (with "$"), or nil if unavailable.
     public static func equivalencyExchangeRateString(at date: Date) -> String? {
-        let rateInCents = equivalencyExchangeRateInCents(at: date)
-        if let rateInCents = rateInCents {
-            return "$\(rateInCents.centsToString())"
-        } else {
+        let equivalencyPeriod = self.equivalencyPeriod(at: date)
+        switch equivalencyPeriod {
+        case .breakfast:
+            return "$5"
+        case .lunch:
+            return "$7"
+        case .dinner:
+            return "$9"
+        case .lateNight:
+            return "$7"
+        case .unavailable:
             return nil
         }
     }

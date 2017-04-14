@@ -34,8 +34,8 @@ public struct MeowlWatchData {
             let _ = keychain.removeAllKeys()
         }
 
-        if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int] {
-            self.widgetArrangement = intArray.flatMap { return QueryResult.DisplayItem(rawValue: $0)! }
+        if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int], intArray.count == self.widgetArrangement.count {
+            self.widgetArrangement = intArray.flatMap { return QueryResult.WidgetDisplayItem(rawValue: $0)! }
         }
 
         self.widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
@@ -202,7 +202,7 @@ public struct MeowlWatchData {
 
     /// An array representing the user's arrangement of the widget items.
     /// The default is shown here, and then modified once user defaults are loaded.
-    public private(set) static var widgetArrangement: [QueryResult.DisplayItem] = [.equivalencyMeals, .points, .catCash, .boardMeals]
+    public private(set) static var widgetArrangement: [QueryResult.WidgetDisplayItem] = [.equivalencyMeals, .equivalencyExchangeRate, .points, .catCash, .boardMeals]
 
     /// Rearranges the widget arrangement preferences given indices in `widgetArrangement`.
     /// - Parameter fromIndex: The index from which the item originated.
