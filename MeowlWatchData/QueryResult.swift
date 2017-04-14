@@ -330,6 +330,81 @@ extension QueryResult {
         }
     }
 
+    /// An enum representing the different periods of equivalency exchanges.
+    private enum EquivalencyPeriod {
+
+        case breakfast
+
+        case lunch
+
+        case dinner
+
+        case lateNight
+
+        case unavailable
+
+    }
+
+    /// Returns the equivalency period for the current date, also accounting for time zone.
+    /// - Parameter date: The date to calculate from.
+    /// - Returns: The equivalency period.
+    private static func equivalencyPeriod(at date: Date) -> EquivalencyPeriod {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "America/Chicago")!
+
+        let dateAtStartOfDay = calendar.startOfDay(for: date)
+        let dateAt0200Today = calendar.date(bySettingHour: 2, minute: 1, second: 0, of: dateAtStartOfDay)!
+        let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+        let dateAt1046 = calendar.date(bySettingHour: 10, minute: 46, second: 0, of: dateAtStartOfDay)!
+        let dateAt1646 = calendar.date(bySettingHour: 16, minute: 46, second: 0, of: dateAtStartOfDay)!
+        let dateAt1931 = calendar.date(bySettingHour: 19, minute: 31, second: 0, of: dateAtStartOfDay)!
+
+        if date < dateAt0200Today {
+            return .lateNight
+        } else if date < dateAt0730 {
+            return .unavailable
+        } else if date < dateAt1046 {
+            return .breakfast
+        } else if date < dateAt1646 {
+            return .lunch
+        } else if date < dateAt1931 {
+            return .dinner
+        } else {
+            return .lateNight
+        }
+    }
+
+    /// Returns the equivalency exchange rate in cents based on a date.
+    /// - Parameter date: The date to calculate from.
+    /// - Returns: The exchange rate in cents, or nil if unavailable.
+    private static func equivalencyExchangeRateInCents(at date: Date) -> UInt? {
+        let equivalencyPeriod = self.equivalencyPeriod(at: date)
+        switch equivalencyPeriod {
+        case .breakfast:
+            return 500
+        case .lunch:
+            return 700
+        case .dinner:
+            return 900
+        case .lateNight:
+            return 700
+        case .unavailable:
+            return nil
+        }
+    }
+
+    /// Returns the exchange rate string (with "$") given a date.
+    /// - Parameter date: The date to calculate from.
+    /// - Returns: The string (with "$"), or nil if unavailable.
+    public static func equivalencyExchangeRateString(at date: Date) -> String? {
+        let rateInCents = equivalencyExchangeRateInCents(at: date)
+        if let rateInCents = rateInCents {
+            return "$\(rateInCents.centsToString())"
+        } else {
+            return nil
+        }
+    }
+
 }
 
 extension String {
@@ -383,8 +458,6 @@ extension UInt {
         let fractionalString: String
         if fractionalComponent < 10 {
             fractionalString = "0\(fractionalComponent)"
-        } else if fractionalComponent % 10 == 0 {
-            fractionalString = "\(fractionalComponent)0"
         } else {
             fractionalString = "\(fractionalComponent)"
         }

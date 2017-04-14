@@ -31,6 +31,8 @@ class MeowlWatchTableViewController: UITableViewController {
 
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
+
+        tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchCell")
     }
 
     override func viewDidLayoutSubviews() {
@@ -60,7 +62,7 @@ class MeowlWatchTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,6 +72,8 @@ class MeowlWatchTableViewController: UITableViewController {
         case 1:
             return 4
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             return 0
@@ -82,13 +86,15 @@ class MeowlWatchTableViewController: UITableViewController {
             return "Plan"
         case 1:
             return "Balance"
+        case 2:
+            return "Equivalencies"
         default:
             return nil
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
+        var cell: UITableViewCell?
 
         // Configure the cell...
         // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
@@ -97,43 +103,54 @@ class MeowlWatchTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
             switch indexPath.row {
             case 0:
-                cell.textLabel!.text = queryResult?.name ?? "--"
+                cell!.textLabel!.text = queryResult?.name ?? "--"
             case 1:
-                cell.textLabel!.text = queryResult?.currentPlanName ?? "--"
+                cell!.textLabel!.text = queryResult?.currentPlanName ?? "--"
             default:
                 break
             }
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "LeftDetailCell")!
+            let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell") as! MeowlWatchTableViewCell
             switch indexPath.row {
             case 0:
-                cell.textLabel!.text = queryResult?.boardMeals ?? "0"
-                cell.detailTextLabel!.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
+                meowlWatchCell.numberLabel.text = queryResult?.boardMeals ?? "0"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
             case 1:
-                cell.textLabel!.text = queryResult?.equivalencyMeals ?? "0"
-                cell.detailTextLabel!.text = "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left"
+                meowlWatchCell.numberLabel.text = queryResult?.equivalencyMeals ?? "0"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left"
             case 2:
-                cell.textLabel!.text = queryResult?.points ?? "0"
-                cell.detailTextLabel!.text = "\(QueryResult.pointsDescription) Left"
+                meowlWatchCell.numberLabel.text = queryResult?.points ?? "0.00"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.pointsDescription) Left"
             case 3:
-                cell.textLabel!.text = queryResult?.totalCatCash ?? "0.00"
-                cell.detailTextLabel!.text = "\(QueryResult.catCashDescription) Left"
+                meowlWatchCell.numberLabel.text = queryResult?.totalCatCash ?? "0.00"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.catCashDescription) Left"
             default:
                 break
             }
+            cell = meowlWatchCell
         case 2:
+            if let exchangeRate = QueryResult.equivalencyExchangeRateString(at: Date()) {
+                let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell", for: indexPath) as! MeowlWatchTableViewCell
+                meowlWatchCell.numberLabel.text = exchangeRate
+                meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
+                cell = meowlWatchCell
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
+                cell!.textLabel!.text = "Equivalencies Not Available Now"
+            }
+        case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
-            cell.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "Never")"
+            cell!.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "Never")"
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
+            break
         }
 
-        return cell
+        return cell!
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
-        case 2:
+        case 3:
             if MeowlWatchData.canQuery {
                 return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM."
             } else {
