@@ -363,6 +363,7 @@ extension QueryResult {
         calendar.timeZone = TimeZone(identifier: "America/Chicago")!
 
         let dateAtStartOfDay = calendar.startOfDay(for: date)
+        let dayOfWeek = calendar.component(.weekday, from: dateAtStartOfDay)
         let dateAt0200Today = calendar.date(bySettingHour: 2, minute: 1, second: 0, of: dateAtStartOfDay)!
         let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
         let dateAt1046 = calendar.date(bySettingHour: 10, minute: 46, second: 0, of: dateAtStartOfDay)!
@@ -373,14 +374,27 @@ extension QueryResult {
             return .lateNight
         } else if date < dateAt0730 {
             return .unavailable
-        } else if date < dateAt1046 {
-            return .breakfast
-        } else if date < dateAt1646 {
-            return .lunch
-        } else if date < dateAt1931 {
-            return .dinner
+        }
+
+        if dayOfWeek == 1 { // sunday
+            let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+            if date < dateAt0800 {
+                return .unavailable
+            } else if date < dateAt1931 {
+                return .dinner
+            } else {
+                return .lateNight
+            }
         } else {
-            return .lateNight
+            if date < dateAt1046 {
+                return .breakfast
+            } else if date < dateAt1646 {
+                return .lunch
+            } else if date < dateAt1931 {
+                return .dinner
+            } else {
+                return .lateNight
+            }
         }
     }
 

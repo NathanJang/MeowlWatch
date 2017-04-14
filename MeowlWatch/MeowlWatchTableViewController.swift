@@ -54,6 +54,9 @@ class MeowlWatchTableViewController: UITableViewController {
 
     /// Begins frefreshing if needed.
     func refreshIfNeeded() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         if MeowlWatchData.shouldRefresh {
             beginRefrshing()
         }
@@ -138,6 +141,8 @@ class MeowlWatchTableViewController: UITableViewController {
                 cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
                 cell!.textLabel!.text = "Equivalencies Unavailable"
             }
+            cell!.accessoryType = .disclosureIndicator
+            cell!.selectionStyle = .default
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
             cell!.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "Never")"
@@ -148,17 +153,31 @@ class MeowlWatchTableViewController: UITableViewController {
         return cell!
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 3:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "Note: The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+                return queryResult?.errorString ?? "The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }
         default:
             return nil
         }
+    }
+
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath == IndexPath(row: 0, section: 2) { return indexPath }
+        else { return nil }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /// Updates the UI to show the spinner and then refresh.
