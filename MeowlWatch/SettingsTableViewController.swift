@@ -27,6 +27,9 @@ class SettingsTableViewController: UITableViewController {
     /// The logo designer's website's URL.
     let isabelURLString = "https://isabel6389.wixsite.com/website"
 
+    /// Shortened URL for designer's website.
+    let isabelShortURLString = "http://goo.gl/0IFpAi"
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -283,7 +286,7 @@ class SettingsTableViewController: UITableViewController {
 
         case 1:
             self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
-                let url = URL(string: self.isabelURLString)!
+                let url = URL(string: self.isabelShortURLString)!
                 UIApplication.shared.openURL(url)
             }
 
