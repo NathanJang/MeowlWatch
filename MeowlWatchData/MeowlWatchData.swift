@@ -226,4 +226,1067 @@ public struct MeowlWatchData {
     /// Whether we should display ads.
     public static var shouldDisplayAds: Bool { return !anythingIsPurchased }
 
+    // MARK:- Dining Halls
+
+    /// An enum representing each dining hall.
+    public enum DiningHall: String {
+
+        case allison = "Allison"
+
+        case elder = "Elder"
+
+        case plexEast = "Plex East"
+
+        case plexWest = "Plex West"
+
+        case hinman = "Hinman"
+
+        case sargent = "Sargent"
+
+    }
+
+    /// An enum representing each cafe or C-Store.
+    public enum CafeOrCStore: String {
+
+        case plex = "Plex C-Store"
+
+        case frans = "Fran's Cafe at Hinman"
+
+        case hinmanCStore = "Hinman C-Store"
+
+        case kresge = "Kresge Cafe"
+
+        case einstein = "Einstein at Pancoe"
+
+        case bergson = "Cafe Bergson"
+
+        case techExpress = "Tech Express"
+
+        case lisas = "Lisa's Cafe at Slivka"
+
+    }
+
+    /// An enum representing each location at Norris.
+    public enum NorrisLocation: String {
+
+        case internationalStation = "Intl. Station"
+
+        case catShack = "Cat Shack"
+
+        case wildcatDen = "Wildcat Den"
+
+        case northshorePizza = "Northshore Pizza"
+
+        case pawsNGo = "Paws 'n Go C-Store"
+
+        case subway = "Subway"
+
+        case starbucks = "Norbucks"
+
+        case dunkinDonuts = "Dunkin' Donuts"
+
+        case frontera = "Frontera"
+
+    }
+
+    /// An enum representing the status of dining halls.
+    public enum DiningHallSession: String {
+
+        case breakfast = "Breakfast"
+
+        case continentalBreakfast = "Continental Breakfast"
+
+        case brunch = "Brunch"
+
+        case lunch = "Lunch"
+
+        case liteLunch = "Lite Lunch"
+
+        case dinner = "Dinner"
+
+        case lateNight = "Late Night"
+
+        case closed = "Closed"
+
+    }
+
+    /// The calendar used by dining halls.
+    /// Gregorian calendar in Chicago.
+    internal static let diningCalendar: Calendar = { () -> Calendar in
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        calendar.timeZone = TimeZone(identifier: "America/Chicago")!
+        return calendar
+    }()
+
+    /// The dining session at the specified dining hall for the specified date.
+    /// - Param diningHall: The dining hall in consideration.
+    /// - Param date: The date to consider.
+    /// - Returns: The dining hall session.
+    public static func diningSession(for diningHall: DiningHall, at date: Date = Date()) -> DiningHallSession {
+        let calendar = diningCalendar
+
+        let dateAtStartOfDay = calendar.startOfDay(for: date)
+        let dayOfWeek = calendar.component(.weekday, from: dateAtStartOfDay)
+
+        switch diningHall {
+        case .allison:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1400 = calendar.date(bySettingHour: 14, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1400 {
+                    return .brunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else { // Saturday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1400 = calendar.date(bySettingHour: 14, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1400 {
+                    return .brunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            }
+
+
+        case .elder:
+            if dayOfWeek == 1 || dayOfWeek == 7 { // Sunday / Saturday
+                return .closed
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0700 = calendar.date(bySettingHour: 7, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt0900 = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0700 {
+                    return .closed
+                } else if date < dateAt0900 {
+                    return .breakfast
+                } else if date < dateAt1700 {
+                    return .closed
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else { // Friday
+                let dateAt0700 = calendar.date(bySettingHour: 7, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt0900 = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0700 {
+                    return .closed
+                } else if date < dateAt0900 {
+                    return .breakfast
+                } else {
+                    return .closed
+                }
+            }
+
+        case .plexEast:
+            if dayOfWeek == 1 { // Sunday
+                return .closed
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .closed
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .closed
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else { // Saturday
+                return .closed
+            }
+
+        case .plexWest:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1400 = calendar.date(bySettingHour: 14, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2330 = calendar.date(bySettingHour: 23, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1400 {
+                    return .brunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else if date < dateAt2330 {
+                    return .lateNight
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2330 = calendar.date(bySettingHour: 23, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else if date < dateAt2330 {
+                    return .lateNight
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else { // Saturday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1400 = calendar.date(bySettingHour: 14, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1400 {
+                    return .brunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            }
+
+        case .hinman:
+            if dayOfWeek == 1 { // Sunday
+                return .closed
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek == 6 {
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else { // Saturday
+                return .closed
+            }
+            
+        case .sargent:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1400 = calendar.date(bySettingHour: 14, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2330 = calendar.date(bySettingHour: 23, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1400 {
+                    return .brunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else if date < dateAt2330 {
+                    return .lateNight
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2330 = calendar.date(bySettingHour: 23, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else if date < dateAt2330 {
+                    return .lateNight
+                } else {
+                    return .closed
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1300 = calendar.date(bySettingHour: 13, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return .closed
+                } else if date < dateAt1000 {
+                    return .breakfast
+                } else if date < dateAt1100 {
+                    return .continentalBreakfast
+                } else if date < dateAt1300 {
+                    return .lunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt1900 {
+                    return .dinner
+                } else {
+                    return .closed
+                }
+            } else { // Saturday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1400 = calendar.date(bySettingHour: 14, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2330 = calendar.date(bySettingHour: 23, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return .closed
+                } else if date < dateAt1400 {
+                    return .brunch
+                } else if date < dateAt1700 {
+                    return .liteLunch
+                } else if date < dateAt2000 {
+                    return .dinner
+                } else if date < dateAt2330 {
+                    return .lateNight
+                } else {
+                    return .closed
+                }
+            }
+        }
+    }
+
+    /// Whether the given cafe or C-Store is open.
+    /// - Param cafeOrCStore: The cafe or C-Store to consider.
+    /// - Param date: The date to consider.
+    /// - Returns: Whether it is open.
+    public static func isOpen(_ cafeOrCStore: CafeOrCStore, at date: Date = Date()) -> Bool {
+        let calendar = diningCalendar
+
+        let dateAtStartOfDay = calendar.startOfDay(for: date)
+        let dayOfWeek = calendar.component(.weekday, from: dateAtStartOfDay)
+
+        switch cafeOrCStore {
+        case .plex:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else {
+                    return true
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return false
+                } else {
+                    return true
+                }
+            } else { // Friday - Saturday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return false
+                } else if date < dateAt1900 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+        case .hinmanCStore:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt2000 {
+                    return false
+                } else {
+                    return true
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0300 = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0300 {
+                    return true
+                } else if date < dateAt0730 {
+                    return false
+                } else {
+                    return true
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0300 = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0300 {
+                    return true
+                } else if date < dateAt0730 {
+                    return false
+                } else if date < dateAt1900 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .frans:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt2000 {
+                    return false
+                } else {
+                    return true
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0300 = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2000 = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0300 {
+                    return true
+                } else if date < dateAt2000 {
+                    return false
+                } else {
+                    return true
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0300 = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0300 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .kresge:
+            if dayOfWeek == 1 { // Sunday
+                return false
+            } else if dayOfWeek <= 6 { // Monday - Friday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .einstein:
+            if dayOfWeek == 1 { // Sunday
+                return false
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1600 = calendar.date(bySettingHour: 16, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt1600 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .bergson:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1700 = calendar.date(bySettingHour: 17, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1700 {
+                    return false
+                } else {
+                    return true
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0830 = calendar.date(bySettingHour: 8, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0830 {
+                    return false
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0830 = calendar.date(bySettingHour: 8, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0830 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                let dateAt1200 = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1600 = calendar.date(bySettingHour: 16, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1200 {
+                    return false
+                } else if date < dateAt1600 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+        case .techExpress:
+            if dayOfWeek == 1 { // Sunday
+                return false
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1830 = calendar.date(bySettingHour: 18, minute: 30, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return false
+                } else if date < dateAt1830 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0730 = calendar.date(bySettingHour: 7, minute: 30, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0730 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+            
+        case .lisas:
+            if dayOfWeek <= 6 { // Sunday - Friday
+                let dateAt0300 = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0300 {
+                    return true
+                } else if date < dateAt0800 {
+                    return false
+                } else {
+                    return true
+                }
+            } else { // Saturday
+                let dateAt0300 = calendar.date(bySettingHour: 3, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0300 {
+                    return true
+                } else if date < dateAt1100 {
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+    }
+
+    /// Whether the given Norris location is open.
+    /// - Param norrisLocation: The Norris location to consider.
+    /// - Param date: The date to consider.
+    /// - Returns: Whether it is open.
+    public static func isOpen(_ norrisLocation: NorrisLocation, at date: Date = Date()) -> Bool {
+        let calendar = diningCalendar
+
+        let dateAtStartOfDay = calendar.startOfDay(for: date)
+        let dayOfWeek = calendar.component(.weekday, from: dateAtStartOfDay)
+
+        switch norrisLocation {
+        case .internationalStation:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1200 = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1200 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1900 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .catShack:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1200 = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1200 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1900 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .wildcatDen:
+            if dayOfWeek == 1 { // Sunday
+                return false
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1900 = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1900 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+
+        case .northshorePizza:
+            if dayOfWeek == 1 { // Sunday
+                return false
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2300 = calendar.date(bySettingHour: 23, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt2300 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Friday - Saturday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2100 = calendar.date(bySettingHour: 21, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt2100 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+        case .pawsNGo:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2300 = calendar.date(bySettingHour: 23, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1000 {
+                    return false
+                } else if date < dateAt2300 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2300 = calendar.date(bySettingHour: 23, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt2300 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Friday - Saturday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2345 = calendar.date(bySettingHour: 23, minute: 45, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt2345 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+        case .subway:
+            let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+            let dateAt2100 = calendar.date(bySettingHour: 21, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+            if date < dateAt1100 {
+                return false
+            } else if date < dateAt2100 {
+                return true
+            } else {
+                return false
+            }
+
+        case .starbucks:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2345 = calendar.date(bySettingHour: 23, minute: 45, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1000 {
+                    return false
+                } else if date < dateAt2345 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2345 = calendar.date(bySettingHour: 23, minute: 45, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt2345 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2100 = calendar.date(bySettingHour: 21, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt2100 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                let dateAt0900 = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2100 = calendar.date(bySettingHour: 21, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0900 {
+                    return false
+                } else if date < dateAt2100 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+        case .dunkinDonuts:
+            if dayOfWeek == 1 { // Sunday
+                let dateAt1000 = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2345 = calendar.date(bySettingHour: 23, minute: 45, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1000 {
+                    return false
+                } else if date < dateAt2345 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek <= 5 { // Monday - Thursday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2345 = calendar.date(bySettingHour: 23, minute: 45, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt2345 {
+                    return true
+                } else {
+                    return false
+                }
+            } else if dayOfWeek == 6 { // Friday
+                let dateAt0800 = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2100 = calendar.date(bySettingHour: 21, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0800 {
+                    return false
+                } else if date < dateAt2100 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                let dateAt0900 = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt2100 = calendar.date(bySettingHour: 21, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt0900 {
+                    return false
+                } else if date < dateAt2100 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+        case .frontera:
+            if dayOfWeek == 1 { // Sunday
+                return false
+            } else if dayOfWeek <= 6 { // Monday - Friday
+                let dateAt1100 = calendar.date(bySettingHour: 11, minute: 0, second: 0, of: dateAtStartOfDay)!
+                let dateAt1500 = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: dateAtStartOfDay)!
+
+                if date < dateAt1100 {
+                    return false
+                } else if date < dateAt1500 {
+                    return true
+                } else {
+                    return false
+                }
+            } else { // Saturday
+                return false
+            }
+        }
+    }
+
 }

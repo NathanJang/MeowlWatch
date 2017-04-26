@@ -359,8 +359,7 @@ extension QueryResult {
     /// - Parameter date: The date to calculate from.
     /// - Returns: The equivalency period.
     private static func equivalencyPeriod(at date: Date) -> EquivalencyPeriod {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "America/Chicago")!
+        let calendar = MeowlWatchData.diningCalendar
 
         let dateAtStartOfDay = calendar.startOfDay(for: date)
         let dayOfWeek = calendar.component(.weekday, from: dateAtStartOfDay)
