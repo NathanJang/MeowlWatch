@@ -239,7 +239,7 @@ class MeowlWatchTableViewController: UITableViewController {
         let signInAction = UIAlertAction(title: "Sign In", style: .default) { alertAction in
             let netID = alertController.textFields![0].text ?? ""
             let password = alertController.textFields![1].text ?? ""
-            MeowlWatchData.updateCredentials(netID: netID, password: password)
+            _ = MeowlWatchData.updateCredentials(netID: netID, password: password)
             self.beginRefrshing()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
