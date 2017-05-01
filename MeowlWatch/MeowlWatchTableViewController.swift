@@ -32,6 +32,7 @@ class MeowlWatchTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
+        tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchUserCell")
         tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchCell")
     }
 
@@ -71,7 +72,7 @@ class MeowlWatchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 1
         case 1:
             return 4
         case 2:
@@ -86,7 +87,7 @@ class MeowlWatchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Plan"
+            return nil
         case 1:
             return "Balance"
         case 2:
@@ -103,15 +104,10 @@ class MeowlWatchTableViewController: UITableViewController {
         // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
         switch indexPath.section {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
-            switch indexPath.row {
-            case 0:
-                cell!.textLabel!.text = queryResult?.name ?? "--"
-            case 1:
-                cell!.textLabel!.text = queryResult?.currentPlanName ?? "--"
-            default:
-                break
-            }
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserCell") as! MeowlWatchUserTableViewCell
+            userCell.nameLabel.text = queryResult?.name ?? "--"
+            userCell.planLabel.text = queryResult?.currentPlanName ?? "--"
+            cell = userCell
         case 1:
             let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell") as! MeowlWatchTableViewCell
             switch indexPath.row {
@@ -150,6 +146,9 @@ class MeowlWatchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 75
+        }
         return UITableViewAutomaticDimension
     }
 

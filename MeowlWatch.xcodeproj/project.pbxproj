@@ -53,6 +53,8 @@
 		AB9B5FF21E9422C200754DBB /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB9B5FF31E9422C200754DBB /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABA9714B1E898ADB001A6AD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA9714A1E898ADB001A6AD8 /* StoreKit.framework */; };
+		ABC11B1E1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */; };
+		ABC11B1F1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */; };
 		ABD71CBD1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */; };
 		ABD71CBE1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */; };
 		ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */; };
@@ -187,6 +189,8 @@
 		AB7783111E84460B00925F72 /* MeowlWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowlWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeowlWatch Full.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA9714A1E898ADB001A6AD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchUserTableViewCell.swift; path = MeowlWatch/MeowlWatchUserTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchUserTableViewCell.xib; path = MeowlWatch/MeowlWatchUserTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewCell.swift; path = MeowlWatch/MeowlWatchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchTableViewCell.xib; path = MeowlWatch/MeowlWatchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DiningHallSchedules.plist; path = MeowlWatchData/DiningHallSchedules.plist; sourceTree = SOURCE_ROOT; };
@@ -294,6 +298,8 @@
 				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
 				ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */,
 				ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */,
+				ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */,
+				ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
@@ -571,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */,
+				ABC11B1F1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib in Resources */,
 				AB7783051E84460B00925F72 /* AdMobKeys-Debug.plist in Resources */,
 				AB7783061E84460B00925F72 /* LaunchScreen.storyboard in Resources */,
 				AB7783071E84460B00925F72 /* Assets.xcassets in Resources */,
@@ -754,6 +761,7 @@
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB321A7A1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */,
 				AB3DEF851E969FED0035F000 /* NavigationController.swift in Sources */,
+				ABC11B1E1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift in Sources */,
 				ABD71CBD1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */,
 				AB7783011E84460B00925F72 /* MeowlWatchTableViewController.swift in Sources */,
 			);
