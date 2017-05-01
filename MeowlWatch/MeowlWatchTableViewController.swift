@@ -214,7 +214,9 @@ class MeowlWatchTableViewController: UITableViewController {
             viewController.isOpenEntries = cafeOrCStoreScheduleEntries(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
-            self.navigationController!.pushViewController(viewController, animated: true)
+            DispatchQueue.main.async {
+                self.navigationController!.pushViewController(viewController, animated: true)
+            }
         } else if indexPath.section == 4 {
             let item = diningSessions(at: Date())[indexPath.row].diningHall
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
@@ -222,7 +224,9 @@ class MeowlWatchTableViewController: UITableViewController {
             viewController.sessionEntries = diningHallScheduleEntries(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
-            self.navigationController!.pushViewController(viewController, animated: true)
+            DispatchQueue.main.async {
+                self.navigationController!.pushViewController(viewController, animated: true)
+            }
         } else {
             let item = norrisLocationStates(at: Date())[indexPath.row].norrisLocation
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
@@ -230,7 +234,9 @@ class MeowlWatchTableViewController: UITableViewController {
             viewController.isOpenEntries = norrisLocationScheduleEntries(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
-            self.navigationController!.pushViewController(viewController, animated: true)
+            DispatchQueue.main.async {
+                self.navigationController!.pushViewController(viewController, animated: true)
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -302,9 +308,11 @@ class MeowlWatchTableViewController: UITableViewController {
         alertController.addAction(signInAction)
         alertController.addAction(cancelAction)
 
-        self.present(alertController, animated: true)
-        // Change tint color after presenting to make it the right color
-        alertController.view.tintColor = self.view.tintColor
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+            // Change tint color after presenting to make it the right color
+            alertController.view.tintColor = self.view.tintColor
+        }
     }
 
     /// Called when the settings button is tapped.
