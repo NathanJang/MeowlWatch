@@ -275,7 +275,7 @@ extension QueryResult {
         case .connectionError:
             return "Unable to connect to the server. Please make sure your device is connected to the internet."
         case .authenticationError:
-            return "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
+            return "Northwestern has recently updated its servers, so we can't check your balance just yet. The developer of MeowlWatch is working hard to fix this issue. Thank you for your patience." // "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
         case .parseError:
             return "Northwestern has recently updated its servers, so we can't check your balance just yet. The developer of MeowlWatch is working hard to fix this issue. Thank you for your patience."
         }
