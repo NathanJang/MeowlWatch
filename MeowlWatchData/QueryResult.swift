@@ -243,7 +243,7 @@ extension QueryResult {
     public static var pointsDescription: String { return "Points" }
 
     /// The Cat Cash and Cat Cash bonus added together.
-    private var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
+    public var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
 
     /// The total Cat Cash as a string.
     public var totalCatCash: String { return totalCatCashInCents.centsToString() }

@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Intl. Station</key>
+	<key>International Station</key>
 	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
@@ -208,7 +208,7 @@
 			</dict>
 		</dict>
 	</array>
-	<key>Paws &apos;n Go C-Store</key>
+	<key>Paws &apos;n&apos; Go C-Store</key>
 	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
@@ -400,7 +400,7 @@
 			</dict>
 		</dict>
 	</array>
-	<key>Dunkin&apos; Donuts - 2</key>
+	<key>Frontera</key>
 	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>

@@ -34,6 +34,7 @@ class MeowlWatchTableViewController: UITableViewController {
 
         tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchUserCell")
         tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchCell")
+        tableView.register(UINib(nibName: "DiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DiningLocationCell")
     }
 
     override func viewDidLayoutSubviews() {
@@ -66,7 +67,7 @@ class MeowlWatchTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,11 +75,16 @@ class MeowlWatchTableViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            return 4
+            return 3
         case 2:
-            return 1
+            if let queryResult = queryResult, queryResult.totalCatCashInCents == 0 { return 1 }
+            else { return 2 }
         case 3:
-            return 1
+            return cafesAndCStoreStates(at: Date()).count
+        case 4:
+            return diningSessions(at: Date()).count
+        case 5:
+            return norrisLocationStates(at: Date()).count
         default:
             return 0
         }
@@ -89,9 +95,15 @@ class MeowlWatchTableViewController: UITableViewController {
         case 0:
             return nil
         case 1:
-            return "Balance"
+            return "Meals"
         case 2:
-            return "Equivalency Rate"
+            return "Points"
+        case 3:
+            return "Cafes and C-Stores"
+        case 4:
+            return "Dining Halls"
+        case 5:
+            return "Norris Locations"
         default:
             return nil
         }
@@ -112,32 +124,54 @@ class MeowlWatchTableViewController: UITableViewController {
             let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell") as! MeowlWatchTableViewCell
             switch indexPath.row {
             case 0:
-                meowlWatchCell.numberLabel.text = queryResult?.boardMeals ?? "0"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
-            case 1:
                 meowlWatchCell.numberLabel.text = queryResult?.equivalencyMeals ?? "0"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left"
+            case 1:
+                meowlWatchCell.numberLabel.text = equivalencyExchangeRateString(at: Date())
+                meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
+                meowlWatchCell.accessoryType = .disclosureIndicator
+                meowlWatchCell.selectionStyle = .default
             case 2:
-                meowlWatchCell.numberLabel.text = queryResult?.points ?? "0.00"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.pointsDescription) Left"
-            case 3:
-                meowlWatchCell.numberLabel.text = queryResult?.totalCatCash ?? "0.00"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.catCashDescription) Left"
+                meowlWatchCell.numberLabel.text = queryResult?.boardMeals ?? "0.00"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
             default:
                 break
             }
             cell = meowlWatchCell
         case 2:
-        let exchangeRate = MeowlWatchData.equivalencyExchangeRateString(at: Date())
             let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell", for: indexPath) as! MeowlWatchTableViewCell
-            meowlWatchCell.numberLabel.text = exchangeRate
-            meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
+            switch indexPath.row {
+            case 0:
+                meowlWatchCell.numberLabel.text = queryResult?.points ?? "0"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left"
+            case 1:
+                meowlWatchCell.numberLabel.text = queryResult?.totalCatCash ?? "0"
+                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left"
+            default:
+                break
+            }
             cell = meowlWatchCell
-            cell!.accessoryType = .disclosureIndicator
-            cell!.selectionStyle = .default
         case 3:
-            cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
-            cell!.textLabel!.text = "Updated: \(queryResult?.dateUpdatedString ?? "Never")"
+            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
+            let result = cafesAndCStoreStates(at: Date())[indexPath.row]
+            diningLocationCell.locationNameLabel.text = result.cafeOrCStore.rawValue
+            diningLocationCell.stateLabel.text = result.state ? "Open" : "Closed"
+            diningLocationCell.stateLabel.textColor = result.state ? view.tintColor : UIColor.red
+            cell = diningLocationCell
+        case 4:
+            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
+            let result = diningSessions(at: Date())[indexPath.row]
+            diningLocationCell.locationNameLabel.text = result.diningHall.rawValue
+            diningLocationCell.stateLabel.text = result.state.rawValue
+            diningLocationCell.stateLabel.textColor = result.state != .closed ? view.tintColor : UIColor.red
+            cell = diningLocationCell
+        case 5:
+            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
+            let result = norrisLocationStates(at: Date())[indexPath.row]
+            diningLocationCell.locationNameLabel.text = result.norrisLocation.rawValue
+            diningLocationCell.stateLabel.text = result.state ? "Open" : "Closed"
+            diningLocationCell.stateLabel.textColor = result.state ? view.tintColor : UIColor.red
+            cell = diningLocationCell
         default:
             break
         }
@@ -154,7 +188,7 @@ class MeowlWatchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
-        case 3:
+        case 5:
             if MeowlWatchData.canQuery {
                 return queryResult?.errorString ?? "The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
             } else {
@@ -166,12 +200,38 @@ class MeowlWatchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath == IndexPath(row: 0, section: 2) { return indexPath }
+        if indexPath == IndexPath(row: 1, section: 1 ) || indexPath.section >= 3 { return indexPath }
         else { return nil }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
+        if indexPath == IndexPath(row: 1, section: 1) {
+            self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
+        } else if indexPath.section == 3 {
+            let item = cafesAndCStoreStates(at: Date())[indexPath.row].cafeOrCStore
+            let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
+            viewController.cafeOrCStore = item
+            viewController.isOpenEntries = cafeOrCStoreScheduleEntries(for: item)
+            viewController.title = item.rawValue
+            viewController.view.tintColor = view.tintColor
+            self.navigationController!.pushViewController(viewController, animated: true)
+        } else if indexPath.section == 4 {
+            let item = diningSessions(at: Date())[indexPath.row].diningHall
+            let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
+            viewController.diningHall = item
+            viewController.sessionEntries = diningHallScheduleEntries(for: item)
+            viewController.title = item.rawValue
+            viewController.view.tintColor = view.tintColor
+            self.navigationController!.pushViewController(viewController, animated: true)
+        } else {
+            let item = norrisLocationStates(at: Date())[indexPath.row].norrisLocation
+            let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
+            viewController.norrisLocation = item
+            viewController.isOpenEntries = norrisLocationScheduleEntries(for: item)
+            viewController.title = item.rawValue
+            viewController.view.tintColor = view.tintColor
+            self.navigationController!.pushViewController(viewController, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

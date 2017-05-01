@@ -13,7 +13,7 @@ class EquivalencyScheduleTableViewController: UITableViewController {
 
     let equivalencyScheduleEntries = MeowlWatchData.equivalencyScheduleEntries()
 
-    var selectedIndexPath = MeowlWatchData.indexPathOfScheduleEntries(at: Date())
+    var selectedIndexPath = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,8 @@ class EquivalencyScheduleTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "EquivalencyScheduleCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {

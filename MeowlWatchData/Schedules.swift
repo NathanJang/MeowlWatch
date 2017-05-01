@@ -25,6 +25,8 @@ public enum DiningHall: String {
 
 }
 
+private let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, .hinman, .sargent]
+
 /// An enum representing each cafe or C-Store.
 public enum CafeOrCStore: String {
 
@@ -46,10 +48,12 @@ public enum CafeOrCStore: String {
 
 }
 
+private let cafesAndCStores: [CafeOrCStore] = [.plex, .hinmanCStore, .frans, .kresge, .einstein, .bergson, .techExpress, .lisas]
+
 /// An enum representing each location at Norris.
 public enum NorrisLocation: String {
 
-    case internationalStation = "Intl. Station"
+    case internationalStation = "International Station"
 
     case catShack = "Cat Shack"
 
@@ -57,7 +61,7 @@ public enum NorrisLocation: String {
 
     case northshorePizza = "Northshore Pizza"
 
-    case pawsNGo = "Paws 'n Go C-Store"
+    case pawsNGo = "Paws 'n' Go C-Store"
 
     case subway = "Subway"
 
@@ -68,6 +72,8 @@ public enum NorrisLocation: String {
     case frontera = "Frontera"
 
 }
+
+private let norrisLocations: [NorrisLocation] = [.internationalStation, .catShack, .wildcatDen, .northshorePizza, .pawsNGo, .subway, .starbucks, .dunkinDonuts, .frontera]
 
 /// An enum representing the status of dining halls.
 public enum DiningHallSession: String {
@@ -285,6 +291,24 @@ public func diningHallScheduleEntries(for diningHall: DiningHall) -> [ScheduleEn
     return scheduleEntries
 }
 
+//public func diningHallsOpen(at date: Date) -> [(diningHall: DiningHall, state: DiningHallSession)] {
+//    return diningHalls.flatMap { diningHall -> (diningHall: DiningHall, state: DiningHallSession) in
+//        return (diningHall: diningHall, state: diningSession(for: diningHall, at: date))
+//    }
+//    .filter { pair -> Bool in
+//        return pair.state != .closed
+//    }
+//}
+
+public func diningSessions(at date: Date) -> [(diningHall: DiningHall, state: DiningHallSession)] {
+    return diningHalls.flatMap { diningHall -> (diningHall: DiningHall, state: DiningHallSession) in
+        return (diningHall: diningHall, state: diningSession(for: diningHall, at: date))
+    }
+    .sorted { (pair1, pair2) -> Bool in
+        return pair1.state != .closed && pair2.state == .closed
+    }
+}
+
 public func diningSession(for diningHall: DiningHall, at date: Date) -> DiningHallSession {
     let defaultValue = DiningHallSession.closed
 
@@ -305,6 +329,25 @@ public func diningSession(for diningHall: DiningHall, at date: Date) -> DiningHa
     }
 
     return defaultValue
+}
+
+public func indexPathOfDiningHallScheduleEntries(for diningHall: DiningHall, at date: Date) -> IndexPath {
+    let dayOfWeek = diningCalendar.component(.weekday, from: date)
+    let entries = diningHallScheduleEntries(for: diningHall)
+    var indexPath: IndexPath?
+    for i in 0..<entries.count {
+        let entry = entries[i]
+        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
+            let scheduleToday = entry.schedule
+            for j in 0..<scheduleToday.count {
+                if date.twentyFourHourTime < scheduleToday[j].time {
+                    indexPath = IndexPath(row: j, section: i)
+                    break
+                }
+            }
+        }
+    }
+    return indexPath!
 }
 
 public func cafeOrCStoreScheduleEntries(for cafeOrCStore: CafeOrCStore) -> [ScheduleEntry<Bool>] {
@@ -338,6 +381,40 @@ public func isOpen(_ cafeOrCStore: CafeOrCStore, at date: Date) -> Bool {
     return defaultValue
 }
 
+//public func cafesOrCStoresOpen(at date: Date) -> [CafeOrCStore] {
+//    return cafesAndCStores.filter { cafeOrCStore -> Bool in
+//        return isOpen(cafeOrCStore, at: date)
+//    }
+//}
+
+public func cafesAndCStoreStates(at date: Date) -> [(cafeOrCStore: CafeOrCStore, state: Bool)] {
+    return cafesAndCStores.flatMap { cafeOrCStore -> (cafeOrCStore: CafeOrCStore, state: Bool) in
+        return (cafeOrCStore: cafeOrCStore, state: isOpen(cafeOrCStore, at: date))
+        }
+        .sorted { (pair1, pair2) -> Bool in
+            return pair1.state && !pair2.state
+    }
+}
+
+public func indexPathOfCafeOrCStoreEntries(for cafeOrCStore: CafeOrCStore, at date: Date) -> IndexPath {
+    let dayOfWeek = diningCalendar.component(.weekday, from: date)
+    let entries = cafeOrCStoreScheduleEntries(for: cafeOrCStore)
+    var indexPath: IndexPath?
+    for i in 0..<entries.count {
+        let entry = entries[i]
+        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
+            let scheduleToday = entry.schedule
+            for j in 0..<scheduleToday.count {
+                if date.twentyFourHourTime < scheduleToday[j].time {
+                    indexPath = IndexPath(row: j, section: i)
+                    break
+                }
+            }
+        }
+    }
+    return indexPath!
+}
+
 public func norrisLocationScheduleEntries(for norrisLocation: NorrisLocation) -> [ScheduleEntry<Bool>] {
     let diningHallDictionaryEntries = dictionaryFromPlist("NorrisSchedules")![norrisLocation.rawValue] as! [[String : Any]]
     var scheduleEntries: [ScheduleEntry<Bool>] = []
@@ -369,6 +446,39 @@ public func isOpen(_ norrisLocation: NorrisLocation, at date: Date) -> Bool {
     return defaultValue
 }
 
+//public func norrisLocationsOpen(at date: Date) -> [NorrisLocation] {
+//    return norrisLocations.filter { norrisLocation -> Bool in
+//        return isOpen(norrisLocation, at: date)
+//    }
+//}
+
+public func norrisLocationStates(at date: Date) -> [(norrisLocation: NorrisLocation, state: Bool)] {
+    return norrisLocations.flatMap { norrisLocation -> (norrisLocation: NorrisLocation, state: Bool) in
+        return (norrisLocation: norrisLocation, state: isOpen(norrisLocation, at: date))
+    }
+    .sorted { (pair1, pair2) -> Bool in
+        return pair1.state && !pair2.state
+    }
+}
+
+public func indexPathOfNorrisLocationScheduleEntries(for norrisLocation: NorrisLocation, at date: Date) -> IndexPath {
+    let dayOfWeek = diningCalendar.component(.weekday, from: date)
+    let entries = norrisLocationScheduleEntries(for: norrisLocation)
+    var indexPath: IndexPath?
+    for i in 0..<entries.count {
+        let entry = entries[i]
+        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
+            let scheduleToday = entry.schedule
+            for j in 0..<scheduleToday.count {
+                if date.twentyFourHourTime < scheduleToday[j].time {
+                    indexPath = IndexPath(row: j, section: i)
+                    break
+                }
+            }
+        }
+    }
+    return indexPath!
+}
 
 /// An enum representing the different periods of equivalency exchanges.
 public enum EquivalencyPeriod : String {
@@ -443,7 +553,7 @@ public func equivalencyScheduleEntries() -> [ScheduleEntry<EquivalencyPeriod>] {
     return scheduleEntries
 }
 
-public func indexPathOfScheduleEntries(at date: Date) -> IndexPath {
+public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> IndexPath {
     let dayOfWeek = diningCalendar.component(.weekday, from: date)
     let entries = equivalencyScheduleEntries()
     var indexPath: IndexPath?
