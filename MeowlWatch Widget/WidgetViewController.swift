@@ -138,11 +138,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         case .catCash:
             label.text = query.totalCatCash
         case .equivalencyExchangeRate:
-            if let exchangeRate = QueryResult.equivalencyExchangeRateString(at: Date()){
-                label.text = exchangeRate
-            } else {
-                label.text = "--"
-            }
+            label.text = MeowlWatchData.equivalencyExchangeRateString(at: Date())
         }
     }
 

@@ -132,15 +132,11 @@ class MeowlWatchTableViewController: UITableViewController {
             }
             cell = meowlWatchCell
         case 2:
-            if let exchangeRate = QueryResult.equivalencyExchangeRateString(at: Date()) {
-                let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell", for: indexPath) as! MeowlWatchTableViewCell
-                meowlWatchCell.numberLabel.text = exchangeRate
-                meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
-                cell = meowlWatchCell
-            } else {
-                cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
-                cell!.textLabel!.text = "Equivalencies Unavailable"
-            }
+        let exchangeRate = MeowlWatchData.equivalencyExchangeRateString(at: Date())
+            let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell", for: indexPath) as! MeowlWatchTableViewCell
+            meowlWatchCell.numberLabel.text = exchangeRate
+            meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
+            cell = meowlWatchCell
             cell!.accessoryType = .disclosureIndicator
             cell!.selectionStyle = .default
         case 3:
