@@ -278,7 +278,7 @@ extension ScheduleEntry where State == Bool {
 }
 
 private func dictionaryFromPlist(_ fileName: String) -> [String : Any]? {
-    guard let path = Bundle.main.path(forResource: fileName, ofType: "plist", inDirectory: "Frameworks/MeowlWatchData.framework") else { return nil }
+    guard let path = Bundle.main.path(forResource: fileName, ofType: "plist"/*, inDirectory: "Frameworks/MeowlWatchData.framework"*/) else { return nil }
     return NSDictionary(contentsOfFile: path) as? [String : Any]
 }
 
@@ -544,7 +544,7 @@ public func equivalencyExchangeRateString(for period: EquivalencyPeriod) -> Stri
 }
 
 public func equivalencyScheduleEntries() -> [ScheduleEntry<EquivalencyPeriod>] {
-    let path = Bundle.main.path(forResource: "EquivalencySchedules", ofType: "plist", inDirectory: "Frameworks/MeowlWatchData.framework")!
+    let path = Bundle.main.path(forResource: "EquivalencySchedules", ofType: "plist"/*, inDirectory: "Frameworks/MeowlWatchData.framework"*/)!
     let diningHallDictionaryEntries = NSArray(contentsOfFile: path) as! [[String : Any]]
     var scheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = []
     for dictionaryEntry in diningHallDictionaryEntries {
