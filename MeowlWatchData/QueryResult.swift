@@ -62,11 +62,10 @@ public class QueryResult: NSObject, NSCoding {
     init?(html: String) {
         self.dateRetrieved = Date()
 
-        let contentString: String
         let matches: [String]
 
         do {
-            contentString = try html.firstMatch(regexPattern: "<!--startindex-->.*<!--stopindex-->").first!
+            guard let contentString = try html.firstMatch(regexPattern: "<!--startindex-->.*<!--stopindex-->").first else { return nil }
             matches = try contentString.firstMatch(regexPattern: "<td.*Name:.*</td>.*<td>([A-Za-z ]*)</td>.*<td.*Current Plan:.*</td>.*<td>([A-Za-z\\d ]*)</td>.*<td.*Board Meals:.*</td>.*<td>(\\d*)</td>.*<td.*Equivalency Meals:.*</td>.*<td>(\\d*)</td>.*<td.*Points:.*</td>.*<td>(\\d*.\\d{2})</td>.*<td.*Cat Cash:.*</td>.*<td>(\\d*.\\d{2})</td>.*<td.*Cat Cash Bonus:.*</td>.*<td>(\\d*.\\d{2})</td>.*Last Updated ([A-Za-z\\d,: ]*)")
         } catch { return nil }
 
@@ -278,7 +277,7 @@ extension QueryResult {
         case .authenticationError:
             return "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
         case .parseError:
-            return "An unknown error has occurred. Please contact the developer of this app."
+            return "Northwestern has recently updated its servers, so we can't check your balance just yet. The developer of MeowlWatch is working hard to fix this issue. Thank you for your patience."
         }
     }
 

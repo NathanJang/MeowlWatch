@@ -40,7 +40,7 @@ class MeowlWatchTableViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Retrieved: \(self.queryResult?.dateRetrievedString ?? "Never")")
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Updated: \(self.queryResult?.dateUpdatedString ?? "Never")")
     }
 
     override func didReceiveMemoryWarning() {
