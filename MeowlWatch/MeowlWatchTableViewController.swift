@@ -37,6 +37,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         tableView.register(UINib(nibName: "DiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DiningLocationCell")
 
         hiddenSections = [3, 4, 5]
+
     }
 
     override func viewDidLayoutSubviews() {

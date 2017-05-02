@@ -24,20 +24,20 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
     }
 
     func configureButtonView() {
-        let highlightedBackgroundColor = UIColor(red: 0xD0/0xFF, green: 0xD0/0xFF, blue: 0xD0/0xFF, alpha: 1)
         buttonView.setBackgroundColor(highlightedBackgroundColor, for: .highlighted)
         buttonView.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
 
-    func didTapButton() {
+    func didTapButton(sender: UIButton) {
+//        DispatchQueue.main.async {
+//            sender.isHighlighted = true
+//        }
         sectionHidden = !sectionHidden
         updateDisclosureIndicatorOrientation(animated: true)
         if sectionHidden {
             delegate?.sectionHeaderView(self, sectionClosed: section)
         } else {
-            if let delegate = delegate {
-                delegate.sectionHeaderView(self, sectionOpened: section)
-            }
+            delegate?.sectionHeaderView(self, sectionOpened: section)
         }
     }
 
@@ -55,16 +55,20 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
             return
         }
         let angleInRadians: CGFloat = sectionHidden ? -90 * .pi / 180 : 90 * .pi / 180
-        UIView.animate(withDuration: animated ? 0.25 : 0) {
+        self.buttonView.backgroundColor = self.highlightedBackgroundColor
+        UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
             self.disclosureIndicatorView.transform = self.disclosureIndicatorView.transform.rotated(by: angleInRadians)
             self.bottomBorderView.alpha = self.sectionHidden ? 1 : 0
-        }
+            self.buttonView.backgroundColor = .clear
+        })
         disclosureIndicatorIsRotated = !sectionHidden
     }
 
     var sectionHidden = false
 
     var section: Int = -1
+
+    fileprivate let highlightedBackgroundColor: UIColor = UIColor(red: 0xD0/0xFF, green: 0xD0/0xFF, blue: 0xD0/0xFF, alpha: 1)
 
 }
 
