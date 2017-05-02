@@ -286,7 +286,7 @@ class MeowlWatchTableViewController: UITableViewController {
 
     /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
     func showSignInAlert() {
-        let alertController = UIAlertController(title: "Sign In to Northwestern", message: "Your NetID and password will only be sent securely to \"go.dosa.northwestern.edu\".", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Sign In to Northwestern", message: "Your NetID and password will only be sent securely to \"websso.it.northwestern.edu\".", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "NetID"
             textField.text = MeowlWatchData.netID
