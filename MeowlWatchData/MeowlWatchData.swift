@@ -27,14 +27,21 @@ public func loadFromDefaults() {
         password = keychain.string(forKey: "password")
     } else {
         // This is the first launch
-        let _ = keychain.removeAllKeys()
+        keychain.removeObject(forKey: "netID")
+        keychain.removeObject(forKey: "password")
     }
 
     if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int], intArray.count == widgetArrangement.count {
         widgetArrangement = intArray.flatMap { return QueryResult.WidgetDisplayItem(rawValue: $0)! }
     }
 
-    widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+    if let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased") {
+        widgetIsPurchased = storedWidgetIsPurchased
+    } else {
+        widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+        userDefaults.removeObject(forKey: "widgetPurchased")
+    }
+
 }
 
 /// Writes data from the MeowlWatchData to user defaults.
@@ -47,7 +54,10 @@ public func persistToUserDefaults() {
     let intArray = widgetArrangement.flatMap { return $0.rawValue }
     userDefaults.set(intArray, forKey: "widgetArrangement")
 
-    userDefaults.set(widgetIsPurchased, forKey: "widgetPurchased")
+    let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased")
+    if storedWidgetIsPurchased == nil || widgetIsPurchased != storedWidgetIsPurchased! {
+        keychain.set(widgetIsPurchased, forKey: "widgetPurchased")
+    }
 
     if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
 }

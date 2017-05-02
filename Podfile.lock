@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.4.0)
-  - Google-Mobile-Ads-SDK (7.19.0)
+  - Google-Mobile-Ads-SDK (7.20.0)
   - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
@@ -10,7 +10,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  Google-Mobile-Ads-SDK: d1bcdbd8347a105a687345b8511701172a5074e9
+  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
 PODFILE CHECKSUM: 849a72812b3df15ccd38da11f69f6059ca07fcdd
