@@ -80,8 +80,8 @@ public class QueryResult: NSObject, NSCoding {
     /// - Parameter lastQuery: The result of the previous query.
     public init(lastQuery: QueryResult?, error: Error?) {
         self.dateRetrieved = Date()
-        self.name = lastQuery?.name ?? "--"
-        self.currentPlanName = lastQuery?.currentPlanName ?? "--"
+        self.name = lastQuery?.name ?? "Your Name"
+        self.currentPlanName = lastQuery?.currentPlanName ?? "Your Meal Plan"
         self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0
         self.numberOfEquivalencyMeals = lastQuery?.numberOfEquivalencyMeals ?? 0
         self.pointsInCents = lastQuery?.pointsInCents ?? 0
