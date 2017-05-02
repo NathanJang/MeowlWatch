@@ -190,7 +190,7 @@ class MeowlWatchTableViewController: UITableViewController {
         switch section {
         case 5:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "The Northwestern server usually updates your balance every 30 minutes.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+                return queryResult?.errorString ?? "The Northwestern server usually updates your balance every 30 minutes. Schedules are based on normal school days Fall through Spring Quarter, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }

@@ -199,7 +199,7 @@ extension QueryResult {
     var equivalencyMealsDescription: String { return equivalencyMealsIsPlural ? QueryResult.equivalencyMealsPluralDescription : QueryResult.equivalencyMealSingularDescription }
 
     /// The points as a string.
-    public var points: String { return pointsInCents.centsToString() }
+    public var points: String { return "$\(pointsInCents.centsToString())" }
 
     /// The description for points.
     public var pointsDescription: String { return "Points" }
@@ -208,7 +208,7 @@ extension QueryResult {
     public static var pointsDescription: String { return "Points" }
 
     /// The total Cat Cash as a string.
-    public var catCash: String { return catCashInCents.centsToString() }
+    public var catCash: String { return "$\(catCashInCents.centsToString())" }
 
     /// The description for Cat Cash.
     public var catCashDescription: String { return "Cat Cash" }

@@ -104,6 +104,13 @@ class DiningLocationSchedulesTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == numberOfSections(in: tableView) - 1 {
+            return "Schedules are based on normal school days Fall through Spring Quarter, and may differ."
+        }
+        return nil
+    }
+
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
