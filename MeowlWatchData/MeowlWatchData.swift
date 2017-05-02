@@ -86,20 +86,8 @@ public func updateCredentials(netID aNetID: String?, password aPassword: String?
     return success
 }
 
-/// The URL object to query at.
-/// Since this server only supports TLSv1.0, an appropriate exception should be made in `Info.plist`.
-private let url: URL = URL(string: "https://go.dosa.northwestern.edu/uhfs/foodservice/balancecheck")!
-
 private let sessionManager: Alamofire.SessionManager = { () -> Alamofire.SessionManager in
-//    var headers = Alamofire.SessionManager.defaultHTTPHeaders
-//    headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30"
-//    headers["Referer"] = "https://websso.it.northwestern.edu/amserver/cdcservlet?goto=https%3A%2F%2Fform.housing.northwestern.edu%3A443%2Ffoodservice%2Fpublic%2Fbalancecheckplain.aspx&RequestID=7502&MajorVersion=1&MinorVersion=0&ProviderID=https%3A%2F%2Fform.housing.northwestern.edu%3A443%2Famagent&IssueInstant=2017-05-01T20%3A39%3A00Z"
-//    headers["Host"] = "websso.it.northwestern.edu"
-//    headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-//    headers["Connection"] = "keep-alive"
-//    headers["Upgrade-Insecure-Requests"] = "1"
     let configuration = URLSessionConfiguration.default
-//    configuration.httpAdditionalHeaders = headers
     return Alamofire.SessionManager(configuration: configuration)
 }()
 
@@ -107,47 +95,21 @@ private let sessionManager: Alamofire.SessionManager = { () -> Alamofire.Session
 /// - Parameter onCompletion: The completion handler.
 public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
     print("Querying...")
-//    guard canQuery else {
-//        return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
-//    }
-//
-//    let credentialsString = "\(netID!):\(password!)"
-//    let credentialsData = credentialsString.data(using: .utf8)!
-//    let credentialsEncodedBase64 = credentialsData.base64EncodedString()
-//    let authorizationString = "Basic \(credentialsEncodedBase64)"
-//    var request = URLRequest(url: url)
-//    request.setValue(authorizationString, forHTTPHeaderField: "Authorization")
-//
-//    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//        print("Query finished.")
-//
-//        guard let response = response as? HTTPURLResponse, let data = data else {
-//            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
-//        }
-//
-//        if response.statusCode != 200 {
-//            let result: QueryResult
-//            if response.statusCode == 401 {
-//                result = QueryResult(lastQuery: lastQuery, error: .authenticationError)
-//            } else {
-//                result = QueryResult(lastQuery: lastQuery, error: .parseError)
-//            }
-//            return finishQuery(result: result, onCompletion: onCompletion)
-//        }
-//
-//        let html = String(data: data, encoding: .utf8)!
-//
-//        let result = QueryResult(html: html) ?? QueryResult(lastQuery: lastQuery, error: .parseError)
-//        return finishQuery(result: result, onCompletion: onCompletion)
-//    }
-//
-    //    task.resume()
 
     guard canQuery else {
         return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
     }
 
-    sessionManager.request("https://websso.it.northwestern.edu/amserver/cdcservlet?goto=https://form.housing.northwestern.edu:443/foodservice/public/balancecheckplain.aspx&RequestID=14358&MajorVersion=1&MinorVersion=0&ProviderID=https://form.housing.northwestern.edu:443/amagent&IssueInstant=2017-05-01T15%3A05%3A55Z").responseString { response in
+    var urlString = "https://websso.it.northwestern.edu/amserver/cdcservlet?goto=https://form.housing.northwestern.edu:443/foodservice/public/balancecheckplain.aspx&RequestID=14358&MajorVersion=1&MinorVersion=0&ProviderID=https://form.housing.northwestern.edu:443/amagent&IssueInstant="
+    urlString.append({ () -> String in
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = diningCalendar.timeZone
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH'%3A'mm'%3A'ss'Z'"
+        return dateFormatter.string(from: Date())
+    }())
+
+    sessionManager.request(urlString).responseString { response in
         guard response.error == nil && response.response != nil else {
             return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
         }
@@ -256,7 +218,7 @@ private let refreshThreshold: TimeInterval = 60 * 30
 /// Whether we should refresh.
 public var shouldRefresh: Bool {
     guard let lastQuery = lastQuery else { return true }
-    return Date().timeIntervalSince(lastQuery.dateUpdated ?? lastQuery.dateRetrieved) > refreshThreshold
+    return Date().timeIntervalSince(lastQuery.dateRetrieved) > refreshThreshold
 }
 
 /// The date formatter for displaying dates to the user.

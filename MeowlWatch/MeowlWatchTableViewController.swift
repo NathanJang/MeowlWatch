@@ -77,7 +77,7 @@ class MeowlWatchTableViewController: UITableViewController {
         case 1:
             return 3
         case 2:
-            if let queryResult = queryResult, queryResult.totalCatCashInCents == 0 { return 1 }
+            if let queryResult = queryResult, queryResult.catCashInCents == 0 { return 1 }
             else { return 2 }
         case 3:
             return cafesAndCStoreStates(at: Date()).count
@@ -145,7 +145,7 @@ class MeowlWatchTableViewController: UITableViewController {
                 meowlWatchCell.numberLabel.text = queryResult?.points ?? "0"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left"
             case 1:
-                meowlWatchCell.numberLabel.text = queryResult?.totalCatCash ?? "0"
+                meowlWatchCell.numberLabel.text = queryResult?.catCash ?? "0"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left"
             default:
                 break

@@ -66,9 +66,6 @@ public class QueryResult: NSObject, NSCoding {
         self.numberOfEquivalencyMeals = UInt(matches[4])!
         self.pointsInCents = UInt(toCentsWithString: matches[5])!
         self.catCashInCents = UInt(toCentsWithString: matches[6])!
-        self.catCashBonusInCents = 0
-
-        self.dateUpdated = nil
 
         self.error = nil
     }
@@ -89,8 +86,6 @@ public class QueryResult: NSObject, NSCoding {
         self.numberOfEquivalencyMeals = lastQuery?.numberOfEquivalencyMeals ?? 0
         self.pointsInCents = lastQuery?.pointsInCents ?? 0
         self.catCashInCents = lastQuery?.catCashInCents ?? 0
-        self.catCashBonusInCents = lastQuery?.catCashBonusInCents ?? 0
-        self.dateUpdated = lastQuery?.dateUpdated
         self.error = error
     }
 
@@ -118,15 +113,7 @@ public class QueryResult: NSObject, NSCoding {
 
     /// The cat cash left, stored in cents as an integer.
     /// Example: `"11.89" -> 1189`.
-    fileprivate let catCashInCents: UInt
-
-    /// The cat cash bonus left, stored in cents as an integer.
-    /// Example: `"11.89" -> 1189`.
-    fileprivate let catCashBonusInCents: UInt
-
-    /// The date parsed from the "Last Updated" field from the query, i.e., the date the data was updated serverside.
-    /// Not to be confused with `dateRetrieved`.
-    let dateUpdated: Date?
+    public let catCashInCents: UInt
 
     /// A type for the different errors involved.
     public enum Error: UInt {
@@ -155,10 +142,6 @@ public class QueryResult: NSObject, NSCoding {
         aCoder.encode(numberOfEquivalencyMeals, forKey: "numberOfEquivalencyMeals")
         aCoder.encode(pointsInCents, forKey: "pointsInCents")
         aCoder.encode(catCashInCents, forKey: "catCashInCents")
-        aCoder.encode(catCashBonusInCents, forKey: "catCashBonusInCents")
-        if let dateUpdated = dateUpdated {
-            aCoder.encode(dateUpdated, forKey: "dateUpdated")
-        }
         if let errorValue = error?.rawValue {
             aCoder.encode(errorValue, forKey: "error")
         }
@@ -172,8 +155,6 @@ public class QueryResult: NSObject, NSCoding {
         self.numberOfEquivalencyMeals = aDecoder.decodeObject(forKey: "numberOfEquivalencyMeals") as! UInt
         self.pointsInCents = aDecoder.decodeObject(forKey: "pointsInCents") as! UInt
         self.catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as! UInt
-        self.catCashBonusInCents = aDecoder.decodeObject(forKey: "catCashBonusInCents") as! UInt
-        self.dateUpdated = aDecoder.decodeObject(forKey: "dateUpdated") as? Date
         if let error = aDecoder.decodeObject(forKey: "error") as? UInt {
             self.error = QueryResult.Error(rawValue: error)
         } else {
@@ -226,11 +207,8 @@ extension QueryResult {
     /// The description for points, also available when the controller does not have a query result object.
     public static var pointsDescription: String { return "Points" }
 
-    /// The Cat Cash and Cat Cash bonus added together.
-    public var totalCatCashInCents: UInt { return catCashInCents + catCashBonusInCents }
-
     /// The total Cat Cash as a string.
-    public var totalCatCash: String { return totalCatCashInCents.centsToString() }
+    public var catCash: String { return catCashInCents.centsToString() }
 
     /// The description for Cat Cash.
     public var catCashDescription: String { return "Cat Cash" }
@@ -249,9 +227,6 @@ extension QueryResult {
 
     /// The date retrieved as a formatted string.
     public var dateRetrievedString: String { return MeowlWatchData.displayDateFormatter.string(from: dateRetrieved) }
-
-    /// The date updated as a formatted string.
-    public var dateUpdatedString: String? { return dateUpdated != nil ? MeowlWatchData.displayDateFormatter.string(from: dateUpdated!) : nil }
 
     /// The message to display if there is an error.
     public var errorString: String? {

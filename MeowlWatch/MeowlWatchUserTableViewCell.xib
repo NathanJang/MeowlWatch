@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FirstName LastName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83g-0Z-Zmg">
-                        <rect key="frame" x="16" y="13" width="288" height="26.5"/>
+                        <rect key="frame" x="24" y="13" width="272" height="26.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svq-PW-iLM">
-                        <rect key="frame" x="16" y="43.5" width="288" height="18"/>
+                        <rect key="frame" x="24" y="43.5" width="272" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                     <constraint firstItem="svq-PW-iLM" firstAttribute="width" secondItem="83g-0Z-Zmg" secondAttribute="width" id="NQa-x7-cta"/>
                     <constraint firstItem="83g-0Z-Zmg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="qcb-WT-p5i"/>
                     <constraint firstItem="83g-0Z-Zmg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="0.7" id="ufe-3j-6TV"/>
-                    <constraint firstItem="83g-0Z-Zmg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="uzg-x2-8b0"/>
+                    <constraint firstItem="83g-0Z-Zmg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="uzg-x2-8b0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

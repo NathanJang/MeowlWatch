@@ -115,7 +115,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
                 self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
                 DispatchQueue.main.async {
-                    self.updatedLabel.text = "Updated: \(query.dateUpdatedString ?? "Never")"
+                    self.updatedLabel.text = "Updated: \(query.dateRetrievedString)"
                 }
             }
 
@@ -136,7 +136,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         case .points:
             label.text = query.points
         case .catCash:
-            label.text = query.totalCatCash
+            label.text = query.catCash
         case .equivalencyExchangeRate:
             label.text = MeowlWatchData.equivalencyExchangeRateString(at: Date())
         }
