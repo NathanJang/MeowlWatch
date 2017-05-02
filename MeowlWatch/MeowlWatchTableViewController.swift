@@ -192,7 +192,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         if indexPath.section == 0 {
             return 75
         }
-        return UITableViewAutomaticDimension
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
