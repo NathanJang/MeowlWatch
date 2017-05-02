@@ -78,7 +78,17 @@ class MeowlWatchTableViewController: UITableViewController {
         return 6
     }
 
+    var hiddenSections: [Int] = [3, 4, 5]
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if hiddenSections.contains(section) {
+            return 0
+        }
+
+        return defaultNumberOfRows(in: section)
+    }
+
+    func defaultNumberOfRows(in section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -101,6 +111,8 @@ class MeowlWatchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 { return nil }
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! MeowlWatchSectionHeaderView
+        headerView.section = section
+        headerView.delegate = self
         switch section {
         case 1:
             headerView.titleLabel.text = "Meals".uppercased()
@@ -111,35 +123,22 @@ class MeowlWatchTableViewController: UITableViewController {
         case 4:
             headerView.titleLabel.text = "Dining Halls".uppercased()
         case 5:
-            headerView.titleLabel.text = "Norris Locations".uppercased()
+            headerView.titleLabel.text = "Norris".uppercased()
         default:
             break
         }
+        if hiddenSections.contains(section) {
+            headerView.sectionHidden = true
+        } else {
+            headerView.sectionHidden = false
+        }
+        headerView.updateDisclosureIndicatorOrientation(animated: false)
         return headerView
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 38
     }
-
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        switch section {
-//        case 0:
-//            return nil
-//        case 1:
-//            return "Meals"
-//        case 2:
-//            return "Points"
-//        case 3:
-//            return "Cafés and C-Stores"
-//        case 4:
-//            return "Dining Halls"
-//        case 5:
-//            return "Norris Locations"
-//        default:
-//            return nil
-//        }
-//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
@@ -349,6 +348,34 @@ class MeowlWatchTableViewController: UITableViewController {
     /// Called when the settings button is tapped.
     func didTapSettingsButton() {
         performSegue(withIdentifier: "ShowSettings", sender: self)
+    }
+
+}
+
+extension MeowlWatchTableViewController: SectionHeaderViewDelegate {
+
+    func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+        var indexPathsToInsert: [IndexPath] = []
+        let numberOfRowsToInsert = defaultNumberOfRows(in: section)
+        for i in 0..<numberOfRowsToInsert {
+            indexPathsToInsert.append(IndexPath(row: i, section: section))
+        }
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPathsToInsert, with: .middle)
+        hiddenSections.remove(at: hiddenSections.index(of: section)!)
+        tableView.endUpdates()
+    }
+
+    func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
+        var indexPathsToDelete: [IndexPath] = []
+        let numberOfRowsToDelete = defaultNumberOfRows(in: section)
+        for i in 0..<numberOfRowsToDelete {
+            indexPathsToDelete.append(IndexPath(row: i, section: section))
+        }
+        tableView.beginUpdates()
+        tableView.deleteRows(at: indexPathsToDelete, with: .middle)
+        hiddenSections.append(section)
+        tableView.endUpdates()
     }
 
 }

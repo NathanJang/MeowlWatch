@@ -18,20 +18,9 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
     }
     */
 
-//    override init(reuseIdentifier: String?) {
-//        super.init(reuseIdentifier: reuseIdentifier)
-//        configureButtonView()
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        configureButtonView()
-//    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
         configureButtonView()
-        updateDisclosureIndicatorOrientation(animated: false)
     }
 
     func configureButtonView() {
@@ -43,6 +32,13 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
     func didTapButton() {
         sectionHidden = !sectionHidden
         updateDisclosureIndicatorOrientation(animated: true)
+        if sectionHidden {
+            delegate?.sectionHeaderView(self, sectionClosed: section)
+        } else {
+            if let delegate = delegate {
+                delegate.sectionHeaderView(self, sectionOpened: section)
+            }
+        }
     }
 
     @IBOutlet weak var buttonView: UIButton!
@@ -51,21 +47,30 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
 
     var delegate: SectionHeaderViewDelegate?
 
+    private var disclosureIndicatorIsRotated = false
+
     func updateDisclosureIndicatorOrientation(animated: Bool) {
+        if disclosureIndicatorIsRotated && !sectionHidden || !disclosureIndicatorIsRotated && sectionHidden {
+            return
+        }
         let angleInRadians: CGFloat = sectionHidden ? -90 * .pi / 180 : 90 * .pi / 180
-        UIView.animate(withDuration: animated ? 0.5 : 0) {
+        UIView.animate(withDuration: animated ? 0.25 : 0) {
             self.disclosureIndicatorView.transform = self.disclosureIndicatorView.transform.rotated(by: angleInRadians)
         }
+        disclosureIndicatorIsRotated = !sectionHidden
     }
 
     var sectionHidden = false
 
+    var section: Int = -1
+
 }
 
-protocol SectionHeaderViewDelegate {
+protocol SectionHeaderViewDelegate: class {
 
     func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int)
     func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int)
+    var hiddenSections: [Int] { get set }
 
 }
 
