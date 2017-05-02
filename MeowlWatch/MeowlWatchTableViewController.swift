@@ -35,6 +35,7 @@ class MeowlWatchTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchUserCell")
         tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchCell")
         tableView.register(UINib(nibName: "DiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DiningLocationCell")
+        tableView.register(UINib(nibName: "MeowlWatchSectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "HeaderView")
     }
 
     override func viewDidLayoutSubviews() {
@@ -97,24 +98,48 @@ class MeowlWatchTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 { return nil }
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! MeowlWatchSectionHeaderView
         switch section {
-        case 0:
-            return nil
         case 1:
-            return "Meals"
+            headerView.titleLabel.text = "Meals".uppercased()
         case 2:
-            return "Points"
+            headerView.titleLabel.text = "Points".uppercased()
         case 3:
-            return "Cafés and C-Stores"
+            headerView.titleLabel.text = "Cafés and C-Stores".uppercased()
         case 4:
-            return "Dining Halls"
+            headerView.titleLabel.text = "Dining Halls".uppercased()
         case 5:
-            return "Norris Locations"
+            headerView.titleLabel.text = "Norris Locations".uppercased()
         default:
-            return nil
+            break
         }
+        return headerView
     }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
+    }
+
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        switch section {
+//        case 0:
+//            return nil
+//        case 1:
+//            return "Meals"
+//        case 2:
+//            return "Points"
+//        case 3:
+//            return "Cafés and C-Stores"
+//        case 4:
+//            return "Dining Halls"
+//        case 5:
+//            return "Norris Locations"
+//        default:
+//            return nil
+//        }
+//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
