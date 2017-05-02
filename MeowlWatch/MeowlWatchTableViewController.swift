@@ -99,7 +99,7 @@ class MeowlWatchTableViewController: UITableViewController {
         case 2:
             return "Points"
         case 3:
-            return "Cafes and C-Stores"
+            return "Cafés and C-Stores"
         case 4:
             return "Dining Halls"
         case 5:

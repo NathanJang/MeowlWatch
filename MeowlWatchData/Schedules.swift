@@ -34,17 +34,17 @@ public enum CafeOrCStore: String {
 
     case hinmanCStore = "Hinman C-Store"
 
-    case frans = "Fran's Cafe at Hinman"
+    case frans = "Fran's Café at Hinman"
 
-    case kresge = "Kresge Cafe"
+    case kresge = "Kresge Café"
 
     case einstein = "Einstein at Pancoe"
 
-    case bergson = "Cafe Bergson"
+    case bergson = "Café Bergson"
 
     case techExpress = "Tech Express"
 
-    case lisas = "Lisa's Cafe at Slivka"
+    case lisas = "Lisa's Café at Slivka"
 
 }
 
