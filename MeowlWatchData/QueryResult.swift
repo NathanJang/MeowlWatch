@@ -17,59 +17,48 @@ public class QueryResult: NSObject, NSCoding {
     /// Parses an HTML string from the server.
     /// The HTML string comes like:
     /**
-     <!--startindex-->
-     <!-- InstanceBeginEditable name="contentArea" -->
-
-     <h1>Balance Check</h1>
-
-     <table style="width: 400px;">
+     <table>
      <tr>
-     <td><b>Name:</b></td>
-     <td>Jonathan Chan</td>
+     <th>Name:</th>
+     <td>Yik Chun Jonathan Chan</td>
      </tr>
      <tr>
-     <td><b>Current Plan:</b></td>
-     <td>Cat Cash</td>
+     <th>Current Plan:</th>
+     <td>EV UG Weekly 14</td>
      </tr>
      <tr>
-     <td><b>Board Meals:</b></td>
-     <td>0</td>
+     <th>Board Meals:</th>
+     <td>9</td>
      </tr>
      <tr>
-     <td><b>Equivalency Meals:</b></td>
-     <td>0</td>
+     <th>Equivalency Meals:</th>
+     <td>3</td>
      </tr>
      <tr>
-     <td><b>Points:</b></td>
+     <th>Points:</th>
      <td>0.00</td>
      </tr>
      <tr>
-     <td><b>Cat Cash:</b></td>
-     <td>7.42</td>
-     </tr>
-     <tr>
-     <td><b>Cat Cash Bonus:</b></td>
-     <td>0.00</td>
+     <th>Cat Cash:</th>
+     <td>22.15</td>
      </tr>
      </table>
-     <br />
-     <span style="color: gray;">Last Updated Monday, March 20, 2017 12:00 AM</span>
-
-     </div>
-     <!--stopindex-->
      */
     /// - Parameter html: The HTML string.
     init?(html: String) {
         self.dateRetrieved = Date()
 
+        var html = html
+
         let matches: [String]
 
         do {
-            guard let contentString = try html.firstMatch(regexPattern: "<!--startindex-->.*<!--stopindex-->").first else { return nil }
-            matches = try contentString.firstMatch(regexPattern: "<td.*Name:.*</td>.*<td>([A-Za-z ]*)</td>.*<td.*Current Plan:.*</td>.*<td>([A-Za-z\\d ]*)</td>.*<td.*Board Meals:.*</td>.*<td>(\\d*)</td>.*<td.*Equivalency Meals:.*</td>.*<td>(\\d*)</td>.*<td.*Points:.*</td>.*<td>(\\d*.\\d{2})</td>.*<td.*Cat Cash:.*</td>.*<td>(\\d*.\\d{2})</td>.*<td.*Cat Cash Bonus:.*</td>.*<td>(\\d*.\\d{2})</td>.*Last Updated ([A-Za-z\\d,: ]*)")
+            html = html.replacingOccurrences(of: "\r", with: "")
+            guard let contentString = try html.firstMatch(regexPattern: "<table>.*</table>").first else { return nil }
+            matches = try contentString.firstMatch(regexPattern: "<th>Name:</th>.*<td>([A-Za-z ]*)</td>.*<th>Current Plan:</th>.*<td>([A-Za-z\\d ]*)</td>.*<th>Board Meals:</th>.*<td>(\\d*)</td>.*<th>Equivalency Meals:</th>.*<td>(\\d*)</td>.*<th>Points:</th>.*<td>(\\d*.\\d{2})</td>.*<th>Cat Cash:</th>.*<td>(\\d*.\\d{2})</td>")
         } catch { return nil }
 
-        guard matches.count == 9 else { return nil }
+        guard matches.count == 7 else { return nil }
 
         self.name = matches[1]
         self.currentPlanName = matches[2]
@@ -77,13 +66,9 @@ public class QueryResult: NSObject, NSCoding {
         self.numberOfEquivalencyMeals = UInt(matches[4])!
         self.pointsInCents = UInt(toCentsWithString: matches[5])!
         self.catCashInCents = UInt(toCentsWithString: matches[6])!
-        self.catCashBonusInCents = UInt(toCentsWithString: matches[7])!
+        self.catCashBonusInCents = 0
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(identifier: "America/Chicago")!
-        dateFormatter.dateFormat = "EEEE, MMMM d, yyyy hh:mm a"
-        self.dateUpdated = dateFormatter.date(from: matches[8])
+        self.dateUpdated = nil
 
         self.error = nil
     }
@@ -275,9 +260,9 @@ extension QueryResult {
         case .connectionError:
             return "Unable to connect to the server. Please make sure your device is connected to the internet."
         case .authenticationError:
-            return "Northwestern has recently updated its servers, so we can't check your balance just yet. The developer of MeowlWatch is working hard to fix this issue. Thank you for your patience." // "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
+            return "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
         case .parseError:
-            return "Northwestern has recently updated its servers, so we can't check your balance just yet. The developer of MeowlWatch is working hard to fix this issue. Thank you for your patience."
+            return "It looks like this version of MeowlWatch isn't compatible with the Northwestern servers, so we can't check your balance just yet. Please contact the developer through Settings > Send Feedback."
         }
     }
 
@@ -348,7 +333,7 @@ extension String {
     /// This function throws if given an invalid regex pattern.
     /// - Parameter regexPattern: The regex pattern.
     /// - Returns: An array of strings representing the first match, if found.
-    fileprivate func firstMatch(regexPattern: String) throws -> [String] {
+    internal func firstMatch(regexPattern: String) throws -> [String] {
         var strings: [String] = []
         let regex = try NSRegularExpression(pattern: regexPattern, options: [.dotMatchesLineSeparators, .caseInsensitive])
         let resultOptional = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))

@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftKeychainWrapper
-
+import Alamofire
 
 /// The constant group name for shared defaults and keychain.
 private let accessGroupName = "group.me.jonathanchan.MeowlWatch"
@@ -90,45 +90,148 @@ public func updateCredentials(netID aNetID: String?, password aPassword: String?
 /// Since this server only supports TLSv1.0, an appropriate exception should be made in `Info.plist`.
 private let url: URL = URL(string: "https://go.dosa.northwestern.edu/uhfs/foodservice/balancecheck")!
 
+private let sessionManager: Alamofire.SessionManager = { () -> Alamofire.SessionManager in
+//    var headers = Alamofire.SessionManager.defaultHTTPHeaders
+//    headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30"
+//    headers["Referer"] = "https://websso.it.northwestern.edu/amserver/cdcservlet?goto=https%3A%2F%2Fform.housing.northwestern.edu%3A443%2Ffoodservice%2Fpublic%2Fbalancecheckplain.aspx&RequestID=7502&MajorVersion=1&MinorVersion=0&ProviderID=https%3A%2F%2Fform.housing.northwestern.edu%3A443%2Famagent&IssueInstant=2017-05-01T20%3A39%3A00Z"
+//    headers["Host"] = "websso.it.northwestern.edu"
+//    headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+//    headers["Connection"] = "keep-alive"
+//    headers["Upgrade-Insecure-Requests"] = "1"
+    let configuration = URLSessionConfiguration.default
+//    configuration.httpAdditionalHeaders = headers
+    return Alamofire.SessionManager(configuration: configuration)
+}()
+
 /// Queries the server and calls the completion handler with a query result.
 /// - Parameter onCompletion: The completion handler.
 public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
     print("Querying...")
+//    guard canQuery else {
+//        return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
+//    }
+//
+//    let credentialsString = "\(netID!):\(password!)"
+//    let credentialsData = credentialsString.data(using: .utf8)!
+//    let credentialsEncodedBase64 = credentialsData.base64EncodedString()
+//    let authorizationString = "Basic \(credentialsEncodedBase64)"
+//    var request = URLRequest(url: url)
+//    request.setValue(authorizationString, forHTTPHeaderField: "Authorization")
+//
+//    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//        print("Query finished.")
+//
+//        guard let response = response as? HTTPURLResponse, let data = data else {
+//            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
+//        }
+//
+//        if response.statusCode != 200 {
+//            let result: QueryResult
+//            if response.statusCode == 401 {
+//                result = QueryResult(lastQuery: lastQuery, error: .authenticationError)
+//            } else {
+//                result = QueryResult(lastQuery: lastQuery, error: .parseError)
+//            }
+//            return finishQuery(result: result, onCompletion: onCompletion)
+//        }
+//
+//        let html = String(data: data, encoding: .utf8)!
+//
+//        let result = QueryResult(html: html) ?? QueryResult(lastQuery: lastQuery, error: .parseError)
+//        return finishQuery(result: result, onCompletion: onCompletion)
+//    }
+//
+    //    task.resume()
+
     guard canQuery else {
         return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
     }
 
-    let credentialsString = "\(netID!):\(password!)"
-    let credentialsData = credentialsString.data(using: .utf8)!
-    let credentialsEncodedBase64 = credentialsData.base64EncodedString()
-    let authorizationString = "Basic \(credentialsEncodedBase64)"
-    var request = URLRequest(url: url)
-    request.setValue(authorizationString, forHTTPHeaderField: "Authorization")
-
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        print("Query finished.")
-
-        guard let response = response as? HTTPURLResponse, let data = data else {
+    sessionManager.request("https://websso.it.northwestern.edu/amserver/cdcservlet?goto=https://form.housing.northwestern.edu:443/foodservice/public/balancecheckplain.aspx&RequestID=14358&MajorVersion=1&MinorVersion=0&ProviderID=https://form.housing.northwestern.edu:443/amagent&IssueInstant=2017-05-01T15%3A05%3A55Z").responseString { response in
+        guard response.error == nil && response.response != nil else {
             return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
         }
 
-        if response.statusCode != 200 {
-            let result: QueryResult
-            if response.statusCode == 401 {
-                result = QueryResult(lastQuery: lastQuery, error: .authenticationError)
-            } else {
-                result = QueryResult(lastQuery: lastQuery, error: .parseError)
+        let html = response.value!
+        var gotoParamValue: String
+        let gotoOnFailParamValue: String
+        var sunQueryParamsStringParamValue: String
+        let encodedParamValue: String
+        let gxCharsetParamValue: String
+        do {
+            let gotoParamValueMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"goto\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
+            guard gotoParamValueMatch.count > 1 else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
             }
-            return finishQuery(result: result, onCompletion: onCompletion)
+            gotoParamValue = gotoParamValueMatch[1]
+            gotoParamValue = gotoParamValue.replacingOccurrences(of: "&#x2f;", with: "/")
+            gotoParamValue = gotoParamValue.replacingOccurrences(of: "&#x3d;", with: "=")
+
+            let gotoOnFailParamValueMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"gotoOnFail\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
+            guard gotoOnFailParamValueMatch.count > 1 else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            }
+            gotoOnFailParamValue = gotoOnFailParamValueMatch[1]
+
+            let sunQueryParamStringParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"SunQueryParamsString\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
+            guard sunQueryParamStringParamMatch.count > 1 else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            }
+            sunQueryParamsStringParamValue = sunQueryParamStringParamMatch[1]
+            // &#x2f; : /
+            // &#x3d; : =
+            sunQueryParamsStringParamValue = sunQueryParamsStringParamValue.replacingOccurrences(of: "&#x2f;", with: "/")
+            sunQueryParamsStringParamValue = sunQueryParamsStringParamValue.replacingOccurrences(of: "&#x3d;", with: "=")
+
+            let encodedParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"encoded\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
+            guard encodedParamMatch.count > 1 else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            }
+            encodedParamValue = encodedParamMatch[1]
+
+            let gxCharsetParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"gx_charset\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
+            guard gxCharsetParamMatch.count > 1 else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            }
+            gxCharsetParamValue = gxCharsetParamMatch[1]
+        } catch {
+            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
         }
+        let parameters = [
+            "goto" : gotoParamValue,
+            "gotoOnFail" : gotoOnFailParamValue,
+            "SunQueryParamsString" : sunQueryParamsStringParamValue,
+            "encoded" : encodedParamValue,
+            "gx_charset" : gxCharsetParamValue,
+            "IDButton" : "Log+In",
+            "IDToken1" : netID!,
+            "IDToken2" : password!
+        ]
+        let request = sessionManager.request("https://websso.it.northwestern.edu/amserver/UI/Login", method: .post, parameters: parameters, encoding: URLEncoding(destination: .httpBody))
+        request.responseString { response in
+            guard response.error == nil && response.response != nil else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
+            }
 
-        let html = String(data: data, encoding: .utf8)!
-
-        let result = QueryResult(html: html) ?? QueryResult(lastQuery: lastQuery, error: .parseError)
-        return finishQuery(result: result, onCompletion: onCompletion)
+            let laresParamValue: String
+            do {
+                let value = try response.value!.firstMatch(regexPattern: "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\"").first
+                guard value != nil else {
+                    return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                }
+                laresParamValue = value!
+            } catch {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            }
+            let request = sessionManager.request("https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx", method: .post, parameters: ["LARES" : laresParamValue], encoding: URLEncoding(destination: .httpBody))
+            request.responseString { response in
+                guard let queryResult = QueryResult(html: response.value!) else {
+                    return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                }
+                return finishQuery(result: queryResult, onCompletion: onCompletion)
+            }
+        }
     }
-
-    task.resume()
 }
 
 /// What to do when query is finished.
@@ -137,6 +240,10 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
 private func finishQuery(result: QueryResult, onCompletion: ((_ result: QueryResult) -> Void)) {
     lastQuery = result
     persistToUserDefaults()
+    let storage = sessionManager.session.configuration.httpCookieStorage!
+    for cookie in storage.cookies! {
+        storage.deleteCookie(cookie)
+    }
     return onCompletion(result)
 }
 

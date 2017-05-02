@@ -6,9 +6,7 @@ target 'MeowlWatch' do
   use_frameworks!
 
   # Pods for MeowlWatch
-  pod 'Google-Mobile-Ads-SDK'
-
-end
+  pod 'Google-Mobile-Ads-SDK'end
 
 target 'MeowlWatch Full' do
   use_frameworks!
@@ -18,4 +16,5 @@ target 'MeowlWatchData' do
   use_frameworks!
 
   pod 'SwiftKeychainWrapper'
+  pod 'Alamofire'
 end
