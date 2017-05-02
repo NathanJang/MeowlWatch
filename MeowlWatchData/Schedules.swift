@@ -277,9 +277,16 @@ extension ScheduleEntry where State == Bool {
 
 }
 
+private var plistDictionaries: [String : [String : Any]] = [:]
+
 private func dictionaryFromPlist(_ fileName: String) -> [String : Any]? {
+    if let dictionary = plistDictionaries[fileName] {
+        return dictionary
+    }
     guard let path = Bundle.main.path(forResource: fileName, ofType: "plist"/*, inDirectory: "Frameworks/MeowlWatchData.framework"*/) else { return nil }
-    return NSDictionary(contentsOfFile: path) as? [String : Any]
+    let dictionary = NSDictionary(contentsOfFile: path) as? [String : Any]
+    plistDictionaries[fileName] = dictionary
+    return dictionary
 }
 
 public func diningHallScheduleEntries(for diningHall: DiningHall) -> [ScheduleEntry<DiningHallSession>] {
@@ -291,21 +298,12 @@ public func diningHallScheduleEntries(for diningHall: DiningHall) -> [ScheduleEn
     return scheduleEntries
 }
 
-//public func diningHallsOpen(at date: Date) -> [(diningHall: DiningHall, state: DiningHallSession)] {
-//    return diningHalls.flatMap { diningHall -> (diningHall: DiningHall, state: DiningHallSession) in
-//        return (diningHall: diningHall, state: diningSession(for: diningHall, at: date))
-//    }
-//    .filter { pair -> Bool in
-//        return pair.state != .closed
-//    }
-//}
-
 public func diningSessions(at date: Date) -> [(diningHall: DiningHall, state: DiningHallSession)] {
     return diningHalls.flatMap { diningHall -> (diningHall: DiningHall, state: DiningHallSession) in
         return (diningHall: diningHall, state: diningSession(for: diningHall, at: date))
     }
     .sorted { (pair1, pair2) -> Bool in
-        return pair1.state != .closed && pair2.state == .closed
+        return pair1.diningHall.rawValue < pair2.diningHall.rawValue || pair1.state != .closed && pair2.state == .closed
     }
 }
 
@@ -381,18 +379,21 @@ public func isOpen(_ cafeOrCStore: CafeOrCStore, at date: Date) -> Bool {
     return defaultValue
 }
 
-//public func cafesOrCStoresOpen(at date: Date) -> [CafeOrCStore] {
-//    return cafesAndCStores.filter { cafeOrCStore -> Bool in
-//        return isOpen(cafeOrCStore, at: date)
-//    }
-//}
-
 public func cafesAndCStoreStates(at date: Date) -> [(cafeOrCStore: CafeOrCStore, state: Bool)] {
     return cafesAndCStores.flatMap { cafeOrCStore -> (cafeOrCStore: CafeOrCStore, state: Bool) in
         return (cafeOrCStore: cafeOrCStore, state: isOpen(cafeOrCStore, at: date))
         }
         .sorted { (pair1, pair2) -> Bool in
-            return pair1.state && !pair2.state
+            if pair1.state && !pair2.state {
+                return true
+            } else if !pair1.state && pair2.state {
+                return false
+            }
+            if pair2.cafeOrCStore.rawValue > pair1.cafeOrCStore.rawValue {
+                return true
+            } else {
+                return false
+            }
     }
 }
 
@@ -457,7 +458,16 @@ public func norrisLocationStates(at date: Date) -> [(norrisLocation: NorrisLocat
         return (norrisLocation: norrisLocation, state: isOpen(norrisLocation, at: date))
     }
     .sorted { (pair1, pair2) -> Bool in
-        return pair1.state && !pair2.state
+        if pair1.state && !pair2.state {
+            return true
+        } else if !pair1.state && pair2.state {
+            return false
+        }
+        if pair2.norrisLocation.rawValue > pair1.norrisLocation.rawValue {
+            return true
+        } else {
+            return false
+        }
     }
 }
 

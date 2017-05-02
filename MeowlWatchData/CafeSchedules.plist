@@ -6,6 +6,34 @@
 	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
+			<string>Monday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Thursday</string>
+			<key>Schedule</key>
+			<dict>
+				<key>0730</key>
+				<false/>
+				<key>2400</key>
+				<true/>
+			</dict>
+		</dict>
+		<dict>
+			<key>StartingDayOfWeek</key>
+			<string>Friday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Saturday</string>
+			<key>Schedule</key>
+			<dict>
+				<key>0730</key>
+				<false/>
+				<key>1900</key>
+				<true/>
+				<key>2400</key>
+				<false/>
+			</dict>
+		</dict>
+		<dict>
+			<key>StartingDayOfWeek</key>
 			<string>Sunday</string>
 			<key>EndingDayOfWeek</key>
 			<string>Sunday</string>
@@ -17,6 +45,9 @@
 				<true/>
 			</dict>
 		</dict>
+	</array>
+	<key>Hinman C-Store</key>
+	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
@@ -24,6 +55,8 @@
 			<string>Thursday</string>
 			<key>Schedule</key>
 			<dict>
+				<key>0300</key>
+				<true/>
 				<key>0730</key>
 				<false/>
 				<key>2400</key>
@@ -34,9 +67,11 @@
 			<key>StartingDayOfWeek</key>
 			<string>Friday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
+			<string>Friday</string>
 			<key>Schedule</key>
 			<dict>
+				<key>0300</key>
+				<true/>
 				<key>0730</key>
 				<false/>
 				<key>1900</key>
@@ -45,9 +80,17 @@
 				<false/>
 			</dict>
 		</dict>
-	</array>
-	<key>Hinman C-Store</key>
-	<array>
+		<dict>
+			<key>StartingDayOfWeek</key>
+			<string>Saturday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Saturday</string>
+			<key>Schedule</key>
+			<dict>
+				<key>2400</key>
+				<false/>
+			</dict>
+		</dict>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Sunday</string>
@@ -59,49 +102,6 @@
 				<false/>
 				<key>2400</key>
 				<true/>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Monday</string>
-			<key>EndingDayOfWeek</key>
-			<string>Thursday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>0300</key>
-				<true/>
-				<key>0730</key>
-				<false/>
-				<key>2400</key>
-				<true/>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Friday</string>
-			<key>EndingDayOfWeek</key>
-			<string>Friday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>0300</key>
-				<true/>
-				<key>0730</key>
-				<false/>
-				<key>1900</key>
-				<true/>
-				<key>2400</key>
-				<false/>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Saturday</string>
-			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>2400</key>
-				<false/>
 			</dict>
 		</dict>
 	</array>
@@ -109,19 +109,6 @@
 	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
-			<key>EndingDayOfWeek</key>
-			<string>Sunday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>2000</key>
-				<false/>
-				<key>2400</key>
-				<true/>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
 			<key>EndingDayOfWeek</key>
 			<string>Thursday</string>
@@ -159,9 +146,6 @@
 				<false/>
 			</dict>
 		</dict>
-	</array>
-	<key>Kresge Cafe</key>
-	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Sunday</string>
@@ -169,10 +153,15 @@
 			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
-				<key>2400</key>
+				<key>2000</key>
 				<false/>
+				<key>2400</key>
+				<true/>
 			</dict>
 		</dict>
+	</array>
+	<key>Kresge Cafe</key>
+	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
@@ -199,9 +188,6 @@
 				<false/>
 			</dict>
 		</dict>
-	</array>
-	<key>Einstein at Pancoe</key>
-	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Sunday</string>
@@ -213,6 +199,9 @@
 				<false/>
 			</dict>
 		</dict>
+	</array>
+	<key>Einstein at Pancoe</key>
+	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
@@ -254,9 +243,6 @@
 				<false/>
 			</dict>
 		</dict>
-	</array>
-	<key>Cafe Bergson</key>
-	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Sunday</string>
@@ -264,12 +250,13 @@
 			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
-				<key>1700</key>
-				<false/>
 				<key>2400</key>
-				<true/>
+				<false/>
 			</dict>
 		</dict>
+	</array>
+	<key>Cafe Bergson</key>
+	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
@@ -313,9 +300,6 @@
 				<false/>
 			</dict>
 		</dict>
-	</array>
-	<key>Tech Express</key>
-	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Sunday</string>
@@ -323,10 +307,15 @@
 			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
-				<key>2400</key>
+				<key>1700</key>
 				<false/>
+				<key>2400</key>
+				<true/>
 			</dict>
 		</dict>
+	</array>
+	<key>Tech Express</key>
+	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
@@ -362,6 +351,17 @@
 			<string>Saturday</string>
 			<key>EndingDayOfWeek</key>
 			<string>Saturday</string>
+			<key>Schedule</key>
+			<dict>
+				<key>2400</key>
+				<false/>
+			</dict>
+		</dict>
+		<dict>
+			<key>StartingDayOfWeek</key>
+			<string>Sunday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>

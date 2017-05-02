@@ -156,21 +156,21 @@ class MeowlWatchTableViewController: UITableViewController {
             let result = cafesAndCStoreStates(at: Date())[indexPath.row]
             diningLocationCell.locationNameLabel.text = result.cafeOrCStore.rawValue
             diningLocationCell.stateLabel.text = result.state ? "Open" : "Closed"
-            diningLocationCell.stateLabel.textColor = result.state ? view.tintColor : UIColor.red
+            diningLocationCell.stateLabel.textColor = result.state ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         case 4:
             let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
             let result = diningSessions(at: Date())[indexPath.row]
             diningLocationCell.locationNameLabel.text = result.diningHall.rawValue
             diningLocationCell.stateLabel.text = result.state.rawValue
-            diningLocationCell.stateLabel.textColor = result.state != .closed ? view.tintColor : UIColor.red
+            diningLocationCell.stateLabel.textColor = result.state != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         case 5:
             let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
             let result = norrisLocationStates(at: Date())[indexPath.row]
             diningLocationCell.locationNameLabel.text = result.norrisLocation.rawValue
             diningLocationCell.stateLabel.text = result.state ? "Open" : "Closed"
-            diningLocationCell.stateLabel.textColor = result.state ? view.tintColor : UIColor.red
+            diningLocationCell.stateLabel.textColor = result.state ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         default:
             break
