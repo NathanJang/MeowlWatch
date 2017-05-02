@@ -179,6 +179,9 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
             do {
                 let value = try response.value!.firstMatch(regexPattern: "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\"").first
                 guard value != nil else {
+                    if try !response.value!.firstMatch(regexPattern: "The NetID and/or password you entered was invalid.").isEmpty {
+                        return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
+                    }
                     return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
                 }
                 laresParamValue = value!
