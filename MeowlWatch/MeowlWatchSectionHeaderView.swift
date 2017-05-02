@@ -44,7 +44,8 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var buttonView: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var disclosureIndicatorView: UIImageView!
-
+    @IBOutlet weak var bottomBorderView: UIView!
+    
     var delegate: SectionHeaderViewDelegate?
 
     private var disclosureIndicatorIsRotated = false
@@ -56,6 +57,7 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
         let angleInRadians: CGFloat = sectionHidden ? -90 * .pi / 180 : 90 * .pi / 180
         UIView.animate(withDuration: animated ? 0.25 : 0) {
             self.disclosureIndicatorView.transform = self.disclosureIndicatorView.transform.rotated(by: angleInRadians)
+            self.bottomBorderView.alpha = self.sectionHidden ? 1 : 0
         }
         disclosureIndicatorIsRotated = !sectionHidden
     }
@@ -76,7 +78,7 @@ protocol SectionHeaderViewDelegate: class {
 
 extension UIButton {
 
-    func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
+    fileprivate func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
         UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
         UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))

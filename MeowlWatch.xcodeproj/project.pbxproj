@@ -25,6 +25,8 @@
 		AB3DEF8E1E96A8510035F000 /* MeowlWatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB3DEF8F1E96A8540035F000 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF881E96A84A0035F000 /* QueryResult.swift */; };
 		AB3DEF901E96A8570035F000 /* MeowlWatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF871E96A84A0035F000 /* MeowlWatchData.swift */; };
+		AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
+		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* WidgetViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -194,6 +196,7 @@
 		AB3DEF881E96A84A0035F000 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryResult.swift; path = MeowlWatchData/QueryResult.swift; sourceTree = SOURCE_ROOT; };
 		AB3DEF891E96A84A0035F000 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeowlWatchData/Info.plist; sourceTree = SOURCE_ROOT; };
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
+		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -326,11 +329,13 @@
 				AB7782B71E8107FB00925F72 /* AppDelegate.swift */,
 				AB3DEF841E969FED0035F000 /* NavigationController.swift */,
 				AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */,
+				AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */,
 				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
 				ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */,
 				ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */,
 				ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */,
 				ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */,
+				AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */,
 				ABC11B201EB71EF100491E7B /* DiningLocationTableViewCell.swift */,
 				ABC11B211EB71EF100491E7B /* DiningLocationTableViewCell.xib */,
 				AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */,
@@ -341,7 +346,6 @@
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
-				AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */,
 				AB7782BF1E81083D00925F72 /* Main.storyboard */,
 				AB7782C61E81087D00925F72 /* Assets.xcassets */,
 				AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */,
@@ -811,6 +815,7 @@
 				AB7782FE1E84460B00925F72 /* SettingsTableViewController.swift in Sources */,
 				AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */,
 				ABC11B221EB71EF100491E7B /* DiningLocationTableViewCell.swift in Sources */,
+				AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,
@@ -832,6 +837,7 @@
 				ABC11B2F1EB7345800491E7B /* ScheduleRowTableViewCell.swift in Sources */,
 				ABC11B321EB7909900491E7B /* MeowlWatchUserTableViewCell.swift in Sources */,
 				AB3DEF831E969E410035F000 /* BannerAdToolbar.swift in Sources */,
+				AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB8AF1E61EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,

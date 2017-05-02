@@ -9,7 +9,7 @@
 import UIKit
 import MeowlWatchData
 
-class DiningLocationSchedulesTableViewController: UITableViewController {
+class DiningLocationSchedulesTableViewController: ExpandableTableViewController {
 
     var sessionEntries: [ScheduleEntry<DiningHallSession>]?
     var isOpenEntries: [ScheduleEntry<Bool>]?
@@ -37,6 +37,13 @@ class DiningLocationSchedulesTableViewController: UITableViewController {
         } else {
             selectedIndexPath = indexPathOfNorrisLocationScheduleEntries(for: norrisLocation!, at: Date())
         }
+
+        let numberOfSections = self.numberOfSections(in: tableView)
+        for i in 0..<numberOfSections {
+            if i != selectedIndexPath!.section {
+                hiddenSections.append(i)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +68,7 @@ class DiningLocationSchedulesTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if diningHall != nil {
             return sessionEntries![section].schedule.count
@@ -70,7 +77,7 @@ class DiningLocationSchedulesTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
         if diningHall != nil {
             let entries = diningHallScheduleEntries(for: diningHall!)[section]
             return entries.formattedWeekdayRange
@@ -155,5 +162,12 @@ class DiningLocationSchedulesTableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
+
+    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+        super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
+        if section == selectedIndexPath!.section {
+            tableView.selectRow(at: selectedIndexPath!, animated: true, scrollPosition: .none)
+        }
+    }
     
 }

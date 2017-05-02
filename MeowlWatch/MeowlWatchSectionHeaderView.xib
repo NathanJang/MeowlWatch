@@ -29,13 +29,24 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DetailDisclosureIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="Qbx-2q-ZxP">
                     <rect key="frame" x="359" y="13" width="8" height="13"/>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFb-4Z-BvU">
+                    <rect key="frame" x="0.0" y="37" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.73725490196078436" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="3zc-H8-avL"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="sFb-4Z-BvU" secondAttribute="bottom" id="2VN-3K-L6j"/>
                 <constraint firstItem="ONy-an-RZO" firstAttribute="centerY" secondItem="EEw-pp-Kj1" secondAttribute="centerY" id="F26-dL-xJz"/>
+                <constraint firstItem="sFb-4Z-BvU" firstAttribute="bottom" secondItem="EEw-pp-Kj1" secondAttribute="bottom" id="Fsq-jk-xb4"/>
                 <constraint firstAttribute="bottom" secondItem="EEw-pp-Kj1" secondAttribute="bottom" id="ILM-Cj-Fob"/>
+                <constraint firstItem="sFb-4Z-BvU" firstAttribute="width" secondItem="EEw-pp-Kj1" secondAttribute="width" id="MOi-9q-43z"/>
                 <constraint firstItem="EEw-pp-Kj1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rvd-DJ-xUl"/>
                 <constraint firstItem="Qbx-2q-ZxP" firstAttribute="centerY" secondItem="ONy-an-RZO" secondAttribute="centerY" id="mjJ-vK-f3e"/>
                 <constraint firstAttribute="trailing" secondItem="EEw-pp-Kj1" secondAttribute="trailing" id="mrQ-WO-RKm"/>
+                <constraint firstItem="sFb-4Z-BvU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r7j-TT-Buv"/>
                 <constraint firstItem="EEw-pp-Kj1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tDC-ss-OJy"/>
                 <constraint firstItem="ONy-an-RZO" firstAttribute="leading" secondItem="EEw-pp-Kj1" secondAttribute="leadingMargin" id="wUv-BJ-lht"/>
                 <constraint firstItem="Qbx-2q-ZxP" firstAttribute="trailing" secondItem="EEw-pp-Kj1" secondAttribute="trailingMargin" id="yqt-0h-vM3"/>
@@ -43,6 +54,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bottomBorderView" destination="sFb-4Z-BvU" id="Bg0-B4-qWC"/>
                 <outlet property="buttonView" destination="EEw-pp-Kj1" id="aVL-Ue-7qc"/>
                 <outlet property="disclosureIndicatorView" destination="Qbx-2q-ZxP" id="EGa-3G-EnV"/>
                 <outlet property="titleLabel" destination="ONy-an-RZO" id="MQz-qF-04u"/>

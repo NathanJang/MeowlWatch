@@ -10,7 +10,7 @@ import UIKit
 import MeowlWatchData
 
 /// The main table view controller for MeowlWatch, displaying the user's meal plan.
-class MeowlWatchTableViewController: UITableViewController {
+class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// The query result that the table view will work with.
     var queryResult: QueryResult?
@@ -35,7 +35,8 @@ class MeowlWatchTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchUserCell")
         tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchCell")
         tableView.register(UINib(nibName: "DiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DiningLocationCell")
-        tableView.register(UINib(nibName: "MeowlWatchSectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "HeaderView")
+
+        hiddenSections = [3, 4, 5]
     }
 
     override func viewDidLayoutSubviews() {
@@ -78,17 +79,7 @@ class MeowlWatchTableViewController: UITableViewController {
         return 6
     }
 
-    var hiddenSections: [Int] = [3, 4, 5]
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if hiddenSections.contains(section) {
-            return 0
-        }
-
-        return defaultNumberOfRows(in: section)
-    }
-
-    func defaultNumberOfRows(in section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -108,36 +99,23 @@ class MeowlWatchTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 { return nil }
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! MeowlWatchSectionHeaderView
-        headerView.section = section
-        headerView.delegate = self
+    override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
         switch section {
+        case 0:
+            return nil
         case 1:
-            headerView.titleLabel.text = "Meals".uppercased()
+            return "Meals"
         case 2:
-            headerView.titleLabel.text = "Points".uppercased()
+            return "Points"
         case 3:
-            headerView.titleLabel.text = "Cafés and C-Stores".uppercased()
+            return "Cafés and C-Stores"
         case 4:
-            headerView.titleLabel.text = "Dining Halls".uppercased()
+            return "Dining Halls"
         case 5:
-            headerView.titleLabel.text = "Norris".uppercased()
+            return "Norris"
         default:
-            break
+            return nil
         }
-        if hiddenSections.contains(section) {
-            headerView.sectionHidden = true
-        } else {
-            headerView.sectionHidden = false
-        }
-        headerView.updateDisclosureIndicatorOrientation(animated: false)
-        return headerView
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 38
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -348,34 +326,6 @@ class MeowlWatchTableViewController: UITableViewController {
     /// Called when the settings button is tapped.
     func didTapSettingsButton() {
         performSegue(withIdentifier: "ShowSettings", sender: self)
-    }
-
-}
-
-extension MeowlWatchTableViewController: SectionHeaderViewDelegate {
-
-    func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
-        var indexPathsToInsert: [IndexPath] = []
-        let numberOfRowsToInsert = defaultNumberOfRows(in: section)
-        for i in 0..<numberOfRowsToInsert {
-            indexPathsToInsert.append(IndexPath(row: i, section: section))
-        }
-        tableView.beginUpdates()
-        tableView.insertRows(at: indexPathsToInsert, with: .middle)
-        hiddenSections.remove(at: hiddenSections.index(of: section)!)
-        tableView.endUpdates()
-    }
-
-    func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
-        var indexPathsToDelete: [IndexPath] = []
-        let numberOfRowsToDelete = defaultNumberOfRows(in: section)
-        for i in 0..<numberOfRowsToDelete {
-            indexPathsToDelete.append(IndexPath(row: i, section: section))
-        }
-        tableView.beginUpdates()
-        tableView.deleteRows(at: indexPathsToDelete, with: .middle)
-        hiddenSections.append(section)
-        tableView.endUpdates()
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 import MeowlWatchData
 
-class EquivalencyScheduleTableViewController: UITableViewController {
+class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
     let equivalencyScheduleEntries = MeowlWatchData.equivalencyScheduleEntries()
 
@@ -25,6 +25,13 @@ class EquivalencyScheduleTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "EquivalencyScheduleCell")
+
+        let numberOfSections = self.numberOfSections(in: tableView)
+        for i in 0..<numberOfSections {
+            if i != selectedIndexPath.section {
+                hiddenSections.append(i)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,12 +52,12 @@ class EquivalencyScheduleTableViewController: UITableViewController {
         return equivalencyScheduleEntries.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return equivalencyScheduleEntries[section].schedule.count
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
         let entries = MeowlWatchData.equivalencyScheduleEntries()[section]
         return entries.formattedWeekdayRange
     }
@@ -112,5 +119,12 @@ class EquivalencyScheduleTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+        super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
+        if section == selectedIndexPath.section {
+            tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
+        }
+    }
 
 }
