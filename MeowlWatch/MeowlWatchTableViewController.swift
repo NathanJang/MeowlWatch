@@ -48,6 +48,13 @@ class MeowlWatchTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -238,7 +245,6 @@ class MeowlWatchTableViewController: UITableViewController {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /// Updates the UI to show the spinner and then refresh.
