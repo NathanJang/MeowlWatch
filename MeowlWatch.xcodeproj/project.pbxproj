@@ -327,31 +327,13 @@
 			isa = PBXGroup;
 			children = (
 				AB7782B71E8107FB00925F72 /* AppDelegate.swift */,
-				AB3DEF841E969FED0035F000 /* NavigationController.swift */,
-				AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */,
-				AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */,
-				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
-				ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */,
-				ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */,
-				ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */,
-				ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */,
-				AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */,
-				ABC11B201EB71EF100491E7B /* DiningLocationTableViewCell.swift */,
-				ABC11B211EB71EF100491E7B /* DiningLocationTableViewCell.xib */,
-				AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */,
-				AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */,
-				ABC11B2C1EB7345800491E7B /* ScheduleRowTableViewCell.swift */,
-				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
-				ABC11B261EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift */,
-				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
-				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
-				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
+				AB4521F81EB9626000B6A1C1 /* View Controllers */,
+				AB4521F91EB9627A00B6A1C1 /* Views */,
+				AB4521FA1EB9629200B6A1C1 /* Supporting Files */,
 				AB7782BF1E81083D00925F72 /* Main.storyboard */,
 				AB7782C61E81087D00925F72 /* Assets.xcassets */,
 				AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */,
 				AB27C1F11E7CCCAC00A90072 /* Info.plist */,
-				AB7782C81E8203EF00925F72 /* AdMobKeys-Debug.plist */,
-				AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */,
 				AB7782F41E83D99600925F72 /* MeowlWatch.entitlements */,
 			);
 			name = MeowlWatch;
@@ -385,6 +367,48 @@
 			);
 			name = MeowlWatchData;
 			path = "MeowlWatch Data";
+			sourceTree = "<group>";
+		};
+		AB4521F81EB9626000B6A1C1 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
+				AB3DEF841E969FED0035F000 /* NavigationController.swift */,
+				AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */,
+				AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */,
+				ABC11B261EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift */,
+				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AB4521F91EB9627A00B6A1C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */,
+				ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */,
+				ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */,
+				ABC11B201EB71EF100491E7B /* DiningLocationTableViewCell.swift */,
+				AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */,
+				ABC11B2C1EB7345800491E7B /* ScheduleRowTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		AB4521FA1EB9629200B6A1C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB7782C81E8203EF00925F72 /* AdMobKeys-Debug.plist */,
+				AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */,
+				ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */,
+				ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */,
+				ABC11B211EB71EF100491E7B /* DiningLocationTableViewCell.xib */,
+				AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */,
+				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
+				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
+				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		AB7782D41E8242B000925F72 /* MeowlWatch Widget */ = {

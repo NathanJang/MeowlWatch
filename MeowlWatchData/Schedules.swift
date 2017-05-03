@@ -175,7 +175,7 @@ public struct ScheduleEntry<State> {
 
     private func formattedTime(twentyFourHourTime: Int) -> String {
         let beforeNoon = twentyFourHourTime < 1200
-        let hour = beforeNoon ? (twentyFourHourTime == 0 ? "12" : "\(twentyFourHourTime / 100)") : (twentyFourHourTime == 2400 ? "12" : "\(twentyFourHourTime / 100 - 12)")
+        let hour = beforeNoon ? (twentyFourHourTime == 0 ? "12" : "\(twentyFourHourTime / 100)") : (twentyFourHourTime == 1200 || twentyFourHourTime == 2400 ? "12" : "\(twentyFourHourTime / 100 - 12)")
         let minute = twentyFourHourTime % 100 < 10 ? "0\(twentyFourHourTime % 100)" : "\(twentyFourHourTime % 100)"
         let amOrPm = beforeNoon ? "AM" : "PM"
         return "\(hour):\(minute) \(amOrPm)"
