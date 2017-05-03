@@ -136,6 +136,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 0:
                 meowlWatchCell.numberLabel.text = queryResult?.equivalencyMeals ?? "0"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left"
+                meowlWatchCell.accessoryType = .none
+                meowlWatchCell.selectionStyle = .none
             case 1:
                 meowlWatchCell.numberLabel.text = equivalencyExchangeRateString(at: Date())
                 meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
@@ -144,6 +146,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 2:
                 meowlWatchCell.numberLabel.text = queryResult?.boardMeals ?? "0.00"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
+                meowlWatchCell.accessoryType = .none
+                meowlWatchCell.selectionStyle = .none
             default:
                 break
             }
@@ -154,9 +158,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 0:
                 meowlWatchCell.numberLabel.text = queryResult?.points ?? "0"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left"
+                meowlWatchCell.accessoryType = .none
+                meowlWatchCell.selectionStyle = .none
             case 1:
                 meowlWatchCell.numberLabel.text = queryResult?.catCash ?? "0"
                 meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left"
+                meowlWatchCell.accessoryType = .none
+                meowlWatchCell.selectionStyle = .none
             default:
                 break
             }
