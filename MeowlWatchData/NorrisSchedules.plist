@@ -12,11 +12,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1900</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -27,11 +27,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1500</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -42,7 +42,7 @@
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -53,11 +53,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1200</key>
-				<false/>
+				<string>Closed</string>
 				<key>1500</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -71,11 +71,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1900</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -86,11 +86,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1500</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -101,7 +101,7 @@
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -112,11 +112,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1200</key>
-				<false/>
+				<string>Closed</string>
 				<key>1500</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -130,11 +130,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1500</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -145,7 +145,7 @@
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -156,7 +156,7 @@
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -170,11 +170,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>2300</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -185,11 +185,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>2100</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -200,11 +200,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1900</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -218,11 +218,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
-				<false/>
+				<string>Closed</string>
 				<key>2300</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -233,11 +233,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
-				<false/>
+				<string>Closed</string>
 				<key>2345</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -248,11 +248,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1000</key>
-				<false/>
+				<string>Closed</string>
 				<key>2300</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -266,11 +266,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>2100</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -284,11 +284,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
-				<false/>
+				<string>Closed</string>
 				<key>2345</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -299,11 +299,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
-				<false/>
+				<string>Closed</string>
 				<key>2100</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -314,11 +314,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0900</key>
-				<false/>
+				<string>Closed</string>
 				<key>2100</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -329,11 +329,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1000</key>
-				<false/>
+				<string>Closed</string>
 				<key>2345</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -347,11 +347,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
-				<false/>
+				<string>Closed</string>
 				<key>2345</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -362,11 +362,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
-				<false/>
+				<string>Closed</string>
 				<key>2100</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -377,11 +377,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>0900</key>
-				<false/>
+				<string>Closed</string>
 				<key>2100</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -392,11 +392,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1000</key>
-				<false/>
+				<string>Closed</string>
 				<key>2345</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>
@@ -410,11 +410,11 @@
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
-				<false/>
+				<string>Closed</string>
 				<key>1500</key>
-				<true/>
+				<string>Open</string>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -425,7 +425,7 @@
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 		<dict>
@@ -436,7 +436,7 @@
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
-				<false/>
+				<string>Closed</string>
 			</dict>
 		</dict>
 	</array>

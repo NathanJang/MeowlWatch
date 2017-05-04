@@ -11,7 +11,7 @@ import MeowlWatchData
 
 class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
-    let equivalencyScheduleEntries = MeowlWatchData.equivalencyScheduleEntries()
+    let equivalencyScheduleEntries = MeowlWatchData.equivalencyScheduleEntries
 
     var selectedIndexPath = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
 
@@ -58,7 +58,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        let entries = MeowlWatchData.equivalencyScheduleEntries()[section]
+        let entries = MeowlWatchData.equivalencyScheduleEntries[section]
         return entries.formattedWeekdayRange
     }
 
@@ -68,7 +68,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
         // Configure the cell...
         let entries = equivalencyScheduleEntries[indexPath.section]
         cell.textLabel!.text = entries.formattedTimeRange(atIndex: indexPath.row)
-        cell.detailTextLabel!.text = MeowlWatchData.equivalencyExchangeRateString(for: entries.schedule[indexPath.row].state)
+        cell.detailTextLabel!.text = MeowlWatchData.equivalencyExchangeRateString(for: entries.schedule[indexPath.row].status)
 
         cell.isUserInteractionEnabled = indexPath == selectedIndexPath
 

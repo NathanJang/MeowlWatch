@@ -13,7 +13,7 @@ import MeowlWatchData
 class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// The query result that the table view will work with.
-    var queryResult: QueryResult?
+    var queryResult: QueryResult? { return MeowlWatchData.lastQuery }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +27,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(didTapAccountButton))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(didTapSettingsButton))
 
-        self.queryResult = MeowlWatchData.lastQuery
-
         self.refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl!.addTarget(self, action: #selector(didTriggerRefreshControl), for: .valueChanged)
 
-        tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchUserCell")
-        tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchCell")
-        tableView.register(UINib(nibName: "DiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DiningLocationCell")
+        tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchUserTableViewCell")
+        tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchTableViewCell")
+        tableView.register(UINib(nibName: "MeowlWatchDiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchDiningLocationTableViewCell")
 
         hiddenSections = [3, 4, 5]
 
@@ -43,7 +41,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.refreshControl!.attributedTitle = NSAttributedString(string: "Updated: \(self.queryResult?.dateRetrievedString ?? "Never")")
+        // Here because of strange bug involving table view top margin and such
+        refreshControl!.attributedTitle = NSAttributedString(string: "Updated: \(self.queryResult?.dateRetrievedString ?? "Never")")
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,24 +52,29 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Deselect the right cell with animation
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.refreshIfNeeded()
+        self.refreshIfNeeded(animated: animated)
+    }
+
+    func didTriggerRefreshControl() {
+        refresh(animated: true)
     }
 
     /// Begins frefreshing if needed.
-    func refreshIfNeeded() {
+    func refreshIfNeeded(animated: Bool) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
         if MeowlWatchData.shouldRefresh {
-            beginRefrshing()
+            beginRefrshing(animated: animated)
         }
     }
 
@@ -90,11 +94,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             if let queryResult = queryResult, queryResult.catCashInCents == 0 { return 1 }
             else { return 2 }
         case 3:
-            return cafesAndCStoreStates(at: Date()).count
+            return cafesAndCStoreStatuses(at: Date()).count
         case 4:
-            return diningSessions(at: Date()).count
+            return diningHallStatuses(at: Date()).count
         case 5:
-            return norrisLocationStates(at: Date()).count
+            return norrisLocationStatuses(at: Date()).count
         default:
             return 0
         }
@@ -102,8 +106,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
-            return nil
         case 1:
             return "Meals"
         case 2:
@@ -119,76 +121,81 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         }
     }
 
+    /// - Param selectable: Whether to show a disclosure indicator and set the correct selection style.
+    /// - Returns: A MeowlWatchTableViewCell given the strings.
+    func meowlWatchTableViewCell(fromTableView tableView: UITableView, numberString: String, descriptionString: String, selectable: Bool = false) -> MeowlWatchTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchTableViewCell") as! MeowlWatchTableViewCell
+        cell.numberLabel.text = numberString
+        cell.descriptionLabel.text = descriptionString
+        cell.accessoryType = selectable ? .disclosureIndicator : .none
+        cell.selectionStyle = selectable ? .default : .none
+        return cell
+    }
+
+    func diningLocationTableViewCell(fromTableView tableView: UITableView, locationName: String, stateString: DiningStatus) {}
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
 
         // Configure the cell...
         // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
         switch indexPath.section {
-        case 0:
-            let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserCell") as! MeowlWatchUserTableViewCell
+        case 0: // User cell
+            let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserTableViewCell") as! MeowlWatchUserTableViewCell
             userCell.nameLabel.text = queryResult?.name ?? "Your Name"
             userCell.planLabel.text = queryResult?.currentPlanName ?? "Your Meal Plan"
             cell = userCell
         case 1:
-            let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell") as! MeowlWatchTableViewCell
             switch indexPath.row {
             case 0:
-                meowlWatchCell.numberLabel.text = queryResult?.equivalencyMeals ?? "0"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left"
-                meowlWatchCell.accessoryType = .none
-                meowlWatchCell.selectionStyle = .none
+                cell = meowlWatchTableViewCell(fromTableView: tableView,
+                                               numberString: queryResult?.equivalencyMeals ?? "0",
+                                               descriptionString: "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left")
             case 1:
-                meowlWatchCell.numberLabel.text = equivalencyExchangeRateString(at: Date())
-                meowlWatchCell.descriptionLabel.text = "Per Equivalency Now"
-                meowlWatchCell.accessoryType = .disclosureIndicator
-                meowlWatchCell.selectionStyle = .default
+                cell = meowlWatchTableViewCell(fromTableView: tableView,
+                                               numberString: equivalencyExchangeRateString(at: Date()),
+                                               descriptionString: "Per Equivalency Now",
+                                               selectable: true)
             case 2:
-                meowlWatchCell.numberLabel.text = queryResult?.boardMeals ?? "0.00"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left"
-                meowlWatchCell.accessoryType = .none
-                meowlWatchCell.selectionStyle = .none
+                cell = meowlWatchTableViewCell(fromTableView: tableView,
+                                               numberString: queryResult?.boardMeals ?? "0.00",
+                                               descriptionString: "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left")
             default:
                 break
             }
-            cell = meowlWatchCell
         case 2:
-            let meowlWatchCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchCell", for: indexPath) as! MeowlWatchTableViewCell
             switch indexPath.row {
             case 0:
-                meowlWatchCell.numberLabel.text = queryResult?.points ?? "0"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left"
-                meowlWatchCell.accessoryType = .none
-                meowlWatchCell.selectionStyle = .none
+                cell = meowlWatchTableViewCell(fromTableView: tableView,
+                                               numberString: queryResult?.points ?? "0",
+                                               descriptionString: "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left")
             case 1:
-                meowlWatchCell.numberLabel.text = queryResult?.catCash ?? "0"
-                meowlWatchCell.descriptionLabel.text = "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left"
-                meowlWatchCell.accessoryType = .none
-                meowlWatchCell.selectionStyle = .none
+                cell = meowlWatchTableViewCell(fromTableView: tableView,
+                                               numberString: queryResult?.catCash ?? "0",
+                                               descriptionString: "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left")
             default:
                 break
             }
-            cell = meowlWatchCell
         case 3:
-            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
-            let result = cafesAndCStoreStates(at: Date())[indexPath.row]
-            diningLocationCell.locationNameLabel.text = result.cafeOrCStore.rawValue
-            diningLocationCell.stateLabel.text = result.state ? "Open" : "Closed"
-            diningLocationCell.stateLabel.textColor = result.state ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
+            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
+            let result = cafesAndCStoreStatuses(at: Date())[indexPath.row]
+            diningLocationCell.locationNameLabel.text = result.key.rawValue
+            diningLocationCell.stateLabel.text = result.status.rawValue
+            diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         case 4:
-            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
-            let result = diningSessions(at: Date())[indexPath.row]
-            diningLocationCell.locationNameLabel.text = result.diningHall.rawValue
-            diningLocationCell.stateLabel.text = result.state.rawValue
-            diningLocationCell.stateLabel.textColor = result.state != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
+            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
+            let result = diningHallStatuses(at: Date())[indexPath.row]
+            diningLocationCell.locationNameLabel.text = result.key.rawValue
+            diningLocationCell.stateLabel.text = result.status.rawValue
+            diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         case 5:
-            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "DiningLocationCell", for: indexPath) as! DiningLocationTableViewCell
-            let result = norrisLocationStates(at: Date())[indexPath.row]
-            diningLocationCell.locationNameLabel.text = result.norrisLocation.rawValue
-            diningLocationCell.stateLabel.text = result.state ? "Open" : "Closed"
-            diningLocationCell.stateLabel.textColor = result.state ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
+            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
+            let result = norrisLocationStatuses(at: Date())[indexPath.row]
+            diningLocationCell.locationNameLabel.text = result.key.rawValue
+            diningLocationCell.stateLabel.text = result.status.rawValue
+            diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         default:
             break
@@ -226,30 +233,30 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         if indexPath == IndexPath(row: 1, section: 1) {
             self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
         } else if indexPath.section == 3 {
-            let item = cafesAndCStoreStates(at: Date())[indexPath.row].cafeOrCStore
+            let item = cafesAndCStoreStatuses(at: Date())[indexPath.row].key
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
             viewController.cafeOrCStore = item
-            viewController.isOpenEntries = cafeOrCStoreScheduleEntries(for: item)
+            viewController.entries = cafeOrCStoreScheduleEntries(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
         } else if indexPath.section == 4 {
-            let item = diningSessions(at: Date())[indexPath.row].diningHall
+            let item = diningHallStatuses(at: Date())[indexPath.row].key
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
             viewController.diningHall = item
-            viewController.sessionEntries = diningHallScheduleEntries(for: item)
+            viewController.entries = diningHallScheduleEntries(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
         } else {
-            let item = norrisLocationStates(at: Date())[indexPath.row].norrisLocation
+            let item = norrisLocationStatuses(at: Date())[indexPath.row].key
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
             viewController.norrisLocation = item
-            viewController.isOpenEntries = norrisLocationScheduleEntries(for: item)
+            viewController.entries = norrisLocationScheduleEntries(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
             DispatchQueue.main.async {
@@ -259,39 +266,37 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     /// Updates the UI to show the spinner and then refresh.
-    func beginRefrshing() {
+    func beginRefrshing(animated: Bool) {
         DispatchQueue.main.async {
             self.refreshControl!.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: true)
+            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: animated)
         }
-        refresh()
+        refresh(animated: animated)
     }
 
     /// Updates the UI to hide the spinner.
-    func endRefreshing() {
+    func endRefreshing(animated: Bool) {
         DispatchQueue.main.async {
             self.refreshControl!.attributedTitle = NSAttributedString(string: "Retrieved: \(self.queryResult?.dateRetrievedString ?? "Never")")
             self.refreshControl!.endRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
         }
     }
 
     /// Calls `MeowlWatchData.query` and then provides the appropriate UI feedback.
-    func refresh() {
+    func refresh(animated: Bool) {
         if MeowlWatchData.canQuery {
             MeowlWatchData.query { queryResult in
-                self.queryResult = queryResult
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                self.endRefreshing()
+                self.endRefreshing(animated: animated)
 
                 if queryResult.error != nil {
                     self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
                 }
             }
         } else {
-            self.endRefreshing()
+            self.endRefreshing(animated: animated)
             showSignInAlert()
         }
     }
@@ -318,7 +323,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             let netID = alertController.textFields![0].text ?? ""
             let password = alertController.textFields![1].text ?? ""
             _ = MeowlWatchData.updateCredentials(netID: netID, password: password)
-            self.beginRefrshing()
+            self.beginRefrshing(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 

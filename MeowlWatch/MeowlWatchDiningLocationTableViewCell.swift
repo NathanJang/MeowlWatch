@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiningLocationTableViewCell: UITableViewCell {
+class MeowlWatchDiningLocationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!

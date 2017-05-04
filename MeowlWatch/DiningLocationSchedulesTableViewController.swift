@@ -11,8 +11,7 @@ import MeowlWatchData
 
 class DiningLocationSchedulesTableViewController: ExpandableTableViewController {
 
-    var sessionEntries: [ScheduleEntry<DiningHallSession>]?
-    var isOpenEntries: [ScheduleEntry<Bool>]?
+    var entries: [ScheduleEntry<DiningStatus>]?
 
     var diningHall: DiningHall?
     var cafeOrCStore: CafeOrCStore?
@@ -61,20 +60,12 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        if diningHall != nil {
-            return sessionEntries!.count
-        } else {
-            return isOpenEntries!.count
-        }
+        return entries!.count
     }
 
     override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if diningHall != nil {
-            return sessionEntries![section].schedule.count
-        } else {
-            return isOpenEntries![section].schedule.count
-        }
+        return entries![section].schedule.count
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
@@ -94,17 +85,10 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath)
 
         // Configure the cell...
-        if diningHall != nil {
-            let entries = sessionEntries![indexPath.section]
-            cell.textLabel!.text = entries.formattedTimeRange(atIndex: indexPath.row)
-            cell.detailTextLabel!.text = entries.schedule[indexPath.row].state.rawValue
-            cell.detailTextLabel!.textColor = entries.schedule[indexPath.row].state != .closed ? view.tintColor : UIColor.red
-        } else {
-            let entries = isOpenEntries![indexPath.section]
-            cell.textLabel!.text = entries.formattedTimeRange(atIndex: indexPath.row)
-            cell.detailTextLabel!.text = entries.schedule[indexPath.row].state ? "Open" : "Closed"
-            cell.detailTextLabel!.textColor = entries.schedule[indexPath.row].state ? view.tintColor : UIColor.red
-        }
+        let entry = self.entries![indexPath.section]
+        cell.textLabel!.text = entry.formattedTimeRange(atIndex: indexPath.row)
+        cell.detailTextLabel!.text = entry.schedule[indexPath.row].status.rawValue
+        cell.detailTextLabel!.textColor = entry.schedule[indexPath.row].status != .closed ? view.tintColor : UIColor.red
 
         cell.isUserInteractionEnabled = indexPath == selectedIndexPath
 

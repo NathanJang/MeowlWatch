@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 navigationController.maybeShowInterstitial()
             #endif
 
-            meowlWatchViewController.refreshIfNeeded()
+            meowlWatchViewController.refreshIfNeeded(animated: false)
         }
     }
 
