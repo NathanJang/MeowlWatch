@@ -69,16 +69,17 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        if diningHall != nil {
-            let entries = diningHallScheduleEntries(for: diningHall!)[section]
-            return entries.formattedWeekdayRange
-        } else if cafeOrCStore != nil {
-            let entries = cafeOrCStoreScheduleEntries(for: cafeOrCStore!)[section]
-            return entries.formattedWeekdayRange
-        } else {
-            let entries = norrisLocationScheduleEntries(for: norrisLocation!)[section]
-            return entries.formattedWeekdayRange
-        }
+//        if diningHall != nil {
+//            let entries = diningHallScheduleEntries(for: diningHall!)[section]
+//            return entries.formattedWeekdayRange
+//        } else if cafeOrCStore != nil {
+//            let entries = cafeOrCStoreScheduleEntriesFilteredByNotClosed(for: cafeOrCStore!)[section]
+//            return entries.formattedWeekdayRange
+//        } else {
+//            let entries = norrisLocationScheduleEntries(for: norrisLocation!)[section]
+//            return entries.formattedWeekdayRange
+//        }
+        return entries![section].formattedWeekdayRange
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

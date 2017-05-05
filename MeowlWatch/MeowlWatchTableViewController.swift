@@ -236,7 +236,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             let item = cafesAndCStoreStatuses(at: Date())[indexPath.row].key
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
             viewController.cafeOrCStore = item
-            viewController.entries = cafeOrCStoreScheduleEntries(for: item)
+            viewController.entries = cafeOrCStoreScheduleEntriesFilteredByNotClosed(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
             DispatchQueue.main.async {
@@ -246,7 +246,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             let item = diningHallStatuses(at: Date())[indexPath.row].key
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
             viewController.diningHall = item
-            viewController.entries = diningHallScheduleEntries(for: item)
+            viewController.entries = diningHallScheduleEntriesFilteredByNotClosed(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
             DispatchQueue.main.async {
@@ -256,7 +256,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             let item = norrisLocationStatuses(at: Date())[indexPath.row].key
             let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
             viewController.norrisLocation = item
-            viewController.entries = norrisLocationScheduleEntries(for: item)
+            viewController.entries = norrisLocationScheduleEntriesFilteredByNotClosed(for: item)
             viewController.title = item.rawValue
             viewController.view.tintColor = view.tintColor
             DispatchQueue.main.async {
