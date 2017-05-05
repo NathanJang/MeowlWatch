@@ -145,7 +145,7 @@ private func dayOfWeek(string: String?) -> Int? {
     }
 }
 
-public func dayOfWeekString(_ int: Int) -> String? {
+private func dayOfWeekString(_ int: Int) -> String? {
     switch int {
     case 1:
         return "Sunday"
@@ -283,7 +283,7 @@ public struct ScheduleEntry<Status> where Status : RawRepresentable, Status.RawV
 }
 
 /// A dictionary of dictionaries of arrays of `ScheduleEntry`s.
-/// `scheduleEntriesDictionaryDictionary[plistName][locationName]
+/// `scheduleEntriesDictionaryDictionary[plistName][locationName]`
 private let diningScheduleEntriesDictionaryDictionary: [String : [String : [ScheduleEntry<DiningStatus>]]] = { () -> [String : [String : [ScheduleEntry<DiningStatus>]]] in
     let plistNames = [
         plistNameForDiningHallSchedules,
@@ -306,6 +306,31 @@ private let diningScheduleEntriesDictionaryDictionary: [String : [String : [Sche
         }
     }
     return diningScheduleEntriesDictionaryDictionary
+}()
+
+private let diningScheduleEntriesFilteredByNotClosedDictionaryDictionary: [String : [String : [ScheduleEntry<DiningStatus>]]] = { () -> [String : [String : [ScheduleEntry<DiningStatus>]]] in
+    var diningScheduleEntriesFilteredByNotClosedDictionaryDictionary: [String : [String : [ScheduleEntry<DiningStatus>]]] = [:]
+
+    for plistPair in diningScheduleEntriesDictionaryDictionary {
+        diningScheduleEntriesFilteredByNotClosedDictionaryDictionary[plistPair.key] = [:]
+        for diningLocationPair in plistPair.value {
+            diningScheduleEntriesFilteredByNotClosedDictionaryDictionary[plistPair.key]![diningLocationPair.key] = []
+            for entry in diningLocationPair.value {
+                let newEntry: ScheduleEntry<DiningStatus>
+                if entry.schedule.count == 1 {
+                    newEntry = entry
+                } // in case it's open or closed all day
+                else {
+                    newEntry = ScheduleEntry(from: entry, withScheduleFilteredBy: { scheduleRow -> Bool in
+                        return scheduleRow.status != .closed
+                    })
+                }
+                diningScheduleEntriesFilteredByNotClosedDictionaryDictionary[plistPair.key]![diningLocationPair.key]!.append(newEntry)
+            }
+        }
+    }
+
+    return diningScheduleEntriesFilteredByNotClosedDictionaryDictionary
 }()
 
 private func plistName<Key>(for keyType: Key.Type) -> String? where Key : RawRepresentable, Key.RawValue == String {
