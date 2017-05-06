@@ -181,8 +181,9 @@ public struct ScheduleRow<Status> where Status : RawRepresentable, Status.RawVal
     }
 
     private func formattedTime(twentyFourHourTime: Int) -> String {
+        if twentyFourHourTime == 2400 { return "12:00 AM" }
         let beforeNoon = twentyFourHourTime < 1200
-        let hour = beforeNoon ? (twentyFourHourTime == 0 ? "12" : "\(twentyFourHourTime / 100)") : (twentyFourHourTime == 1200 || twentyFourHourTime == 2400 ? "12" : "\(twentyFourHourTime / 100 - 12)")
+        let hour = beforeNoon ? (twentyFourHourTime == 0 ? "12" : "\(twentyFourHourTime / 100)") : (twentyFourHourTime == 1200 ? "12" : "\(twentyFourHourTime / 100 - 12)")
         let minute = twentyFourHourTime % 100 < 10 ? "0\(twentyFourHourTime % 100)" : "\(twentyFourHourTime % 100)"
         let amOrPm = beforeNoon ? "AM" : "PM"
         return "\(hour):\(minute) \(amOrPm)"
@@ -250,6 +251,9 @@ public struct ScheduleEntry<Status> where Status : RawRepresentable, Status.RawV
 
     public var formattedWeekdayRange: String {
         if startingDayOfWeek != endingDayOfWeek {
+            if startingDayOfWeek == 1 && endingDayOfWeek == 7 {
+                return "Every Day"
+            }
             return "\(dayOfWeekString(startingDayOfWeek)!) – \(dayOfWeekString(endingDayOfWeek)!)"
         } else {
             return "\(dayOfWeekString(startingDayOfWeek)!)"
@@ -349,8 +353,13 @@ private func plistName<Key>(for keyType: Key.Type) -> String? where Key : RawRep
     return nil
 }
 
+/// For a single dining location
 private func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at date: Date) -> DiningStatus where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
-    let entries = diningHallScheduleDictionaryFromPlist(plistName(for: DiningLocation.self)!)[diningLocation.rawValue]!
+    let defaultValue = DiningStatus.closed
+
+    guard let plistName = MeowlWatchData.plistName(for: DiningLocation.self),
+        let entries = diningScheduleDictionaryFromPlist(plistName)[diningLocation.rawValue]
+        else { return defaultValue }
 
     let dateAtStartOfDay = diningCalendar.startOfDay(for: date)
     let dayOfWeek = diningCalendar.component(.weekday, from: dateAtStartOfDay)
@@ -366,138 +375,62 @@ private func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at
         }
     }
 
-    return .closed // default
+    return defaultValue // default
 }
 
-private func diningStatuses<DiningLocation>(at date: Date) -> [(key: DiningLocation, status: DiningStatus)] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+/// For a list of dining locations, like for in the master VC.
+public func diningStatuses<DiningLocation>(at date: Date) -> [(key: DiningLocation, status: DiningStatus)] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
     guard let plistName = plistName(for: DiningLocation.self) else { return [] }
-    return diningHallScheduleDictionaryFromPlist(plistName).keys.flatMap { locationName -> (key: DiningLocation, status: DiningStatus)? in
+    return diningScheduleDictionaryFromPlist(plistName).keys.flatMap { locationName -> (key: DiningLocation, status: DiningStatus)? in
         let diningStatus = MeowlWatchData.diningStatus(for: DiningLocation(rawValue: locationName)!, at: date)
         return (key: DiningLocation(rawValue: locationName)!, status: diningStatus)
+    }
+    .sorted { (pair1, pair2) -> Bool in // Sorted by open > closed first, and then by alphabet
+        if pair1.status != pair2.status { return pair1.status != .closed }
+        return pair1.key.rawValue < pair2.key.rawValue
+    }
+}
+
+//private func diningScheduleEntriesFilteredByNotClosed<DiningLocation>(for diningLocation: DiningLocation) -> [ScheduleEntry<DiningStatus>] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+//    return diningScheduleDictionaryFromPlist(plistName(for: type(of: diningLocation))!)[diningLocation.rawValue]!.flatMap { entry -> ScheduleEntry<DiningStatus> in
+//        if entry.schedule.count == 1 { return entry } // in case it's open or closed all day
+//        return ScheduleEntry(from: entry, withScheduleFilteredBy: { scheduleRow -> Bool in
+//            return scheduleRow.status != .closed
+//        })
+//    }
+//}
+
+/// A filtered list of schedule entries for use in the detail VC
+public func openDiningScheduleEntries<DiningLocation>(for diningLocation: DiningLocation) -> [ScheduleEntry<DiningStatus>] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+    guard let plistName = MeowlWatchData.plistName(for: DiningLocation.self),
+        let dictionary = diningScheduleEntriesFilteredByNotClosedDictionaryDictionary[plistName],
+        let entries = dictionary[diningLocation.rawValue]
+        else { return [] }
+    return entries
+}
+
+/// For selecting the current index path
+public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall: DiningLocation, at date: Date) -> IndexPath? where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+    let dayOfWeek = diningCalendar.component(.weekday, from: date)
+    let entries = openDiningScheduleEntries(for: diningHall)
+    var indexPath: IndexPath?
+    for i in 0..<entries.count {
+        let entry = entries[i]
+        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
+            let scheduleToday = entry.schedule
+            for j in 0..<scheduleToday.count {
+                if date.twentyFourHourTime < scheduleToday[j].endingTime {
+                    indexPath = IndexPath(row: j, section: i)
+                    break
+                }
+            }
         }
-        .sorted { (pair1, pair2) -> Bool in // Sorted by open > closed first, and then by alphabet
-            if pair1.status != pair2.status { return pair1.status != .closed }
-            return pair1.key.rawValue < pair2.key.rawValue
     }
+    return indexPath
 }
 
-private func diningScheduleEntriesFilteredByNotClosed<DiningLocation>(for diningLocation: DiningLocation) -> [ScheduleEntry<DiningStatus>] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
-    return diningHallScheduleDictionaryFromPlist(plistName(for: type(of: diningLocation))!)[diningLocation.rawValue]!.flatMap { entry -> ScheduleEntry<DiningStatus> in
-        if entry.schedule.count == 1 { return entry } // in case it's open or closed all day
-        return ScheduleEntry(from: entry, withScheduleFilteredBy: { scheduleRow -> Bool in
-            return scheduleRow.status != .closed
-        })
-    }
-}
-
-private func diningHallScheduleDictionaryFromPlist(_ fileName: String) -> [String : [ScheduleEntry<DiningStatus>]] {
+private func diningScheduleDictionaryFromPlist(_ fileName: String) -> [String : [ScheduleEntry<DiningStatus>]] {
     return diningScheduleEntriesDictionaryDictionary[fileName]!
-}
-
-public func diningHallScheduleEntries(for diningHall: DiningHall) -> [ScheduleEntry<DiningStatus>] {
-    return diningHallScheduleDictionaryFromPlist(plistNameForDiningHallSchedules)[diningHall.rawValue]!
-}
-
-public func diningHallScheduleEntriesFilteredByNotClosed(for diningHall: DiningHall) -> [ScheduleEntry<DiningStatus>] {
-    return diningScheduleEntriesFilteredByNotClosed(for: diningHall)
-}
-
-/// - Returns: An array of dining hall-status pairs sorted by the status at the given date.
-public func diningHallStatuses(at date: Date) -> [(key: DiningHall, status: DiningStatus)] {
-    return diningStatuses(at: date)
-}
-
-public func diningHallStatus(for diningHall: DiningHall, at date: Date) -> DiningStatus {
-    return diningStatus(for: diningHall, at: date)
-}
-
-public func indexPathOfDiningHallScheduleEntries(for diningHall: DiningHall, at date: Date) -> IndexPath {
-    let dayOfWeek = diningCalendar.component(.weekday, from: date)
-    let entries = diningHallScheduleEntries(for: diningHall)
-    var indexPath: IndexPath?
-    for i in 0..<entries.count {
-        let entry = entries[i]
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
-            let scheduleToday = entry.schedule
-            for j in 0..<scheduleToday.count {
-                if date.twentyFourHourTime < scheduleToday[j].endingTime {
-                    indexPath = IndexPath(row: j, section: i)
-                    break
-                }
-            }
-        }
-    }
-    return indexPath!
-}
-
-private func cafeOrCStoreScheduleEntries(for cafeOrCStore: CafeOrCStore) -> [ScheduleEntry<DiningStatus>] {
-    return diningHallScheduleDictionaryFromPlist(plistName(for: type(of: cafeOrCStore))!)[cafeOrCStore.rawValue]!
-}
-
-public func cafeOrCStoreScheduleEntriesFilteredByNotClosed(for cafeOrCStore: CafeOrCStore) -> [ScheduleEntry<DiningStatus>] {
-    return diningScheduleEntriesFilteredByNotClosed(for: cafeOrCStore)
-}
-
-public func cafeOrCStoreStatus(_ cafeOrCStore: CafeOrCStore, at date: Date) -> DiningStatus {
-    return diningStatus(for: cafeOrCStore, at: date)
-}
-
-public func cafesAndCStoreStatuses(at date: Date) -> [(key: CafeOrCStore, status: DiningStatus)] {
-    return diningStatuses(at: date)
-}
-
-public func indexPathOfCafeOrCStoreEntries(for cafeOrCStore: CafeOrCStore, at date: Date) -> IndexPath {
-    let dayOfWeek = diningCalendar.component(.weekday, from: date)
-    let entries = cafeOrCStoreScheduleEntries(for: cafeOrCStore)
-    var indexPath: IndexPath?
-    for i in 0..<entries.count {
-        let entry = entries[i]
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
-            let scheduleToday = entry.schedule
-            for j in 0..<scheduleToday.count {
-                if date.twentyFourHourTime < scheduleToday[j].endingTime {
-                    indexPath = IndexPath(row: j, section: i)
-                    break
-                }
-            }
-        }
-    }
-    return indexPath!
-}
-
-public func norrisLocationScheduleEntries(for norrisLocation: NorrisLocation) -> [ScheduleEntry<DiningStatus>] {
-    return diningHallScheduleDictionaryFromPlist(plistName(for: type(of: norrisLocation))!)[norrisLocation.rawValue]!
-}
-
-public func norrisLocationStatus(_ norrisLocation: NorrisLocation, at date: Date) -> DiningStatus {
-    return diningStatus(for: norrisLocation, at: date)
-}
-
-public func norrisLocationStatuses(at date: Date) -> [(key: NorrisLocation, status: DiningStatus)] {
-    return diningStatuses(at: date)
-}
-
-public func norrisLocationScheduleEntriesFilteredByNotClosed(for norrisLocation: NorrisLocation) -> [ScheduleEntry<DiningStatus>] {
-    return diningScheduleEntriesFilteredByNotClosed(for: norrisLocation)
-}
-
-public func indexPathOfNorrisLocationScheduleEntries(for norrisLocation: NorrisLocation, at date: Date) -> IndexPath {
-    let dayOfWeek = diningCalendar.component(.weekday, from: date)
-    let entries = norrisLocationScheduleEntries(for: norrisLocation)
-    var indexPath: IndexPath?
-    for i in 0..<entries.count {
-        let entry = entries[i]
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
-            let scheduleToday = entry.schedule
-            for j in 0..<scheduleToday.count {
-                if date.twentyFourHourTime < scheduleToday[j].endingTime {
-                    indexPath = IndexPath(row: j, section: i)
-                    break
-                }
-            }
-        }
-    }
-    return indexPath!
 }
 
 /// MARK: - Equivalencies
@@ -565,7 +498,7 @@ public func equivalencyExchangeRateString(for period: EquivalencyPeriod) -> Stri
     }
 }
 
-public let equivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = {
+private let equivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = {
     let path = Bundle.main.path(forResource: plistNameForEquivalencySchedules, ofType: "plist")!
     let diningHallDictionaryEntries = NSArray(contentsOfFile: path) as! [[String : Any]]
     var scheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = []
@@ -575,9 +508,19 @@ public let equivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = {
     return scheduleEntries
 }()
 
-public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> IndexPath {
+public let openEquivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = {
+    var newEntries: [ScheduleEntry<EquivalencyPeriod>] = []
+    for entry in equivalencyScheduleEntries {
+        newEntries.append(ScheduleEntry(from: entry, withScheduleFilteredBy: { row -> Bool in
+            return row.status != .unavailable
+        }))
+    }
+    return newEntries
+}()
+
+public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> IndexPath? {
     let dayOfWeek = diningCalendar.component(.weekday, from: date)
-    let entries = equivalencyScheduleEntries
+    let entries = openEquivalencyScheduleEntries
     var indexPath: IndexPath?
     for i in 0..<entries.count {
         let entry = entries[i]
@@ -591,5 +534,5 @@ public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> IndexPath {
             }
         }
     }
-    return indexPath!
+    return indexPath
 }

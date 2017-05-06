@@ -94,11 +94,14 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             if let queryResult = queryResult, queryResult.catCashInCents == 0 { return 1 }
             else { return 2 }
         case 3:
-            return cafesAndCStoreStatuses(at: Date()).count
+            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: Date())
+            return statuses.count
         case 4:
-            return diningHallStatuses(at: Date()).count
+            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: Date())
+            return statuses.count
         case 5:
-            return norrisLocationStatuses(at: Date()).count
+            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: Date())
+            return statuses.count
         default:
             return 0
         }
@@ -178,21 +181,24 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             }
         case 3:
             let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
-            let result = cafesAndCStoreStatuses(at: Date())[indexPath.row]
+            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: Date())
+            let result = statuses[indexPath.row]
             diningLocationCell.locationNameLabel.text = result.key.rawValue
             diningLocationCell.stateLabel.text = result.status.rawValue
             diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         case 4:
             let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
-            let result = diningHallStatuses(at: Date())[indexPath.row]
+            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: Date())
+            let result = statuses[indexPath.row]
             diningLocationCell.locationNameLabel.text = result.key.rawValue
             diningLocationCell.stateLabel.text = result.status.rawValue
             diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
             cell = diningLocationCell
         case 5:
             let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
-            let result = norrisLocationStatuses(at: Date())[indexPath.row]
+            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: Date())
+            let result = statuses[indexPath.row]
             diningLocationCell.locationNameLabel.text = result.key.rawValue
             diningLocationCell.stateLabel.text = result.status.rawValue
             diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
@@ -215,7 +221,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         switch section {
         case 5:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "The Northwestern server usually updates your balance every 30 minutes. Schedules are based on normal school days Fall through Spring Quarter, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+                return queryResult?.errorString ?? "Schedules are based on normal school days Fall through Spring Quarter, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }
@@ -229,36 +235,44 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         else { return nil }
     }
 
+    func diningLocationSchedulesTableViewController<DiningLocation>(for location: DiningLocation) -> DiningLocationSchedulesTableViewController where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+        let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
+        if let cafeOrCStore = location as? CafeOrCStore {
+            viewController.cafeOrCStore = cafeOrCStore
+        }
+        if let diningHall = location as? DiningHall {
+            viewController.diningHall = diningHall
+        }
+        if let norrisLocation = location as? NorrisLocation {
+            viewController.norrisLocation = norrisLocation
+        }
+        viewController.entries = openDiningScheduleEntries(for: location)
+        viewController.title = location.rawValue
+        viewController.view.tintColor = view.tintColor
+        return viewController
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 1, section: 1) {
             self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
         } else if indexPath.section == 3 {
-            let item = cafesAndCStoreStatuses(at: Date())[indexPath.row].key
-            let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
-            viewController.cafeOrCStore = item
-            viewController.entries = cafeOrCStoreScheduleEntriesFilteredByNotClosed(for: item)
-            viewController.title = item.rawValue
-            viewController.view.tintColor = view.tintColor
+            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: Date())
+            let location = statuses[indexPath.row].key
+            let viewController = diningLocationSchedulesTableViewController(for: location)
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
         } else if indexPath.section == 4 {
-            let item = diningHallStatuses(at: Date())[indexPath.row].key
-            let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
-            viewController.diningHall = item
-            viewController.entries = diningHallScheduleEntriesFilteredByNotClosed(for: item)
-            viewController.title = item.rawValue
-            viewController.view.tintColor = view.tintColor
+            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: Date())
+            let location = statuses[indexPath.row].key
+            let viewController = diningLocationSchedulesTableViewController(for: location)
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
         } else {
-            let item = norrisLocationStatuses(at: Date())[indexPath.row].key
-            let viewController = DiningLocationSchedulesTableViewController(style: .grouped)
-            viewController.norrisLocation = item
-            viewController.entries = norrisLocationScheduleEntriesFilteredByNotClosed(for: item)
-            viewController.title = item.rawValue
-            viewController.view.tintColor = view.tintColor
+            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: Date())
+            let location = statuses[indexPath.row].key
+            let viewController = diningLocationSchedulesTableViewController(for: location)
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }

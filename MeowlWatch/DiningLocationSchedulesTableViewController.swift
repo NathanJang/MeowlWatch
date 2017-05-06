@@ -30,19 +30,19 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "ScheduleCell")
 
         if diningHall != nil {
-            selectedIndexPath = indexPathOfDiningHallScheduleEntries(for: diningHall!, at: Date())
+            selectedIndexPath = indexPathOfOpenDiningScheduleEntries(for: diningHall!, at: Date())
         } else if cafeOrCStore != nil {
-            selectedIndexPath = indexPathOfCafeOrCStoreEntries(for: cafeOrCStore!, at: Date())
+            selectedIndexPath = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore!, at: Date())
         } else {
-            selectedIndexPath = indexPathOfNorrisLocationScheduleEntries(for: norrisLocation!, at: Date())
+            selectedIndexPath = indexPathOfOpenDiningScheduleEntries(for: norrisLocation!, at: Date())
         }
 
-        let numberOfSections = self.numberOfSections(in: tableView)
-        for i in 0..<numberOfSections {
-            if i != selectedIndexPath!.section {
-                hiddenSections.append(i)
-            }
-        }
+//        let numberOfSections = self.numberOfSections(in: tableView)
+//        for i in 0..<numberOfSections {
+//            if i != selectedIndexPath!.section {
+//                hiddenSections.append(i)
+//            }
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

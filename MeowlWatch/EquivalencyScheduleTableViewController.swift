@@ -11,7 +11,7 @@ import MeowlWatchData
 
 class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
-    let equivalencyScheduleEntries = MeowlWatchData.equivalencyScheduleEntries
+    let equivalencyScheduleEntries = MeowlWatchData.openEquivalencyScheduleEntries
 
     var selectedIndexPath = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
 
@@ -28,7 +28,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
         let numberOfSections = self.numberOfSections(in: tableView)
         for i in 0..<numberOfSections {
-            if i != selectedIndexPath.section {
+            if i != selectedIndexPath!.section {
                 hiddenSections.append(i)
             }
         }
@@ -58,7 +58,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        let entries = MeowlWatchData.equivalencyScheduleEntries[section]
+        let entries = equivalencyScheduleEntries[section]
         return entries.formattedWeekdayRange
     }
 
@@ -122,7 +122,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
     override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
-        if section == selectedIndexPath.section {
+        if section == selectedIndexPath!.section {
             tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
         }
     }
