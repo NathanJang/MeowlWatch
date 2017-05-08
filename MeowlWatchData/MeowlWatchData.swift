@@ -34,6 +34,10 @@ public func loadFromDefaults() {
         widgetArrangement = intArray.flatMap { return QueryResult.WidgetDisplayItem(rawValue: $0)! }
     }
 
+    if let existingArray = userDefaults.array(forKey: "hiddenSections") as? [Int] {
+        hiddenSections = existingArray
+    }
+
     if let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased") {
         widgetIsPurchased = storedWidgetIsPurchased
     } else {
@@ -54,13 +58,8 @@ public func persistToUserDefaults() {
     let intArray = widgetArrangement.flatMap { return $0.rawValue }
     userDefaults.set(intArray, forKey: "widgetArrangement")
 
-////    let storedWidgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
-//    let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased")
-//    if storedWidgetIsPurchased == nil || widgetIsPurchased != storedWidgetIsPurchased {
-////    if widgetIsPurchased != storedWidgetIsPurchased {
-//        keychain.set(widgetIsPurchased, forKey: "widgetPurchased")
-////        userDefaults.set(widgetIsPurchased, forKey: "widgetPurchased")
-//    }
+    userDefaults.set(hiddenSections, forKey: "hiddenSections")
+
     keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .afterFirstUnlock)
 
     if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
@@ -228,6 +227,8 @@ private func finishQuery(result: QueryResult, onCompletion: ((_ result: QueryRes
 
 /// The result of the last query to the server.
 public var lastQuery: QueryResult?
+
+public var hiddenSections: [Int] = [3, 4, 5]
 
 /// The time interval before we should refresh from the server.
 private let refreshThreshold: TimeInterval = 60 * 30

@@ -34,7 +34,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         tableView.register(UINib(nibName: "MeowlWatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchTableViewCell")
         tableView.register(UINib(nibName: "MeowlWatchDiningLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "MeowlWatchDiningLocationTableViewCell")
 
-        hiddenSections = [3, 4, 5]
+        hiddenSections = MeowlWatchData.hiddenSections
 
     }
 
@@ -352,6 +352,18 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     /// Called when the settings button is tapped.
     func didTapSettingsButton() {
         performSegue(withIdentifier: "ShowSettings", sender: self)
+    }
+
+    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+        super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
+        if let index = MeowlWatchData.hiddenSections.index(of: section) {
+            MeowlWatchData.hiddenSections.remove(at: index)
+        }
+    }
+
+    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
+        super.sectionHeaderView(sectionHeaderView, sectionClosed: section)
+        MeowlWatchData.hiddenSections.append(section)
     }
 
 }
