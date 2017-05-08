@@ -60,7 +60,7 @@ public func persistToUserDefaults() {
 
     userDefaults.set(hiddenSections, forKey: "hiddenSections")
 
-    keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .afterFirstUnlock)
+    keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .always)
 
     if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
 }
