@@ -289,24 +289,41 @@ class SettingsTableViewController: UITableViewController {
                         }
                     }
                 #endif
+                DispatchQueue.main.async {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
             }
 
         case 1:
-            self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.") {
+            self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.", action:  {
                 let url = URL(string: self.isabelShortURLString)!
-                UIApplication.shared.openURL(url)
-            }
+                DispatchQueue.main.async {
+                    UIApplication.shared.openURL(url)
+                }
+            }, completion: {
+                DispatchQueue.main.async {
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                }
+            })
 
         case 2:
             switch indexPath.row {
             case 0:
-                self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+MeowlWatch@u.northwestern.edu.") {
+                self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+MeowlWatch@u.northwestern.edu.", action: {
                     let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+MeowlWatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v\(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!))")!
-                    UIApplication.shared.openURL(url)
-                }
+                    DispatchQueue.main.async {
+                        UIApplication.shared.openURL(url)
+                    }
+                }, completion: {
+                    DispatchQueue.main.async {
+                        self.tableView.deselectRow(at: indexPath, animated: true)
+                    }
+                })
 
             case 1:
-                self.performSegue(withIdentifier: "ShowLegal", sender: self)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "ShowLegal", sender: self)
+                }
 
             default:
                 break

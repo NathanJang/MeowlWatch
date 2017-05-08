@@ -392,7 +392,9 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         if let viewController = (viewControllerToCommit as? UINavigationController)?.topViewController {
-            self.navigationController!.pushViewController(viewController, animated: false)
+            DispatchQueue.main.async {
+                self.navigationController!.pushViewController(viewController, animated: false)
+            }
         }
     }
 

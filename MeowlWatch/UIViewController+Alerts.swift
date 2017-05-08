@@ -14,10 +14,10 @@ extension UIViewController {
     /// - Paramter title: The title of the alert controller.
     /// - Parameter message: The message in the alert controller.
     /// - Parameter action: The action to perform if the user chooses.
-    func showActionPrompt(title: String, message: String?, action: (() -> Void)?) {
+    func showActionPrompt(title: String, message: String?, action: (() -> Void)?, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Go", style: .default) { _ in action?() })
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in completion?() }))
+        alertController.addAction(UIAlertAction(title: "Go", style: .default) { _ in action?(); completion?() })
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
             alertController.view.tintColor = self.view.tintColor
