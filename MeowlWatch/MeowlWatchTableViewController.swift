@@ -135,10 +135,17 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         return cell
     }
 
-    func diningLocationTableViewCell(fromTableView tableView: UITableView, locationName: String, stateString: DiningStatus) {}
+    func diningLocationTableViewCell(fromTableView tableView: UITableView, locationName: String, status: DiningStatus) -> MeowlWatchDiningLocationTableViewCell {
+        let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell") as! MeowlWatchDiningLocationTableViewCell
+        diningLocationCell.locationNameLabel.text = locationName
+        diningLocationCell.stateLabel.text = status.rawValue
+        diningLocationCell.stateLabel.textColor = status != .closed ? (UIApplication.shared.delegate as! AppDelegate).tintColor : UIColor.red
+        return diningLocationCell
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
+        let date = Date()
 
         // Configure the cell...
         // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
@@ -180,29 +187,17 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                 break
             }
         case 3:
-            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
-            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: Date())
-            let result = statuses[indexPath.row]
-            diningLocationCell.locationNameLabel.text = result.key.rawValue
-            diningLocationCell.stateLabel.text = result.status.rawValue
-            diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
-            cell = diningLocationCell
+            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: date)
+            let pair = statuses[indexPath.row]
+            cell = diningLocationTableViewCell(fromTableView: tableView, locationName: pair.key.rawValue, status: pair.status)
         case 4:
-            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
-            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: Date())
-            let result = statuses[indexPath.row]
-            diningLocationCell.locationNameLabel.text = result.key.rawValue
-            diningLocationCell.stateLabel.text = result.status.rawValue
-            diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
-            cell = diningLocationCell
+            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: date)
+            let pair = statuses[indexPath.row]
+            cell = diningLocationTableViewCell(fromTableView: tableView, locationName: pair.key.rawValue, status: pair.status)
         case 5:
-            let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell", for: indexPath) as! MeowlWatchDiningLocationTableViewCell
-            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: Date())
-            let result = statuses[indexPath.row]
-            diningLocationCell.locationNameLabel.text = result.key.rawValue
-            diningLocationCell.stateLabel.text = result.status.rawValue
-            diningLocationCell.stateLabel.textColor = result.status != .closed ? UIColor(red: 128/255, green: 0, blue: 1, alpha: 1) : UIColor.red
-            cell = diningLocationCell
+            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: date)
+            let pair = statuses[indexPath.row]
+            cell = diningLocationTableViewCell(fromTableView: tableView, locationName: pair.key.rawValue, status: pair.status)
         default:
             break
         }
@@ -221,7 +216,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         switch section {
         case 5:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "Schedules are based on normal school days Fall through Spring Quarter, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+                return queryResult?.errorString ?? "\(MeowlWatchData.scheduleDisclaimerString)\n\nWeekly plans reset on Sundays at 7 AM Central Time."
             } else {
                 return "Please tap \"Account\" and enter your NetID and password."
             }
@@ -253,24 +248,25 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let date = Date()
         if indexPath == IndexPath(row: 1, section: 1) {
             self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
         } else if indexPath.section == 3 {
-            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: Date())
+            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: date)
             let location = statuses[indexPath.row].key
             let viewController = diningLocationSchedulesTableViewController(for: location)
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
         } else if indexPath.section == 4 {
-            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: Date())
+            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: date)
             let location = statuses[indexPath.row].key
             let viewController = diningLocationSchedulesTableViewController(for: location)
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
-        } else {
-            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: Date())
+        } else if indexPath.section == 5 {
+            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: date)
             let location = statuses[indexPath.row].key
             let viewController = diningLocationSchedulesTableViewController(for: location)
             DispatchQueue.main.async {
@@ -283,7 +279,9 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     func beginRefrshing(animated: Bool) {
         DispatchQueue.main.async {
             self.refreshControl!.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: animated)
+            if self.tableView.contentOffset.y <= self.refreshControl!.frame.height {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: animated)
+            }
         }
         refresh(animated: animated)
     }

@@ -27,8 +27,7 @@ public func loadFromDefaults() {
         password = keychain.string(forKey: "password")
     } else {
         // This is the first launch
-        keychain.removeObject(forKey: "netID")
-        keychain.removeObject(forKey: "password")
+        _ = keychain.removeAllKeys()
     }
 
     if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int], intArray.count == widgetArrangement.count {
@@ -39,6 +38,7 @@ public func loadFromDefaults() {
         widgetIsPurchased = storedWidgetIsPurchased
     } else {
         widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+//        keychain.removeObject(forKey: "widgetPurchased")
         userDefaults.removeObject(forKey: "widgetPurchased")
     }
 
@@ -54,10 +54,14 @@ public func persistToUserDefaults() {
     let intArray = widgetArrangement.flatMap { return $0.rawValue }
     userDefaults.set(intArray, forKey: "widgetArrangement")
 
-    let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased")
-    if storedWidgetIsPurchased == nil || widgetIsPurchased != storedWidgetIsPurchased! {
-        keychain.set(widgetIsPurchased, forKey: "widgetPurchased")
-    }
+////    let storedWidgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+//    let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased")
+//    if storedWidgetIsPurchased == nil || widgetIsPurchased != storedWidgetIsPurchased {
+////    if widgetIsPurchased != storedWidgetIsPurchased {
+//        keychain.set(widgetIsPurchased, forKey: "widgetPurchased")
+////        userDefaults.set(widgetIsPurchased, forKey: "widgetPurchased")
+//    }
+    keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .afterFirstUnlock)
 
     if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
 }
@@ -89,8 +93,8 @@ public func updateCredentials(netID aNetID: String?, password aPassword: String?
         netID = aNetID!
         password = aPassword!
 
-        success = keychain.set(netID!, forKey: "netID") && success
-        success = keychain.set(password!, forKey: "password") && success
+        success = keychain.set(netID!, forKey: "netID", withAccessibility: .afterFirstUnlock) && success
+        success = keychain.set(password!, forKey: "password", withAccessibility: .afterFirstUnlock) && success
     }
 
     return success

@@ -13,7 +13,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
     let equivalencyScheduleEntries = MeowlWatchData.openEquivalencyScheduleEntries
 
-    var selectedIndexPath = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
+    var selectedIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,12 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "EquivalencyScheduleCell")
 
+        let (row, section) = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
+        selectedIndexPath = row != nil ? IndexPath(row: row!, section: section) : nil
+
         let numberOfSections = self.numberOfSections(in: tableView)
         for i in 0..<numberOfSections {
-            if i != selectedIndexPath!.section {
+            if i != selectedIndexPath?.section {
                 hiddenSections.append(i)
             }
         }
@@ -73,6 +76,11 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
         cell.isUserInteractionEnabled = indexPath == selectedIndexPath
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == equivalencyScheduleEntries.count - 1 { return MeowlWatchData.scheduleDisclaimerString }
+        return nil
     }
 
     /*

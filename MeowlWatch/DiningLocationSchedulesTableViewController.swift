@@ -30,25 +30,28 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "ScheduleCell")
 
         if diningHall != nil {
-            selectedIndexPath = indexPathOfOpenDiningScheduleEntries(for: diningHall!, at: Date())
-        } else if cafeOrCStore != nil {
-            selectedIndexPath = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore!, at: Date())
-        } else {
-            selectedIndexPath = indexPathOfOpenDiningScheduleEntries(for: norrisLocation!, at: Date())
-        }
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall!, at: Date())
+            selectedIndexPath = selectedRowIndex != nil ? IndexPath(row: selectedRowIndex!, section: selectedSectionIndex) : nil
 
-//        let numberOfSections = self.numberOfSections(in: tableView)
-//        for i in 0..<numberOfSections {
-//            if i != selectedIndexPath!.section {
-//                hiddenSections.append(i)
-//            }
-//        }
+            let numberOfSections = self.numberOfSections(in: tableView)
+            for i in 0..<numberOfSections {
+                if i != selectedSectionIndex {
+                    hiddenSections.append(i)
+                }
+            }
+        } else if cafeOrCStore != nil {
+            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore!, at: Date())
+            selectedIndexPath = row != nil ? IndexPath(row: row!, section: section) : nil
+        } else {
+            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation!, at: Date())
+            selectedIndexPath = row != nil ? IndexPath(row: row!, section: section) : nil
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
+        tableView.selectRow(at: selectedIndexPath, animated: animated, scrollPosition: .none)
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,7 +153,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
-        if section == selectedIndexPath!.section {
+        if section == selectedIndexPath?.section {
             tableView.selectRow(at: selectedIndexPath!, animated: true, scrollPosition: .none)
         }
     }

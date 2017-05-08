@@ -410,23 +410,27 @@ public func openDiningScheduleEntries<DiningLocation>(for diningLocation: Dining
 }
 
 /// For selecting the current index path
-public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall: DiningLocation, at date: Date) -> IndexPath? where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall: DiningLocation, at date: Date) -> (row: Int?, section: Int) where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
     let dayOfWeek = diningCalendar.component(.weekday, from: date)
     let entries = openDiningScheduleEntries(for: diningHall)
-    var indexPath: IndexPath?
+    var row: Int?
+    var section: Int = 0
     for i in 0..<entries.count {
         let entry = entries[i]
         if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
             let scheduleToday = entry.schedule
             for j in 0..<scheduleToday.count {
-                if date.twentyFourHourTime < scheduleToday[j].endingTime {
-                    indexPath = IndexPath(row: j, section: i)
+                if date.twentyFourHourTime >= scheduleToday[j].startingTime && date.twentyFourHourTime < scheduleToday[j].endingTime {
+                    row = j
+                    section = i
                     break
                 }
             }
+            // in day range but time range not found; default to the next section if it's at the end of the date range
+            section = dayOfWeek != entry.endingDayOfWeek ? i : ((i + 1) % entries.count)
         }
     }
-    return indexPath
+    return (row: row, section: section)
 }
 
 private func diningScheduleDictionaryFromPlist(_ fileName: String) -> [String : [ScheduleEntry<DiningStatus>]] {
@@ -518,21 +522,27 @@ public let openEquivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = 
     return newEntries
 }()
 
-public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> IndexPath? {
+public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, section: Int) {
     let dayOfWeek = diningCalendar.component(.weekday, from: date)
     let entries = openEquivalencyScheduleEntries
-    var indexPath: IndexPath?
+    var row: Int?
+    var section: Int = 0
     for i in 0..<entries.count {
         let entry = entries[i]
         if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
             let scheduleToday = entry.schedule
             for j in 0..<scheduleToday.count {
-                if date.twentyFourHourTime < scheduleToday[j].endingTime {
-                    indexPath = IndexPath(row: j, section: i)
+                if date.twentyFourHourTime >= scheduleToday[j].startingTime && date.twentyFourHourTime < scheduleToday[j].endingTime {
+                    row = j
+                    section = i
                     break
                 }
             }
+            // in day range but time range not found; default to the next section if it's at the end of the date range
+            section = dayOfWeek != entry.endingDayOfWeek ? i : ((i + 1) % entries.count)
         }
     }
-    return indexPath
+    return (row: row, section: section)
 }
+
+public let scheduleDisclaimerString = "Schedules are based on normal school days Fall through Spring Quarter, and may differ."

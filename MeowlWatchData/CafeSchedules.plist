@@ -181,17 +181,6 @@
 			<key>StartingDayOfWeek</key>
 			<string>Saturday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>2400</key>
-				<string>Closed</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
-			<key>EndingDayOfWeek</key>
 			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
@@ -338,17 +327,6 @@
 		<dict>
 			<key>StartingDayOfWeek</key>
 			<string>Saturday</string>
-			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>2400</key>
-				<string>Closed</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
 			<key>EndingDayOfWeek</key>
 			<string>Sunday</string>
 			<key>Schedule</key>
