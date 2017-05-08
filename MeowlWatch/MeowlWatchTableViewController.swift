@@ -36,6 +36,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
         hiddenSections = MeowlWatchData.hiddenSections
 
+        if #available(iOS 9.0, *) {
+            if traitCollection.forceTouchCapability == .available {
+                registerForPreviewing(with: self, sourceView: tableView)
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -247,28 +252,33 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         return viewController
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func schedulesTableViewController(forRowAt indexPath: IndexPath) -> UITableViewController? {
         let date = Date()
+        guard let indexPath = tableView(tableView, willSelectRowAt: indexPath) else { return nil }
         if indexPath == IndexPath(row: 1, section: 1) {
-            self.performSegue(withIdentifier: "ShowEquivalencySchedule", sender: self)
-        } else if indexPath.section == 3 {
+            let viewController = EquivalencyScheduleTableViewController(style: .grouped)
+            viewController.title = "Equivalency Schedule"
+            return viewController
+        }
+        if indexPath.section == 3 {
             let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: date)
             let location = statuses[indexPath.row].key
-            let viewController = diningLocationSchedulesTableViewController(for: location)
-            DispatchQueue.main.async {
-                self.navigationController!.pushViewController(viewController, animated: true)
-            }
+            return diningLocationSchedulesTableViewController(for: location)
         } else if indexPath.section == 4 {
             let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: date)
             let location = statuses[indexPath.row].key
-            let viewController = diningLocationSchedulesTableViewController(for: location)
-            DispatchQueue.main.async {
-                self.navigationController!.pushViewController(viewController, animated: true)
-            }
+            return diningLocationSchedulesTableViewController(for: location)
         } else if indexPath.section == 5 {
             let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: date)
             let location = statuses[indexPath.row].key
-            let viewController = diningLocationSchedulesTableViewController(for: location)
+            return diningLocationSchedulesTableViewController(for: location)
+        }
+
+        return nil
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let viewController = schedulesTableViewController(forRowAt: indexPath) {
             DispatchQueue.main.async {
                 self.navigationController!.pushViewController(viewController, animated: true)
             }
@@ -364,6 +374,23 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionClosed: section)
         MeowlWatchData.hiddenSections.append(section)
+    }
+
+}
+
+@available(iOS 9.0, *)
+extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        let cell = tableView(tableView, cellForRowAt: indexPath)
+        previewingContext.sourceRect = cell.frame
+        let schedulesVC = schedulesTableViewController(forRowAt: indexPath)
+        return schedulesVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController!.pushViewController(viewControllerToCommit, animated: false)
     }
 
 }

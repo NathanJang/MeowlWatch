@@ -27,7 +27,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="feM-RP-uNa" kind="show" identifier="ShowSettings" id="2Yd-n0-npe"/>
-                        <segue destination="2p8-Eu-5kh" kind="show" identifier="ShowEquivalencySchedule" id="7z3-YM-Tgv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyp-hh-qcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,25 +129,6 @@
             </objects>
             <point key="canvasLocation" x="1774" y="366"/>
         </scene>
-        <!--Equivalency Schedules-->
-        <scene sceneID="RMT-42-oSu">
-            <objects>
-                <tableViewController title="Equivalency Schedules" id="2p8-Eu-5kh" customClass="EquivalencyScheduleTableViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rRs-OX-F87">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="2p8-Eu-5kh" id="Vt1-wv-gcP"/>
-                            <outlet property="delegate" destination="2p8-Eu-5kh" id="bh4-21-STg"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OeL-ie-Qqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1774" y="1285"/>
-        </scene>
         <!--Legal-->
         <scene sceneID="hMH-ph-97S">
             <objects>
@@ -188,10 +168,10 @@ Disclaimer</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 
 While the developer, Jonathan Chan, is a student at Northwestern, he is unaffiliated with the Northwestern administration and Northwestern Dining. This app was developed independently of Northwestern, and its content does not necessarily reflect the views of Northwestern University. Although the developer will make the best effort to ensure that the app functions as expected, he has no control over the web servers and cannot guarantee 100% accuracy.
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -207,14 +187,14 @@ Privacy Policy</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 
 Your NetID and password will be sent securely to https://websso.it.northwestern.edu, Northwestern Dining's online portal, to check your meal plan balance. Your NetID and password will also be stored securely on your iOS device, so you can open the app every time without re-entering your password. Your credentials will NOT be used for any other purpose or sent to any other destination.
 
 Your meal plan balance will be stored on your device and will not be sent online.
 
 The free version of this app will display advertisements by Google, which may track your browsing habits (independently of MeowlWatch) to show more relevant ads, unless you opt out. You may do so in System Settings &gt; Privacy &gt; Advertising &gt; Limit Ad Tracking. Upon any successful in-app purchase, advertisements will be disabled.
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -249,7 +229,7 @@ Alamofire</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
  Copyright © 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -257,7 +237,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -273,7 +253,7 @@ SwiftKeychainWrapper</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 
 The MIT License (MIT)
 
@@ -284,7 +264,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -300,7 +280,7 @@ Siren</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 
 The MIT License (MIT)
 
@@ -310,7 +290,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
