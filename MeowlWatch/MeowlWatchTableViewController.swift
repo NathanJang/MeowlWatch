@@ -257,7 +257,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let indexPath = tableView(tableView, willSelectRowAt: indexPath) else { return nil }
         if indexPath == IndexPath(row: 1, section: 1) {
             let viewController = EquivalencyScheduleTableViewController(style: .grouped)
-            viewController.title = "Equivalency Schedule"
+            viewController.title = "Equivalencies"
             return viewController
         }
         if indexPath.section == 3 {
