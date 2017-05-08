@@ -13,6 +13,8 @@ import MeowlWatchData
     import GoogleMobileAds
 #endif
 
+import Siren
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -34,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 MeowlWatchData.persistToUserDefaults()
             }
         #endif
+
+        let siren = Siren.shared
+        siren.alertType = .force
+        siren.checkVersion(checkType: .immediately)
 
         return true
     }
@@ -61,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             meowlWatchViewController.refreshIfNeeded(animated: false)
         }
+
+        Siren.shared.checkVersion(checkType: .immediately)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

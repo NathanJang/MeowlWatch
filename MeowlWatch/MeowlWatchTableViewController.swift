@@ -153,7 +153,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case 0: // User cell
             let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserTableViewCell") as! MeowlWatchUserTableViewCell
             userCell.nameLabel.text = queryResult?.name ?? "Your Name"
-            userCell.planLabel.text = queryResult?.currentPlanName ?? "Your Meal Plan"
+            userCell.planLabel.text = queryResult?.currentPlanName ?? "Tap \"Account\" To Get Started"
             cell = userCell
         case 1:
             switch indexPath.row {
@@ -168,7 +168,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                                                selectable: true)
             case 2:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
-                                               numberString: queryResult?.boardMeals ?? "0.00",
+                                               numberString: queryResult?.boardMeals ?? "0",
                                                descriptionString: "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left")
             default:
                 break

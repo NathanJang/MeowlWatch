@@ -26,12 +26,12 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "EquivalencyScheduleCell")
 
-        let (row, section) = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
-        selectedIndexPath = row != nil ? IndexPath(row: row!, section: section) : nil
+        let (selectedRowIndex, selectedSectionIndex) = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
+        selectedIndexPath = selectedRowIndex != nil ? IndexPath(row: selectedRowIndex!, section: selectedSectionIndex) : nil
 
         let numberOfSections = self.numberOfSections(in: tableView)
         for i in 0..<numberOfSections {
-            if i != selectedIndexPath?.section {
+            if i != selectedSectionIndex {
                 hiddenSections.append(i)
             }
         }
@@ -130,7 +130,7 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
     override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
-        if section == selectedIndexPath!.section {
+        if section == selectedIndexPath?.section {
             tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
         }
     }
