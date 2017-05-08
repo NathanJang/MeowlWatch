@@ -383,8 +383,7 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        let cell = tableView(tableView, cellForRowAt: indexPath)
-        previewingContext.sourceRect = cell.frame
+        previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let schedulesVC = schedulesTableViewController(forRowAt: indexPath)
         return schedulesVC
     }

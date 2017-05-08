@@ -37,9 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         #endif
 
-        let siren = Siren.shared
-        siren.alertType = .force
-        siren.checkVersion(checkType: .immediately)
+        Siren.shared.checkVersion(checkType: .immediately)
 
         return true
     }
