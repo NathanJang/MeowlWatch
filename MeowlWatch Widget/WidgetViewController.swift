@@ -73,7 +73,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
             return
         }
         updateLabels(with: MeowlWatchData.lastQuery, onCompletion: nil)
-        MeowlWatchData.query { queryResult in
+        MeowlWatchData.query { [unowned self] queryResult in
             DispatchQueue.main.async {
                 self.updateLabels(with: queryResult) {
                     completionHandler(.newData)

@@ -305,7 +305,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     /// Calls `MeowlWatchData.query` and then provides the appropriate UI feedback.
     func refresh(animated: Bool) {
         if MeowlWatchData.canQuery {
-            MeowlWatchData.query { queryResult in
+            MeowlWatchData.query { [unowned self] queryResult in
                 DispatchQueue.main.async {
                     if queryResult.error != nil {
                         self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
@@ -338,7 +338,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             textField.text = MeowlWatchData.password
         }
 
-        let signInAction = UIAlertAction(title: "Sign In", style: .default) { alertAction in
+        let signInAction = UIAlertAction(title: "Sign In", style: .default) { [unowned self] _ in
             guard let textFields = alertController.textFields else { return }
             let netID = textFields[0].text ?? ""
             let password = textFields[1].text ?? ""
@@ -350,7 +350,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                 self.endRefreshing(animated: true)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { alertAction in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [unowned self] _ in
             self.endRefreshing(animated: true)
         }
 
