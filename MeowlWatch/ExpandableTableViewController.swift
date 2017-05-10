@@ -59,7 +59,7 @@ class ExpandableTableViewController: UITableViewController {
         } else {
             headerView.sectionHidden = false
         }
-        headerView.updateDisclosureIndicatorOrientation(animated: false)
+        headerView.updateView(animated: false)
         return headerView
     }
 

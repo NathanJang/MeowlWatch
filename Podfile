@@ -12,6 +12,7 @@ end
 
 target 'MeowlWatch Full' do
   use_frameworks!
+  pod 'Siren'
 end
 
 target 'MeowlWatchData' do

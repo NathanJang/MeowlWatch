@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		109E0D8EC9CD3B237E943B2CE139753A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		037F0DE17D5661D59D4CFE88DE12CE7A /* Pods-MeowlWatch Full-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B5E145EDCEFC9360A39C60CAC96EF9 /* Pods-MeowlWatch Full-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C54A0F26D19FD4F9BE0EB8D57B28A7 /* Timeline.swift */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBB160E12563D76792F3410AE34EF4D8 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D33EB1A45C4CDD73F74F664160BC6FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		26343828F0EE89D8F96024D757C53BBC /* Pods-MeowlWatch Full-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DE6EF468BA8B62ADC7AF6EA18F2ECB /* Pods-MeowlWatch Full-dummy.m */; };
 		34D33B991D0B7E74D9BC86E088A3020B /* SirenTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E05EDCB10F264C8A327C11193DB90 /* SirenTestHelper.swift */; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DBA50D693E97BDD3463B6FE3540BEB /* TaskDelegate.swift */; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7646F27CF91E5C4175019C007A632BFD /* Request.swift */; };
+		591FD64898DC3011432C5B0828B76305 /* Pods-MeowlWatch Full-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DE6EF468BA8B62ADC7AF6EA18F2ECB /* Pods-MeowlWatch Full-dummy.m */; };
 		5EAC48941F28A184B09356D292930231 /* Pods-MeowlWatchData-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 861E0753A9E8D868221732DEBD35EA8F /* Pods-MeowlWatchData-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8212E1BD466E78596B7AC2E33E3541 /* DispatchQueue+Alamofire.swift */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9CBF15C54073ED100FD6FCE51AA78 /* ServerTrustPolicy.swift */; };
@@ -48,9 +48,9 @@
 		E514711808E74777024C6CE152A699B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		E86DEE53B5CB01DACE6021A0A06A94E4 /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3346E787333B7DD3E8C41A2AC402583D /* Siren.bundle */; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989FC87038A20C7FF522C835653CFFF /* Notifications.swift */; };
-		F3CB84D52DBB1B27483C9B7759F49293 /* Pods-MeowlWatch Full-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B5E145EDCEFC9360A39C60CAC96EF9 /* Pods-MeowlWatch Full-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F63B96FC60B41A8BA0A7A72CE36184AC /* Siren-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 305B6AF483B5D7123B55392B3A8298D9 /* Siren-dummy.m */; };
 		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B881F6D6F81A3BA607F62403CD784C /* ResponseSerialization.swift */; };
+		F88D94DFB57609D23145274228A8A6F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41A91D0856A93950CB44CB353460E /* Alamofire.swift */; };
 		FCFEB1330D00E98473129949AF076A05 /* SwiftKeychainWrapper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCA1F2B7036D2271712AF3D812C491 /* SwiftKeychainWrapper-dummy.m */; };
 /* End PBXBuildFile section */
@@ -70,6 +70,13 @@
 			remoteGlobalIDString = 0868E45E51E2E0B8C878F4218C3CC5B9;
 			remoteInfo = Siren;
 		};
+		B3097BF0C0BDB7672B3E90FBFF77F0F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0868E45E51E2E0B8C878F4218C3CC5B9;
+			remoteInfo = Siren;
+		};
 		B86CD266B22C58606285F61894335A7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -77,14 +84,14 @@
 			remoteGlobalIDString = 5FCBD2B96263AC7C2FEBB0DFD642866A;
 			remoteInfo = SwiftKeychainWrapper;
 		};
-		C1AF6A69F9692704E9E1F41534DC0E8A /* PBXContainerItemProxy */ = {
+		BB19AFE7BE8943606CE49191849FB33B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5FCBD2B96263AC7C2FEBB0DFD642866A;
-			remoteInfo = SwiftKeychainWrapper;
+			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
+			remoteInfo = Alamofire;
 		};
-		D0A5FD85CE74A246C51AD9D885ECE64A /* PBXContainerItemProxy */ = {
+		C1AF6A69F9692704E9E1F41534DC0E8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -98,12 +105,12 @@
 			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
 			remoteInfo = Alamofire;
 		};
-		F465971F876CE9FDC4821319F388A286 /* PBXContainerItemProxy */ = {
+		F3EECA9420CADF3FF09C3BC234909A52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
-			remoteInfo = Alamofire;
+			remoteGlobalIDString = 5FCBD2B96263AC7C2FEBB0DFD642866A;
+			remoteInfo = SwiftKeychainWrapper;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -195,14 +202,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1F6F62B3E1D6568ED04909ADB6B6897D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				109E0D8EC9CD3B237E943B2CE139753A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3698D33FAA13FF914645F52C577F5C7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,6 +215,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A04BFC558D69E7DBB68023C80A9CFE4E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99FA9785843865B32302238D56E123EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F88D94DFB57609D23145274228A8A6F6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,19 +492,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		10C319A5593684B10DE64A556D5536B6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F3CB84D52DBB1B27483C9B7759F49293 /* Pods-MeowlWatch Full-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3F7984858F561CE5EBE374E285A2D24E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C876FF32FBA6494BE848CA370AB7207C /* Pods-MeowlWatch-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40111199ABC5771013434B87C8F1AA27 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				037F0DE17D5661D59D4CFE88DE12CE7A /* Pods-MeowlWatch Full-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,25 +560,6 @@
 			name = Siren;
 			productName = Siren;
 			productReference = 980CA865764A81848E54A19FBF19588D /* Siren.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		0D18F9E1917B91A87759E29E7264FB8C /* Pods-MeowlWatch Full */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6A2DB85CC47295E2EB93A5EBE3C3959B /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full" */;
-			buildPhases = (
-				6733A335B494D052BE48DD190570608D /* Sources */,
-				1F6F62B3E1D6568ED04909ADB6B6897D /* Frameworks */,
-				10C319A5593684B10DE64A556D5536B6 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				71E1F134EB9A884DA58AB0509A7F819F /* PBXTargetDependency */,
-				41F2494D209B2254DDB85DDC4588CFBC /* PBXTargetDependency */,
-			);
-			name = "Pods-MeowlWatch Full";
-			productName = "Pods-MeowlWatch Full";
-			productReference = 309907CEF65C083C32A48958F8CFD9EC /* Pods_MeowlWatch_Full.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		3D9D7FB0CB12CBD3F61D21D9BEA4AE61 /* Pods-MeowlWatchData */ = {
@@ -647,6 +635,26 @@
 			productReference = 5BB69FC5970088FADDF8D3E10E76A8E8 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C64F349FAF2DE904AA90FCDE309F3E2D /* Pods-MeowlWatch Full */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2314823007E262BE17DBCAF1C92B1696 /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full" */;
+			buildPhases = (
+				B2A1EA0FEC01DF53348EE8F2AD84C2E8 /* Sources */,
+				99FA9785843865B32302238D56E123EA /* Frameworks */,
+				40111199ABC5771013434B87C8F1AA27 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0E38B8D4D54B8B1C2CA660F9B5CBC6F8 /* PBXTargetDependency */,
+				3BA8E9F77652ECD4B90F7DF480907150 /* PBXTargetDependency */,
+				E55EEE9E552C8487EECFEEDDFED36638 /* PBXTargetDependency */,
+			);
+			name = "Pods-MeowlWatch Full";
+			productName = "Pods-MeowlWatch Full";
+			productReference = 309907CEF65C083C32A48958F8CFD9EC /* Pods_MeowlWatch_Full.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -670,7 +678,7 @@
 			targets = (
 				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
 				57871D5378B34F02F5F67AF09C5A390F /* Pods-MeowlWatch */,
-				0D18F9E1917B91A87759E29E7264FB8C /* Pods-MeowlWatch Full */,
+				C64F349FAF2DE904AA90FCDE309F3E2D /* Pods-MeowlWatch Full */,
 				3D9D7FB0CB12CBD3F61D21D9BEA4AE61 /* Pods-MeowlWatchData */,
 				0868E45E51E2E0B8C878F4218C3CC5B9 /* Siren */,
 				5FCBD2B96263AC7C2FEBB0DFD642866A /* SwiftKeychainWrapper */,
@@ -738,19 +746,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6733A335B494D052BE48DD190570608D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				26343828F0EE89D8F96024D757C53BBC /* Pods-MeowlWatch Full-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		80BBEDAEABFE0CF207849C5FAB46DA04 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C1DFB9A49B6242CD3FF587C9C9BC0581 /* Pods-MeowlWatch-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A1EA0FEC01DF53348EE8F2AD84C2E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				591FD64898DC3011432C5B0828B76305 /* Pods-MeowlWatch Full-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,17 +775,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0E38B8D4D54B8B1C2CA660F9B5CBC6F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
+			targetProxy = BB19AFE7BE8943606CE49191849FB33B /* PBXContainerItemProxy */;
+		};
 		3850F8195236137628BE6DCF67D73E75 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Siren;
 			target = 0868E45E51E2E0B8C878F4218C3CC5B9 /* Siren */;
 			targetProxy = 6EC9986C569A8DEEB80448BFB1F0287D /* PBXContainerItemProxy */;
 		};
-		41F2494D209B2254DDB85DDC4588CFBC /* PBXTargetDependency */ = {
+		3BA8E9F77652ECD4B90F7DF480907150 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SwiftKeychainWrapper;
-			target = 5FCBD2B96263AC7C2FEBB0DFD642866A /* SwiftKeychainWrapper */;
-			targetProxy = D0A5FD85CE74A246C51AD9D885ECE64A /* PBXContainerItemProxy */;
+			name = Siren;
+			target = 0868E45E51E2E0B8C878F4218C3CC5B9 /* Siren */;
+			targetProxy = B3097BF0C0BDB7672B3E90FBFF77F0F1 /* PBXContainerItemProxy */;
 		};
 		5AF349851E80F861D60DB2A98099E8AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -791,17 +805,17 @@
 			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
 			targetProxy = D155E3FFAC3DA751CB452DAE48500DF7 /* PBXContainerItemProxy */;
 		};
-		71E1F134EB9A884DA58AB0509A7F819F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = F465971F876CE9FDC4821319F388A286 /* PBXContainerItemProxy */;
-		};
 		E23B609D60D9928FA221ED03405ABDE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftKeychainWrapper;
 			target = 5FCBD2B96263AC7C2FEBB0DFD642866A /* SwiftKeychainWrapper */;
 			targetProxy = B86CD266B22C58606285F61894335A7E /* PBXContainerItemProxy */;
+		};
+		E55EEE9E552C8487EECFEEDDFED36638 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftKeychainWrapper;
+			target = 5FCBD2B96263AC7C2FEBB0DFD642866A /* SwiftKeychainWrapper */;
+			targetProxy = F3EECA9420CADF3FF09C3BC234909A52 /* PBXContainerItemProxy */;
 		};
 		ED76CBA2EBF2227BA12499FFED3A4A9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -882,15 +896,15 @@
 			};
 			name = Release;
 		};
-		4B316C0D10A026BF65696FF1DCB54225 /* Debug */ = {
+		337162E8BCD7658C2928B934EA8FE56F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31FEF9781B8DB17BB8096A01590E5670 /* Pods-MeowlWatch Full.debug.xcconfig */;
+			baseConfigurationReference = 324FE1CD5C082CD24D60B709B4CE9DFA /* Pods-MeowlWatch Full.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -903,7 +917,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -911,12 +925,11 @@
 				PRODUCT_NAME = Pods_MeowlWatch_Full;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		5A894B60BFC152CB820FA0707F8DCED3 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1167,15 +1180,15 @@
 			};
 			name = Debug;
 		};
-		AD8E22D102EC56C91524D1A25F735F97 /* Release */ = {
+		C63AC4DE98DE6AD8B8810FC4951E21B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 324FE1CD5C082CD24D60B709B4CE9DFA /* Pods-MeowlWatch Full.release.xcconfig */;
+			baseConfigurationReference = 31FEF9781B8DB17BB8096A01590E5670 /* Pods-MeowlWatch Full.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1188,7 +1201,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1196,11 +1209,12 @@
 				PRODUCT_NAME = Pods_MeowlWatch_Full;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		CA5D62C15C81F2ED9722A44DFB0C1BB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1322,6 +1336,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2314823007E262BE17DBCAF1C92B1696 /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C63AC4DE98DE6AD8B8810FC4951E21B5 /* Debug */,
+				337162E8BCD7658C2928B934EA8FE56F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1336,15 +1359,6 @@
 			buildConfigurations = (
 				CA5D62C15C81F2ED9722A44DFB0C1BB7 /* Debug */,
 				2E28EFEF14ADC69FFD24FE1ABF29B61B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6A2DB85CC47295E2EB93A5EBE3C3959B /* Build configuration list for PBXNativeTarget "Pods-MeowlWatch Full" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4B316C0D10A026BF65696FF1DCB54225 /* Debug */,
-				AD8E22D102EC56C91524D1A25F735F97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

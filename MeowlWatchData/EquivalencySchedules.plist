@@ -9,7 +9,7 @@
 		<string>Saturday</string>
 		<key>Schedule</key>
 		<dict>
-			<key>0200</key>
+			<key>0300</key>
 			<string>Late Night</string>
 			<key>0730</key>
 			<string>Unavailable</string>
@@ -30,7 +30,7 @@
 		<string>Sunday</string>
 		<key>Schedule</key>
 		<dict>
-			<key>0200</key>
+			<key>0300</key>
 			<string>Late Night</string>
 			<key>0800</key>
 			<string>Unavailable</string>

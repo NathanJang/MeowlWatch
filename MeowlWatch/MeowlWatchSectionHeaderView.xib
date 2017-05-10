@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,17 +16,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEw-pp-Kj1">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONy-an-RZO">
-                    <rect key="frame" x="8" y="11" width="35" height="16"/>
+                    <rect key="frame" x="8" y="15" width="35" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DetailDisclosureIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="Qbx-2q-ZxP">
-                    <rect key="frame" x="359" y="13" width="8" height="13"/>
+                    <rect key="frame" x="359" y="17" width="8" height="13"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFb-4Z-BvU">
                     <rect key="frame" x="0.0" y="37" width="375" height="1"/>
@@ -39,23 +35,17 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="sFb-4Z-BvU" secondAttribute="bottom" id="2VN-3K-L6j"/>
-                <constraint firstItem="ONy-an-RZO" firstAttribute="centerY" secondItem="EEw-pp-Kj1" secondAttribute="centerY" id="F26-dL-xJz"/>
-                <constraint firstItem="sFb-4Z-BvU" firstAttribute="bottom" secondItem="EEw-pp-Kj1" secondAttribute="bottom" id="Fsq-jk-xb4"/>
-                <constraint firstAttribute="bottom" secondItem="EEw-pp-Kj1" secondAttribute="bottom" id="ILM-Cj-Fob"/>
-                <constraint firstItem="sFb-4Z-BvU" firstAttribute="width" secondItem="EEw-pp-Kj1" secondAttribute="width" id="MOi-9q-43z"/>
-                <constraint firstItem="EEw-pp-Kj1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rvd-DJ-xUl"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Qbx-2q-ZxP" secondAttribute="trailing" id="Pmb-Mz-k39"/>
+                <constraint firstItem="ONy-an-RZO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="WFf-Jr-QWC"/>
+                <constraint firstItem="ONy-an-RZO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="4" id="aFP-M0-Q0g"/>
                 <constraint firstItem="Qbx-2q-ZxP" firstAttribute="centerY" secondItem="ONy-an-RZO" secondAttribute="centerY" id="mjJ-vK-f3e"/>
-                <constraint firstAttribute="trailing" secondItem="EEw-pp-Kj1" secondAttribute="trailing" id="mrQ-WO-RKm"/>
+                <constraint firstItem="sFb-4Z-BvU" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="oq4-Og-FHL"/>
                 <constraint firstItem="sFb-4Z-BvU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r7j-TT-Buv"/>
-                <constraint firstItem="EEw-pp-Kj1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tDC-ss-OJy"/>
-                <constraint firstItem="ONy-an-RZO" firstAttribute="leading" secondItem="EEw-pp-Kj1" secondAttribute="leadingMargin" id="wUv-BJ-lht"/>
-                <constraint firstItem="Qbx-2q-ZxP" firstAttribute="trailing" secondItem="EEw-pp-Kj1" secondAttribute="trailingMargin" id="yqt-0h-vM3"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bottomBorderView" destination="sFb-4Z-BvU" id="Bg0-B4-qWC"/>
-                <outlet property="buttonView" destination="EEw-pp-Kj1" id="aVL-Ue-7qc"/>
                 <outlet property="disclosureIndicatorView" destination="Qbx-2q-ZxP" id="EGa-3G-EnV"/>
                 <outlet property="titleLabel" destination="ONy-an-RZO" id="MQz-qF-04u"/>
             </connections>

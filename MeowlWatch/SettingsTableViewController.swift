@@ -300,11 +300,10 @@ class SettingsTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     UIApplication.shared.openURL(url)
                 }
-            }, completion: {
-                DispatchQueue.main.async {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                }
             })
+            DispatchQueue.main.async {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
 
         case 2:
             switch indexPath.row {
@@ -314,11 +313,10 @@ class SettingsTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         UIApplication.shared.openURL(url)
                     }
-                }, completion: {
-                    DispatchQueue.main.async {
-                        self.tableView.deselectRow(at: indexPath, animated: true)
-                    }
                 })
+                DispatchQueue.main.async {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
 
             case 1:
                 DispatchQueue.main.async {
