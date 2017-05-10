@@ -27,9 +27,10 @@ class NavigationController: UINavigationController {
 
             var birthdayComponents = DateComponents()
             birthdayComponents.year = Calendar.current.dateComponents([.year], from: Date()).year! - 18 - Int(arc4random_uniform(4)) // Random year 18 to 22 years ago
-            birthdayComponents.month = 1 + Int(arc4random_uniform(12))
+            let month = 1 + Int(arc4random_uniform(12))
+            birthdayComponents.month = month
             let maxDaysInMonth: UInt32
-            switch birthdayComponents.month! {
+            switch month {
             case 1, 3, 5, 7, 8, 10, 12:
                 maxDaysInMonth = 31
             case 4, 6, 9, 11:
@@ -55,8 +56,8 @@ class NavigationController: UINavigationController {
         // Do any additional setup after loading the view.
         #if !MEOWLWATCH_FULL
             if MeowlWatchData.shouldDisplayAds {
-                self.bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-                let bannerView = self.bannerView!
+                let bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+                self.bannerView = bannerView
                 self.toolbar.addSubview(bannerView)
                 bannerView.adUnitID = MeowlWatchData.adMobBannerAdUnitID
                 bannerView.rootViewController = self
@@ -105,9 +106,10 @@ class NavigationController: UINavigationController {
         /// Loads the interstitial if the RNG allows.
         func maybeShowInterstitial() {
             if arc4random_uniform(3) < 1 && self.presentedViewController == nil {
-                self.interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
-                interstitial!.delegate = self
-                interstitial!.load(adRequest)
+                let interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
+                self.interstitial = interstitial
+                interstitial.delegate = self
+                interstitial.load(adRequest)
             }
         }
 

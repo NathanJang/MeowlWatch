@@ -29,9 +29,11 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "ScheduleCell")
 
-        if diningHall != nil {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall!, at: Date())
-            selectedIndexPath = selectedRowIndex != nil ? IndexPath(row: selectedRowIndex!, section: selectedSectionIndex) : nil
+        if let diningHall = diningHall {
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall, at: Date())
+            if let selectedRowIndex = selectedRowIndex {
+                selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
+            }
 
             let numberOfSections = self.numberOfSections(in: tableView)
             for i in 0..<numberOfSections {
@@ -39,12 +41,16 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                     hiddenSections.append(i)
                 }
             }
-        } else if cafeOrCStore != nil {
-            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore!, at: Date())
-            selectedIndexPath = row != nil ? IndexPath(row: row!, section: section) : nil
-        } else {
-            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation!, at: Date())
-            selectedIndexPath = row != nil ? IndexPath(row: row!, section: section) : nil
+        } else if let cafeOrCStore = cafeOrCStore {
+            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: Date())
+            if let row = row {
+                selectedIndexPath = IndexPath(row: row, section: section)
+            }
+        } else if let norrisLocation = norrisLocation {
+            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: Date())
+            if let row = row {
+                selectedIndexPath = IndexPath(row: row, section: section)
+            }
         }
     }
 
@@ -63,33 +69,27 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return entries!.count
+        guard let entries = entries else { return 0 }
+        return entries.count
     }
 
     override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return entries![section].schedule.count
+        guard let entries = entries else { return 0 }
+        return entries[section].schedule.count
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-//        if diningHall != nil {
-//            let entries = diningHallScheduleEntries(for: diningHall!)[section]
-//            return entries.formattedWeekdayRange
-//        } else if cafeOrCStore != nil {
-//            let entries = cafeOrCStoreScheduleEntriesFilteredByNotClosed(for: cafeOrCStore!)[section]
-//            return entries.formattedWeekdayRange
-//        } else {
-//            let entries = norrisLocationScheduleEntries(for: norrisLocation!)[section]
-//            return entries.formattedWeekdayRange
-//        }
-        return entries![section].formattedWeekdayRange
+        guard let entries = entries else { return nil }
+        return entries[section].formattedWeekdayRange
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath)
+        guard let entries = entries else { return super.tableView(tableView, cellForRowAt: indexPath) }
 
         // Configure the cell...
-        let entry = self.entries![indexPath.section]
+        let entry = entries[indexPath.section]
         cell.textLabel!.text = entry.formattedTimeRange(atIndex: indexPath.row)
         cell.detailTextLabel!.text = entry.schedule[indexPath.row].status.rawValue
         cell.detailTextLabel!.textColor = entry.schedule[indexPath.row].status != .closed ? view.tintColor : UIColor.red

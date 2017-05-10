@@ -27,7 +27,9 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "EquivalencyScheduleCell")
 
         let (selectedRowIndex, selectedSectionIndex) = MeowlWatchData.indexPathOfEquivalencyScheduleEntries(at: Date())
-        selectedIndexPath = selectedRowIndex != nil ? IndexPath(row: selectedRowIndex!, section: selectedSectionIndex) : nil
+        if let selectedRowIndex = selectedRowIndex {
+            selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
+        }
 
         let numberOfSections = self.numberOfSections(in: tableView)
         for i in 0..<numberOfSections {

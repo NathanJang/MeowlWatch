@@ -27,7 +27,9 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
         if #available(iOSApplicationExtension 10.0, *) {
-            self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
+            if let extensionContext = extensionContext {
+                extensionContext.widgetLargestAvailableDisplayMode = .expanded
+            }
         } else {
             // Fallback on earlier versions
             self.preferredContentSize = CGSize(width: self.preferredContentSize.width, height: 220)

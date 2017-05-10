@@ -337,12 +337,14 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         }
 
         let signInAction = UIAlertAction(title: "Sign In", style: .default) { alertAction in
-            let netID = alertController.textFields![0].text ?? ""
-            let password = alertController.textFields![1].text ?? ""
+            guard let textFields = alertController.textFields else { return }
+            let netID = textFields[0].text ?? ""
+            let password = textFields[1].text ?? ""
             _ = MeowlWatchData.updateCredentials(netID: netID, password: password)
             if MeowlWatchData.canQuery {
                 self.beginRefreshing(animated: true)
             } else {
+                // in case already refreshing
                 self.endRefreshing(animated: true)
             }
         }

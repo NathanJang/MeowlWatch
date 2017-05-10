@@ -91,7 +91,9 @@ extension ExpandableTableViewController: SectionHeaderViewDelegate {
         }
         tableView.beginUpdates()
         tableView.insertRows(at: indexPathsToInsert, with: .middle)
-        hiddenSections.remove(at: hiddenSections.index(of: section)!)
+        if let indexOfSectionToRemove = hiddenSections.index(of: section) {
+            hiddenSections.remove(at: indexOfSectionToRemove)
+        }
         tableView.endUpdates()
     }
 

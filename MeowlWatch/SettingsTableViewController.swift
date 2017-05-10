@@ -43,8 +43,9 @@ class SettingsTableViewController: UITableViewController {
 
         #if !MEOWLWATCH_FULL
             if !MeowlWatchData.anythingIsPurchased {
-                self.refreshControl = UIRefreshControl()
-                refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
+                let refreshControl = UIRefreshControl()
+                self.refreshControl = refreshControl
+                refreshControl.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
                 requestProductData()
             }
         #endif
@@ -128,7 +129,7 @@ class SettingsTableViewController: UITableViewController {
                 #if !MEOWLWATCH_FULL
                     switch indexPath.row {
                     case 0:
-                        if self.refreshControl!.isRefreshing {
+                        if let refreshControl = self.refreshControl, refreshControl.isRefreshing {
                             cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
                             cell!.textLabel!.text = "Loading..."
                         } else {
@@ -268,7 +269,7 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             if !MeowlWatchData.widgetIsPurchased {
                 #if !MEOWLWATCH_FULL
-                    if !self.refreshControl!.isRefreshing {
+                    if let refreshControl = refreshControl, !refreshControl.isRefreshing {
                         switch indexPath.row {
                         case 0:
                             if canMakePayments {
@@ -295,8 +296,9 @@ class SettingsTableViewController: UITableViewController {
 
         case 1:
             self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.", action:  {
-                let url = URL(string: self.isabelShortURLString)!
-                UIApplication.shared.openURL(url)
+                if let url = URL(string: self.isabelShortURLString) {
+                    UIApplication.shared.openURL(url)
+                }
             })
             tableView.deselectRow(at: indexPath, animated: true)
 
@@ -304,8 +306,11 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+MeowlWatch@u.northwestern.edu.", action: {
-                    let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+MeowlWatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v\(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!))")!
-                    UIApplication.shared.openURL(url)
+                    if let infoDictionary = Bundle.main.infoDictionary,
+                        let versionString = infoDictionary["CFBundleShortVersionString"],
+                        let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+MeowlWatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v\(versionString))") {
+                        UIApplication.shared.openURL(url)
+                    }
                 })
                 tableView.deselectRow(at: indexPath, animated: true)
 

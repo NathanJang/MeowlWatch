@@ -31,7 +31,10 @@ public func loadFromDefaults() {
     }
 
     if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int], intArray.count == widgetArrangement.count {
-        widgetArrangement = intArray.flatMap { return QueryResult.WidgetDisplayItem(rawValue: $0)! }
+        let storedWidgetArrangement = intArray.flatMap { return QueryResult.WidgetDisplayItem(rawValue: $0) }
+        if storedWidgetArrangement.count == widgetArrangement.count {
+            widgetArrangement = storedWidgetArrangement
+        }
     }
 
     if let existingArray = userDefaults.array(forKey: "hiddenSections") as? [Int] {
@@ -42,7 +45,6 @@ public func loadFromDefaults() {
         widgetIsPurchased = storedWidgetIsPurchased
     } else {
         widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
-//        keychain.removeObject(forKey: "widgetPurchased")
         userDefaults.removeObject(forKey: "widgetPurchased")
     }
 
@@ -88,12 +90,12 @@ public func updateCredentials(netID aNetID: String?, password aPassword: String?
 
         success = keychain.removeObject(forKey: "netID") && success
         success = keychain.removeObject(forKey: "password") && success
-    } else {
-        netID = aNetID!
-        password = aPassword!
+    } else if let aNetID = aNetID, let aPassword = aPassword {
+        netID = aNetID
+        password = aPassword
 
-        success = keychain.set(netID!, forKey: "netID", withAccessibility: .afterFirstUnlock) && success
-        success = keychain.set(password!, forKey: "password", withAccessibility: .afterFirstUnlock) && success
+        success = keychain.set(aNetID, forKey: "netID", withAccessibility: .afterFirstUnlock) && success
+        success = keychain.set(aPassword, forKey: "password", withAccessibility: .afterFirstUnlock) && success
     }
 
     return success
@@ -109,7 +111,7 @@ private let sessionManager: Alamofire.SessionManager = { () -> Alamofire.Session
 public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
     print("Querying...")
 
-    guard canQuery else {
+    guard canQuery, let netID = netID, let password = password else {
         return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
     }
 
@@ -123,11 +125,10 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
     }())
 
     sessionManager.request(urlString).responseString { response in
-        guard response.error == nil && response.response != nil else {
+        guard response.error == nil && response.response != nil, let html = response.value else {
             return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
         }
 
-        let html = response.value!
         var gotoParamValue: String
         let gotoOnFailParamValue: String
         var sunQueryParamsStringParamValue: String
@@ -179,31 +180,30 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
             "encoded" : encodedParamValue,
             "gx_charset" : gxCharsetParamValue,
             "IDButton" : "Log+In",
-            "IDToken1" : netID!,
-            "IDToken2" : password!
+            "IDToken1" : netID,
+            "IDToken2" : password
         ]
         let request = sessionManager.request("https://websso.it.northwestern.edu/amserver/UI/Login", method: .post, parameters: parameters, encoding: URLEncoding(destination: .httpBody))
         request.responseString { response in
-            guard response.error == nil && response.response != nil else {
+            guard response.error == nil && response.response != nil, let html = response.value else {
                 return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
             }
 
             let laresParamValue: String
             do {
-                let value = try response.value!.firstMatch(regexPattern: "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\"").first
-                guard value != nil else {
-                    if try !response.value!.firstMatch(regexPattern: "The NetID and/or password you entered was invalid.").isEmpty {
+                guard let value = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\"").first else {
+                    if try !html.firstMatch(regexPattern: "The NetID and/or password you entered was invalid.").isEmpty {
                         return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
                     }
                     return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
                 }
-                laresParamValue = value!
+                laresParamValue = value
             } catch {
                 return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
             }
             let request = sessionManager.request("https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx", method: .post, parameters: ["LARES" : laresParamValue], encoding: URLEncoding(destination: .httpBody))
             request.responseString { response in
-                guard let queryResult = QueryResult(html: response.value!) else {
+                guard let html = response.value, let queryResult = QueryResult(html: html) else {
                     return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
                 }
                 return finishQuery(result: queryResult, onCompletion: onCompletion)
@@ -218,8 +218,8 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
 private func finishQuery(result: QueryResult, onCompletion: ((_ result: QueryResult) -> Void)) {
     lastQuery = result
     persistToUserDefaults()
-    let storage = sessionManager.session.configuration.httpCookieStorage!
-    for cookie in storage.cookies! {
+    guard let storage = sessionManager.session.configuration.httpCookieStorage, let cookies = storage.cookies else { return onCompletion(result) }
+    for cookie in cookies {
         storage.deleteCookie(cookie)
     }
     return onCompletion(result)

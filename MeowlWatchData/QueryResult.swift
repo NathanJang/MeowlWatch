@@ -148,13 +148,23 @@ public class QueryResult: NSObject, NSCoding {
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        self.dateRetrieved = aDecoder.decodeObject(forKey: "dateRetrieved") as! Date
-        self.name = aDecoder.decodeObject(forKey: "name") as! String
-        self.currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as! String
-        self.numberOfBoardMeals = aDecoder.decodeObject(forKey: "numberOfBoardMeals") as! UInt
-        self.numberOfEquivalencyMeals = aDecoder.decodeObject(forKey: "numberOfEquivalencyMeals") as! UInt
-        self.pointsInCents = aDecoder.decodeObject(forKey: "pointsInCents") as! UInt
-        self.catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as! UInt
+        guard let dateRetrieved = aDecoder.decodeObject(forKey: "dateRetrieved") as? Date,
+            let name = aDecoder.decodeObject(forKey: "name") as? String,
+            let currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as? String,
+            let numberOfBoardMeals = aDecoder.decodeObject(forKey: "numberOfBoardMeals") as? UInt,
+            let numberOfEquivalencyMeals = aDecoder.decodeObject(forKey: "numberOfEquivalencyMeals") as? UInt,
+            let pointsInCents = aDecoder.decodeObject(forKey: "pointsInCents") as? UInt,
+            let catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as? UInt
+            else { return nil }
+
+        self.dateRetrieved = dateRetrieved
+        self.name = name
+        self.currentPlanName = currentPlanName
+        self.numberOfBoardMeals = numberOfBoardMeals
+        self.numberOfEquivalencyMeals = numberOfEquivalencyMeals
+        self.pointsInCents = pointsInCents
+        self.catCashInCents = catCashInCents
+
         if let error = aDecoder.decodeObject(forKey: "error") as? UInt {
             self.error = QueryResult.Error(rawValue: error)
         } else {
@@ -221,8 +231,10 @@ extension QueryResult {
 
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
-        let match = try! currentPlanName.firstMatch(regexPattern: "Unlimited").first
-        return match != nil
+        do {
+            let match = try currentPlanName.firstMatch(regexPattern: "Unlimited").first
+            return match != nil
+        } catch { return false }
     }
 
     /// The date retrieved as a formatted string.
@@ -343,8 +355,8 @@ extension UInt {
 
         if matches.count != 3 { return nil }
 
-        let wholeComponent = UInt(matches[1])! * 100
-        let fractionalComponent = UInt(matches[2])!
+        let wholeComponent = (UInt(matches[1]) ?? 0) * 100
+        let fractionalComponent = UInt(matches[2]) ?? 0
         self = wholeComponent + fractionalComponent
     }
 
