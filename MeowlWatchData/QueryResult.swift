@@ -62,10 +62,10 @@ public class QueryResult: NSObject, NSCoding {
 
         self.name = matches[1]
         self.currentPlanName = matches[2]
-        self.numberOfBoardMeals = UInt(matches[3])!
-        self.numberOfEquivalencyMeals = UInt(matches[4])!
-        self.pointsInCents = UInt(toCentsWithString: matches[5])!
-        self.catCashInCents = UInt(toCentsWithString: matches[6])!
+        self.numberOfBoardMeals = UInt(matches[3]) ?? 0
+        self.numberOfEquivalencyMeals = UInt(matches[4]) ?? 0
+        self.pointsInCents = UInt(toCentsWithString: matches[5]) ?? 0
+        self.catCashInCents = UInt(toCentsWithString: matches[6]) ?? 0
 
         self.error = nil
     }
