@@ -45,10 +45,11 @@ class SettingsTableViewController: UITableViewController {
             if !MeowlWatchData.anythingIsPurchased {
                 self.refreshControl = UIRefreshControl()
                 refreshControl!.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
-                SKPaymentQueue.default().add(self)
                 requestProductData()
             }
         #endif
+
+        SKPaymentQueue.default().add(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -289,39 +290,27 @@ class SettingsTableViewController: UITableViewController {
                         }
                     }
                 #endif
-                DispatchQueue.main.async {
-                    tableView.deselectRow(at: indexPath, animated: true)
-                }
+                tableView.deselectRow(at: indexPath, animated: true)
             }
 
         case 1:
             self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.", action:  {
                 let url = URL(string: self.isabelShortURLString)!
-                DispatchQueue.main.async {
-                    UIApplication.shared.openURL(url)
-                }
+                UIApplication.shared.openURL(url)
             })
-            DispatchQueue.main.async {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
+            tableView.deselectRow(at: indexPath, animated: true)
 
         case 2:
             switch indexPath.row {
             case 0:
                 self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+MeowlWatch@u.northwestern.edu.", action: {
                     let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+MeowlWatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v\(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!))")!
-                    DispatchQueue.main.async {
-                        UIApplication.shared.openURL(url)
-                    }
+                    UIApplication.shared.openURL(url)
                 })
-                DispatchQueue.main.async {
-                    tableView.deselectRow(at: indexPath, animated: true)
-                }
+                tableView.deselectRow(at: indexPath, animated: true)
 
             case 1:
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "ShowLegal", sender: self)
-                }
+                self.performSegue(withIdentifier: "ShowLegal", sender: self)
 
             default:
                 break
@@ -329,12 +318,6 @@ class SettingsTableViewController: UITableViewController {
 
         default:
             break
-        }
-    }
-
-    func reloadData() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
         }
     }
 
@@ -356,19 +339,15 @@ class SettingsTableViewController: UITableViewController {
 
         /// Makes the refresh control start refreshing, if it exists.
         func beginRefreshing() {
-            DispatchQueue.main.async {
-                guard let refreshControl = self.refreshControl else { return }
-                refreshControl.beginRefreshing()
-                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-            }
+            guard let refreshControl = self.refreshControl else { return }
+            refreshControl.beginRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
         }
 
         /// Makes the refresh control stop spinning, if it exists.
         func endRefreshing() {
-            DispatchQueue.main.async {
-                guard let refreshControl = self.refreshControl else { return }
-                refreshControl.endRefreshing()
-            }
+            guard let refreshControl = self.refreshControl else { return }
+            refreshControl.endRefreshing()
         }
     #endif
 
@@ -385,13 +364,13 @@ class SettingsTableViewController: UITableViewController {
                     self.widgetProduct = product
                 }
             }
-            self.reloadData()
+            self.tableView.reloadData()
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
             self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
             self.endRefreshing()
-            self.reloadData()
+            self.tableView.reloadData()
         }
 
         /// The localized string for the price of a product.
@@ -416,25 +395,24 @@ class SettingsTableViewController: UITableViewController {
             let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.widgetProductIdentifier])
             request.delegate = self
             request.start()
-            self.reloadData()
+            self.tableView.reloadData()
         }
 
         /// What to do once the widget is purchased.
         func didPurchaseWidget() {
+            SKPaymentQueue.default().remove(self)
             self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
 
+            self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentInset.top), animated: true)
             self.endRefreshing()
-            self.tableView.setContentOffset(CGPoint.zero, animated: true)
-            DispatchQueue.main.async {
-                self.refreshControl!.removeFromSuperview()
-            }
+            self.refreshControl!.removeFromSuperview()
 
             MeowlWatchData.widgetIsPurchased = true
             MeowlWatchData.persistToUserDefaults()
             let navigationController = self.navigationController as! NavigationController
             navigationController.bannerView = nil
             navigationController.setToolbarHidden(true, animated: false)
-            self.reloadData()
+            self.tableView.reloadData()
         }
 
     }

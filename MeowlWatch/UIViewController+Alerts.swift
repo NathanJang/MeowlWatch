@@ -18,10 +18,8 @@ extension UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Go", style: .default) { _ in action?() })
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-            alertController.view.tintColor = self.view.tintColor
-        }
+        self.present(alertController, animated: true, completion: nil)
+        alertController.view.tintColor = self.view.tintColor
     }
 
     /// Shows a message alert controller to the user.
@@ -30,10 +28,8 @@ extension UIViewController {
     func showMessageAlert(title: String, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-            alertController.view.tintColor = self.view.tintColor
-        }
+        self.present(alertController, animated: true, completion: nil)
+        alertController.view.tintColor = self.view.tintColor
     }
 
 }

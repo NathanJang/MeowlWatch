@@ -30,16 +30,14 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
             self.extensionContext!.widgetLargestAvailableDisplayMode = .expanded
         } else {
             // Fallback on earlier versions
-            DispatchQueue.main.async {
-                self.preferredContentSize = CGSize(width: self.preferredContentSize.width, height: 220)
-                let descriptionColor = UIColor.white
-                self.leftDescriptionLabel.textColor = descriptionColor
-                self.rightDescriptionLabel.textColor = descriptionColor
-                self.secondaryLeftDescriptionLabel.textColor = descriptionColor
-                self.secondaryRightDescriptionLabel.textColor = descriptionColor
-                self.purchaseRequiredLabel.textColor = descriptionColor
-                self.updatedLabel.textColor = descriptionColor
-            }
+            self.preferredContentSize = CGSize(width: self.preferredContentSize.width, height: 220)
+            let descriptionColor = UIColor.white
+            self.leftDescriptionLabel.textColor = descriptionColor
+            self.rightDescriptionLabel.textColor = descriptionColor
+            self.secondaryLeftDescriptionLabel.textColor = descriptionColor
+            self.secondaryRightDescriptionLabel.textColor = descriptionColor
+            self.purchaseRequiredLabel.textColor = descriptionColor
+            self.updatedLabel.textColor = descriptionColor
         }
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView(sender:))))
@@ -59,9 +57,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         MeowlWatchData.loadFromDefaults()
 
         guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
-        DispatchQueue.main.async {
-            self.purchaseRequiredLabel.isHidden = true
-        }
+        self.purchaseRequiredLabel.isHidden = true
         guard MeowlWatchData.shouldRefresh else {
             updateLabels(with: MeowlWatchData.lastQuery) {
                 completionHandler(.noData)
@@ -76,8 +72,10 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         }
         updateLabels(with: MeowlWatchData.lastQuery, onCompletion: nil)
         MeowlWatchData.query { queryResult in
-            self.updateLabels(with: queryResult) {
-                completionHandler(.newData)
+            DispatchQueue.main.async {
+                self.updateLabels(with: queryResult) {
+                    completionHandler(.newData)
+                }
             }
         }
 
@@ -85,12 +83,10 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 
     @available(iOSApplicationExtension 10.0, *)
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        DispatchQueue.main.async {
-            if activeDisplayMode == .expanded {
-                self.preferredContentSize = CGSize(width: maxSize.width, height: 220)
-            } else {
-                self.preferredContentSize = maxSize
-            }
+        if activeDisplayMode == .expanded {
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 220)
+        } else {
+            self.preferredContentSize = maxSize
         }
     }
 
@@ -102,7 +98,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?, onCompletion: (() -> Void)?) {
         guard MeowlWatchData.widgetIsPurchased else { return }
-        DispatchQueue.main.async {
             self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
             self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
             self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
@@ -114,13 +109,10 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
                 self.updateNumberLabel(self.secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
                 self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
-                DispatchQueue.main.async {
-                    self.updatedLabel.text = "Updated: \(query.dateRetrievedString)"
-                }
+                self.updatedLabel.text = "\(QueryResult.dateRetrievedDescription): \(query.dateRetrievedString)"
             }
 
             onCompletion?()
-        }
     }
 
     /// Sets the content of a number label given a desired widget item and a query result object.

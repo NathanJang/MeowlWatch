@@ -73,14 +73,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         refresh(animated: true)
     }
 
-    /// Begins frefreshing if needed.
+    /// Begins refreshing if needed.
     func refreshIfNeeded(animated: Bool) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
         if MeowlWatchData.shouldRefresh {
-            beginRefrshing(animated: animated)
+            beginRefreshing(animated: animated)
         }
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -157,8 +155,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         switch indexPath.section {
         case 0: // User cell
             let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserTableViewCell") as! MeowlWatchUserTableViewCell
-            userCell.nameLabel.text = queryResult?.name ?? "Your Name"
-            userCell.planLabel.text = queryResult?.currentPlanName ?? "Tap \"Account\" To Get Started"
+            userCell.nameLabel.text = queryResult?.name ?? MeowlWatchData.defaultNameString
+            userCell.planLabel.text = queryResult?.currentPlanName ?? MeowlWatchData.defaultSubtitleString
             cell = userCell
         case 1:
             switch indexPath.row {
@@ -279,15 +277,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let viewController = schedulesTableViewController(forRowAt: indexPath) {
-            DispatchQueue.main.async {
-                self.navigationController!.pushViewController(viewController, animated: true)
-            }
+            self.navigationController!.pushViewController(viewController, animated: true)
         }
     }
 
     /// Updates the UI to show the spinner and then refresh.
-    func beginRefrshing(animated: Bool) {
-        DispatchQueue.main.async {
+    func beginRefreshing(animated: Bool) {
+        if !self.refreshControl!.isRefreshing {
             self.refreshControl!.beginRefreshing()
             if self.tableView.contentOffset.y <= self.refreshControl!.frame.height {
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: animated)
@@ -298,8 +294,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// Updates the UI to hide the spinner.
     func endRefreshing(animated: Bool) {
-        DispatchQueue.main.async {
-            self.refreshControl!.attributedTitle = NSAttributedString(string: "Retrieved: \(self.queryResult?.dateRetrievedString ?? "Never")")
+            if self.refreshControl!.isRefreshing {
+                self.refreshControl!.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
             self.refreshControl!.endRefreshing()
         }
     }
@@ -309,16 +305,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         if MeowlWatchData.canQuery {
             MeowlWatchData.query { queryResult in
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                self.endRefreshing(animated: animated)
+                    if queryResult.error != nil {
+                        self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
+                    }
+                    self.endRefreshing(animated: animated)
 
-                if queryResult.error != nil {
-                    self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
+                    self.tableView.reloadData()
                 }
             }
         } else {
-            self.endRefreshing(animated: animated)
             showSignInAlert()
         }
     }
@@ -330,7 +325,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
     func showSignInAlert() {
-        let alertController = UIAlertController(title: "Sign In to Northwestern", message: "Your NetID and password will only be sent securely to \"websso.it.northwestern.edu\".", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Sign In to Northwestern", message: "To look up your meal plan data, your NetID and password will only be sent to Northwestern's secure server \"websso.it.northwestern.edu\".\nSee Privacy Policy for details.", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "NetID"
             textField.text = MeowlWatchData.netID
@@ -345,18 +340,22 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             let netID = alertController.textFields![0].text ?? ""
             let password = alertController.textFields![1].text ?? ""
             _ = MeowlWatchData.updateCredentials(netID: netID, password: password)
-            self.beginRefrshing(animated: true)
+            if MeowlWatchData.canQuery {
+                self.beginRefreshing(animated: true)
+            } else {
+                self.endRefreshing(animated: true)
+            }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { alertAction in
+            self.endRefreshing(animated: true)
+        }
 
         alertController.addAction(signInAction)
         alertController.addAction(cancelAction)
 
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true)
-            // Change tint color after presenting to make it the right color
-            alertController.view.tintColor = self.view.tintColor
-        }
+        self.present(alertController, animated: true)
+        // Change tint color after presenting to make it the right color
+        alertController.view.tintColor = self.view.tintColor
     }
 
     /// Called when the settings button is tapped.
@@ -392,9 +391,7 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         if let viewController = (viewControllerToCommit as? UINavigationController)?.topViewController {
-            DispatchQueue.main.async {
-                self.navigationController!.pushViewController(viewController, animated: false)
-            }
+            self.navigationController!.pushViewController(viewController, animated: false)
         }
     }
 

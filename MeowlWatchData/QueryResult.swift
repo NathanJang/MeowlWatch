@@ -80,8 +80,8 @@ public class QueryResult: NSObject, NSCoding {
     /// - Parameter lastQuery: The result of the previous query.
     public init(lastQuery: QueryResult?, error: Error?) {
         self.dateRetrieved = Date()
-        self.name = lastQuery?.name ?? "Your Name"
-        self.currentPlanName = lastQuery?.currentPlanName ?? "Your Meal Plan"
+        self.name = lastQuery?.name ?? defaultNameString
+        self.currentPlanName = lastQuery?.currentPlanName ?? defaultSubtitleString
         self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0
         self.numberOfEquivalencyMeals = lastQuery?.numberOfEquivalencyMeals ?? 0
         self.pointsInCents = lastQuery?.pointsInCents ?? 0
@@ -228,6 +228,10 @@ extension QueryResult {
     /// The date retrieved as a formatted string.
     public var dateRetrievedString: String { return MeowlWatchData.displayDateFormatter.string(from: dateRetrieved) }
 
+    public static var dateRetrievedDescription: String { return "Updated" }
+
+    public static var dateRetrievedDescriptionForUnavailable: String { return "Never" }
+
     /// The message to display if there is an error.
     public var errorString: String? {
         guard let error = error else { return nil }
@@ -359,3 +363,8 @@ extension UInt {
     }
     
 }
+
+public let defaultNameString = "Your Name"
+
+/// In place of the plan when no credentials
+public let defaultSubtitleString = "Tap \"Account\" To Get Started"

@@ -31,9 +31,6 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
     }
 
     func didTap() {
-//        DispatchQueue.main.async {
-//            sender.isHighlighted = true
-//        }
         sectionHidden = !sectionHidden
         updateView(animated: true)
         if sectionHidden {
