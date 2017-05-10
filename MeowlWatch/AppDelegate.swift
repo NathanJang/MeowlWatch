@@ -78,6 +78,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func popToRootViewControllerAnimatedIfNeeded() {
+        let navigationController = window!.rootViewController as! NavigationController
+        if !(navigationController.topViewController is MeowlWatchTableViewController) {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        popToRootViewControllerAnimatedIfNeeded()
+        return true
+    }
+
+    /// iOS 8
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        popToRootViewControllerAnimatedIfNeeded()
+        return true
+    }
 
 }
 
