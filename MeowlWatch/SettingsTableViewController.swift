@@ -378,22 +378,12 @@ class SettingsTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
 
-        /// The localized string for the price of a product.
-        /// - Parameter product: The StoreKit product.
-        /// - Returns: A localized string for the product's price.
-        func localizedPrice(for product: SKProduct) -> String {
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .currency
-            numberFormatter.locale = product.priceLocale
-            return numberFormatter.string(from: product.price)!
-        }
-
         /// Query the app store for the IAPs.
         func requestProductData() {
             guard SKPaymentQueue.canMakePayments() else {
                 return
             }
-            if !self.refreshControl!.isRefreshing {
+            if let refreshControl = refreshControl, !refreshControl.isRefreshing {
                 self.beginRefreshing()
             }
             self.canMakePayments = true

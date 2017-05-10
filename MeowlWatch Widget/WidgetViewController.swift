@@ -139,8 +139,11 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     /// What to do when the gesture recognizer gets a tap.
     /// - Parameter sender: The gesture recognizer.
     func didTapView(sender: UITapGestureRecognizer) {
+        guard let extensionContext = extensionContext,
+            let url = URL(string: "meowlwatch://")
+        else { return }
         if sender.state == .ended {
-            self.extensionContext!.open(URL(string: "meowlwatch://")!, completionHandler: nil)
+            extensionContext.open(url, completionHandler: nil)
         }
     }
 

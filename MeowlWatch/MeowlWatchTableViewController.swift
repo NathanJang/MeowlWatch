@@ -283,10 +283,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// Updates the UI to show the spinner and then refresh.
     func beginRefreshing(animated: Bool) {
-        if !self.refreshControl!.isRefreshing {
-            self.refreshControl!.beginRefreshing()
-            if self.tableView.contentOffset.y <= self.refreshControl!.frame.height {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.refreshControl!.frame.height), animated: animated)
+        guard let refreshControl = refreshControl else { return }
+        if !refreshControl.isRefreshing {
+            refreshControl.beginRefreshing()
+            if self.tableView.contentOffset.y <= refreshControl.frame.height {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - refreshControl.frame.height), animated: animated)
             }
         }
         refresh(animated: animated)
@@ -294,9 +295,10 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// Updates the UI to hide the spinner.
     func endRefreshing(animated: Bool) {
-            if self.refreshControl!.isRefreshing {
-                self.refreshControl!.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
-            self.refreshControl!.endRefreshing()
+        guard let refreshControl = refreshControl else { return }
+        if refreshControl.isRefreshing {
+            refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
+            refreshControl.endRefreshing()
         }
     }
 

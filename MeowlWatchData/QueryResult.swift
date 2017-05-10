@@ -62,10 +62,16 @@ public class QueryResult: NSObject, NSCoding {
 
         self.name = matches[1]
         self.currentPlanName = matches[2]
-        self.numberOfBoardMeals = UInt(matches[3]) ?? 0
-        self.numberOfEquivalencyMeals = UInt(matches[4]) ?? 0
-        self.pointsInCents = UInt(toCentsWithString: matches[5]) ?? 0
-        self.catCashInCents = UInt(toCentsWithString: matches[6]) ?? 0
+        guard let numberOfBoardMeals = UInt(matches[3]),
+            let numberOfEquivalencyMeals = UInt(matches[4]),
+            let pointsInCents = UInt(toCentsWithString: matches[5]),
+            let catCashInCents = UInt(toCentsWithString: matches[6])
+        else { return nil }
+
+        self.numberOfBoardMeals = numberOfBoardMeals
+        self.numberOfEquivalencyMeals = numberOfEquivalencyMeals
+        self.pointsInCents = pointsInCents
+        self.catCashInCents = catCashInCents
 
         self.error = nil
     }
@@ -355,9 +361,10 @@ extension UInt {
 
         if matches.count != 3 { return nil }
 
-        let wholeComponent = (UInt(matches[1]) ?? 0) * 100
-        let fractionalComponent = UInt(matches[2]) ?? 0
-        self = wholeComponent + fractionalComponent
+        guard let wholeComponent = UInt(matches[1]),
+            let fractionalComponent = UInt(matches[2])
+        else { return nil }
+        self = wholeComponent * 100 + fractionalComponent
     }
 
     /// Converts `self` into a two-decimal-place string representation.
