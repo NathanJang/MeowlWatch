@@ -419,15 +419,17 @@ public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall:
         let entry = entries[i]
         if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
             let scheduleToday = entry.schedule
+            var isAfterHoursOfEndingDayOfWeek = false
             for j in 0..<scheduleToday.count {
                 if date.twentyFourHourTime >= scheduleToday[j].startingTime && date.twentyFourHourTime < scheduleToday[j].endingTime {
                     row = j
                     section = i
                     break
                 }
+                if i == entry.endingDayOfWeek && j == scheduleToday.count - 1 { isAfterHoursOfEndingDayOfWeek = true }
             }
             // in day range but time range not found; default to the next section if it's at the end of the date range
-            section = dayOfWeek != entry.endingDayOfWeek ? i : ((i + 1) % entries.count)
+            section = isAfterHoursOfEndingDayOfWeek ? (i + 1) % entries.count : i
         }
     }
     return (row: row, section: section)
@@ -531,15 +533,17 @@ public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, 
         let entry = entries[i]
         if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
             let scheduleToday = entry.schedule
+            var isAfterHoursOfEndingDayOfWeek = false
             for j in 0..<scheduleToday.count {
                 if date.twentyFourHourTime >= scheduleToday[j].startingTime && date.twentyFourHourTime < scheduleToday[j].endingTime {
                     row = j
                     section = i
                     break
                 }
+                if i == entry.endingDayOfWeek && j == scheduleToday.count - 1 { isAfterHoursOfEndingDayOfWeek = true }
             }
             // in day range but time range not found; default to the next section if it's at the end of the date range
-            section = dayOfWeek != entry.endingDayOfWeek ? i : ((i + 1) % entries.count)
+            section = isAfterHoursOfEndingDayOfWeek ? (i + 1) % entries.count : i
         }
     }
     return (row: row, section: section)
