@@ -189,25 +189,43 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
                 return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
             }
 
-            let laresParamValue: String
-            do {
-                guard let value = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\"").first else {
-                    if try !html.firstMatch(regexPattern: "The NetID and/or password you entered was invalid.").isEmpty {
-                        return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
-                    }
-                    return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
-                }
-                laresParamValue = value
-            } catch {
+            parseLaresParamValueDuringQueryAndRedirect(html: html, previousNumberOfRedirects: 0, onCompletion: onCompletion)
+        }
+    }
+}
+
+/// Sometimes when we ping https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx, the html is the same as the previous LARES html thing, but with a different LARES value. I'm assuming we need to re-ping the same site with the updated value, so this recursively does that.
+fileprivate func parseLaresParamValueDuringQueryAndRedirect(html: String, previousNumberOfRedirects: Int, onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
+    guard previousNumberOfRedirects < 5 else { return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion) }
+    let laresMatchRegexPattern = "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\""
+
+    let laresParamValue: String
+    do {
+        guard let value = try html.firstMatch(regexPattern: laresMatchRegexPattern).first else {
+            if try !html.firstMatch(regexPattern: "The NetID and/or password you entered was invalid.").isEmpty {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
+            }
+            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+        }
+        laresParamValue = value
+    } catch {
+        return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+    }
+    let request = sessionManager.request("https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx", method: .post, parameters: ["LARES" : laresParamValue], encoding: URLEncoding(destination: .httpBody))
+    request.responseString { response in
+        do {
+            guard let html = response.value else {
                 return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
             }
-            let request = sessionManager.request("https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx", method: .post, parameters: ["LARES" : laresParamValue], encoding: URLEncoding(destination: .httpBody))
-            request.responseString { response in
-                guard let html = response.value, let queryResult = QueryResult(html: html) else {
-                    return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
-                }
-                return finishQuery(result: queryResult, onCompletion: onCompletion)
+            guard try html.firstMatch(regexPattern: laresMatchRegexPattern).count == 0 else {
+                return parseLaresParamValueDuringQueryAndRedirect(html: html, previousNumberOfRedirects: previousNumberOfRedirects + 1, onCompletion: onCompletion)
             }
+            guard let queryResult = QueryResult(html: html) else {
+                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            }
+            return finishQuery(result: queryResult, onCompletion: onCompletion)
+        } catch {
+            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
         }
     }
 }
