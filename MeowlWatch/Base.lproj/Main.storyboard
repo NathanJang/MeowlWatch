@@ -27,11 +27,30 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="feM-RP-uNa" kind="show" identifier="ShowSettings" id="2Yd-n0-npe"/>
+                        <segue destination="MQn-M7-m5R" kind="presentation" identifier="ShowSearchTableViewController" modalTransitionStyle="crossDissolve" id="Mcr-8h-KAK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyp-hh-qcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="954" y="832"/>
+        </scene>
+        <!--Search Table View Controller-->
+        <scene sceneID="qMM-j7-Zk2">
+            <objects>
+                <tableViewController id="MQn-M7-m5R" customClass="SearchTableViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YUL-ue-09B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="MQn-M7-m5R" id="YPA-dE-7ec"/>
+                            <outlet property="delegate" destination="MQn-M7-m5R" id="ThV-UU-wWl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9N-qn-IIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="1573"/>
         </scene>
         <!--Settings-->
         <scene sceneID="tiP-8m-PFG">
@@ -127,7 +146,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEJ-fd-YGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1774" y="366"/>
+            <point key="canvasLocation" x="1895" y="831"/>
         </scene>
         <!--Legal-->
         <scene sceneID="hMH-ph-97S">
@@ -315,7 +334,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJR-V3-aGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2614" y="366"/>
+            <point key="canvasLocation" x="2735" y="831"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cnj-cN-UFd">

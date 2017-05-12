@@ -15,6 +15,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     /// The query result that the table view will work with.
     var queryResult: QueryResult? { return MeowlWatchData.lastQuery }
 
+    var searchController: UISearchController?
+
+    var searchResultsTableViewController = SearchResultsTableViewController(style: .plain)
+
+    var previewingContext: UIViewControllerPreviewing?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,11 +42,20 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
         hiddenSections = MeowlWatchData.hiddenSections
 
-        if #available(iOS 9.0, *) {
-            if traitCollection.forceTouchCapability == .available {
-                registerForPreviewing(with: self, sourceView: tableView)
-            }
-        }
+        definesPresentationContext = true
+
+        let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
+        self.searchController = searchController
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.placeholder = "Search Dining Locations"
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.delegate = self
+        searchController.searchBar.tintColor = view.tintColor
+        searchController.searchResultsUpdater = searchResultsTableViewController
+
+        searchResultsTableViewController.meowlWatchTableViewController = self
+
+        registerForPreviewing()
     }
 
     override func viewDidLayoutSubviews() {
@@ -379,6 +394,14 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         MeowlWatchData.hiddenSections.append(section)
     }
 
+    func registerForPreviewing() {
+        if #available(iOS 9.0, *) {
+            if traitCollection.forceTouchCapability == .available {
+                previewingContext = registerForPreviewing(with: self, sourceView: tableView)
+            }
+        }
+    }
+
 }
 
 @available(iOS 9.0, *)
@@ -397,6 +420,19 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
         if let viewController = (viewControllerToCommit as? UINavigationController)?.topViewController {
             self.navigationController!.pushViewController(viewController, animated: false)
         }
+    }
+
+}
+
+extension MeowlWatchTableViewController : UISearchBarDelegate {
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
     }
 
 }

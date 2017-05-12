@@ -32,7 +32,7 @@ public enum DiningHall: String {
     
 }
 
-private let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, .hinman, .sargent]
+public let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, .hinman, .sargent]
 
 /// An enum representing each cafe or C-Store.
 public enum CafeOrCStore: String {
@@ -55,7 +55,7 @@ public enum CafeOrCStore: String {
 
 }
 
-private let cafesAndCStores: [CafeOrCStore] = [.plex, .hinmanCStore, .frans, .kresge, .einstein, .bergson, .techExpress, .lisas]
+public let cafesAndCStores: [CafeOrCStore] = [.plex, .hinmanCStore, .frans, .kresge, .einstein, .bergson, .techExpress, .lisas]
 
 /// An enum representing each location at Norris.
 public enum NorrisLocation: String {
@@ -80,7 +80,7 @@ public enum NorrisLocation: String {
 
 }
 
-private let norrisLocations: [NorrisLocation] = [.internationalStation, .catShack, .wildcatDen, .northshorePizza, .pawsNGo, .subway, .starbucks, .dunkinDonuts, .frontera]
+public let norrisLocations: [NorrisLocation] = [.internationalStation, .catShack, .wildcatDen, .northshorePizza, .pawsNGo, .subway, .starbucks, .dunkinDonuts, .frontera]
 
 /// An enum representing the status of dining locations.
 public enum DiningStatus: String {
