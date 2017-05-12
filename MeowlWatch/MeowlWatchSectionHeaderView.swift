@@ -44,7 +44,7 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var disclosureIndicatorView: UIImageView!
     @IBOutlet weak var bottomBorderView: UIView!
     
-    var delegate: SectionHeaderViewDelegate?
+    weak var delegate: SectionHeaderViewDelegate?
 
     private var disclosureIndicatorIsRotated = false
 
