@@ -196,6 +196,7 @@ class SearchResultsTableViewController: UITableViewController {
             default:
                 break
             }
+            searchSources += cafesAndCStoresStatuses.filter { $0.key == cafeOrCStore }.map { normalize($0.status.rawValue) }
         }
         if let diningHall = diningLocation as? DiningHall {
             searchSources += normalize(diningHall.rawValue).components(separatedBy: " ")
@@ -203,6 +204,7 @@ class SearchResultsTableViewController: UITableViewController {
             if diningHall == .plexEast || diningHall == .plexWest {
                 searchSources += ["foster", "walker"]
             }
+            searchSources += diningHallsStatuses.filter { $0.key == diningHall }.map { normalize($0.status.rawValue) }
         }
         if let norrisLocation = diningLocation as? NorrisLocation {
             searchSources += normalize(norrisLocation.rawValue).components(separatedBy: " ")
@@ -210,6 +212,7 @@ class SearchResultsTableViewController: UITableViewController {
             if norrisLocation == .starbucks {
                 searchSources += ["starbucks"]
             }
+            searchSources += norrisLocationsStatuses.filter { $0.key == norrisLocation }.map { normalize($0.status.rawValue) }
         }
 
         return normalizedSearchString.components(separatedBy: " ").reduce(true, { result, normalizedSearchComponent -> Bool in
