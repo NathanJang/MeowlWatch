@@ -106,12 +106,17 @@ private let sessionManager: Alamofire.SessionManager = { () -> Alamofire.Session
     return Alamofire.SessionManager(configuration: configuration)
 }()
 
+private func finishWithParseError(onCompletion: ((_ result: QueryResult) -> Void)) {
+    finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+}
+
 /// Queries the server and calls the completion handler with a query result.
 /// - Parameter onCompletion: The completion handler.
 public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
-    print("Querying...")
+    debugPrint("Query requested")
 
     guard canQuery, let netID = netID, let password = password else {
+        debugPrint("No credentials provided")
         return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
     }
 
@@ -124,8 +129,10 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
         return dateFormatter.string(from: Date())
     }())
 
+    debugPrint("Pinging \(urlString)")
     sessionManager.request(urlString).responseString { response in
         guard response.error == nil && response.response != nil, let html = response.value else {
+            debugPrint("Query connection error")
             return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
         }
 
@@ -137,7 +144,8 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
         do {
             let gotoParamValueMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"goto\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
             guard gotoParamValueMatch.count > 1 else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                debugPrint("Could not parse `goto`")
+                return finishWithParseError(onCompletion: onCompletion)
             }
             gotoParamValue = gotoParamValueMatch[1]
             gotoParamValue = gotoParamValue.replacingOccurrences(of: "&#x2f;", with: "/")
@@ -145,15 +153,17 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
 
             let gotoOnFailParamValueMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"gotoOnFail\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
             guard gotoOnFailParamValueMatch.count > 1 else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                debugPrint("Could not parse `gotoOnFail`")
+                return finishWithParseError(onCompletion: onCompletion)
             }
             gotoOnFailParamValue = gotoOnFailParamValueMatch[1]
 
-            let sunQueryParamStringParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"SunQueryParamsString\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
-            guard sunQueryParamStringParamMatch.count > 1 else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            let sunQueryParamsStringParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"SunQueryParamsString\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
+            guard sunQueryParamsStringParamMatch.count > 1 else {
+                debugPrint("Could not parse `SunQueryParamsString`")
+                return finishWithParseError(onCompletion: onCompletion)
             }
-            sunQueryParamsStringParamValue = sunQueryParamStringParamMatch[1]
+            sunQueryParamsStringParamValue = sunQueryParamsStringParamMatch[1]
             // &#x2f; : /
             // &#x3d; : =
             sunQueryParamsStringParamValue = sunQueryParamsStringParamValue.replacingOccurrences(of: "&#x2f;", with: "/")
@@ -161,17 +171,20 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
 
             let encodedParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"encoded\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
             guard encodedParamMatch.count > 1 else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                debugPrint("Could not parse `encoded`")
+                return finishWithParseError(onCompletion: onCompletion)
             }
             encodedParamValue = encodedParamMatch[1]
 
             let gxCharsetParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"gx_charset\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
             guard gxCharsetParamMatch.count > 1 else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                debugPrint("Could not parse `gx_charset`")
+                return finishWithParseError(onCompletion: onCompletion)
             }
             gxCharsetParamValue = gxCharsetParamMatch[1]
         } catch {
-            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            debugPrint("Regex parsing threw")
+            return finishWithParseError(onCompletion: onCompletion)
         }
         let parameters = [
             "goto" : gotoParamValue,
@@ -183,9 +196,12 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
             "IDToken1" : netID,
             "IDToken2" : password
         ]
-        let request = sessionManager.request("https://websso.it.northwestern.edu/amserver/UI/Login", method: .post, parameters: parameters, encoding: URLEncoding(destination: .httpBody))
+        let loginUrlString = "https://websso.it.northwestern.edu/amserver/UI/Login"
+        debugPrint("Pinging \(loginUrlString) with parameters \(parameters)")
+        let request = sessionManager.request(loginUrlString, method: .post, parameters: parameters, encoding: URLEncoding(destination: .httpBody))
         request.responseString { response in
             guard response.error == nil && response.response != nil, let html = response.value else {
+                debugPrint("Request to \(loginUrlString) failed to connect")
                 return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
             }
 
@@ -196,36 +212,50 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
 
 /// Sometimes when we ping https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx, the html is the same as the previous LARES html thing, but with a different LARES value. I'm assuming we need to re-ping the same site with the updated value, so this recursively does that.
 fileprivate func parseLaresParamValueDuringQueryAndRedirect(html: String, previousNumberOfRedirects: Int, onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
-    guard previousNumberOfRedirects < 5 else { return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion) }
+    guard previousNumberOfRedirects < 5 else {
+        debugPrint("Too many redirects")
+        return finishWithParseError(onCompletion: onCompletion)
+    }
     let laresMatchRegexPattern = "<input type=\"hidden\" name=\"LARES\" value=\"([a-zA-Z0-9+=]*)\""
 
     let laresParamValue: String
     do {
         guard let value = try html.firstMatch(regexPattern: laresMatchRegexPattern).first else {
             if try !html.firstMatch(regexPattern: "The NetID and/or password you entered was invalid.").isEmpty {
+                debugPrint("Failed to authenticate with given credentials")
                 return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .authenticationError), onCompletion: onCompletion)
             }
-            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            debugPrint("Could not parse `LARES`")
+            return finishWithParseError(onCompletion: onCompletion)
         }
         laresParamValue = value
     } catch {
-        return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+        debugPrint("Regex parsing threw")
+        return finishWithParseError(onCompletion: onCompletion)
     }
-    let request = sessionManager.request("https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx", method: .post, parameters: ["LARES" : laresParamValue], encoding: URLEncoding(destination: .httpBody))
+    let balanceCheckUrlString = "https://form.housing.northwestern.edu/foodservice/public/balancecheckplain.aspx"
+    let parameters = ["LARES" : laresParamValue]
+    debugPrint("Pinging \(balanceCheckUrlString) with parameters \(parameters)")
+    let request = sessionManager.request(balanceCheckUrlString, method: .post, parameters: parameters, encoding: URLEncoding(destination: .httpBody))
     request.responseString { response in
         do {
             guard let html = response.value else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                debugPrint("Balance check result unknown")
+                return finishWithParseError(onCompletion: onCompletion)
             }
             guard try html.firstMatch(regexPattern: laresMatchRegexPattern).count == 0 else {
+                debugPrint("Recursing LARES parsing")
                 return parseLaresParamValueDuringQueryAndRedirect(html: html, previousNumberOfRedirects: previousNumberOfRedirects + 1, onCompletion: onCompletion)
             }
             guard let queryResult = QueryResult(html: html) else {
-                return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+                debugPrint("Could not parse balance check html")
+                return finishWithParseError(onCompletion: onCompletion)
             }
+            debugPrint("Query successful")
             return finishQuery(result: queryResult, onCompletion: onCompletion)
         } catch {
-            return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .parseError), onCompletion: onCompletion)
+            debugPrint("Regex parsing threw")
+            return finishWithParseError(onCompletion: onCompletion)
         }
     }
 }

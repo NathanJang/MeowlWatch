@@ -80,8 +80,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func popToRootViewControllerAnimatedIfNeeded() {
         let navigationController = window!.rootViewController as! NavigationController
-        if !(navigationController.topViewController is MeowlWatchTableViewController) {
-            navigationController.popToRootViewController(animated: true)
+        guard let meowlWatchTableViewController = navigationController.topViewController as? MeowlWatchTableViewController else {
+            navigationController.popToRootViewController(animated: false)
+            if let presentedViewController = navigationController.topViewController?.presentedViewController {
+                presentedViewController.dismiss(animated: false, completion: nil)
+            }
+            return
+        }
+        if let presentedViewController = meowlWatchTableViewController.presentedViewController {
+            presentedViewController.dismiss(animated: false, completion: nil)
         }
     }
 

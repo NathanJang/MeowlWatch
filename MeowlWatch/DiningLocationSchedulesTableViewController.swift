@@ -33,6 +33,10 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall, at: Date())
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
+            } else {
+                if title != nil {
+                    title! += " (Closed)"
+                }
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
@@ -42,14 +46,36 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                 }
             }
         } else if let cafeOrCStore = cafeOrCStore {
-            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: Date())
-            if let row = row {
-                selectedIndexPath = IndexPath(row: row, section: section)
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: Date())
+            if let selectedRowIndex = selectedRowIndex {
+                selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
+            } else {
+                if title != nil {
+                    title! += " (Closed)"
+                }
+            }
+
+            let numberOfSections = self.numberOfSections(in: tableView)
+            for i in 0..<numberOfSections {
+                if i != selectedSectionIndex {
+                    hiddenSections.append(i)
+                }
             }
         } else if let norrisLocation = norrisLocation {
-            let (row, section) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: Date())
-            if let row = row {
-                selectedIndexPath = IndexPath(row: row, section: section)
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: Date())
+            if let selectedRowIndex = selectedRowIndex {
+                selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
+            } else {
+                if title != nil {
+                    title! += " (Closed)"
+                }
+            }
+
+            let numberOfSections = self.numberOfSections(in: tableView)
+            for i in 0..<numberOfSections {
+                if i != selectedSectionIndex {
+                    hiddenSections.append(i)
+                }
             }
         }
     }

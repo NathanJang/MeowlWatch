@@ -41,7 +41,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="locationNameLabel" destination="uIT-37-fKx" id="epO-HL-EKL"/>
-                <outlet property="stateLabel" destination="D70-4q-L6V" id="wOp-Vw-D3e"/>
+                <outlet property="statusLabel" destination="D70-4q-L6V" id="3js-mc-zAX"/>
             </connections>
         </tableViewCell>
     </objects>

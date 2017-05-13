@@ -60,6 +60,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         searchResultsTableViewController.meowlWatchTableViewController = self
 
         registerForPreviewing()
+
+        updateDiningStatuses()
     }
 
     override func viewDidLayoutSubviews() {
@@ -89,6 +91,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     func didTriggerRefreshControl() {
+        updateDiningStatuses()
         tableView.reloadData()
         refresh(animated: true)
     }

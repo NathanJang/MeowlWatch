@@ -426,10 +426,11 @@ public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall:
                     section = i
                     break
                 }
-                if i == entry.endingDayOfWeek && j == scheduleToday.count - 1 { isAfterHoursOfEndingDayOfWeek = true }
+                if dayOfWeek == entry.endingDayOfWeek && j == scheduleToday.count - 1 && scheduleToday[j].endingTime != 2400 { isAfterHoursOfEndingDayOfWeek = true } // day matches but looped to the last row of the day and no match; therefore it's after the last open entry of the day and we should go to the next day
             }
             // in day range but time range not found; default to the next section if it's at the end of the date range
             section = isAfterHoursOfEndingDayOfWeek ? (i + 1) % entries.count : i
+            break
         }
     }
     return (row: row, section: section)
