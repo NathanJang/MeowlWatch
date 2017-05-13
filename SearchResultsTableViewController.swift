@@ -11,6 +11,10 @@ import MeowlWatchData
 
 class SearchResultsTableViewController: UITableViewController {
 
+    var cafesAndCStoresStatuses: [(key: CafeOrCStore, status: DiningStatus)] = []
+    var diningHallsStatuses: [(key: DiningHall, status: DiningStatus)] = []
+    var norrisLocationsStatuses: [(key: NorrisLocation, status: DiningStatus)] = []
+
     var filteredCafesAndCStoresStatuses: [(key: CafeOrCStore, status: DiningStatus)] = []
     var filteredDiningHallsStatuses: [(key: DiningHall, status: DiningStatus)] = []
     var filteredNorrisLocationsStatuses: [(key: NorrisLocation, status: DiningStatus)] = []
@@ -42,13 +46,6 @@ class SearchResultsTableViewController: UITableViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         if previewingContext == nil {
             registerForPreviewing()
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
     }
 
@@ -122,6 +119,7 @@ class SearchResultsTableViewController: UITableViewController {
             break
         }
         meowlWatchTableViewController.navigationController!.pushViewController(diningLocationSchedulesTableViewController!, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*
@@ -169,7 +167,7 @@ class SearchResultsTableViewController: UITableViewController {
     }
     */
 
-    func diningLocation<DiningLocation>(_ diningLocation: DiningLocation, contains string: String) -> Bool where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+    func diningLocation<DiningLocation>(_ diningLocation: DiningLocation, contains searchString: String) -> Bool where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
         let normalize: ((String) -> String) = { originalString -> String in
             let allowedCharacterSet = NSMutableCharacterSet()
             allowedCharacterSet.formUnion(with: .alphanumerics)
@@ -177,7 +175,7 @@ class SearchResultsTableViewController: UITableViewController {
             let utf16Array = originalString.lowercased().utf16.filter { allowedCharacterSet.characterIsMember($0) }
             return String(utf16CodeUnits: utf16Array, count: utf16Array.count).folding(options: .diacriticInsensitive, locale: nil)
         }
-        let normalizedQueryString = normalize(string)
+        let normalizedSearchString = normalize(searchString)
         var searchSources: [String] = []
         if let cafeOrCStore = diningLocation as? CafeOrCStore {
             let normalizedLocation = normalize(cafeOrCStore.rawValue)
@@ -214,11 +212,10 @@ class SearchResultsTableViewController: UITableViewController {
             }
         }
 
-        return searchSources.reduce(false, { result, searchSource -> Bool in
-            if searchSource == "at" { return result || false }
-            return result || normalizedQueryString.components(separatedBy: " ").reduce(false, { result, normalizedComponent -> Bool in
-                if normalizedComponent.isEmpty { return result || false }
-                return result || searchSource.hasPrefix(normalizedComponent)
+        return normalizedSearchString.components(separatedBy: " ").reduce(true, { result, normalizedSearchComponent -> Bool in
+            if normalizedSearchComponent.isEmpty { return result }
+            return result && searchSources.reduce(false, { result, searchSource -> Bool in
+                return result || searchSource.hasPrefix(normalizedSearchComponent)
             })
         })
     }
@@ -231,20 +228,26 @@ class SearchResultsTableViewController: UITableViewController {
         }
     }
 
+    func updateDiningStatuses() {
+        let date = Date()
+        cafesAndCStoresStatuses = MeowlWatchData.diningStatuses(at: date)
+        diningHallsStatuses = MeowlWatchData.diningStatuses(at: date)
+        norrisLocationsStatuses = MeowlWatchData.diningStatuses(at: date)
+    }
+
 }
 
 extension SearchResultsTableViewController : UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchString = searchController.searchBar.text else { return }
-        let date = Date()
-        filteredCafesAndCStoresStatuses = MeowlWatchData.diningStatuses(at: date).filter { pair -> Bool in
+        filteredCafesAndCStoresStatuses = cafesAndCStoresStatuses.filter { pair -> Bool in
             return diningLocation(pair.key, contains: searchString)
         }
-        filteredDiningHallsStatuses = MeowlWatchData.diningStatuses(at: date).filter { pair -> Bool in
+        filteredDiningHallsStatuses = diningHallsStatuses.filter { pair -> Bool in
             return diningLocation(pair.key, contains: searchString)
         }
-        filteredNorrisLocationsStatuses = MeowlWatchData.diningStatuses(at: date).filter { pair -> Bool in
+        filteredNorrisLocationsStatuses = norrisLocationsStatuses.filter { pair -> Bool in
             return diningLocation(pair.key, contains: searchString)
         }
         tableView.reloadData()

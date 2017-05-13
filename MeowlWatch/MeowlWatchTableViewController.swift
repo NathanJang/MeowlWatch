@@ -15,6 +15,10 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     /// The query result that the table view will work with.
     var queryResult: QueryResult? { return MeowlWatchData.lastQuery }
 
+    var cafesAndCStoresStatuses: [(key: CafeOrCStore, status: DiningStatus)] = []
+    var diningHallsStatuses: [(key: DiningHall, status: DiningStatus)] = []
+    var norrisLocationsStatuses: [(key: NorrisLocation, status: DiningStatus)] = []
+
     var searchController: UISearchController?
 
     var searchResultsTableViewController = SearchResultsTableViewController(style: .plain)
@@ -85,6 +89,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     func didTriggerRefreshControl() {
+        tableView.reloadData()
         refresh(animated: true)
     }
 
@@ -112,14 +117,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             if let queryResult = queryResult, queryResult.catCashInCents == 0 { return 1 }
             else { return 2 }
         case 3:
-            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: Date())
-            return statuses.count
+            return cafesAndCStores.count
         case 4:
-            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: Date())
-            return statuses.count
+            return diningHalls.count
         case 5:
-            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: Date())
-            return statuses.count
+            return norrisLocations.count
         default:
             return 0
         }
@@ -156,14 +158,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     func diningLocationTableViewCell(fromTableView tableView: UITableView, locationName: String, status: DiningStatus) -> MeowlWatchDiningLocationTableViewCell {
         let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell") as! MeowlWatchDiningLocationTableViewCell
         diningLocationCell.locationNameLabel.text = locationName
-        diningLocationCell.stateLabel.text = status.rawValue
-        diningLocationCell.stateLabel.textColor = status != .closed ? (UIApplication.shared.delegate as! AppDelegate).tintColor : UIColor.red
+        diningLocationCell.statusLabel.text = status.rawValue
+        diningLocationCell.statusLabel.textColor = status != .closed ? (UIApplication.shared.delegate as! AppDelegate).tintColor : UIColor.red
         return diningLocationCell
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
-        let date = Date()
 
         // Configure the cell...
         // Most of the time we're using `??` to provide a default display behavior when the query result hasn't been formed yet.
@@ -205,15 +206,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                 break
             }
         case 3:
-            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: date)
+            let statuses = cafesAndCStoresStatuses
             let pair = statuses[indexPath.row]
             cell = diningLocationTableViewCell(fromTableView: tableView, locationName: pair.key.rawValue, status: pair.status)
         case 4:
-            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: date)
+            let statuses = diningHallsStatuses
             let pair = statuses[indexPath.row]
             cell = diningLocationTableViewCell(fromTableView: tableView, locationName: pair.key.rawValue, status: pair.status)
         case 5:
-            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: date)
+            let statuses = norrisLocationsStatuses
             let pair = statuses[indexPath.row]
             cell = diningLocationTableViewCell(fromTableView: tableView, locationName: pair.key.rawValue, status: pair.status)
         default:
@@ -266,7 +267,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     func schedulesTableViewController(forRowAt indexPath: IndexPath) -> UITableViewController? {
-        let date = Date()
         guard let indexPath = tableView(tableView, willSelectRowAt: indexPath) else { return nil }
         if indexPath == IndexPath(row: 1, section: 1) {
             let viewController = EquivalencyScheduleTableViewController(style: .grouped)
@@ -274,15 +274,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             return viewController
         }
         if indexPath.section == 3 {
-            let statuses: [(key: CafeOrCStore, status: DiningStatus)] = diningStatuses(at: date)
+            let statuses = cafesAndCStoresStatuses
             let location = statuses[indexPath.row].key
             return diningLocationSchedulesTableViewController(for: location)
         } else if indexPath.section == 4 {
-            let statuses: [(key: DiningHall, status: DiningStatus)] = diningStatuses(at: date)
+            let statuses = diningHallsStatuses
             let location = statuses[indexPath.row].key
             return diningLocationSchedulesTableViewController(for: location)
         } else if indexPath.section == 5 {
-            let statuses: [(key: NorrisLocation, status: DiningStatus)] = diningStatuses(at: date)
+            let statuses = norrisLocationsStatuses
             let location = statuses[indexPath.row].key
             return diningLocationSchedulesTableViewController(for: location)
         }
@@ -402,6 +402,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         }
     }
 
+    func updateDiningStatuses() {
+        let date = Date()
+        cafesAndCStoresStatuses = MeowlWatchData.diningStatuses(at: date)
+        diningHallsStatuses = MeowlWatchData.diningStatuses(at: date)
+        norrisLocationsStatuses = MeowlWatchData.diningStatuses(at: date)
+    }
+
 }
 
 @available(iOS 9.0, *)
@@ -428,6 +435,7 @@ extension MeowlWatchTableViewController : UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+        searchResultsTableViewController.updateDiningStatuses()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

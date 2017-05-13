@@ -11,7 +11,7 @@ import UIKit
 class MeowlWatchDiningLocationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationNameLabel: UILabel!
-    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
