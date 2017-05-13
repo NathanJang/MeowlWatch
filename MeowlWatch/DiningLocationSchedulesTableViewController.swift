@@ -50,10 +50,10 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: date)
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
-            } else {
-                if diningStatus(for: cafeOrCStore, at: date) == .closed && title != nil {
-                    title! += " (Closed)"
-                }
+            }
+
+            if diningStatus(for: cafeOrCStore, at: date) == .closed && title != nil {
+                title! += " (Closed)"
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
@@ -66,10 +66,10 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: date)
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
-            } else {
-                if diningStatus(for: norrisLocation, at: date) == .closed && title != nil {
-                    title! += " (Closed)"
-                }
+            }
+
+            if diningStatus(for: norrisLocation, at: date) == .closed && title != nil {
+                title! += " (Closed)"
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
