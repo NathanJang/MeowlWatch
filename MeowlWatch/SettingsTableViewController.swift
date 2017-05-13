@@ -48,9 +48,8 @@ class SettingsTableViewController: UITableViewController {
                 refreshControl.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
                 requestProductData()
             }
+            SKPaymentQueue.default().add(self)
         #endif
-
-        SKPaymentQueue.default().add(self)
     }
 
     override func didReceiveMemoryWarning() {
