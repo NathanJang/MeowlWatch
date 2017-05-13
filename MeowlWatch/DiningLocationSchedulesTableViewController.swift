@@ -28,15 +28,16 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.register(UINib(nibName: "ScheduleRowTableViewCell", bundle: nil), forCellReuseIdentifier: "ScheduleCell")
+        let date = Date()
 
         if let diningHall = diningHall {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall, at: Date())
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall, at: date)
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
-            } else {
-                if title != nil {
-                    title! += " (Closed)"
-                }
+            }
+
+            if diningStatus(for: diningHall, at: date) == .closed && title != nil {
+                title! += " (Closed)"
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
@@ -46,11 +47,11 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                 }
             }
         } else if let cafeOrCStore = cafeOrCStore {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: Date())
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: date)
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             } else {
-                if title != nil {
+                if diningStatus(for: cafeOrCStore, at: date) == .closed && title != nil {
                     title! += " (Closed)"
                 }
             }
@@ -62,11 +63,11 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                 }
             }
         } else if let norrisLocation = norrisLocation {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: Date())
+            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: date)
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             } else {
-                if title != nil {
+                if diningStatus(for: norrisLocation, at: date) == .closed && title != nil {
                     title! += " (Closed)"
                 }
             }

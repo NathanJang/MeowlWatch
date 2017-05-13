@@ -190,15 +190,6 @@ public struct ScheduleRow<Status> where Status : RawRepresentable, Status.RawVal
     }
 
     public var formattedTimeRange: String? {
-//        guard index < schedule.count else { return nil }
-//        let lowerBound: Int
-//        if index == 0 {
-//            lowerBound = 0
-//        } else {
-//            lowerBound = schedule[index - 1].time
-//        }
-//        let upperBound = schedule[index].time % 100 == 0 ? schedule[index].time - 41 : schedule[index].time - 1
-//        return "\(formattedTime(twentyFourHourTime: lowerBound)) – \(formattedTime(twentyFourHourTime: upperBound))"
         if startingTime == 0 && endingTime == 2400 { return "All Day" }
         return "\(formattedTime(twentyFourHourTime: startingTime)) – \(formattedTime(twentyFourHourTime: endingTime))"
     }
@@ -265,15 +256,6 @@ public struct ScheduleEntry<Status> where Status : RawRepresentable, Status.RawV
     fileprivate let plistKeyForSchedule = "Schedule"
 
     public func formattedTimeRange(atIndex index: Int) -> String? {
-//        guard index < schedule.count else { return nil }
-//        let lowerBound: Int
-//        if index == 0 {
-//            lowerBound = 0
-//        } else {
-//            lowerBound = schedule[index - 1].time
-//        }
-//        let upperBound = schedule[index].time % 100 == 0 ? schedule[index].time - 41 : schedule[index].time - 1
-//        return "\(formattedTime(twentyFourHourTime: lowerBound)) – \(formattedTime(twentyFourHourTime: upperBound))"
         return schedule[index].formattedTimeRange
     }
 
@@ -354,7 +336,7 @@ private func plistName<Key>(for keyType: Key.Type) -> String? where Key : RawRep
 }
 
 /// For a single dining location
-private func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at date: Date) -> DiningStatus where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
+public func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at date: Date) -> DiningStatus where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
     let defaultValue = DiningStatus.closed
 
     guard let plistName = MeowlWatchData.plistName(for: DiningLocation.self),
@@ -391,15 +373,6 @@ public func diningStatuses<DiningLocation>(at date: Date) -> [(key: DiningLocati
     }
 }
 
-//private func diningScheduleEntriesFilteredByNotClosed<DiningLocation>(for diningLocation: DiningLocation) -> [ScheduleEntry<DiningStatus>] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
-//    return diningScheduleDictionaryFromPlist(plistName(for: type(of: diningLocation))!)[diningLocation.rawValue]!.flatMap { entry -> ScheduleEntry<DiningStatus> in
-//        if entry.schedule.count == 1 { return entry } // in case it's open or closed all day
-//        return ScheduleEntry(from: entry, withScheduleFilteredBy: { scheduleRow -> Bool in
-//            return scheduleRow.status != .closed
-//        })
-//    }
-//}
-
 /// A filtered list of schedule entries for use in the detail VC
 public func openDiningScheduleEntries<DiningLocation>(for diningLocation: DiningLocation) -> [ScheduleEntry<DiningStatus>] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
     guard let plistName = MeowlWatchData.plistName(for: DiningLocation.self),
@@ -412,12 +385,13 @@ public func openDiningScheduleEntries<DiningLocation>(for diningLocation: Dining
 /// For selecting the current index path
 public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall: DiningLocation, at date: Date) -> (row: Int?, section: Int) where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
     let dayOfWeek = diningCalendar.component(.weekday, from: date)
+    let hour = diningCalendar.component(.hour, from: date)
     let entries = openDiningScheduleEntries(for: diningHall)
     var row: Int?
     var section: Int = 0
     for i in 0..<entries.count {
         let entry = entries[i]
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
+        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek || entry.startingDayOfWeek == 7 && entry.endingDayOfWeek == 1 && (dayOfWeek == 1 || dayOfWeek == 7) {
             let scheduleToday = entry.schedule
             var isAfterHoursOfEndingDayOfWeek = false
             for j in 0..<scheduleToday.count {
@@ -426,7 +400,7 @@ public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall:
                     section = i
                     break
                 }
-                if dayOfWeek == entry.endingDayOfWeek && j == scheduleToday.count - 1 && scheduleToday[j].endingTime != 2400 { isAfterHoursOfEndingDayOfWeek = true } // day matches but looped to the last row of the day and no match; therefore it's after the last open entry of the day and we should go to the next day
+                if dayOfWeek == entry.endingDayOfWeek && j == scheduleToday.count - 1 && hour >= 18 { isAfterHoursOfEndingDayOfWeek = true } // day matches but looped to the last row of the day and no match; therefore it's after the last open entry of the day and we should go to the next day
             }
             // in day range but time range not found; default to the next section if it's at the end of the date range
             section = isAfterHoursOfEndingDayOfWeek ? (i + 1) % entries.count : i
@@ -527,12 +501,13 @@ public let openEquivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = 
 
 public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, section: Int) {
     let dayOfWeek = diningCalendar.component(.weekday, from: date)
+    let hour = diningCalendar.component(.hour, from: date)
     let entries = openEquivalencyScheduleEntries
     var row: Int?
     var section: Int = 0
     for i in 0..<entries.count {
         let entry = entries[i]
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
+        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek || entry.startingDayOfWeek == 7 && entry.endingDayOfWeek == 1 && (dayOfWeek == 1 || dayOfWeek == 7) {
             let scheduleToday = entry.schedule
             var isAfterHoursOfEndingDayOfWeek = false
             for j in 0..<scheduleToday.count {
@@ -541,10 +516,11 @@ public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, 
                     section = i
                     break
                 }
-                if i == entry.endingDayOfWeek && j == scheduleToday.count - 1 { isAfterHoursOfEndingDayOfWeek = true }
+                if dayOfWeek == entry.endingDayOfWeek && j == scheduleToday.count - 1 && hour >= 18 { isAfterHoursOfEndingDayOfWeek = true } // day matches but looped to the last row of the day and no match; therefore it's after the last open entry of the day and we should go to the next day
             }
             // in day range but time range not found; default to the next section if it's at the end of the date range
             section = isAfterHoursOfEndingDayOfWeek ? (i + 1) % entries.count : i
+            break
         }
     }
     return (row: row, section: section)
