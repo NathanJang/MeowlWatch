@@ -196,7 +196,10 @@ class SearchResultsTableViewController: UITableViewController {
             default:
                 break
             }
-            searchSources += cafesAndCStoresStatuses.filter { $0.key == cafeOrCStore }.map { normalize($0.status.rawValue) }
+            let normalizedStatuses = cafesAndCStoresStatuses.filter { $0.key == cafeOrCStore }.map { normalize($0.status.rawValue) }
+            for status in normalizedStatuses {
+                searchSources += status.components(separatedBy: " ")
+            }
         }
         if let diningHall = diningLocation as? DiningHall {
             searchSources += normalize(diningHall.rawValue).components(separatedBy: " ")
@@ -204,7 +207,10 @@ class SearchResultsTableViewController: UITableViewController {
             if diningHall == .plexEast || diningHall == .plexWest {
                 searchSources += ["foster", "walker"]
             }
-            searchSources += diningHallsStatuses.filter { $0.key == diningHall }.map { normalize($0.status.rawValue) }
+            let normalizedStatuses = diningHallsStatuses.filter { $0.key == diningHall }.map { normalize($0.status.rawValue) }
+            for status in normalizedStatuses {
+                searchSources += status.components(separatedBy: " ")
+            }
         }
         if let norrisLocation = diningLocation as? NorrisLocation {
             searchSources += normalize(norrisLocation.rawValue).components(separatedBy: " ")
@@ -212,7 +218,10 @@ class SearchResultsTableViewController: UITableViewController {
             if norrisLocation == .starbucks {
                 searchSources += ["starbucks"]
             }
-            searchSources += norrisLocationsStatuses.filter { $0.key == norrisLocation }.map { normalize($0.status.rawValue) }
+            let normalizedStatuses = norrisLocationsStatuses.filter { $0.key == norrisLocation }.map { normalize($0.status.rawValue) }
+            for status in normalizedStatuses {
+                searchSources += status.components(separatedBy: " ")
+            }
         }
 
         return normalizedSearchString.components(separatedBy: " ").reduce(true, { result, normalizedSearchComponent -> Bool in
