@@ -101,6 +101,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         if MeowlWatchData.shouldRefresh {
             beginRefreshing(animated: animated)
         }
+        updateDiningStatuses()
         self.tableView.reloadData()
     }
 
