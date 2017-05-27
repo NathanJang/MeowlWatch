@@ -210,6 +210,9 @@ class SearchResultsTableViewController: UITableViewController {
             let normalizedStatuses = diningHallsStatuses.filter { $0.key == diningHall }.map { normalize($0.status.rawValue) }
             for status in normalizedStatuses {
                 searchSources += status.components(separatedBy: " ")
+                if status != "closed" {
+                    searchSources += ["open"]
+                }
             }
         }
         if let norrisLocation = diningLocation as? NorrisLocation {
