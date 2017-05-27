@@ -66,8 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             meowlWatchViewController.refreshIfNeeded(animated: false)
         }
-
-        Siren.shared.checkVersion(checkType: .immediately)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
