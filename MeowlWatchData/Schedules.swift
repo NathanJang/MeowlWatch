@@ -526,4 +526,4 @@ public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, 
     return (row: row, section: section)
 }
 
-public let scheduleDisclaimerString = "Schedules are based on normal school days Fall through Spring Quarter, and may differ."
+public let scheduleDisclaimerString = "Schedules are based on normal school days Fall through Spring Quarter, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."

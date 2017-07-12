@@ -85,7 +85,7 @@ public class QueryResult: NSObject, NSCoding {
     /// - Parameter error: The error value.
     /// - Parameter lastQuery: The result of the previous query.
     public init(lastQuery: QueryResult?, error: Error?) {
-        self.dateRetrieved = Date()
+        self.dateRetrieved = (error != nil ? lastQuery?.dateRetrieved : Date()) ?? Date()
         self.name = lastQuery?.name ?? defaultNameString
         self.currentPlanName = lastQuery?.currentPlanName ?? defaultSubtitleString
         self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0

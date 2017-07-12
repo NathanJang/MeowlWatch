@@ -80,6 +80,8 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             }
         }
 
+        clearsSelectionOnViewWillAppear = false
+
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
@@ -88,7 +90,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tableView.selectRow(at: selectedIndexPath, animated: animated, scrollPosition: .none)
+        tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
     }
 
     override func didReceiveMemoryWarning() {
@@ -132,7 +134,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == numberOfSections(in: tableView) - 1 {
-            return "Schedules are based on normal school days Fall through Spring Quarter, and may differ."
+            return MeowlWatchData.scheduleDisclaimerString
         }
         return nil
     }

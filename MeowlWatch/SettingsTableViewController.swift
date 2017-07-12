@@ -50,6 +50,10 @@ class SettingsTableViewController: UITableViewController {
             }
             SKPaymentQueue.default().add(self)
         #endif
+
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
     }
 
     override func didReceiveMemoryWarning() {

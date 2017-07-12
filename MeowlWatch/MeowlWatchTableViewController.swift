@@ -49,10 +49,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         definesPresentationContext = true
 
         let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
+        self.searchController = searchController
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
         } else {
-            self.searchController = searchController
+            searchController.searchBar.sizeToFit() // iOS 8
             tableView.tableHeaderView = searchController.searchBar
         }
         searchController.searchBar.placeholder = "Search Dining Locations"
@@ -67,6 +69,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         registerForPreviewing()
 
         updateDiningStatuses()
+
+        tableView.layoutMargins.left = 8
     }
 
     override func viewDidLayoutSubviews() {
@@ -244,9 +248,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         switch section {
         case 5:
             if MeowlWatchData.canQuery {
-                return queryResult?.errorString ?? "\(MeowlWatchData.scheduleDisclaimerString)\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+                if let errorString = queryResult?.errorString {
+                    return "\(errorString)\n\n\(MeowlWatchData.scheduleDisclaimerString)"
+                } else {
+                    return MeowlWatchData.scheduleDisclaimerString
+                }
             } else {
-                return "Please tap \"Account\" and enter your NetID and password."
+                return "\(MeowlWatchData.defaultSubtitleString.characters.first!)\(String(MeowlWatchData.defaultSubtitleString.characters.dropFirst()).lowercased().replacingOccurrences(of: "account", with: "Account")).\n\n\(MeowlWatchData.scheduleDisclaimerString)"
             }
         default:
             return nil
@@ -310,8 +318,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
-            if self.tableView.contentOffset.y <= refreshControl.frame.height {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - refreshControl.frame.height), animated: animated)
+            if #available(iOS 11.0, *) {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
+            } else {
+                // Fallback on earlier versions
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.tableView.contentInset.top - refreshControl.frame.height), animated: animated)
             }
         }
         refresh(animated: animated)
@@ -322,8 +333,16 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if refreshControl.isRefreshing {
             refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
-//            tableView.setContentOffset(CGPoint(x: 0, y: -(navigationController?.navigationBar.frame.origin.y ?? 0)), animated: true)
+
             refreshControl.endRefreshing()
+            if #available(iOS 11.0, *) {
+                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
+            } else {
+                // Fallback on earlier versions
+                DispatchQueue.main.async { [unowned self] in
+                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+                }
+            }
         }
     }
 
@@ -335,11 +354,10 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                     if queryResult.error != nil {
                         self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
                     }
-                    self.endRefreshing(animated: animated)
 
-                    UIView.animate(withDuration: .leastNormalMagnitude) { [unowned self] in
-                        self.tableView.reloadData()
-                    }
+                    self.tableView.reloadData()
+
+                    self.endRefreshing(animated: animated)
                 }
             }
         } else {
@@ -430,14 +448,16 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         if let schedulesVC = schedulesTableViewController(forRowAt: indexPath) {
-            return UINavigationController(rootViewController: schedulesVC)
+            let navigationController = UINavigationController(rootViewController: schedulesVC)
+            navigationController.viewDidAppear(false) // jumping top offset fix?
+            return navigationController
         }
         return nil
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         if let viewController = (viewControllerToCommit as? UINavigationController)?.topViewController {
-            self.navigationController!.pushViewController(viewController, animated: false)
+            self.navigationController?.pushViewController(viewController, animated: false)
         }
     }
 
