@@ -83,7 +83,7 @@ class ExpandableTableViewController: UITableViewController {
 
 extension ExpandableTableViewController: SectionHeaderViewDelegate {
 
-    func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+    @objc func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         var indexPathsToInsert: [IndexPath] = []
         let numberOfRowsToInsert = tableView(tableView, defaultNumberOfRowsInSection: section)
         for i in 0..<numberOfRowsToInsert {
@@ -97,7 +97,7 @@ extension ExpandableTableViewController: SectionHeaderViewDelegate {
         tableView.endUpdates()
     }
 
-    func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
+    @objc func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
         var indexPathsToDelete: [IndexPath] = []
         let numberOfRowsToDelete = tableView(tableView, defaultNumberOfRowsInSection: section)
         for i in 0..<numberOfRowsToDelete {

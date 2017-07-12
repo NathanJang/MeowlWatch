@@ -90,14 +90,14 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         self.refreshIfNeeded(animated: animated)
     }
 
-    func didTriggerRefreshControl() {
+    @objc func didTriggerRefreshControl() {
         updateDiningStatuses()
         tableView.reloadData()
         refresh(animated: true)
     }
 
     /// Begins refreshing if needed.
-    func refreshIfNeeded(animated: Bool) {
+    @objc func refreshIfNeeded(animated: Bool) {
         if MeowlWatchData.shouldRefresh {
             beginRefreshing(animated: animated)
         }
@@ -340,7 +340,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     /// The callback for when the account button is pressed.
-    func didTapAccountButton() {
+    @objc func didTapAccountButton() {
         showSignInAlert()
     }
 
@@ -382,18 +382,18 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     /// Called when the settings button is tapped.
-    func didTapSettingsButton() {
+    @objc func didTapSettingsButton() {
         performSegue(withIdentifier: "ShowSettings", sender: self)
     }
 
-    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+    @objc override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
         if let index = MeowlWatchData.hiddenSections.index(of: section) {
             MeowlWatchData.hiddenSections.remove(at: index)
         }
     }
 
-    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
+    @objc override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionClosed: section)
         MeowlWatchData.hiddenSections.append(section)
     }

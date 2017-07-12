@@ -378,7 +378,7 @@ class SettingsTableViewController: UITableViewController {
         }
 
         /// Query the app store for the IAPs.
-        func requestProductData() {
+        @objc func requestProductData() {
             guard SKPaymentQueue.canMakePayments() else {
                 return
             }

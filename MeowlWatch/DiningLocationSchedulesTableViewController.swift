@@ -178,7 +178,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
      }
      */
 
-    override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
+    @objc override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
         if section == selectedIndexPath?.section {
             tableView.selectRow(at: selectedIndexPath!, animated: true, scrollPosition: .none)
