@@ -49,10 +49,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         definesPresentationContext = true
 
         let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
-        self.searchController = searchController
-        tableView.tableHeaderView = searchController.searchBar
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            self.searchController = searchController
+            tableView.tableHeaderView = searchController.searchBar
+        }
         searchController.searchBar.placeholder = "Search Dining Locations"
         searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.autocorrectionType = .default
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = view.tintColor
         searchController.searchResultsUpdater = searchResultsTableViewController
@@ -317,6 +322,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if refreshControl.isRefreshing {
             refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
+//            tableView.setContentOffset(CGPoint(x: 0, y: -(navigationController?.navigationBar.frame.origin.y ?? 0)), animated: true)
             refreshControl.endRefreshing()
         }
     }
@@ -325,13 +331,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     func refresh(animated: Bool) {
         if MeowlWatchData.canQuery {
             MeowlWatchData.query { [unowned self] queryResult in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [unowned self] in
                     if queryResult.error != nil {
                         self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
                     }
                     self.endRefreshing(animated: animated)
 
-                    self.tableView.reloadData()
+                    UIView.animate(withDuration: .leastNormalMagnitude) { [unowned self] in
+                        self.tableView.reloadData()
+                    }
                 }
             }
         } else {

@@ -73,6 +73,10 @@ class NavigationController: UINavigationController {
         #else
             self.setToolbarHidden(true, animated: false)
         #endif
+
+        if #available(iOS 11.0, *) {
+            navigationBar.prefersLargeTitles = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

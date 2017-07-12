@@ -37,6 +37,10 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
                 hiddenSections.append(i)
             }
         }
+
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
