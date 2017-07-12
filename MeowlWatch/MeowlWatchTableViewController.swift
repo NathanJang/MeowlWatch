@@ -319,7 +319,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
             if #available(iOS 11.0, *) {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
+                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
             } else {
                 // Fallback on earlier versions
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self.tableView.contentInset.top - refreshControl.frame.height), animated: animated)
