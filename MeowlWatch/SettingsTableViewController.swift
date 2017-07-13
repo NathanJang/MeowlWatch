@@ -386,9 +386,10 @@ class SettingsTableViewController: UITableViewController {
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
-            self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
-            self.tableView.reloadData()
-            self.endRefreshing()
+            self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.", completion: { [unowned self] in
+                self.tableView.reloadData()
+                self.endRefreshing()
+            })
         }
 
         /// Query the app store for the IAPs.

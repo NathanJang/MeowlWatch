@@ -25,10 +25,10 @@ extension UIViewController {
     /// Shows a message alert controller to the user.
     /// - Paramter title: The title of the alert controller.
     /// - Parameter message: The message in the alert controller.
-    func showMessageAlert(title: String, message: String?) {
+    func showMessageAlert(title: String, message: String?, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: completion)
         alertController.view.tintColor = self.view.tintColor
     }
 
