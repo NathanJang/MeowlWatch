@@ -27,8 +27,6 @@
 		AB3DEF901E96A8570035F000 /* MeowlWatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF871E96A84A0035F000 /* MeowlWatchData.swift */; };
 		AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
-		AB5B52841F174221003CB273 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B52831F174221003CB273 /* iOS11Shim.swift */; };
-		AB5B52851F174226003CB273 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B52831F174221003CB273 /* iOS11Shim.swift */; };
 		AB5B528D1F174511003CB273 /* DiningHallSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B52871F1742E0003CB273 /* DiningHallSchedules-Summer.plist */; };
 		AB5B528E1F174511003CB273 /* CafeSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B52891F174313003CB273 /* CafeSchedules-Summer.plist */; };
 		AB5B528F1F174511003CB273 /* NorrisSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B528B1F17433A003CB273 /* NorrisSchedules-Summer.plist */; };
@@ -898,7 +896,6 @@
 				AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */,
 				ABC11B221EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift in Sources */,
 				AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
-				AB5B52841F174221003CB273 /* iOS11Shim.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
@@ -922,7 +919,6 @@
 				ABC11B321EB7909900491E7B /* MeowlWatchUserTableViewCell.swift in Sources */,
 				AB3DEF831E969E410035F000 /* BannerAdToolbar.swift in Sources */,
 				AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
-				AB5B52851F174226003CB273 /* iOS11Shim.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */,

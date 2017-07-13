@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 @available(iOS, deprecated: 11.0)
 extension UINavigationBar {
 
@@ -53,3 +53,4 @@ extension UITableView {
     }
 
 }
+ */

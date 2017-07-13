@@ -50,13 +50,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
         let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
         self.searchController = searchController
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
-            navigationItem.hidesSearchBarWhenScrolling = false
-        } else {
+//        if #available(iOS 11.0, *) {
+//            navigationItem.searchController = searchController
+//            navigationItem.hidesSearchBarWhenScrolling = false
+//        } else {
             searchController.searchBar.sizeToFit() // iOS 8
             tableView.tableHeaderView = searchController.searchBar
-        }
+//        }
         searchController.searchBar.placeholder = "Search Dining Locations"
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.autocorrectionType = .default
@@ -318,12 +318,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
-            if #available(iOS 11.0, *) {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
-            } else {
+//            if #available(iOS 11.0, *) {
+//                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
+//            } else {
                 // Fallback on earlier versions
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - refreshControl.frame.height), animated: animated)
-            }
+//            }
         }
         refresh(animated: animated)
     }
@@ -335,14 +335,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
 
             refreshControl.endRefreshing()
-            if #available(iOS 11.0, *) {
-                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
-            } else {
+//            if #available(iOS 11.0, *) {
+//                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
+//            } else {
                 // Fallback on earlier versions
-                DispatchQueue.main.async { [unowned self] in
                     self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-                }
-            }
+//            }
         }
     }
 

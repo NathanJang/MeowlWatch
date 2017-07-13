@@ -40,9 +40,9 @@ class EquivalencyScheduleTableViewController: ExpandableTableViewController {
 
         clearsSelectionOnViewWillAppear = false
 
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .never
-        }
+//        if #available(iOS 11.0, *) {
+//            navigationItem.largeTitleDisplayMode = .never
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
