@@ -132,7 +132,7 @@ class SettingsTableViewController: UITableViewController {
                 #if !MEOWLWATCH_FULL
                     switch indexPath.row {
                     case 0:
-                        if let refreshControl = self.refreshControl, refreshControl.isRefreshing {
+                        if isRefreshing {
                             cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
                             cell!.textLabel!.text = "Loading..."
                         } else {
@@ -344,18 +344,28 @@ class SettingsTableViewController: UITableViewController {
             self.showMessageAlert(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.")
         }
 
+        var isRefreshing = false
+
 
         /// Makes the refresh control start refreshing, if it exists.
         func beginRefreshing() {
             guard let refreshControl = self.refreshControl else { return }
+            isRefreshing = true
             refreshControl.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+            if #available(iOS 11.0, *) {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top), animated: true)
+            } else {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+            }
         }
 
         /// Makes the refresh control stop spinning, if it exists.
         func endRefreshing() {
             guard let refreshControl = self.refreshControl else { return }
-            refreshControl.endRefreshing()
+            isRefreshing = false
+            DispatchQueue.main.async { [unowned refreshControl] in
+                refreshControl.endRefreshing()
+            }
         }
     #endif
 
@@ -366,19 +376,19 @@ class SettingsTableViewController: UITableViewController {
 
         func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
             // Show list of available purchases
-            self.endRefreshing()
             for product in response.products {
                 if product.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     self.widgetProduct = product
                 }
             }
             self.tableView.reloadData()
+            self.endRefreshing()
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
             self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.")
-            self.endRefreshing()
             self.tableView.reloadData()
+            self.endRefreshing()
         }
 
         /// Query the app store for the IAPs.

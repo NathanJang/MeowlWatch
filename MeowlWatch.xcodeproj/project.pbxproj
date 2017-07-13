@@ -29,6 +29,12 @@
 		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB5B52841F174221003CB273 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B52831F174221003CB273 /* iOS11Shim.swift */; };
 		AB5B52851F174226003CB273 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B52831F174221003CB273 /* iOS11Shim.swift */; };
+		AB5B528D1F174511003CB273 /* DiningHallSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B52871F1742E0003CB273 /* DiningHallSchedules-Summer.plist */; };
+		AB5B528E1F174511003CB273 /* CafeSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B52891F174313003CB273 /* CafeSchedules-Summer.plist */; };
+		AB5B528F1F174511003CB273 /* NorrisSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B528B1F17433A003CB273 /* NorrisSchedules-Summer.plist */; };
+		AB5B52901F174512003CB273 /* DiningHallSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B52871F1742E0003CB273 /* DiningHallSchedules-Summer.plist */; };
+		AB5B52911F174512003CB273 /* CafeSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B52891F174313003CB273 /* CafeSchedules-Summer.plist */; };
+		AB5B52921F174512003CB273 /* NorrisSchedules-Summer.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5B528B1F17433A003CB273 /* NorrisSchedules-Summer.plist */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* WidgetViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -202,6 +208,9 @@
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB5B52831F174221003CB273 /* iOS11Shim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS11Shim.swift; path = MeowlWatch/iOS11Shim.swift; sourceTree = "<group>"; };
+		AB5B52871F1742E0003CB273 /* DiningHallSchedules-Summer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DiningHallSchedules-Summer.plist"; sourceTree = "<group>"; };
+		AB5B52891F174313003CB273 /* CafeSchedules-Summer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CafeSchedules-Summer.plist"; sourceTree = "<group>"; };
+		AB5B528B1F17433A003CB273 /* NorrisSchedules-Summer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NorrisSchedules-Summer.plist"; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -369,6 +378,7 @@
 				AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */,
 				AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */,
 				AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */,
+				AB5B52861F1742B3003CB273 /* Summer Schedules */,
 			);
 			path = MeowlWatchData;
 			sourceTree = "<group>";
@@ -415,6 +425,16 @@
 				AB5B52831F174221003CB273 /* iOS11Shim.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB5B52861F1742B3003CB273 /* Summer Schedules */ = {
+			isa = PBXGroup;
+			children = (
+				AB5B52871F1742E0003CB273 /* DiningHallSchedules-Summer.plist */,
+				AB5B52891F174313003CB273 /* CafeSchedules-Summer.plist */,
+				AB5B528B1F17433A003CB273 /* NorrisSchedules-Summer.plist */,
+			);
+			name = "Summer Schedules";
 			sourceTree = "<group>";
 		};
 		AB7782D41E8242B000925F72 /* MeowlWatch Widget */ = {
@@ -655,10 +675,13 @@
 				ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */,
 				ABC11B1F1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib in Resources */,
 				AB7783051E84460B00925F72 /* AdMobKeys-Debug.plist in Resources */,
+				AB5B528F1F174511003CB273 /* NorrisSchedules-Summer.plist in Resources */,
 				AB7783061E84460B00925F72 /* LaunchScreen.storyboard in Resources */,
 				AB7783071E84460B00925F72 /* Assets.xcassets in Resources */,
 				ABC11B351EB7938D00491E7B /* CafeSchedules.plist in Resources */,
 				ABC11B241EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib in Resources */,
+				AB5B528D1F174511003CB273 /* DiningHallSchedules-Summer.plist in Resources */,
+				AB5B528E1F174511003CB273 /* CafeSchedules-Summer.plist in Resources */,
 				AB7783081E84460B00925F72 /* Main.storyboard in Resources */,
 				AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */,
 				AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
@@ -676,10 +699,13 @@
 				ABD71CC01EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */,
 				ABC11B331EB790A200491E7B /* MeowlWatchUserTableViewCell.xib in Resources */,
 				AB7B7FCF1E8E9F0500272655 /* AdMobKeys-Debug.plist in Resources */,
+				AB5B52921F174512003CB273 /* NorrisSchedules-Summer.plist in Resources */,
 				AB7B7FD01E8E9F0500272655 /* LaunchScreen.storyboard in Resources */,
 				ABC11B251EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib in Resources */,
 				ABC11B391EB7938E00491E7B /* CafeSchedules.plist in Resources */,
 				AB7B7FD11E8E9F0500272655 /* Assets.xcassets in Resources */,
+				AB5B52901F174512003CB273 /* DiningHallSchedules-Summer.plist in Resources */,
+				AB5B52911F174512003CB273 /* CafeSchedules-Summer.plist in Resources */,
 				ABC11B311EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
 				AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */,
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,

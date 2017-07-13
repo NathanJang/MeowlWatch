@@ -209,11 +209,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             switch indexPath.row {
             case 0:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
-                                               numberString: queryResult?.points ?? "0",
+                                               numberString: queryResult?.points ?? "$0.00",
                                                descriptionString: "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left")
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
-                                               numberString: queryResult?.catCash ?? "0",
+                                               numberString: queryResult?.catCash ?? "$0.00",
                                                descriptionString: "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left")
             default:
                 break

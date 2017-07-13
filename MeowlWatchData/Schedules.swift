@@ -8,9 +8,10 @@
 
 import Foundation
 
-private let plistNameForDiningHallSchedules = "DiningHallSchedules"
-private let plistNameForCafeOrCStoreSchedules = "CafeSchedules"
-private let plistNameForNorrisLocationSchedules = "NorrisSchedules"
+// TODO: Change after summer
+private let plistNameForDiningHallSchedules = "DiningHallSchedules-Summer"
+private let plistNameForCafeOrCStoreSchedules = "CafeSchedules-Summer"
+private let plistNameForNorrisLocationSchedules = "NorrisSchedules-Summer"
 
 // Root is an array
 private let plistNameForEquivalencySchedules = "EquivalencySchedules"
@@ -64,7 +65,7 @@ public enum NorrisLocation: String {
 
     case catShack = "Cat Shack"
 
-    case wildcatDen = "Wildcat Den"
+    case wildcatDen = "Shakespeare Garden"
 
     case northshorePizza = "Northshore Pizza"
 
@@ -526,4 +527,4 @@ public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, 
     return (row: row, section: section)
 }
 
-public let scheduleDisclaimerString = "Schedules are based on normal school days Fall through Spring Quarter, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+public let scheduleDisclaimerString = "Schedules displayed are for Summer Quarter only, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
