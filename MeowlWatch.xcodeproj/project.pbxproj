@@ -15,8 +15,6 @@
 		AB2990151E93F3B4003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB2990191E93F495003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB29901A1E93F495003020CD /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AB31E1101F173EA100A087F9 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */; };
-		AB31E1111F173EA100A087F9 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */; };
 		AB321A781EB6EAD9002BFD39 /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A771EB6EAD9002BFD39 /* Schedules.swift */; };
 		AB321A7A1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */; };
 		AB321A7B1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */; };
@@ -29,6 +27,8 @@
 		AB3DEF901E96A8570035F000 /* MeowlWatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF871E96A84A0035F000 /* MeowlWatchData.swift */; };
 		AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
+		AB5B52841F174221003CB273 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B52831F174221003CB273 /* iOS11Shim.swift */; };
+		AB5B52851F174226003CB273 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B52831F174221003CB273 /* iOS11Shim.swift */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* WidgetViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -57,8 +57,6 @@
 		AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */; };
 		AB9B5FF21E9422C200754DBB /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB9B5FF31E9422C200754DBB /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AB9B9F1A1F16792E0078CCCF /* LaunchNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B9F191F16792E0078CCCF /* LaunchNavigationViewController.swift */; };
-		AB9B9F1B1F16792E0078CCCF /* LaunchNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9B9F191F16792E0078CCCF /* LaunchNavigationViewController.swift */; };
 		AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */; };
 		AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */; };
 		ABA9714B1E898ADB001A6AD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA9714A1E898ADB001A6AD8 /* StoreKit.framework */; };
@@ -191,7 +189,6 @@
 		AB27C1F11E7CCCAC00A90072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeowlWatch/Info.plist; sourceTree = SOURCE_ROOT; };
 		AB2990041E93F293003020CD /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Alerts.swift"; path = "MeowlWatch/UIViewController+Alerts.swift"; sourceTree = SOURCE_ROOT; };
 		AB29900C1E93F356003020CD /* MeowlWatchData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeowlWatchData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS11Shim.swift; sourceTree = "<group>"; };
 		AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CafeSchedules.plist; path = MeowlWatchData/CafeSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NorrisSchedules.plist; path = MeowlWatchData/NorrisSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = EquivalencySchedules.plist; path = MeowlWatchData/EquivalencySchedules.plist; sourceTree = SOURCE_ROOT; };
@@ -204,6 +201,7 @@
 		AB3DEF891E96A84A0035F000 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeowlWatchData/Info.plist; sourceTree = SOURCE_ROOT; };
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		AB5B52831F174221003CB273 /* iOS11Shim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS11Shim.swift; path = MeowlWatch/iOS11Shim.swift; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -224,7 +222,6 @@
 		AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeowlWatch Full.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchSectionHeaderView.swift; path = MeowlWatch/MeowlWatchSectionHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchSectionHeaderView.xib; path = MeowlWatch/MeowlWatchSectionHeaderView.xib; sourceTree = SOURCE_ROOT; };
-		AB9B9F191F16792E0078CCCF /* LaunchNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNavigationViewController.swift; sourceTree = "<group>"; };
 		AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsTableViewController.swift; path = MeowlWatch/SearchResultsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		ABA9714A1E898ADB001A6AD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchUserTableViewCell.swift; path = MeowlWatch/MeowlWatchUserTableViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -386,7 +383,6 @@
 				AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */,
 				ABC11B261EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
-				AB9B9F191F16792E0078CCCF /* LaunchNavigationViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -416,7 +412,7 @@
 				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
-				AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */,
+				AB5B52831F174221003CB273 /* iOS11Shim.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -875,9 +871,8 @@
 				AB7782FE1E84460B00925F72 /* SettingsTableViewController.swift in Sources */,
 				AB7782FF1E84460B00925F72 /* AppDelegate.swift in Sources */,
 				ABC11B221EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift in Sources */,
-				AB9B9F1A1F16792E0078CCCF /* LaunchNavigationViewController.swift in Sources */,
 				AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
-				AB31E1101F173EA100A087F9 /* iOS11Shim.swift in Sources */,
+				AB5B52841F174221003CB273 /* iOS11Shim.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
@@ -900,9 +895,8 @@
 				ABC11B2F1EB7345800491E7B /* ScheduleRowTableViewCell.swift in Sources */,
 				ABC11B321EB7909900491E7B /* MeowlWatchUserTableViewCell.swift in Sources */,
 				AB3DEF831E969E410035F000 /* BannerAdToolbar.swift in Sources */,
-				AB9B9F1B1F16792E0078CCCF /* LaunchNavigationViewController.swift in Sources */,
 				AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
-				AB31E1111F173EA100A087F9 /* iOS11Shim.swift in Sources */,
+				AB5B52851F174226003CB273 /* iOS11Shim.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */,
