@@ -15,6 +15,8 @@
 		AB2990151E93F3B4003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB2990191E93F495003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB29901A1E93F495003020CD /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB31E1101F173EA100A087F9 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */; };
+		AB31E1111F173EA100A087F9 /* iOS11Shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */; };
 		AB321A781EB6EAD9002BFD39 /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A771EB6EAD9002BFD39 /* Schedules.swift */; };
 		AB321A7A1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */; };
 		AB321A7B1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */; };
@@ -189,6 +191,7 @@
 		AB27C1F11E7CCCAC00A90072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeowlWatch/Info.plist; sourceTree = SOURCE_ROOT; };
 		AB2990041E93F293003020CD /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Alerts.swift"; path = "MeowlWatch/UIViewController+Alerts.swift"; sourceTree = SOURCE_ROOT; };
 		AB29900C1E93F356003020CD /* MeowlWatchData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeowlWatchData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS11Shim.swift; sourceTree = "<group>"; };
 		AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CafeSchedules.plist; path = MeowlWatchData/CafeSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NorrisSchedules.plist; path = MeowlWatchData/NorrisSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = EquivalencySchedules.plist; path = MeowlWatchData/EquivalencySchedules.plist; sourceTree = SOURCE_ROOT; };
@@ -413,6 +416,7 @@
 				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
+				AB31E10F1F173EA100A087F9 /* iOS11Shim.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -873,6 +877,7 @@
 				ABC11B221EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift in Sources */,
 				AB9B9F1A1F16792E0078CCCF /* LaunchNavigationViewController.swift in Sources */,
 				AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
+				AB31E1101F173EA100A087F9 /* iOS11Shim.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
@@ -897,6 +902,7 @@
 				AB3DEF831E969E410035F000 /* BannerAdToolbar.swift in Sources */,
 				AB9B9F1B1F16792E0078CCCF /* LaunchNavigationViewController.swift in Sources */,
 				AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
+				AB31E1111F173EA100A087F9 /* iOS11Shim.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */,
@@ -1100,7 +1106,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1127,7 +1133,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1147,7 +1153,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1163,7 +1169,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1183,7 +1189,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1202,7 +1208,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1223,7 +1229,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1243,7 +1249,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"MEOWLWATCH_FULL\"";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1258,7 +1264,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeowlWatch.app/MeowlWatch";
 			};
 			name = Debug;
@@ -1274,7 +1280,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeowlWatch.app/MeowlWatch";
 			};
 			name = Release;

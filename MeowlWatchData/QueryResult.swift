@@ -337,7 +337,7 @@ extension String {
         guard let result = resultOptional else { return [] }
 
         for index in 0..<result.numberOfRanges {
-            let range = self.index(self.startIndex, offsetBy: result.range(at: index).location)..<self.index(self.startIndex, offsetBy: result.range(at: index).location + result.range(at: index).length)
+            let range = self.index(self.startIndex, offsetBy: result.rangeAt(index).location)..<self.index(self.startIndex, offsetBy: result.rangeAt(index).location + result.rangeAt(index).length)
             let string = self.substring(with: range)
             strings.append(string)
         }
