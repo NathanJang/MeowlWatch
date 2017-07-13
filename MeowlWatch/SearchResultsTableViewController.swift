@@ -42,6 +42,13 @@ class SearchResultsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if previewingContext == nil {
@@ -119,7 +126,6 @@ class SearchResultsTableViewController: UITableViewController {
             break
         }
         meowlWatchTableViewController.navigationController!.pushViewController(diningLocationSchedulesTableViewController!, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*
@@ -289,13 +295,17 @@ extension SearchResultsTableViewController : UIViewControllerPreviewingDelegate 
             break
         }
         if let diningLocationSchedulesTableViewController = diningLocationSchedulesTableViewController {
-            return UINavigationController(rootViewController: diningLocationSchedulesTableViewController)
+            let navigationController = UINavigationController(rootViewController: diningLocationSchedulesTableViewController)
+            navigationController.viewWillAppear(false)
+            return navigationController
         }
         return nil
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         guard let meowlWatchTableViewController = meowlWatchTableViewController else { return }
+        let indexPath = tableView.indexPathForRow(at: previewingContext.sourceRect.origin)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         if let viewController = (viewControllerToCommit as? UINavigationController)?.topViewController {
             meowlWatchTableViewController.navigationController!.pushViewController(viewController, animated: false)
         }
