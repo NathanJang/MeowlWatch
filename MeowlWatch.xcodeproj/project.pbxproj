@@ -16,8 +16,6 @@
 		AB2990191E93F495003020CD /* MeowlWatchData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; };
 		AB29901A1E93F495003020CD /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB321A781EB6EAD9002BFD39 /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A771EB6EAD9002BFD39 /* Schedules.swift */; };
-		AB321A7A1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */; };
-		AB321A7B1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */; };
 		AB3DEF821E969E410035F000 /* BannerAdToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */; };
 		AB3DEF831E969E410035F000 /* BannerAdToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */; };
 		AB3DEF851E969FED0035F000 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF841E969FED0035F000 /* NavigationController.swift */; };
@@ -900,7 +898,6 @@
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
 				AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,
-				AB321A7A1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */,
 				AB3DEF851E969FED0035F000 /* NavigationController.swift in Sources */,
 				ABC11B281EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift in Sources */,
 				ABC11B1E1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift in Sources */,
@@ -926,7 +923,6 @@
 				AB7B7FC91E8E9F0500272655 /* LegalViewController.swift in Sources */,
 				AB2990061E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				ABC11B231EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift in Sources */,
-				AB321A7B1EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift in Sources */,
 				AB3DEF861E969FED0035F000 /* NavigationController.swift in Sources */,
 				ABD71CBE1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */,
 				AB7B7FCA1E8E9F0500272655 /* MeowlWatchTableViewController.swift in Sources */,

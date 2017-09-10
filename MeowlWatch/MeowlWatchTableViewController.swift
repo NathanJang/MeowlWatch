@@ -125,7 +125,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case 0:
             return 1
         case 1:
-            return 3
+            return 1
         case 2:
             if let queryResult = queryResult, queryResult.catCashInCents == 0 { return 1 }
             else { return 2 }
@@ -145,7 +145,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case 1:
             return "Meals"
         case 2:
-            return "Points"
+            return "Dining Dollars"
         case 3:
             return "Cafés and C-Stores"
         case 4:
@@ -190,15 +190,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case 1:
             switch indexPath.row {
             case 0:
-                cell = meowlWatchTableViewCell(fromTableView: tableView,
-                                               numberString: queryResult?.equivalencyMeals ?? "0",
-                                               descriptionString: "\(QueryResult.description(forItem: .equivalencyMeals, withQuery: queryResult)) Left")
-            case 1:
-                cell = meowlWatchTableViewCell(fromTableView: tableView,
-                                               numberString: equivalencyExchangeRateString(at: Date()),
-                                               descriptionString: "Per Equivalency Now",
-                                               selectable: true)
-            case 2:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.boardMeals ?? "0",
                                                descriptionString: "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left")
@@ -285,11 +276,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     func schedulesTableViewController(forRowAt indexPath: IndexPath) -> UITableViewController? {
         guard let indexPath = tableView(tableView, willSelectRowAt: indexPath) else { return nil }
-        if indexPath == IndexPath(row: 1, section: 1) {
-            let viewController = EquivalencyScheduleTableViewController(style: .grouped)
-            viewController.title = "Equivalencies"
-            return viewController
-        }
         if indexPath.section == 3 {
             let statuses = cafesAndCStoresStatuses
             let location = statuses[indexPath.row].key
