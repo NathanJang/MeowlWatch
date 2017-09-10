@@ -13,9 +13,6 @@ private let plistNameForDiningHallSchedules = "DiningHallSchedules-Summer"
 private let plistNameForCafeOrCStoreSchedules = "CafeSchedules-Summer"
 private let plistNameForNorrisLocationSchedules = "NorrisSchedules-Summer"
 
-// Root is an array
-private let plistNameForEquivalencySchedules = "EquivalencySchedules"
-
 /// An enum representing each dining hall.
 public enum DiningHall: String {
 
@@ -330,9 +327,6 @@ private func plistName<Key>(for keyType: Key.Type) -> String? where Key : RawRep
     if keyType == NorrisLocation.self {
         return plistNameForNorrisLocationSchedules
     }
-    if keyType == EquivalencyPeriod.self {
-        return plistNameForEquivalencySchedules
-    }
     return nil
 }
 
@@ -413,118 +407,6 @@ public func indexPathOfOpenDiningScheduleEntries<DiningLocation>(for diningHall:
 
 private func diningScheduleDictionaryFromPlist(_ fileName: String) -> [String : [ScheduleEntry<DiningStatus>]] {
     return diningScheduleEntriesDictionaryDictionary[fileName]!
-}
-
-/// MARK: - Equivalencies
-
-/// An enum representing the different periods of equivalency exchanges.
-public enum EquivalencyPeriod : String {
-
-    case breakfast = "Breakfast"
-
-    case lunch = "Lunch"
-
-    case dinner = "Dinner"
-
-    case lateNight = "Late Night"
-
-    case unavailable = "Unavailable"
-
-}
-
-/// Returns the equivalency period for the current date, also accounting for time zone.
-/// - Parameter date: The date to calculate from.
-/// - Returns: The equivalency period.
-private func equivalencyPeriod(at date: Date) -> EquivalencyPeriod {
-    let defaultValue = EquivalencyPeriod.unavailable
-
-    let scheduleEntries = equivalencyScheduleEntries
-
-    let dateAtStartOfDay = diningCalendar.startOfDay(for: date)
-    let dayOfWeek = diningCalendar.component(.weekday, from: dateAtStartOfDay)
-
-    for entry in scheduleEntries {
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
-            let scheduleToday = entry.schedule
-            for scheduleRow in scheduleToday {
-                if date.twentyFourHourTime < scheduleRow.endingTime {
-                    return scheduleRow.status
-                }
-            }
-        }
-    }
-
-    return defaultValue
-}
-
-/// Returns the exchange rate string (with "$") given a date.
-/// - Parameter date: The date to calculate from.
-/// - Returns: The string (with "$"), or nil if unavailable.
-public func equivalencyExchangeRateString(at date: Date) -> String {
-    let period = equivalencyPeriod(at: date)
-    return equivalencyExchangeRateString(for: period)
-}
-
-public func equivalencyExchangeRateString(for period: EquivalencyPeriod) -> String {
-    switch period {
-    case .breakfast:
-        return "$5"
-    case .lunch:
-        return "$7"
-    case .dinner:
-        return "$9"
-    case .lateNight:
-        return "$7"
-    case .unavailable:
-        return "--"
-    }
-}
-
-private let equivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = {
-    let path = Bundle.main.path(forResource: plistNameForEquivalencySchedules, ofType: "plist")!
-    let diningHallDictionaryEntries = NSArray(contentsOfFile: path) as! [[String : Any]]
-    var scheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = []
-    for dictionaryEntry in diningHallDictionaryEntries {
-        scheduleEntries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
-    }
-    return scheduleEntries
-}()
-
-public let openEquivalencyScheduleEntries: [ScheduleEntry<EquivalencyPeriod>] = {
-    var newEntries: [ScheduleEntry<EquivalencyPeriod>] = []
-    for entry in equivalencyScheduleEntries {
-        newEntries.append(ScheduleEntry(from: entry, withScheduleFilteredBy: { row -> Bool in
-            return row.status != .unavailable
-        }))
-    }
-    return newEntries
-}()
-
-public func indexPathOfEquivalencyScheduleEntries(at date: Date) -> (row: Int?, section: Int) {
-    let dayOfWeek = diningCalendar.component(.weekday, from: date)
-    let hour = diningCalendar.component(.hour, from: date)
-    let entries = openEquivalencyScheduleEntries
-    var row: Int?
-    var section: Int = 0
-    for i in 0..<entries.count {
-        let entry = entries[i]
-        if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek || entry.startingDayOfWeek == 7 && entry.endingDayOfWeek == 1 && (dayOfWeek == 1 || dayOfWeek == 7) {
-            let scheduleToday = entry.schedule
-            var isAfterHoursOfEndingDayOfWeek = false
-            for j in 0..<scheduleToday.count {
-                if date.twentyFourHourTime >= scheduleToday[j].startingTime && date.twentyFourHourTime < scheduleToday[j].endingTime {
-                    row = j
-                    section = i
-                    break
-                }
-                if dayOfWeek == entry.endingDayOfWeek && j == scheduleToday.count - 1 && hour >= 18 { isAfterHoursOfEndingDayOfWeek = true } // day matches but looped to the last row of the day and no match; therefore it's after the last open entry of the day and we should go to the next day
-            }
-            // in day range but time range not found; default to the next section if it's at the end of the date range
-            section = isAfterHoursOfEndingDayOfWeek ? (i + 1) % entries.count : i
-            break
-        }
-    }
-    return (row: row, section: section)
 }
 
 public let scheduleDisclaimerString = "Schedules displayed are for Summer Quarter only, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."

@@ -79,15 +79,12 @@
 		ABC11B341EB7938D00491E7B /* DiningHallSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */; };
 		ABC11B351EB7938D00491E7B /* CafeSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */; };
 		ABC11B361EB7938D00491E7B /* NorrisSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */; };
-		ABC11B371EB7938D00491E7B /* EquivalencySchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */; };
 		ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */; };
 		ABC11B391EB7938E00491E7B /* CafeSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */; };
 		ABC11B3A1EB7938E00491E7B /* NorrisSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */; };
-		ABC11B3B1EB7938E00491E7B /* EquivalencySchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */; };
 		ABC11B3C1EB7938F00491E7B /* DiningHallSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */; };
 		ABC11B3D1EB7938F00491E7B /* CafeSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */; };
 		ABC11B3E1EB7938F00491E7B /* NorrisSchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */; };
-		ABC11B3F1EB7938F00491E7B /* EquivalencySchedules.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */; };
 		ABD71CBD1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */; };
 		ABD71CBE1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */; };
 		ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */; };
@@ -193,9 +190,7 @@
 		AB29900C1E93F356003020CD /* MeowlWatchData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeowlWatchData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CafeSchedules.plist; path = MeowlWatchData/CafeSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NorrisSchedules.plist; path = MeowlWatchData/NorrisSchedules.plist; sourceTree = SOURCE_ROOT; };
-		AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = EquivalencySchedules.plist; path = MeowlWatchData/EquivalencySchedules.plist; sourceTree = SOURCE_ROOT; };
 		AB321A771EB6EAD9002BFD39 /* Schedules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Schedules.swift; path = MeowlWatchData/Schedules.swift; sourceTree = SOURCE_ROOT; };
-		AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EquivalencyScheduleTableViewController.swift; path = MeowlWatch/EquivalencyScheduleTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB3DEF811E969E410035F000 /* BannerAdToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BannerAdToolbar.swift; path = MeowlWatch/BannerAdToolbar.swift; sourceTree = SOURCE_ROOT; };
 		AB3DEF841E969FED0035F000 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = MeowlWatch/NavigationController.swift; sourceTree = SOURCE_ROOT; };
 		AB3DEF871E96A84A0035F000 /* MeowlWatchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchData.swift; path = MeowlWatchData/MeowlWatchData.swift; sourceTree = SOURCE_ROOT; };
@@ -373,7 +368,6 @@
 				ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */,
 				AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */,
 				AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */,
-				AB321A751EB6E954002BFD39 /* EquivalencySchedules.plist */,
 				AB5B52861F1742B3003CB273 /* Summer Schedules */,
 			);
 			path = MeowlWatchData;
@@ -386,7 +380,6 @@
 				AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */,
 				AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */,
 				AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */,
-				AB321A791EB6EEDE002BFD39 /* EquivalencyScheduleTableViewController.swift */,
 				ABC11B261EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 			);
@@ -655,7 +648,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABC11B3F1EB7938F00491E7B /* EquivalencySchedules.plist in Resources */,
 				ABC11B3E1EB7938F00491E7B /* NorrisSchedules.plist in Resources */,
 				AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */,
 				ABC11B3C1EB7938F00491E7B /* DiningHallSchedules.plist in Resources */,
@@ -682,7 +674,6 @@
 				AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */,
 				AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				ABC11B301EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
-				ABC11B371EB7938D00491E7B /* EquivalencySchedules.plist in Resources */,
 				ABC11B341EB7938D00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,7 +697,6 @@
 				AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */,
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */,
-				ABC11B3B1EB7938E00491E7B /* EquivalencySchedules.plist in Resources */,
 				ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

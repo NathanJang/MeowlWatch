@@ -127,14 +127,10 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         switch item {
         case .boardMeals:
             label.text = query.boardMeals
-        case .equivalencyMeals:
-            label.text = query.equivalencyMeals
         case .points:
             label.text = query.points
         case .catCash:
             label.text = query.catCash
-        case .equivalencyExchangeRate:
-            label.text = MeowlWatchData.equivalencyExchangeRateString(at: Date())
         }
     }
 

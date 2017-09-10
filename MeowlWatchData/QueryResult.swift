@@ -20,27 +20,23 @@ public class QueryResult: NSObject, NSCoding {
      <table>
      <tr>
      <th>Name:</th>
-     <td>Yik Chun Jonathan Chan</td>
+     <td>Jonathan Chan</td>
      </tr>
      <tr>
      <th>Current Plan:</th>
-     <td>EV UG Weekly 14</td>
+     <td>EV UG Base 14</td>
      </tr>
      <tr>
-     <th>Board Meals:</th>
-     <td>9</td>
+     <th>Board:</th>
+     <td>14</td>
      </tr>
      <tr>
-     <th>Equivalency Meals:</th>
-     <td>3</td>
-     </tr>
-     <tr>
-     <th>Points:</th>
-     <td>0.00</td>
+     <th>Dining Dollars:</th>
+     <td>225.00</td>
      </tr>
      <tr>
      <th>Cat Cash:</th>
-     <td>22.15</td>
+     <td>0.00</td>
      </tr>
      </table>
      */
@@ -190,21 +186,6 @@ extension QueryResult {
     /// The pluralized/singular description for board meals.
     var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
 
-    /// The number of equivalency meals as a string.
-    public var equivalencyMeals: String { return "-1" }
-
-    /// Whether we should display the board meals description in plural form.
-    private var equivalencyMealsIsPlural: Bool { return false }
-
-    /// The description for 1 equivalency meal.
-    private static var equivalencyMealSingularDescription: String { return "Equivalency" }
-
-    /// The description for many equivalency meals.
-    private static var equivalencyMealsPluralDescription: String { return "Equivalencies" }
-
-    /// The pluralized/singular description for equivalency meals.
-    var equivalencyMealsDescription: String { return equivalencyMealsIsPlural ? QueryResult.equivalencyMealsPluralDescription : QueryResult.equivalencyMealSingularDescription }
-
     /// The points as a string.
     public var points: String { return "$\(pointsInCents.centsToString())" }
 
@@ -222,9 +203,6 @@ extension QueryResult {
 
     /// The description for Cat Cash, also available when the controller does not have a query result object.
     public static var catCashDescription: String { return "Cat Cash" }
-
-    /// The short description for equivalency rate.
-    public static var equivalencyExchangeRateDescription: String { return "Per Equiv. Now" }
 
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
@@ -261,17 +239,11 @@ extension QueryResult {
         /// Board meals.
         case boardMeals
 
-        /// Equivalency meals.
-        case equivalencyMeals
-
         /// Points.
         case points
 
         /// Cat Cash.
         case catCash
-
-        /// Equivalency exchange rate.
-        case equivalencyExchangeRate
         
     }
 
@@ -282,14 +254,10 @@ extension QueryResult {
         switch item {
         case .boardMeals:
             return boardMealsDescription
-        case .equivalencyMeals:
-            return equivalencyMealsDescription
         case .points:
             return QueryResult.pointsDescription
         case .catCash:
             return QueryResult.catCashDescription
-        case .equivalencyExchangeRate:
-            return QueryResult.equivalencyExchangeRateDescription
         }
     }
 
@@ -301,14 +269,10 @@ extension QueryResult {
         switch item {
         case .boardMeals:
             return query?.description(forItem: .boardMeals) ?? boardMealsPluralDescription
-        case .equivalencyMeals:
-            return query?.description(forItem: .equivalencyMeals) ?? equivalencyMealsPluralDescription
         case .points:
             return pointsDescription
         case .catCash:
             return catCashDescription
-        case .equivalencyExchangeRate:
-            return equivalencyExchangeRateDescription
         }
     }
 
