@@ -55,21 +55,19 @@ public class QueryResult: NSObject, NSCoding {
         do {
             html = html.replacingOccurrences(of: "\r", with: "")
             guard let contentString = try html.firstMatch(regexPattern: "<table>.*</table>").first else { return nil }
-            matches = try contentString.firstMatch(regexPattern: "<th>Name:</th>.*<td>([A-Za-z ]*)</td>.*<th>Current Plan:</th>.*<td>([A-Za-z\\d ]*)</td>.*<th>Board Meals:</th>.*<td>(\\d*)</td>.*<th>Equivalency Meals:</th>.*<td>(\\d*)</td>.*<th>Points:</th>.*<td>(\\d*.\\d{2})</td>.*<th>Cat Cash:</th>.*<td>(\\d*.\\d{2})</td>")
+            matches = try contentString.firstMatch(regexPattern: "<th>Name:</th>.*<td>([A-Za-z ]*)</td>.*<th>Current Plan:</th>.*<td>([A-Za-z\\d ]*)</td>.*<th>Board:</th>.*<td>(\\d*)</td>.*<th>Dining Dollars:</th>.*<td>(\\d*.\\d{2})</td>.*<th>Cat Cash:</th>.*<td>(\\d*.\\d{2})</td>")
         } catch { return nil }
 
-        guard matches.count == 7 else { return nil }
+        guard matches.count == 6 else { return nil }
 
         self.name = matches[1]
         self.currentPlanName = matches[2]
         guard let numberOfBoardMeals = UInt(matches[3]),
-            let numberOfEquivalencyMeals = UInt(matches[4]),
-            let pointsInCents = UInt(toCentsWithString: matches[5]),
-            let catCashInCents = UInt(toCentsWithString: matches[6])
+            let pointsInCents = UInt(toCentsWithString: matches[4]),
+            let catCashInCents = UInt(toCentsWithString: matches[5])
         else { return nil }
 
         self.numberOfBoardMeals = numberOfBoardMeals
-        self.numberOfEquivalencyMeals = numberOfEquivalencyMeals
         self.pointsInCents = pointsInCents
         self.catCashInCents = catCashInCents
 
@@ -89,7 +87,6 @@ public class QueryResult: NSObject, NSCoding {
         self.name = lastQuery?.name ?? defaultNameString
         self.currentPlanName = lastQuery?.currentPlanName ?? defaultSubtitleString
         self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0
-        self.numberOfEquivalencyMeals = lastQuery?.numberOfEquivalencyMeals ?? 0
         self.pointsInCents = lastQuery?.pointsInCents ?? 0
         self.catCashInCents = lastQuery?.catCashInCents ?? 0
         self.error = error
@@ -109,9 +106,6 @@ public class QueryResult: NSObject, NSCoding {
 
     /// The number of board meals left.
     fileprivate let numberOfBoardMeals: UInt
-
-    /// The number of equivalency meals left.
-    fileprivate let numberOfEquivalencyMeals: UInt
 
     /// The points left, stored in cents as an integer.
     /// Example: `"11.89" -> 1189`.
@@ -145,7 +139,6 @@ public class QueryResult: NSObject, NSCoding {
         aCoder.encode(name, forKey: "name")
         aCoder.encode(currentPlanName, forKey: "currentPlanName")
         aCoder.encode(numberOfBoardMeals, forKey: "numberOfBoardMeals")
-        aCoder.encode(numberOfEquivalencyMeals, forKey: "numberOfEquivalencyMeals")
         aCoder.encode(pointsInCents, forKey: "pointsInCents")
         aCoder.encode(catCashInCents, forKey: "catCashInCents")
         if let errorValue = error?.rawValue {
@@ -158,7 +151,6 @@ public class QueryResult: NSObject, NSCoding {
             let name = aDecoder.decodeObject(forKey: "name") as? String,
             let currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as? String,
             let numberOfBoardMeals = aDecoder.decodeObject(forKey: "numberOfBoardMeals") as? UInt,
-            let numberOfEquivalencyMeals = aDecoder.decodeObject(forKey: "numberOfEquivalencyMeals") as? UInt,
             let pointsInCents = aDecoder.decodeObject(forKey: "pointsInCents") as? UInt,
             let catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as? UInt
             else { return nil }
@@ -167,7 +159,6 @@ public class QueryResult: NSObject, NSCoding {
         self.name = name
         self.currentPlanName = currentPlanName
         self.numberOfBoardMeals = numberOfBoardMeals
-        self.numberOfEquivalencyMeals = numberOfEquivalencyMeals
         self.pointsInCents = pointsInCents
         self.catCashInCents = catCashInCents
 
@@ -200,10 +191,10 @@ extension QueryResult {
     var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
 
     /// The number of equivalency meals as a string.
-    public var equivalencyMeals: String { return "\(numberOfEquivalencyMeals)" }
+    public var equivalencyMeals: String { return "-1" }
 
     /// Whether we should display the board meals description in plural form.
-    private var equivalencyMealsIsPlural: Bool { return numberOfEquivalencyMeals != 1 }
+    private var equivalencyMealsIsPlural: Bool { return false }
 
     /// The description for 1 equivalency meal.
     private static var equivalencyMealSingularDescription: String { return "Equivalency" }
