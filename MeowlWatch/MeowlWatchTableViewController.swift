@@ -254,7 +254,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                     return MeowlWatchData.scheduleDisclaimerString
                 }
             } else {
-                return "\(MeowlWatchData.defaultSubtitleString.characters.first!)\(String(MeowlWatchData.defaultSubtitleString.characters.dropFirst()).lowercased().replacingOccurrences(of: "account", with: "Account")).\n\n\(MeowlWatchData.scheduleDisclaimerString)"
+                return "\(MeowlWatchData.defaultSubtitleString.characters.first!)\(String(MeowlWatchData.defaultSubtitleString.characters.dropFirst()).lowercased()).\n\n\(MeowlWatchData.scheduleDisclaimerString)"
             }
         default:
             return nil
@@ -262,7 +262,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath == IndexPath(row: 1, section: 1 ) || indexPath.section >= 3 { return indexPath }
+        if indexPath.section == 0 || indexPath == IndexPath(row: 1, section: 1 ) || indexPath.section >= 3 { return indexPath }
         else { return nil }
     }
 
@@ -308,6 +308,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            showSignInAlert()
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         if let viewController = schedulesTableViewController(forRowAt: indexPath) {
             self.navigationController!.pushViewController(viewController, animated: true)
         }
@@ -339,7 +344,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 //                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
 //            } else {
                 // Fallback on earlier versions
-                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+//                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
 //            }
         }
     }

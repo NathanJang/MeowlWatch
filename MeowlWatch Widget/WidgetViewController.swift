@@ -59,25 +59,24 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         MeowlWatchData.loadFromDefaults()
 
         guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
-        self.purchaseRequiredLabel.isHidden = true
+//        self.purchaseRequiredLabel.isHidden = true
+        if let lastQuery = MeowlWatchData.lastQuery, lastQuery.error == nil {
+            updateLabels(with: MeowlWatchData.lastQuery)
+            return completionHandler(.failed)
+        }
         guard MeowlWatchData.shouldRefresh else {
-            updateLabels(with: MeowlWatchData.lastQuery) {
-                completionHandler(.noData)
-            }
-            return
+            updateLabels(with: MeowlWatchData.lastQuery)
+            return completionHandler(.noData)
         }
         guard MeowlWatchData.canQuery else {
-            updateLabels(with: MeowlWatchData.lastQuery) {
-                completionHandler(.failed)
-            }
-            return
+            updateLabels(with: MeowlWatchData.lastQuery)
+            return completionHandler(.failed)
         }
-        updateLabels(with: MeowlWatchData.lastQuery, onCompletion: nil)
+        updateLabels(with: MeowlWatchData.lastQuery)
         MeowlWatchData.query { [unowned self] queryResult in
-            DispatchQueue.main.async {
-                self.updateLabels(with: queryResult) {
-                    completionHandler(.newData)
-                }
+            DispatchQueue.main.async { [unowned self] in
+                self.updateLabels(with: queryResult)
+                completionHandler(.newData)
             }
         }
 
@@ -98,23 +97,26 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
-    func updateLabels(with query: QueryResult?, onCompletion: (() -> Void)?) {
+    func updateLabels(with query: QueryResult?) {
         guard MeowlWatchData.widgetIsPurchased else { return }
-            self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
-            self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
-            self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-            self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+        self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+        self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+        self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+        self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
-            if let query = query {
-                self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
-                self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
-                self.updateNumberLabel(self.secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-                self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
-
-                self.updatedLabel.text = "\(QueryResult.dateRetrievedDescription): \(query.dateRetrievedString)"
+        if let query = query {
+            if query.error != nil {
+                self.purchaseRequiredLabel.text = "Failed To Update"
+            } else {
+                self.purchaseRequiredLabel.isHidden = true
             }
+            self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
+            self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
+            self.updateNumberLabel(self.secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+            self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
-            onCompletion?()
+            self.updatedLabel.text = "\(QueryResult.dateRetrievedDescription): \(query.dateRetrievedString)"
+        }
     }
 
     /// Sets the content of a number label given a desired widget item and a query result object.

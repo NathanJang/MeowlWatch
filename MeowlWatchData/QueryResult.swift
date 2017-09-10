@@ -386,4 +386,4 @@ extension UInt {
 public let defaultNameString = "Your Name"
 
 /// In place of the plan when no credentials
-public let defaultSubtitleString = "Tap \"Account\" To Get Started"
+public let defaultSubtitleString = "Tap Here To Get Started"

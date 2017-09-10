@@ -35,9 +35,9 @@
 		</dict>
 		<dict>
 			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
-			<key>EndingDayOfWeek</key>
 			<string>Saturday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
 				<key>2400</key>
