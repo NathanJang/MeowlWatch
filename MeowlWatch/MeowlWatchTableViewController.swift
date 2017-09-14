@@ -59,7 +59,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         }
         searchController.searchBar.placeholder = "Search Dining Locations"
         searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.autocorrectionType = .default
+        searchController.searchBar.autocorrectionType = .no
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = view.tintColor
         searchController.searchResultsUpdater = searchResultsTableViewController

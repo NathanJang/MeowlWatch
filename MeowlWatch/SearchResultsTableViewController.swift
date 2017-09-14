@@ -191,7 +191,7 @@ class SearchResultsTableViewController: UITableViewController {
                 searchSources += ["foster", "walker"]
 
             case .einstein:
-                searchSources += ["brothers", "bros", "bagel"]
+                searchSources += ["brothers", "bros", "bagels"]
             
             case .bergson:
                 searchSources += ["university", "library"]
@@ -224,8 +224,21 @@ class SearchResultsTableViewController: UITableViewController {
         if let norrisLocation = diningLocation as? NorrisLocation {
             searchSources += normalize(norrisLocation.rawValue).components(separatedBy: " ")
             searchSources += ["norris"]
-            if norrisLocation == .starbucks {
-                searchSources += ["starbucks"]
+            switch norrisLocation {
+            case .starbucks:
+                searchSources += ["starbucks", "coffee"]
+
+            case .theKiln:
+                searchSources += ["pizza"]
+
+            case .dunkinDonuts:
+                searchSources += ["doughnuts"]
+
+            case .subway:
+                searchSources += ["sandwiches"]
+
+            default:
+                break
             }
             let normalizedStatuses = norrisLocationsStatuses.filter { $0.key == norrisLocation }.map { normalize($0.status.rawValue) }
             for status in normalizedStatuses {
