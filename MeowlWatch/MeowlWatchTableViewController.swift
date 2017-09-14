@@ -435,9 +435,7 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         if let schedulesVC = schedulesTableViewController(forRowAt: indexPath) {
-            let navigationController = UINavigationController(rootViewController: schedulesVC)
-            navigationController.viewWillAppear(false) // jumping top offset fix?
-            return navigationController
+            return schedulesVC
         }
         return nil
     }
@@ -445,9 +443,7 @@ extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         let indexPath = tableView.indexPathForRow(at: previewingContext.sourceRect.origin)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        if let viewController = (viewControllerToCommit as? UINavigationController)?.topViewController {
-            self.navigationController?.pushViewController(viewController, animated: false)
-        }
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
     }
 
 }
