@@ -190,10 +190,10 @@ extension QueryResult {
     public var points: String { return "$\(pointsInCents.centsToString())" }
 
     /// The description for points.
-    public var pointsDescription: String { return "Points" }
+    public var pointsDescription: String { return "Dining Dollars" }
 
     /// The description for points, also available when the controller does not have a query result object.
-    public static var pointsDescription: String { return "Points" }
+    public static var pointsDescription: String { return "Dining Dollars" }
 
     /// The total Cat Cash as a string.
     public var catCash: String { return "$\(catCashInCents.centsToString())" }

@@ -127,8 +127,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case 1:
             return 1
         case 2:
-            if let queryResult = queryResult, queryResult.catCashInCents == 0 { return 1 }
-            else { return 2 }
+            return 2
         case 3:
             return cafesAndCStores.count
         case 4:
@@ -157,7 +156,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         }
     }
 
-    /// - Param selectable: Whether to show a disclosure indicator and set the correct selection style.
+    /// - Parameter selectable: Whether to show a disclosure indicator and set the correct selection style.
     /// - Returns: A MeowlWatchTableViewCell given the strings.
     func meowlWatchTableViewCell(fromTableView tableView: UITableView, numberString: String, descriptionString: String, selectable: Bool = false) -> MeowlWatchTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchTableViewCell") as! MeowlWatchTableViewCell
