@@ -59,19 +59,17 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         MeowlWatchData.loadFromDefaults()
 
         guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
-        if let lastQuery = MeowlWatchData.lastQuery, lastQuery.error == nil {
-            updateLabels(with: MeowlWatchData.lastQuery)
+
+        updateLabels(with: MeowlWatchData.lastQuery)
+        if let lastQuery = MeowlWatchData.lastQuery, lastQuery.error != nil {
             return completionHandler(.failed)
         }
         guard MeowlWatchData.shouldRefresh else {
-            updateLabels(with: MeowlWatchData.lastQuery)
             return completionHandler(.noData)
         }
         guard MeowlWatchData.canQuery else {
-            updateLabels(with: MeowlWatchData.lastQuery)
             return completionHandler(.failed)
         }
-        updateLabels(with: MeowlWatchData.lastQuery)
         MeowlWatchData.query { [unowned self] queryResult in
             DispatchQueue.main.async { [unowned self] in
                 self.updateLabels(with: queryResult)
