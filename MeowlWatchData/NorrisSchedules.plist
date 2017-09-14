@@ -8,21 +8,6 @@
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Thursday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>1100</key>
-				<string>Closed</string>
-				<key>1900</key>
-				<string>Open</string>
-				<key>2400</key>
-				<string>Closed</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Friday</string>
-			<key>EndingDayOfWeek</key>
 			<string>Friday</string>
 			<key>Schedule</key>
 			<dict>
@@ -38,24 +23,9 @@
 			<key>StartingDayOfWeek</key>
 			<string>Saturday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>2400</key>
-				<string>Closed</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
-			<key>EndingDayOfWeek</key>
 			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
-				<key>1200</key>
-				<string>Closed</string>
-				<key>1500</key>
-				<string>Open</string>
 				<key>2400</key>
 				<string>Closed</string>
 			</dict>
@@ -149,11 +119,11 @@
 			</dict>
 		</dict>
 	</array>
-	<key>Northshore Pizza</key>
+	<key>The Kiln</key>
 	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
-			<string>Monday</string>
+			<string>Sunday</string>
 			<key>EndingDayOfWeek</key>
 			<string>Thursday</string>
 			<key>Schedule</key>
@@ -181,17 +151,31 @@
 				<string>Closed</string>
 			</dict>
 		</dict>
+	</array>
+	<key>Sushi</key>
+	<array>
 		<dict>
 			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
+			<string>Monday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Sunday</string>
+			<string>Friday</string>
 			<key>Schedule</key>
 			<dict>
 				<key>1100</key>
 				<string>Closed</string>
-				<key>1900</key>
+				<key>1500</key>
 				<string>Open</string>
+				<key>2400</key>
+				<string>Closed</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>StartingDayOfWeek</key>
+			<string>Saturday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Sunday</string>
+			<key>Schedule</key>
+			<dict>
 				<key>2400</key>
 				<string>Closed</string>
 			</dict>
@@ -218,10 +202,25 @@
 			<key>StartingDayOfWeek</key>
 			<string>Friday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
+			<string>Friday</string>
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
+				<string>Closed</string>
+				<key>2345</key>
+				<string>Open</string>
+				<key>2400</key>
+				<string>Closed</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>StartingDayOfWeek</key>
+			<string>Saturday</string>
+			<key>EndingDayOfWeek</key>
+			<string>Saturday</string>
+			<key>Schedule</key>
+			<dict>
+				<key>0900</key>
 				<string>Closed</string>
 				<key>2345</key>
 				<string>Open</string>
@@ -332,27 +331,12 @@
 			<key>StartingDayOfWeek</key>
 			<string>Monday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Thursday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>0800</key>
-				<string>Closed</string>
-				<key>2345</key>
-				<string>Open</string>
-				<key>2400</key>
-				<string>Closed</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Friday</string>
-			<key>EndingDayOfWeek</key>
 			<string>Friday</string>
 			<key>Schedule</key>
 			<dict>
 				<key>0800</key>
 				<string>Closed</string>
-				<key>2100</key>
+				<key>1600</key>
 				<string>Open</string>
 				<key>2400</key>
 				<string>Closed</string>
@@ -362,28 +346,9 @@
 			<key>StartingDayOfWeek</key>
 			<string>Saturday</string>
 			<key>EndingDayOfWeek</key>
-			<string>Saturday</string>
-			<key>Schedule</key>
-			<dict>
-				<key>0900</key>
-				<string>Closed</string>
-				<key>2100</key>
-				<string>Open</string>
-				<key>2400</key>
-				<string>Closed</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>StartingDayOfWeek</key>
-			<string>Sunday</string>
-			<key>EndingDayOfWeek</key>
 			<string>Sunday</string>
 			<key>Schedule</key>
 			<dict>
-				<key>1000</key>
-				<string>Closed</string>
-				<key>2345</key>
-				<string>Open</string>
 				<key>2400</key>
 				<string>Closed</string>
 			</dict>

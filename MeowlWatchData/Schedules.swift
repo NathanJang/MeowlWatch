@@ -9,9 +9,9 @@
 import Foundation
 
 // TODO: Change after summer
-private let plistNameForDiningHallSchedules = "DiningHallSchedules-Summer"
-private let plistNameForCafeOrCStoreSchedules = "CafeSchedules-Summer"
-private let plistNameForNorrisLocationSchedules = "NorrisSchedules-Summer"
+private let plistNameForDiningHallSchedules = "DiningHallSchedules"
+private let plistNameForCafeOrCStoreSchedules = "CafeSchedules"
+private let plistNameForNorrisLocationSchedules = "NorrisSchedules"
 
 /// An enum representing each dining hall.
 public enum DiningHall: String {
@@ -62,9 +62,11 @@ public enum NorrisLocation: String {
 
     case catShack = "Cat Shack"
 
-    case wildcatDen = "Shakespeare Garden"
+    case wildcatDen = "Wildcat Den"
 
-    case northshorePizza = "Northshore Pizza"
+    case theKiln = "The Kiln"
+
+    case sushi = "Sushi"
 
     case pawsNGo = "Paws 'n' Go C-Store"
 
@@ -78,7 +80,7 @@ public enum NorrisLocation: String {
 
 }
 
-public let norrisLocations: [NorrisLocation] = [.internationalStation, .catShack, .wildcatDen, .northshorePizza, .pawsNGo, .subway, .starbucks, .dunkinDonuts, .frontera]
+public let norrisLocations: [NorrisLocation] = [.internationalStation, .catShack, .wildcatDen, .theKiln, .sushi, .pawsNGo, .subway, .starbucks, .dunkinDonuts, .frontera]
 
 /// An enum representing the status of dining locations.
 public enum DiningStatus: String {
