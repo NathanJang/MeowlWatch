@@ -292,8 +292,8 @@ extension String {
         guard let result = resultOptional else { return [] }
 
         for index in 0..<result.numberOfRanges {
-            let range = self.index(self.startIndex, offsetBy: result.rangeAt(index).location)..<self.index(self.startIndex, offsetBy: result.rangeAt(index).location + result.rangeAt(index).length)
-            let string = self.substring(with: range)
+            let range = self.index(self.startIndex, offsetBy: result.range(at: index).location)..<self.index(self.startIndex, offsetBy: result.range(at: index).location + result.range(at: index).length)
+            let string = String(self[range])
             strings.append(string)
         }
 
@@ -341,4 +341,4 @@ extension UInt {
 public let defaultNameString = "Your Name"
 
 /// In place of the plan when no credentials
-public let defaultSubtitleString = "Tap Here To Get Started"
+public let defaultSubtitleString = "Tap To Get Started"

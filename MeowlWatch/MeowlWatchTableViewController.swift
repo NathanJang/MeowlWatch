@@ -50,13 +50,13 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
         let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
         self.searchController = searchController
-//        if #available(iOS 11.0, *) {
-//            navigationItem.searchController = searchController
-//            navigationItem.hidesSearchBarWhenScrolling = false
-//        } else {
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
             searchController.searchBar.sizeToFit() // iOS 8
             tableView.tableHeaderView = searchController.searchBar
-//        }
+        }
         searchController.searchBar.placeholder = "Search Dining Locations"
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.autocorrectionType = .default
