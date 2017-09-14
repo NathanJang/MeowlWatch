@@ -18,8 +18,8 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var rightDescriptionLabel: UILabel!
     @IBOutlet weak var secondaryLeftNumberLabel: UILabel!
     @IBOutlet weak var secondaryLeftDescriptionLabel: UILabel!
-    @IBOutlet weak var secondaryRightNumberLabel: UILabel!
-    @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
+//    @IBOutlet weak var secondaryRightNumberLabel: UILabel!
+//    @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
     @IBOutlet weak var purchaseRequiredLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
         
@@ -37,7 +37,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
             self.leftDescriptionLabel.textColor = descriptionColor
             self.rightDescriptionLabel.textColor = descriptionColor
             self.secondaryLeftDescriptionLabel.textColor = descriptionColor
-            self.secondaryRightDescriptionLabel.textColor = descriptionColor
+//            self.secondaryRightDescriptionLabel.textColor = descriptionColor
             self.purchaseRequiredLabel.textColor = descriptionColor
             self.updatedLabel.textColor = descriptionColor
         }
@@ -59,7 +59,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         MeowlWatchData.loadFromDefaults()
 
         guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
-//        self.purchaseRequiredLabel.isHidden = true
         if let lastQuery = MeowlWatchData.lastQuery, lastQuery.error == nil {
             updateLabels(with: MeowlWatchData.lastQuery)
             return completionHandler(.failed)
@@ -99,21 +98,21 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
         guard MeowlWatchData.widgetIsPurchased else { return }
+        self.purchaseRequiredLabel.isHidden = true
         self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
         self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
         self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-        self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+//        self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
         if let query = query {
             if query.error != nil {
+                self.purchaseRequiredLabel.isHidden = false
                 self.purchaseRequiredLabel.text = "Failed To Update"
-            } else {
-                self.purchaseRequiredLabel.isHidden = true
             }
             self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
             self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
             self.updateNumberLabel(self.secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
-            self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
+//            self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
             self.updatedLabel.text = "\(QueryResult.dateRetrievedDescription): \(query.dateRetrievedString)"
         }
