@@ -2,6 +2,8 @@
 
 ### Notify users when a new version of your app is available and prompt them to upgrade.
 
+![Swift Support](https://img.shields.io/badge/Swift-2.3%2C%203.1%2C%203.2%2C%204.0-orange.svg)
+
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58c4d0d85601d40100c5c51d&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58c4d0d85601d40100c5c51d/build/latest?branch=master) [![CocoaPods](https://img.shields.io/cocoapods/v/Siren.svg)](https://cocoapods.org/pods/Siren)  [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/) [![CocoaPods](https://img.shields.io/cocoapods/dt/Siren.svg)](https://cocoapods.org/pods/Siren) [![CocoaPods](https://img.shields.io/cocoapods/dm/Siren.svg)](https://cocoapods.org/pods/Siren)
 ---
 
@@ -58,33 +60,53 @@ If a new version is available, an alert can be presented to the user informing t
 
 ## Installation Instructions
 
+| Swift Version |  Branch Name  | Will Continue to Receive Updates?
+| ------------- | ------------- |  -------------
+| 4.0  | master   | **Yes**
+| 3.2  | swift3.2 | **Yes**
+| 3.1  | swift3.1  | No
+| 2.3  | swift2.3 | No  
+
 ### CocoaPods
-For Swift 3 support:
+For Swift 4 support:
 ```ruby
 pod 'Siren'
 ```
 
-For Swift 4 support:
+For Swift 3.2 support:
 ```ruby
-pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift4'
+pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift3.2'
+```
+
+For Swift 3.1 support:
+```ruby
+pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift3.1'
 ```
 
 For Swift 2.3 support:
 ```ruby
-pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift2.3' 
+pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift2.3'
 ```
 
 ### Carthage
-For Swift 3 support:
-
+For Swift 4 support:
 ```swift
 github "ArtSabintsev/Siren"
 ```
 
-For Swift 4 support:
+For Swift 3.2 support:
+
 ```swift
-github "ArtSabintsev/Siren", "swift4"
+github "ArtSabintsev/Siren", "swift3.2"
 ```
+
+For Swift 3.1 support:
+
+```swift
+github "ArtSabintsev/Siren", "swift3.1"
+```
+
+For Swift 2.3 support:
 
 ```ruby
 github "ArtSabintsev/Siren", "swift2.3"
@@ -92,7 +114,7 @@ github "ArtSabintsev/Siren", "swift2.3"
 
 ### Swift Package Manager
 ```swift
-.Package(url: "https://github.com/ArtSabintsev/Siren.git", majorVersion: 2)
+.Package(url: "https://github.com/ArtSabintsev/Siren.git", majorVersion: 3)
 ```
 
 ## Example Code
@@ -117,6 +139,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 	  siren.showAlertAfterCurrentVersionHasBeenReleasedForDays = 3
 
 	  // Replace .immediately with .daily or .weekly to specify a maximum daily or weekly frequency for version checks.
+		// DO NOT CALL THIS METHOD IN didFinishLaunchingWithOptions IF YOU ALSO PLAN TO CALL IT IN applicationDidBecomeActive.
     siren.checkVersion(checkType: .immediately)
 
     return true
@@ -183,11 +206,11 @@ Six delegate methods allow you to handle or track the user's behavior. Each meth
 
 ```	swift
 public protocol SirenDelegate: class {
-    func sirenDidShowUpdateDialog(alertType: Siren.AlertType)   // User presented with update dialog
+    func sirenDidShowUpdateDialog(alertType: Siren.AlertType)  // User presented with update dialog
     func sirenUserDidLaunchAppStore()                          // User did click on button that launched App Store.app
     func sirenUserDidSkipVersion()                             // User did click on button that skips version update
     func sirenUserDidCancel()                                  // User did click on button that cancels update dialog
-    func sirenDidFailVersionCheck(error: NSError)              // Siren failed to perform version check (may return system-level error)
+    func sirenDidFailVersionCheck(error: Error)                // Siren failed to perform version check (may return system-level error)
     func sirenDidDetectNewVersionWithoutAlert(message: String) // Siren performed version check and did not display alert
 }
 ```

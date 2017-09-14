@@ -25,7 +25,7 @@ public protocol SirenDelegate: class {
     func sirenUserDidCancel()
 
     /// Siren failed to perform version check (may return system-level error).
-    func sirenDidFailVersionCheck(error: NSError)
+    func sirenDidFailVersionCheck(error: Error)
 
     /// Siren performed version check and did not display alert.
     func sirenDidDetectNewVersionWithoutAlert(message: String)
@@ -39,31 +39,35 @@ public protocol SirenDelegate: class {
 public extension SirenDelegate {
 
     func sirenDidShowUpdateDialog(alertType: Siren.AlertType) {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+        printMessage()
     }
 
     func sirenUserDidLaunchAppStore() {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+        printMessage()
     }
 
     func sirenUserDidSkipVersion() {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+        printMessage()
     }
 
     func sirenUserDidCancel() {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+        printMessage()
     }
 
-    func sirenDidFailVersionCheck(error: NSError) {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+    func sirenDidFailVersionCheck(error: Error) {
+        printMessage()
     }
 
     func sirenDidDetectNewVersionWithoutAlert(message: String) {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+        printMessage()
     }
 
     func sirenLatestVersionInstalled() {
-        assertionFailure("An attempt to reach \(#function) failed as it was called without being implemented.")
+        printMessage()
+    }
+
+    private func printMessage(_ function: String = #function) {
+        SirenLog("The default implementation of \(function) is being called. You can ignore this message if you do not care to implement this method in your `SirenDelegate` conforming structure.")
     }
 
 }
