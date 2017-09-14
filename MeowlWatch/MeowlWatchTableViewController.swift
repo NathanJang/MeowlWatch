@@ -413,10 +413,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     func registerForPreviewing() {
-        if #available(iOS 9.0, *) {
-            if traitCollection.forceTouchCapability == .available {
-                previewingContext = registerForPreviewing(with: self, sourceView: tableView)
-            }
+        if traitCollection.forceTouchCapability == .available {
+            previewingContext = registerForPreviewing(with: self, sourceView: tableView)
         }
     }
 
