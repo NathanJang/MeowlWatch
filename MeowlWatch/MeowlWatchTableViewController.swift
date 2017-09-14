@@ -429,7 +429,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
 }
 
-@available(iOS 9.0, *)
 extension MeowlWatchTableViewController : UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {

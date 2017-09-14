@@ -276,7 +276,6 @@ extension SearchResultsTableViewController : UISearchResultsUpdating {
     
 }
 
-@available(iOS 9.0, *)
 extension SearchResultsTableViewController : UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
