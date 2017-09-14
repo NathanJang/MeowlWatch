@@ -335,7 +335,7 @@ public var adMobInterstitialAdUnitID: String {
 
 /// An array representing the user's arrangement of the widget items.
 /// The default is shown here, and then modified once user defaults are loaded.
-public private(set) var widgetArrangement: [QueryResult.WidgetDisplayItem] = [.points, .catCash, .boardMeals]
+public private(set) var widgetArrangement: [QueryResult.WidgetDisplayItem] = [.points, .boardMeals, .catCash]
 
 /// Rearranges the widget arrangement preferences given indices in `widgetArrangement`.
 /// - Parameter fromIndex: The index from which the item originated.
