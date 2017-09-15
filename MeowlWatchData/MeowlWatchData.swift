@@ -25,7 +25,7 @@ public func loadFromDefaults() {
         lastQuery = NSKeyedUnarchiver.unarchiveObject(with: data) as? QueryResult
         netID = keychain.string(forKey: "netID")
         password = keychain.string(forKey: "password")
-    } else {
+    } else if !userDefaults.bool(forKey: "didFinishFirstLaunch") {
         // This is the first launch
         _ = keychain.removeAllKeys()
     }
@@ -52,6 +52,8 @@ public func loadFromDefaults() {
 
 /// Writes data from the MeowlWatchData to user defaults.
 public func persistToUserDefaults() {
+    userDefaults.set(true, forKey: "didFinishFirstLaunch")
+
     if let lastQuery = lastQuery {
         let data = NSKeyedArchiver.archivedData(withRootObject: lastQuery)
         userDefaults.set(data, forKey: "lastQuery")
@@ -63,8 +65,6 @@ public func persistToUserDefaults() {
     userDefaults.set(hiddenSections, forKey: "hiddenSections")
 
     keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .always)
-
-    if userDefaults.responds(to: #selector(UserDefaults.synchronize)) { userDefaults.synchronize() }
 }
 
 /// A boolean representing whether we're prepared to query the server.
@@ -267,7 +267,6 @@ fileprivate func parseLaresParamValueDuringQueryAndRedirect(html: String, previo
 /// - Parameter onCompletion: The callback for when the query completes.
 private func finishQuery(result: QueryResult, onCompletion: ((_ result: QueryResult) -> Void)) {
     lastQuery = result
-    persistToUserDefaults()
     guard let storage = sessionManager.session.configuration.httpCookieStorage, let cookies = storage.cookies else { return onCompletion(result) }
     for cookie in cookies {
         storage.deleteCookie(cookie)

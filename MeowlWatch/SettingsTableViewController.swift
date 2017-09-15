@@ -260,7 +260,6 @@ class SettingsTableViewController: UITableViewController {
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         MeowlWatchData.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
-        MeowlWatchData.persistToUserDefaults()
     }
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -417,7 +416,6 @@ class SettingsTableViewController: UITableViewController {
             self.refreshControl!.removeFromSuperview()
 
             MeowlWatchData.widgetIsPurchased = true
-            MeowlWatchData.persistToUserDefaults()
             let navigationController = self.navigationController as! NavigationController
             navigationController.bannerView = nil
             navigationController.setToolbarHidden(true, animated: false)
