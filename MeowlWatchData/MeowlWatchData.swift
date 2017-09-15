@@ -285,7 +285,7 @@ private let refreshThreshold: TimeInterval = 60 * 30
 /// Whether we should refresh.
 public var shouldRefresh: Bool {
     guard canQuery else { return false }
-    guard let lastQuery = lastQuery else { return true }
+    guard let lastQuery = lastQuery, lastQuery.error == nil else { return true }
     return Date().timeIntervalSince(lastQuery.dateRetrieved) > refreshThreshold
 }
 
