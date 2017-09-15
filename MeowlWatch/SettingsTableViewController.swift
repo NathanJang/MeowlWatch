@@ -351,11 +351,11 @@ class SettingsTableViewController: UITableViewController {
             guard let refreshControl = self.refreshControl else { return }
             isRefreshing = true
             refreshControl.beginRefreshing()
-//            if #available(iOS 11.0, *) {
-//                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top), animated: true)
-//            } else {
+            if #available(iOS 11.0, *) {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top), animated: true)
+            } else {
                 self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-//            }
+            }
         }
 
         /// Makes the refresh control stop spinning, if it exists.

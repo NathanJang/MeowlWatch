@@ -304,12 +304,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
-//            if #available(iOS 11.0, *) {
-//                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
-//            } else {
+            if #available(iOS 11.0, *) {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
+            } else {
                 // Fallback on earlier versions
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - refreshControl.frame.height), animated: animated)
-//            }
+            }
         }
         refresh(animated: animated)
     }
@@ -321,12 +321,12 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
 
             refreshControl.endRefreshing()
-//            if #available(iOS 11.0, *) {
-//                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
-//            } else {
+            if #available(iOS 11.0, *) {
+                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
+            } else {
                 // Fallback on earlier versions
-//                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-//            }
+                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
+            }
         }
     }
 
