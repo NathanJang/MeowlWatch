@@ -237,14 +237,10 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 5:
-            if MeowlWatchData.canQuery {
-                if let errorString = queryResult?.errorString {
-                    return "\(errorString)\n\n\(MeowlWatchData.scheduleDisclaimerString)"
-                } else {
-                    return MeowlWatchData.scheduleDisclaimerString
-                }
+            if let errorString = queryResult?.errorString {
+                return "\(errorString)\n\n\(MeowlWatchData.scheduleDisclaimerString)"
             } else {
-                return "\(MeowlWatchData.defaultSubtitleString.characters.first!)\(String(MeowlWatchData.defaultSubtitleString.characters.dropFirst()).lowercased()).\n\n\(MeowlWatchData.scheduleDisclaimerString)"
+                return MeowlWatchData.scheduleDisclaimerString
             }
         default:
             return nil
