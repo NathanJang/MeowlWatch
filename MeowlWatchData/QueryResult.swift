@@ -207,7 +207,7 @@ extension QueryResult {
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
         do {
-            let match = try currentPlanName.firstMatch(regexPattern: "Unlimited").first
+            let match = try currentPlanName.firstMatch(regexPattern: "Open Access").first
             return match != nil
         } catch { return false }
     }
