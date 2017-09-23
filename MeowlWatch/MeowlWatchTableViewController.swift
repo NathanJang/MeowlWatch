@@ -171,7 +171,14 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell") as! MeowlWatchDiningLocationTableViewCell
         diningLocationCell.locationNameLabel.text = locationName
         diningLocationCell.statusLabel.text = status.rawValue
-        diningLocationCell.statusLabel.textColor = status != .closed ? (UIApplication.shared.delegate as! AppDelegate).tintColor : UIColor.red
+        switch status {
+        case .closed:
+            diningLocationCell.statusLabel.textColor = .red
+        case .closingSoon:
+            diningLocationCell.statusLabel.textColor = (UIApplication.shared.delegate as! AppDelegate).warningColor
+        default:
+            diningLocationCell.statusLabel.textColor = (UIApplication.shared.delegate as! AppDelegate).tintColor
+        }
         return diningLocationCell
     }
 

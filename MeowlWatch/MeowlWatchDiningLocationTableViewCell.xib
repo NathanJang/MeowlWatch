@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,14 +19,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D70-4q-L6V">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D70-4q-L6V">
                         <rect key="frame" x="229" y="11" width="50" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-37-fKx">
-                        <rect key="frame" x="15" y="11" width="115" height="21"/>
+                        <rect key="frame" x="8" y="11" width="115" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,6 +34,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="D70-4q-L6V" secondAttribute="trailing" id="5w9-ZH-T7I"/>
+                    <constraint firstItem="D70-4q-L6V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uIT-37-fKx" secondAttribute="trailing" constant="8" id="CE2-bX-ZZP"/>
                     <constraint firstItem="D70-4q-L6V" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="F4R-fi-BiJ"/>
                     <constraint firstItem="uIT-37-fKx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="I61-Zd-lrt"/>
                     <constraint firstItem="uIT-37-fKx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="yvQ-jc-re0"/>

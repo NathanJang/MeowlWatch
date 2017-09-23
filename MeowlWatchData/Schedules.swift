@@ -101,9 +101,14 @@ public enum DiningStatus: String {
 
     case lateNight = "Late Night"
 
+    case closingSoon = "Closing in <30 min"
+
     case closed = "Closed"
     
 }
+
+/// In minutes
+let closingSoonThreshold = 30
 
 /// The calendar used by dining halls.
 /// Gregorian calendar in Chicago.
@@ -348,6 +353,11 @@ public func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at 
             let scheduleToday = entry.schedule
             for scheduleRow in scheduleToday {
                 if date.twentyFourHourTime >= scheduleRow.startingTime && date.twentyFourHourTime < scheduleRow.endingTime {
+                    let hourDifferenceFromEndingTime = scheduleRow.endingTime / 100 - date.twentyFourHourTime / 100
+                    let minuteDifferenceFromEndingTime = scheduleRow.endingTime % 100 - date.twentyFourHourTime % 100
+                    if hourDifferenceFromEndingTime == 0 && minuteDifferenceFromEndingTime <= closingSoonThreshold || hourDifferenceFromEndingTime == 1 && minuteDifferenceFromEndingTime <= -closingSoonThreshold {
+                        return .closingSoon
+                    }
                     return scheduleRow.status
                 }
             }

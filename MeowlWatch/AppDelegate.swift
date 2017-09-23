@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let tintColor = UIColor(red: 128/255, green: 0, blue: 1, alpha: 1)
 
+    let warningColor = UIColor(red: 1, green: 0xbb/255, blue: 0, alpha: 1)
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         MeowlWatchData.loadFromDefaults()
