@@ -86,15 +86,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let presentedViewController = meowlWatchTableViewController.presentedViewController {
             presentedViewController.dismiss(animated: false, completion: nil)
         }
+        if !MeowlWatchData.widgetIsPurchased {
+            meowlWatchTableViewController.performSegue(withIdentifier: "ShowSettings", sender: self)
+        }
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        popToRootViewControllerAnimatedIfNeeded()
-        return true
-    }
-
-    /// iOS 8
-    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         popToRootViewControllerAnimatedIfNeeded()
         return true
     }
