@@ -61,9 +61,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
 
         updateLabels(with: MeowlWatchData.lastQuery)
-        if let lastQuery = MeowlWatchData.lastQuery, lastQuery.error != nil {
-            return completionHandler(.failed)
-        }
         guard MeowlWatchData.shouldRefresh else {
             return completionHandler(.noData)
         }
@@ -104,11 +101,9 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 //        self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
         if let query = query {
-            if let error = query.error {
-                if error != .connectionError {
-                    self.purchaseRequiredLabel.isHidden = false
-                    self.purchaseRequiredLabel.text = "Update Failed, Open App"
-                }
+            if let error = query.error, error != .connectionError {
+                self.purchaseRequiredLabel.isHidden = false
+                self.purchaseRequiredLabel.text = "Update Failed, Open App"
             } else {
                 self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
                 self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
