@@ -73,6 +73,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         MeowlWatchData.query { [unowned self] queryResult in
             DispatchQueue.main.async { [unowned self] in
                 self.updateLabels(with: queryResult)
+                MeowlWatchData.persistToUserDefaults()
                 completionHandler(.newData)
             }
         }
@@ -103,9 +104,11 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 //        self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
         if let query = query {
-            if query.error != nil {
-                self.purchaseRequiredLabel.isHidden = false
-                self.purchaseRequiredLabel.text = "Update Failed, Open App"
+            if let error = query.error {
+                if error != .connectionError {
+                    self.purchaseRequiredLabel.isHidden = false
+                    self.purchaseRequiredLabel.text = "Update Failed, Open App"
+                }
             } else {
                 self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
                 self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)

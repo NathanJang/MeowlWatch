@@ -294,7 +294,7 @@ public var shouldRefresh: Bool {
 var displayDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    dateFormatter.dateFormat = "E MMM d, h:mm a"
+    dateFormatter.dateFormat = "h:mm a 'on' E MMM d"
     return dateFormatter
 }()
 
