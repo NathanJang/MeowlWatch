@@ -101,7 +101,7 @@ public enum DiningStatus: String {
 
     case lateNight = "Late Night"
 
-    case closingSoon = "Closing in <30 min"
+    case closingSoon = "Closing Soon"
 
     case closed = "Closed"
     
