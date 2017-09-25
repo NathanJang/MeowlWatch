@@ -351,11 +351,13 @@ public func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at 
     for entry in entries {
         if dayOfWeek >= entry.startingDayOfWeek && dayOfWeek <= entry.endingDayOfWeek {
             let scheduleToday = entry.schedule
-            for scheduleRow in scheduleToday {
+            for i in 0..<scheduleToday.count {
+                let scheduleRow = scheduleToday[i]
+                let nextScheduleRow = i <= scheduleToday.count - 2 ? scheduleToday[i + 1] : nil
                 if date.twentyFourHourTime >= scheduleRow.startingTime && date.twentyFourHourTime < scheduleRow.endingTime {
                     let hourDifferenceFromEndingTime = scheduleRow.endingTime / 100 - date.twentyFourHourTime / 100
                     let minuteDifferenceFromEndingTime = scheduleRow.endingTime % 100 - date.twentyFourHourTime % 100
-                    if hourDifferenceFromEndingTime == 0 && minuteDifferenceFromEndingTime <= closingSoonThreshold || hourDifferenceFromEndingTime == 1 && minuteDifferenceFromEndingTime <= -closingSoonThreshold {
+                    if (hourDifferenceFromEndingTime == 0 && minuteDifferenceFromEndingTime <= closingSoonThreshold || hourDifferenceFromEndingTime == 1 && minuteDifferenceFromEndingTime <= -closingSoonThreshold) && nextScheduleRow?.status == .closed {
                         return .closingSoon
                     }
                     return scheduleRow.status
