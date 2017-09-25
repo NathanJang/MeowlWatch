@@ -228,7 +228,7 @@ extension QueryResult {
         case .authenticationError:
             return "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
         case .parseError:
-            return "It looks like this version of MeowlWatch isn't compatible with the Northwestern servers, so we can't check your balance just yet. Please contact the developer through Settings > Send Feedback."
+            return "An unexpected error occurred. Please try again. If the issue persists, please contact the developer through Settings > Send Feedback."
         }
     }
 
