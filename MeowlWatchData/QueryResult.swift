@@ -51,7 +51,7 @@ public class QueryResult: NSObject, NSCoding {
         do {
             html = html.replacingOccurrences(of: "\r", with: "")
             guard let contentString = try html.firstMatch(regexPattern: "<table>.*</table>").first else { return nil }
-            matches = try contentString.firstMatch(regexPattern: "<th>Name:</th>.*<td>([A-Za-z ]*)</td>.*<th>Current Plan:</th>.*<td>([A-Za-z\\d ]*)</td>.*<th>Board:</th>.*<td>(\\d*)</td>.*<th>Dining Dollars:</th>.*<td>(\\d*.\\d{2})</td>.*<th>Cat Cash:</th>.*<td>(\\d*.\\d{2})</td>")
+            matches = try contentString.firstMatch(regexPattern: "<th>Name:</th>.*<td>([A-Za-z ]*)</td>.*<th>Current Plan:</th>.*<td>([A-Za-z/\\d ]*)</td>.*<th>Board:</th>.*<td>(\\d*)</td>.*<th>Dining Dollars:</th>.*<td>(\\d*.\\d{2})</td>.*<th>Cat Cash:</th>.*<td>(\\d*.\\d{2})</td>")
         } catch { return nil }
 
         guard matches.count == 6 else { return nil }
