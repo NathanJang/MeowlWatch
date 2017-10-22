@@ -40,6 +40,8 @@
 				<string>Brunch</string>
 				<key>1700</key>
 				<string>Lite Lunch</string>
+				<key>1900</key>
+				<string>Dinner</string>
 				<key>2400</key>
 				<string>Closed</string>
 			</dict>
