@@ -288,7 +288,7 @@ extension String {
     internal func firstMatch(regexPattern: String) throws -> [String] {
         var strings: [String] = []
         let regex = try NSRegularExpression(pattern: regexPattern, options: [.dotMatchesLineSeparators, .caseInsensitive])
-        let resultOptional = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
+        let resultOptional = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.count))
         guard let result = resultOptional else { return [] }
 
         for index in 0..<result.numberOfRanges {
