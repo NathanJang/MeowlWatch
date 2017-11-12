@@ -36,8 +36,13 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             }
 
-            if diningStatus(for: diningHall, at: date) == .closed && title != nil {
-                title! += " (Closed)"
+            if title != nil {
+                let status = diningStatus(for: diningHall, at: date)
+                if status == .closed {
+                    title! += " (Closed)"
+                } else if status == .closingSoon {
+                    title! += " (Closing Soon)"
+                }
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
@@ -52,8 +57,13 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             }
 
-            if diningStatus(for: cafeOrCStore, at: date) == .closed && title != nil {
-                title! += " (Closed)"
+            if title != nil {
+                let status = diningStatus(for: cafeOrCStore, at: date)
+                if status == .closed {
+                    title! += " (Closed)"
+                } else if status == .closingSoon {
+                    title! += " (Closing Soon)"
+                }
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
@@ -68,8 +78,13 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             }
 
-            if diningStatus(for: norrisLocation, at: date) == .closed && title != nil {
-                title! += " (Closed)"
+            if title != nil {
+                let status = diningStatus(for: norrisLocation, at: date)
+                if status == .closed {
+                    title! += " (Closed)"
+                } else if status == .closingSoon {
+                    title! += " (Closing Soon)"
+                }
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
