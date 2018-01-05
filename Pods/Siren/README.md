@@ -63,8 +63,8 @@ If a new version is available, an alert can be presented to the user informing t
 | Swift Version |  Branch Name  | Will Continue to Receive Updates?
 | ------------- | ------------- |  -------------
 | 4.0  | master   | **Yes**
-| 3.2  | swift3.2 | **Yes**
-| 3.1  | swift3.1  | No
+| 3.2  | swift3.2 | No
+| 3.1  | swift3.1 | No
 | 2.3  | swift2.3 | No  
 
 ### CocoaPods
@@ -132,6 +132,13 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 
 	  // Optional: Defaults to .option
 	  siren.alertType = <#Siren.AlertType_Enum_Value#>
+
+	  // Optional: Change the various UIAlertController and UIAlertAction messaging. One or more values can be changes. If only a subset of values are changed, the defaults with which Siren comes with will be used.
+      siren.alertMessaging = SirenAlertMessaging(updateTitle: "New Fancy Title",
+                                                 updateMessage: "New message goes here!",
+                                                 updateButtonMessage: "Update Now, Plz!?",
+                                                 nextTimeButtonMessage: "OK, next time it is!",
+                                                 skipVersionButtonMessage: "Please don't push skip, please don't!")
 
 	  // Optional: Set this variable if you would only like to show an alert if your app has been available on the store for a few days.
 	  // This default value is set to 1 to avoid this issue: https://github.com/ArtSabintsev/Siren#words-of-caution
@@ -251,6 +258,7 @@ Siren is localized for
 - Swedish
 - Thai
 - Turkish
+- Ukrainian
 - Urdu
 - Vietnamese
 
@@ -275,10 +283,14 @@ For your convenience, you may turn on debugging statements by setting `self.debu
 The App Store reviewer will **not** see the alert. The version in the App Store will always be older than the version being reviewed.
 
 ## Phased Releases
-In 2017, Apple announced the [ability to rollout app updates gradually (a.k.a. Phased Releases)](https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Submission%20Process). Siren will continue to work as it has in the past, presenting an update modal to _all_ users. If you opt-in to a phased rollout for a specific version, you will need to remotely disable Siren until the rollout is done.
+In 2017, Apple announced the [ability to rollout app updates gradually (a.k.a. Phased Releases)](https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Submission%20Process). Siren will continue to work as it has in the past, presenting an update modal to _all_ users. If you opt-in to a phased rollout for a specific version, you have a few choices:
+
+- You can leave Siren configured as normal. Phased rollout will continue to auto-update apps. Since all users can still manually update your app directly, Siren will ignore the phase rollout and will prompt users to update.
+- You can set `showAlertAfterCurrentVersionHasBeenReleasedForDays` to `7`, and Siren will not prompt any users until the latest version is 7 days old, after phased rollout is complete.
+- You can remotely disable Siren until the rollout is done using your own API / backend logic.
 
 ## Words of Caution
-Occasionally, the iTunes JSON will update faster than the App Store CDN, meaning the JSON may state that the new version of the app has been release, while no new binary is made available for download via the App Store. It is for this reason that Siren will, by default, wait 24 hours after the JSON has been updated to prompt the user to update. To change the default setting, please modify the value of `showAlertAfterCurrentVersionHasBeenReleasedForDays`.
+Occasionally, the iTunes JSON will update faster than the App Store CDN, meaning the JSON may state that the new version of the app has been released, while no new binary is made available for download via the App Store. It is for this reason that Siren will, by default, wait 24 hours after the JSON has been updated to prompt the user to update. To change the default setting, please modify the value of `showAlertAfterCurrentVersionHasBeenReleasedForDays`.
 
 ## Ports
 - **Objective-C (iOS)**

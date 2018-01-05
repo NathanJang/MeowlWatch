@@ -72,6 +72,10 @@ public final class Siren: NSObject {
     /// By default, it's set to the name of the app that's stored in your plist.
     public lazy var appName = Bundle.bestMatchingAppName()
 
+    /// Overrides all the Strings to which Siren defaults.
+    /// Defaults to the values defined in `SirenAlertMessaging.Constants`
+    public var alertMessaging = SirenAlertMessaging()
+
     /// The region or country of an App Store in which your app is available.
     /// By default, all version checks are performed against the US App Store.
     /// If your app is not available in the US App Store, set it to the identifier of at least one App Store within which it is available.
@@ -96,6 +100,9 @@ public final class Siren: NSObject {
     fileprivate var lastVersionCheckPerformedOnDate: Date?
     fileprivate lazy var alertViewIsVisible: Bool = false
 
+    /// Type of the available update
+    fileprivate var updateType: UpdateType = .unknown
+
     /// The App's Singleton
     public static let shared = Siren()
 
@@ -113,6 +120,8 @@ public final class Siren: NSObject {
     /// - Parameters:
     ///   - checkType: The frequency in days in which you want a check to be performed. Please refer to the Siren.VersionCheckType enum for more details.
     public func checkVersion(checkType: VersionCheckType) {
+        updateType = .unknown
+
         guard Bundle.bundleID() != nil else {
             printMessage("Please make sure that you have set a `Bundle Identifier` in your project.")
             return
@@ -194,7 +203,9 @@ private extension Siren {
     }
 
     func processVersionCheck(with model: SirenLookupModel) {
-        storeVersionCheckDate() // Store version comparison date
+        guard isUpdateCompatibleWithDeviceOS(for: model) else {
+            return
+        }
 
         guard let appID = model.results.first?.appID else {
             postError(.appStoreAppIDFailure)
@@ -270,7 +281,10 @@ private extension Siren {
     }
 
     func showAlert() {
-        let updateAvailableMessage = Bundle.localizedString(forKey: "Update Available", forceLanguageLocalization: forceLanguageLocalization)
+        storeVersionCheckDate()
+
+        let updateAvailableMessage = Bundle.localizedString(forKey: alertMessaging.updateTitle, forceLanguageLocalization: forceLanguageLocalization)
+
         let newVersionMessage = localizedNewVersionMessage()
 
         let alertController = UIAlertController(title: updateAvailableMessage, message: newVersionMessage, preferredStyle: .alert)
@@ -290,7 +304,7 @@ private extension Siren {
             alertController.addAction(updateAlertAction())
             alertController.addAction(skipAlertAction())
         case .none:
-            delegate?.sirenDidDetectNewVersionWithoutAlert(message: newVersionMessage)
+            delegate?.sirenDidDetectNewVersionWithoutAlert(message: newVersionMessage, updateType: updateType)
         }
 
         if alertType != .none && !alertViewIsVisible {
@@ -349,8 +363,8 @@ private extension Siren {
                 return .option
         }
 
-        let oldVersion = (currentInstalledVersion).characters.split {$0 == "."}.map { String($0) }.map {Int($0) ?? 0}
-        let newVersion = (currentAppStoreVersion).characters.split {$0 == "."}.map { String($0) }.map {Int($0) ?? 0}
+        let oldVersion = (currentInstalledVersion).split {$0 == "."}.map { String($0) }.map {Int($0) ?? 0}
+        let newVersion = (currentAppStoreVersion).split {$0 == "."}.map { String($0) }.map {Int($0) ?? 0}
 
         guard let newVersionFirst = newVersion.first, let oldVersionFirst = oldVersion.first else {
             return alertType // Default value is .Option
@@ -358,12 +372,16 @@ private extension Siren {
 
         if newVersionFirst > oldVersionFirst { // A.b.c.d
             alertType = majorUpdateAlertType
+            updateType = .major
         } else if newVersion.count > 1 && (oldVersion.count <= 1 || newVersion[1] > oldVersion[1]) { // a.B.c.d
             alertType = minorUpdateAlertType
+            updateType = .minor
         } else if newVersion.count > 2 && (oldVersion.count <= 2 || newVersion[2] > oldVersion[2]) { // a.b.C.d
             alertType = patchUpdateAlertType
+            updateType = .patch
         } else if newVersion.count > 3 && (oldVersion.count <= 3 || newVersion[3] > oldVersion[3]) { // a.b.c.D
             alertType = revisionUpdateAlertType
+            updateType = .revision
         }
 
         return alertType
@@ -374,7 +392,7 @@ private extension Siren {
 
 private extension Siren {
     func localizedNewVersionMessage() -> String {
-        let newVersionMessageToLocalize = "A new version of %@ is available. Please update to version %@ now."
+        let newVersionMessageToLocalize = alertMessaging.updateMessage
         let newVersionMessage = Bundle.localizedString(forKey: newVersionMessageToLocalize, forceLanguageLocalization: forceLanguageLocalization)
 
         guard let currentAppStoreVersion = currentAppStoreVersion else {
@@ -385,15 +403,15 @@ private extension Siren {
     }
 
     func localizedUpdateButtonTitle() -> String {
-        return Bundle.localizedString(forKey: "Update", forceLanguageLocalization: forceLanguageLocalization)
+        return Bundle.localizedString(forKey: alertMessaging.updateButtonMessage, forceLanguageLocalization: forceLanguageLocalization)
     }
 
     func localizedNextTimeButtonTitle() -> String {
-        return Bundle.localizedString(forKey: "Next time", forceLanguageLocalization: forceLanguageLocalization)
+        return Bundle.localizedString(forKey: alertMessaging.nextTimeButtonMessage, forceLanguageLocalization: forceLanguageLocalization)
     }
 
     func localizedSkipButtonTitle() -> String {
-        return Bundle.localizedString(forKey: "Skip this version", forceLanguageLocalization: forceLanguageLocalization)
+        return Bundle.localizedString(forKey: alertMessaging.skipVersionButtonMessage, forceLanguageLocalization: forceLanguageLocalization)
     }
 }
 
@@ -425,7 +443,7 @@ extension Siren {
 // MARK: - Helpers (Misc.)
 
 private extension Siren {
-    func isUpdateCompatibleWithDeviceOS(_ model: SirenLookupModel) -> Bool {
+    func isUpdateCompatibleWithDeviceOS(for model: SirenLookupModel) -> Bool {
         guard let requiredOSVersion = model.results.first?.minimumOSVersion else {
                 postError(.appStoreOSVersionNumberFailure)
                 return false
@@ -536,6 +554,7 @@ public extension Siren {
         case thai = "th"
         case turkish = "tr"
         case urdu = "ur"
+        case ukrainian = "uk"
         case vietnamese = "vi"
     }
 }
