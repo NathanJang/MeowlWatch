@@ -9,6 +9,7 @@
 import Foundation
 import SwiftKeychainWrapper
 import Alamofire
+import Kanna
 
 /// The constant group name for shared defaults and keychain.
 private let accessGroupName = "group.me.jonathanchan.MeowlWatch"

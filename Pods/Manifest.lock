@@ -1,21 +1,34 @@
 PODS:
   - Alamofire (4.6.0)
   - Google-Mobile-Ads-SDK (7.27.0)
+  - Kanna (4.0.0)
   - Siren (3.2.0)
   - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - Google-Mobile-Ads-SDK
+  - Kanna (from `git@github.com:tid-kijyun/Kanna.git`, branch `feature/v4.0.0`)
   - Siren
   - SwiftKeychainWrapper
+
+EXTERNAL SOURCES:
+  Kanna:
+    :branch: feature/v4.0.0
+    :git: git@github.com:tid-kijyun/Kanna.git
+
+CHECKOUT OPTIONS:
+  Kanna:
+    :commit: 58e3513d20cd16fe8b9ff16b5a2b481fcd643499
+    :git: git@github.com:tid-kijyun/Kanna.git
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
+  Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
   Siren: 964f57553cf6a39d1bada4e403557523a213b397
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 2b0fa1be43497ad97a68be4468c733668146bb1b
+PODFILE CHECKSUM: a8135d5dd63ed9692b4691917187c1f48cae9806
 
 COCOAPODS: 1.3.1
