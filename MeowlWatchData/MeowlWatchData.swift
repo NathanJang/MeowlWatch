@@ -9,6 +9,7 @@
 import Foundation
 import SwiftKeychainWrapper
 import Alamofire
+import Kanna
 
 /// The constant group name for shared defaults and keychain.
 private let accessGroupName = "group.me.jonathanchan.MeowlWatch"
@@ -131,61 +132,49 @@ public func query(onCompletion: (@escaping (_ result: QueryResult) -> Void)) {
 
     print("Pinging \(urlString)")
     sessionManager.request(urlString).responseString { response in
-        guard response.error == nil && response.response != nil, let html = response.value else {
+        guard response.error == nil && response.response != nil, let htmlString = response.value else {
             print("Query connection error")
             return finishQuery(result: QueryResult(lastQuery: lastQuery, error: .connectionError), onCompletion: onCompletion)
         }
 
+        guard let html = try? HTML(html: htmlString, encoding: .utf8) else {
+            print("Invalid html tree")
+            return finishWithParseError(onCompletion: onCompletion)
+        }
         var gotoParamValue: String
         let gotoOnFailParamValue: String
         var sunQueryParamsStringParamValue: String
         let encodedParamValue: String
         let gxCharsetParamValue: String
-        do {
-            let gotoParamValueMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"goto\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
-            guard gotoParamValueMatch.count > 1 else {
-                print("Could not parse `goto`")
-                return finishWithParseError(onCompletion: onCompletion)
-            }
-            gotoParamValue = gotoParamValueMatch[1]
-            gotoParamValue = gotoParamValue.replacingOccurrences(of: "&#x2f;", with: "/")
-            gotoParamValue = gotoParamValue.replacingOccurrences(of: "&#x3d;", with: "=")
-
-            let gotoOnFailParamValueMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"gotoOnFail\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
-            guard gotoOnFailParamValueMatch.count > 1 else {
-                print("Could not parse `gotoOnFail`")
-                return finishWithParseError(onCompletion: onCompletion)
-            }
-            gotoOnFailParamValue = gotoOnFailParamValueMatch[1]
-
-            let sunQueryParamsStringParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"SunQueryParamsString\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
-            guard sunQueryParamsStringParamMatch.count > 1 else {
-                print("Could not parse `SunQueryParamsString`")
-                return finishWithParseError(onCompletion: onCompletion)
-            }
-            sunQueryParamsStringParamValue = sunQueryParamsStringParamMatch[1]
-            // &#x2f; : /
-            // &#x3d; : =
-            sunQueryParamsStringParamValue = sunQueryParamsStringParamValue.replacingOccurrences(of: "&#x2f;", with: "/")
-            sunQueryParamsStringParamValue = sunQueryParamsStringParamValue.replacingOccurrences(of: "&#x3d;", with: "=")
-
-            let encodedParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"encoded\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
-            guard encodedParamMatch.count > 1 else {
-                print("Could not parse `encoded`")
-                return finishWithParseError(onCompletion: onCompletion)
-            }
-            encodedParamValue = encodedParamMatch[1]
-
-            let gxCharsetParamMatch = try html.firstMatch(regexPattern: "<input type=\"hidden\" name=\"gx_charset\" value=\"([a-zA-Z0-9&#;\\-=]*)\" */>")
-            guard gxCharsetParamMatch.count > 1 else {
-                print("Could not parse `gx_charset`")
-                return finishWithParseError(onCompletion: onCompletion)
-            }
-            gxCharsetParamValue = gxCharsetParamMatch[1]
-        } catch {
-            print("Regex parsing threw in \(urlString)")
+        guard let gotoParamEl = html.at_css("input[name=\"goto\"]"), gotoParamEl["value"] != nil else {
+            print("Could not parse `goto`")
             return finishWithParseError(onCompletion: onCompletion)
         }
+        gotoParamValue = gotoParamEl["value"]!
+
+        guard let gotoOnFailEl = html.at_css("input[name=\"gotoOnFail\"]"), gotoOnFailEl["value"] != nil else {
+            print("Could not parse `gotoOnFail`")
+            return finishWithParseError(onCompletion: onCompletion)
+        }
+        gotoOnFailParamValue = gotoOnFailEl["value"]!
+
+        guard let sunQueryParamsStringEl = html.at_css("input[name=\"SunQueryParamsString\"]"), sunQueryParamsStringEl["value"] != nil else {
+            print("Could not parse `SunQueryParamsString`")
+            return finishWithParseError(onCompletion: onCompletion)
+        }
+        sunQueryParamsStringParamValue = sunQueryParamsStringEl["value"]!
+
+        guard let encodedEl = html.at_css("input[name=\"encoded\"]"), encodedEl["value"] != nil else {
+            print("Could not parse `encoded`")
+            return finishWithParseError(onCompletion: onCompletion)
+        }
+        encodedParamValue = encodedEl["value"]!
+
+        guard let gxCharsetEl = html.at_css("input[name=\"gx_charset\"]"), gxCharsetEl["value"] != nil else {
+            print("Could not parse `gx_charset`")
+            return finishWithParseError(onCompletion: onCompletion)
+        }
+        gxCharsetParamValue = gxCharsetEl["value"]!
         let parameters = [
             "goto" : gotoParamValue,
             "gotoOnFail" : gotoOnFailParamValue,
