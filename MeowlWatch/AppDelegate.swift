@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let meowlWatchViewController = navigationController.topViewController as? MeowlWatchTableViewController {
 
             #if !MEOWLWATCH_FULL
-                navigationController.maybeShowInterstitial()
+                navigationController.conditionallyDisplayModals()
             #endif
 
             meowlWatchViewController.refreshIfNeeded(animated: false)
@@ -74,25 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func popToRootViewControllerAnimatedIfNeeded() {
-        let navigationController = window!.rootViewController as! NavigationController
-        guard let meowlWatchTableViewController = navigationController.topViewController as? MeowlWatchTableViewController else {
-            navigationController.popToRootViewController(animated: false)
-            if let presentedViewController = navigationController.topViewController?.presentedViewController {
-                presentedViewController.dismiss(animated: false, completion: nil)
-            }
-            return
-        }
-        if let presentedViewController = meowlWatchTableViewController.presentedViewController {
-            presentedViewController.dismiss(animated: false, completion: nil)
-        }
-        if !MeowlWatchData.widgetIsPurchased {
-            meowlWatchTableViewController.performSegue(withIdentifier: "ShowSettings", sender: self)
-        }
-    }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        popToRootViewControllerAnimatedIfNeeded()
+        (window!.rootViewController as! NavigationController).popToRootViewControllerOrSettingsAnimatedIfNeeded()
         return true
     }
 
