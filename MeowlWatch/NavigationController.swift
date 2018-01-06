@@ -140,8 +140,8 @@ class NavigationController: UINavigationController {
 
         func conditionallyDisplayModals() {
             let randomNumberFrom0To10 = arc4random_uniform(10)
-            if self.presentedViewController == nil {
-                if randomNumberFrom0To10 < 1 {
+            if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
+                if randomNumberFrom0To10 < 10 {
                     showTipReminder()
                 } else if randomNumberFrom0To10 < 4 {
                     showInterstitial()
