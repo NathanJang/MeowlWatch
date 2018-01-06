@@ -157,7 +157,7 @@ class NavigationController: UINavigationController {
         }
 
         private func showTipReminder() {
-            let alertController = UIAlertController(title: "Love MeowlWatch?", message: "Hosting this on the App Store is expensive as a solo developer. Help me out by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Love MeowlWatch?", message: "Hosting this on the App Store is expensive as a solo developer. Help me by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "See Widget", style: .default) { [unowned self] _ in
                 self.popToRootViewControllerOrSettingsAnimatedIfNeeded()
             })

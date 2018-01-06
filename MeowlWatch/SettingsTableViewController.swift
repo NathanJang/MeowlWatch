@@ -201,7 +201,7 @@ class SettingsTableViewController: UITableViewController {
             if MeowlWatchData.widgetIsPurchased {
                 return "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement."
             } else {
-                return "Making useful apps like MeowlWatch is hard work. Please consider supporting me by enabling the widget! :) Ads will also be disabled."
+                return "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled."
             }
         case 1:
             return "The MeowlWatch logo was designed by Isabel Nygard. Visit \(isabelURLString) to see more."
