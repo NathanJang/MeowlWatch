@@ -7,16 +7,44 @@
 //
 
 import Foundation
+import Kanna
 
 /// An object representing the result from querying the server.
 /// Inherits from `NSObject` and conforms to `NSCoding` to encode and decode to and from user defaults.
 public class QueryResult: NSObject, NSCoding {
+
+    private enum RowTitle : String {
+        case name = "Name:"
+        case currentPlan = "Current Plan:"
+        case board = "Board:"
+        case diningDollars = "Dining Dollars:"
+        case catCash = "Cat Cash:"
+    }
 
     // MARK: Initializers
 
     /// Parses an HTML string from the server.
     /// The HTML string comes like:
     /**
+     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     <html xmlns="http://www.w3.org/1999/xhtml">
+
+     <head>
+     <title>
+     Balance Check, Dining Services, Northwestern University
+     </title><link rel="stylesheet" href="Static/Style/screen_b.css" /><link rel="stylesheet" href="Static/Style/local.css" />
+     </head>
+
+     <body>
+
+     <div id="pnlAnalytics">
+     <script type="text/javascript">
+     [Google analytics]
+     </script>
+     </div>
+
+     <div id="subs-container">
+     <div id="cpMain_pnlBalanceInfo">
      <table>
      <tr>
      <th>Name:</th>
@@ -24,50 +52,62 @@ public class QueryResult: NSObject, NSCoding {
      </tr>
      <tr>
      <th>Current Plan:</th>
-     <td>EV UG Base 14</td>
+     <td>EV UG Commuter 50/50</td>
      </tr>
      <tr>
      <th>Board:</th>
-     <td>14</td>
+     <td>37</td>
      </tr>
      <tr>
      <th>Dining Dollars:</th>
-     <td>225.00</td>
+     <td>0.00</td>
      </tr>
      <tr>
      <th>Cat Cash:</th>
-     <td>0.00</td>
+     <td>1.95</td>
      </tr>
      </table>
+     </div>
+     </div>
+     </body>
+     </html>
      */
     /// - Parameter html: The HTML string.
-    init?(html: String) {
+    init?(htmlString: String) {
         self.dateRetrieved = Date()
 
-        var html = html
-
-        let matches: [String]
-
-        do {
-            html = html.replacingOccurrences(of: "\r", with: "")
-            guard let contentString = try html.firstMatch(regexPattern: "<table>.*</table>").first else { return nil }
-            matches = try contentString.firstMatch(regexPattern: "<th>Name:</th>.*<td>([A-Za-z ]*)</td>.*<th>Current Plan:</th>.*<td>([A-Za-z/\\d ]*)</td>.*<th>Board:</th>.*<td>(\\d*)</td>.*<th>Dining Dollars:</th>.*<td>(\\d*.\\d{2})</td>.*<th>Cat Cash:</th>.*<td>(\\d*.\\d{2})</td>")
-        } catch { return nil }
-
-        guard matches.count == 6 else { return nil }
-
-        self.name = matches[1]
-        self.currentPlanName = matches[2]
-        guard let numberOfBoardMeals = UInt(matches[3]),
-            let pointsInCents = UInt(toCentsWithString: matches[4]),
-            let catCashInCents = UInt(toCentsWithString: matches[5])
-        else { return nil }
-
-        self.numberOfBoardMeals = numberOfBoardMeals
-        self.pointsInCents = pointsInCents
-        self.catCashInCents = catCashInCents
-
-        self.error = nil
+        guard let html = try? HTML(html: htmlString.replacingOccurrences(of: "\r", with: ""), encoding: .utf8) else { return nil }
+        guard let tableElement = html.css("#cpMain_pnlBalanceInfo > table").first else { return nil }
+        let rowNodes = tableElement.css("tr")
+        var name: String?, currentPlanName: String?, numberOfBoardMeals: UInt?, pointsInCents: UInt?, catCashInCents: UInt?
+        for rowNode in rowNodes {
+            if let titleNode = rowNode.css("th").first {
+                guard let text = titleNode.text, let title = RowTitle(rawValue: text) else { continue }
+                guard let stringValue = rowNode.css("td").first?.text else { continue }
+                switch title {
+                case .name:
+                    name = stringValue
+                case .currentPlan:
+                    currentPlanName = stringValue
+                case .board:
+                    numberOfBoardMeals = UInt(stringValue)
+                case .diningDollars:
+                    pointsInCents = UInt(toCentsWithString: stringValue)
+                case .catCash:
+                    catCashInCents = UInt(toCentsWithString: stringValue)
+                }
+            }
+        }
+        if let name = name, let currentPlanName = currentPlanName, let numberOfBoardMeals = numberOfBoardMeals, let pointsInCents = pointsInCents, let catCashInCents = catCashInCents {
+            self.name = name
+            self.currentPlanName = currentPlanName
+            self.numberOfBoardMeals = numberOfBoardMeals
+            self.pointsInCents = pointsInCents
+            self.catCashInCents = catCashInCents
+            self.error = nil
+        } else {
+            return nil
+        }
     }
 
     /// Initialize an empty object with no error.

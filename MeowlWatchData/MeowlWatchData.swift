@@ -9,7 +9,6 @@
 import Foundation
 import SwiftKeychainWrapper
 import Alamofire
-import Kanna
 
 /// The constant group name for shared defaults and keychain.
 private let accessGroupName = "group.me.jonathanchan.MeowlWatch"
@@ -250,7 +249,7 @@ fileprivate func parseLaresParamValueDuringQueryAndRedirect(html: String, previo
                 print("Recursing LARES parsing")
                 return parseLaresParamValueDuringQueryAndRedirect(html: html, previousNumberOfRedirects: previousNumberOfRedirects + 1, onCompletion: onCompletion)
             }
-            guard let queryResult = QueryResult(html: html) else {
+            guard let queryResult = QueryResult(htmlString: html) else {
                 print("Could not parse balance check html")
                 return finishWithParseError(onCompletion: onCompletion)
             }
