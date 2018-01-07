@@ -59,7 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let meowlWatchViewController = navigationController.topViewController as? MeowlWatchTableViewController {
 
             #if !MEOWLWATCH_FULL
-                navigationController.conditionallyDisplayModals()
+                if MeowlWatchData.shouldDisplayAds {
+                    navigationController.conditionallyDisplayModals()
+                }
             #endif
 
             meowlWatchViewController.refreshIfNeeded(animated: false)

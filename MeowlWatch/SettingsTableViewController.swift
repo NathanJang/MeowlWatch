@@ -54,6 +54,8 @@ class SettingsTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
+
+        navigationItem.setRightBarButton(doneButton, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -286,6 +288,7 @@ class SettingsTableViewController: UITableViewController {
 
                         case 1:
                             self.beginRefreshing()
+                            navigationItem.setRightBarButton(nil, animated: true)
                             SKPaymentQueue.default().restoreCompletedTransactions()
 
                         default:
@@ -328,6 +331,16 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
+    lazy var doneButton: UIBarButtonItem = {
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismiss as () -> Void))
+        return doneButton
+    }()
+
+    @objc
+    func dismiss() {
+        navigationController!.dismiss(animated: true, completion: nil)
+    }
+
     #if !MEOWLWATCH_FULL
         /// Prompts the user to purchase the widget if `widgetProduct` is not nil, i.e., if it is available from the app store.
         func buyWidgetIfAvailable() {
@@ -335,6 +348,7 @@ class SettingsTableViewController: UITableViewController {
             let payment = SKPayment(product: widgetProduct)
             SKPaymentQueue.default().add(payment)
             self.beginRefreshing()
+            navigationItem.setRightBarButton(nil, animated: true)
         }
 
         /// Shows an alert to notify the user that we cannot make purchases.
@@ -364,6 +378,9 @@ class SettingsTableViewController: UITableViewController {
             isRefreshing = false
             DispatchQueue.main.async { [unowned refreshControl] in
                 refreshControl.endRefreshing()
+            }
+            if navigationItem.rightBarButtonItem == nil {
+                navigationItem.setRightBarButton(doneButton, animated: true)
             }
         }
     #endif
@@ -416,7 +433,7 @@ class SettingsTableViewController: UITableViewController {
             self.refreshControl!.removeFromSuperview()
 
             MeowlWatchData.widgetIsPurchased = true
-            let navigationController = self.navigationController as! NavigationController
+            let navigationController = self.navigationController!.presentingViewController as! NavigationController
             navigationController.bannerView = nil
             navigationController.setToolbarHidden(true, animated: false)
             self.tableView.reloadData()
