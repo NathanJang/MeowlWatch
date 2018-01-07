@@ -77,13 +77,13 @@ public class QueryResult: NSObject, NSCoding {
         self.dateRetrieved = Date()
 
         guard let html = try? HTML(html: htmlString.replacingOccurrences(of: "\r", with: ""), encoding: .utf8) else { return nil }
-        guard let tableElement = html.css("#cpMain_pnlBalanceInfo > table").first else { return nil }
+        guard let tableElement = html.at_css("#cpMain_pnlBalanceInfo > table") else { return nil }
         let rowNodes = tableElement.css("tr")
         var name: String?, currentPlanName: String?, numberOfBoardMeals: UInt?, pointsInCents: UInt?, catCashInCents: UInt?
         for rowNode in rowNodes {
-            if let titleNode = rowNode.css("th").first {
+            if let titleNode = rowNode.at_css("th") {
                 guard let text = titleNode.text, let title = RowTitle(rawValue: text) else { continue }
-                guard let stringValue = rowNode.css("td").first?.text else { continue }
+                guard let stringValue = rowNode.at_css("td")?.text else { continue }
                 switch title {
                 case .name:
                     name = stringValue
