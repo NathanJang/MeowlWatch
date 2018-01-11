@@ -8,6 +8,7 @@
 
 import UIKit
 import MeowlWatchData
+import MessageUI
 
 #if !MEOWLWATCH_FULL
     import StoreKit
@@ -310,13 +311,26 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             switch indexPath.row {
             case 0:
-                self.showActionPrompt(title: "Open Email App?", message: "Please send feedback to JonathanChan2020+MeowlWatch@u.northwestern.edu.", action: {
-                    if let infoDictionary = Bundle.main.infoDictionary,
-                        let versionString = infoDictionary["CFBundleShortVersionString"],
-                        let url = URL(string: "mailto:Jonathan%20Chan%20at%20MeowlWatch%3cJonathanChan2020+MeowlWatch@u.northwestern.edu%3e?subject=MeowlWatch%20Feedback%20(v\(versionString))") {
-                        UIApplication.shared.openURL(url)
-                    }
+                let emailAddress = "JonathanChan2020+MeowlWatch@u.northwestern.edu"
+                let alertController = UIAlertController(title: "Send Feedback", message: "Please send feedback to \(emailAddress).", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Copy Email Address", style: .default) { _ in
+                    UIPasteboard.general.setValue(emailAddress, forPasteboardType: UIPasteboardTypeListString.firstObject as! String)
                 })
+                if MFMailComposeViewController.canSendMail() {
+                    alertController.addAction(UIAlertAction(title: "Open in Mail", style: .default) { [weak self] _ in
+                        guard self != nil else { return }
+                        let composeVC = MFMailComposeViewController()
+                        let versionString = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+                        composeVC.setToRecipients([emailAddress])
+                        composeVC.setSubject("MeowlWatch Feedback (v\(versionString))")
+                        composeVC.view.tintColor = self!.view.tintColor
+                        composeVC.mailComposeDelegate = self!
+                        self!.present(composeVC, animated: true, completion: nil)
+                    })
+                }
+                alertController.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+                alertController.view.tintColor = view.tintColor
+                present(alertController, animated: true, completion: nil)
                 tableView.deselectRow(at: indexPath, animated: true)
 
             case 1:
@@ -376,14 +390,22 @@ class SettingsTableViewController: UITableViewController {
         func endRefreshing() {
             guard let refreshControl = self.refreshControl else { return }
             isRefreshing = false
-            DispatchQueue.main.async { [unowned refreshControl] in
-                refreshControl.endRefreshing()
+            DispatchQueue.main.async { [weak refreshControl] in
+                refreshControl?.endRefreshing()
             }
             if navigationItem.rightBarButtonItem == nil {
                 navigationItem.setRightBarButton(doneButton, animated: true)
             }
         }
     #endif
+
+}
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 
 }
 
@@ -397,14 +419,14 @@ class SettingsTableViewController: UITableViewController {
                     self.widgetProduct = product
                 }
             }
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
             self.endRefreshing()
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
-            self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.", completion: { [unowned self] in
-                self.tableView.reloadData()
-                self.endRefreshing()
+            self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.", completion: { [weak self] in
+                self?.tableView.reloadData()
+                self?.endRefreshing()
             })
         }
 
