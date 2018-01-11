@@ -9,6 +9,7 @@
 import UIKit
 import MeowlWatchData
 import MessageUI
+import SafariServices
 
 #if !MEOWLWATCH_FULL
     import StoreKit
@@ -301,11 +302,12 @@ class SettingsTableViewController: UITableViewController {
             }
 
         case 1:
-            self.showActionPrompt(title: "Open Isabel Nygard's Website?", message: "Isabel Nygard is a Northwestern undergraduate student studying Art Theory & Practice and Materials Science & Engineering.", action:  {
-                if let url = URL(string: self.isabelShortURLString) {
-                    UIApplication.shared.openURL(url)
-                }
-            })
+            guard let url = URL(string: self.isabelShortURLString) else { return }
+            let safariVC = SFSafariViewController(url: url)
+            if #available(iOS 10.0, *) {
+                safariVC.preferredControlTintColor = self.view.tintColor
+            }
+            self.present(safariVC, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
 
         case 2:
