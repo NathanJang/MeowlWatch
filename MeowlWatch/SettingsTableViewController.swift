@@ -105,7 +105,7 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             return 1
         case 2:
-            return 2
+            return 3
         default:
             return 0
         }
@@ -168,8 +168,10 @@ class SettingsTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             switch indexPath.row {
             case 0:
-                cell!.textLabel!.text = "Send Feedback by Email"
+                cell!.textLabel!.text = "Send Feedback"
             case 1:
+                cell!.textLabel!.text = "Rate on App Store"
+            case 2:
                 cell!.textLabel!.text = "Show Legal"
             default:
                 break
@@ -336,6 +338,10 @@ class SettingsTableViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
 
             case 1:
+                UIApplication.shared.openURL(URL(string: rateOnAppStoreUrl)!)
+                tableView.deselectRow(at: indexPath, animated: true)
+
+            case 2:
                 self.performSegue(withIdentifier: "ShowLegal", sender: self)
 
             default:

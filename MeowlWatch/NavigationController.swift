@@ -52,6 +52,10 @@ class NavigationController: UINavigationController {
 
             return adRequest
         }()
+
+
+        var didShowModals = false
+
     #endif
 
     override func viewDidLoad() {
@@ -139,13 +143,16 @@ class NavigationController: UINavigationController {
     extension NavigationController {
 
         func conditionallyDisplayModals() {
-            let randomNumberFrom0To10 = arc4random_uniform(10)
-            if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
-                if randomNumberFrom0To10 < 1 {
-                    showTipReminder()
-                } else if randomNumberFrom0To10 < 4 {
-                    showInterstitial()
+            if !didShowModals {
+                let randomNumberFrom0To10 = arc4random_uniform(10)
+                if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
+                    if randomNumberFrom0To10 < 10 {
+                        showTipReminder()
+                    } else if randomNumberFrom0To10 < 4 {
+                        showInterstitial()
+                    }
                 }
+                didShowModals = true
             }
         }
 
@@ -162,7 +169,7 @@ class NavigationController: UINavigationController {
                 self.popToRootViewControllerOrSettingsAnimatedIfNeeded()
             })
             alertController.addAction(UIAlertAction(title: "Rate on App Store", style: .default) { _ in
-                let url = URL(string: "https://itunes.apple.com/us/app/meowlwatch-for-northwestern-university-dining/id1219875692?mt=8")!
+                let url = URL(string: rateOnAppStoreUrl)!
                 UIApplication.shared.openURL(url)
             })
             alertController.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
