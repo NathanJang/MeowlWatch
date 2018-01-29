@@ -377,7 +377,11 @@ public func diningStatuses<DiningLocation>(at date: Date) -> [(key: DiningLocati
         return (key: DiningLocation(rawValue: locationName)!, status: diningStatus)
     }
     .sorted { (pair1, pair2) -> Bool in // Sorted by open > closed first, and then by alphabet
-        if pair1.status != pair2.status { return pair1.status != .closed }
+        if pair1.status != pair2.status {
+            if pair1.status != .closed && pair1.status != .closingSoon { return true }
+            else if pair1.status == .closingSoon && pair2.status == .closed { return true }
+            else { return false }
+        }
         return pair1.key.rawValue < pair2.key.rawValue
     }
 }
