@@ -24,22 +24,22 @@ public enum DiningHall: String {
 
     case plexWest = "Plex West"
 
-    case hinman = "Hinman"
+//    case hinman = "Hinman"
 
     case sargent = "Sargent"
     
 }
 
-public let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, .hinman, .sargent]
+public let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, /*.hinman,*/ .sargent]
 
 /// An enum representing each cafe or C-Store.
 public enum CafeOrCStore: String {
 
     case plex = "Plex C-Store"
 
-    case hinmanCStore = "Hinman C-Store"
+//    case hinmanCStore = "Hinman C-Store"
 
-    case frans = "Fran's Café at Hinman"
+    case frans = "Fran's Café at Willard"
 
     case kresge = "Kresge Café"
 
@@ -53,7 +53,7 @@ public enum CafeOrCStore: String {
 
 }
 
-public let cafesAndCStores: [CafeOrCStore] = [.plex, .hinmanCStore, .frans, .kresge, .einstein, .bergson, .techExpress, .lisas]
+public let cafesAndCStores: [CafeOrCStore] = [.plex, /*.hinmanCStore,*/ .frans, .kresge, .einstein, .bergson, .techExpress, .lisas]
 
 /// An enum representing each location at Norris.
 public enum NorrisLocation: String {
@@ -76,7 +76,7 @@ public enum NorrisLocation: String {
 
     case dunkinDonuts = "Dunkin' Donuts"
 
-    case frontera = "Frontera"
+    case frontera = "Frontera Fresco"
 
 }
 
