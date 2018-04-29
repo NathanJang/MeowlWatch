@@ -372,7 +372,7 @@ public func diningStatus<DiningLocation>(for diningLocation: DiningLocation, at 
 /// For a list of dining locations, like for in the master VC.
 public func diningStatuses<DiningLocation>(at date: Date) -> [(key: DiningLocation, status: DiningStatus)] where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
     guard let plistName = plistName(for: DiningLocation.self) else { return [] }
-    return diningScheduleDictionaryFromPlist(plistName).keys.flatMap { locationName -> (key: DiningLocation, status: DiningStatus)? in
+    return diningScheduleDictionaryFromPlist(plistName).keys.compactMap { locationName -> (key: DiningLocation, status: DiningStatus)? in
         let diningStatus = MeowlWatchData.diningStatus(for: DiningLocation(rawValue: locationName)!, at: date)
         return (key: DiningLocation(rawValue: locationName)!, status: diningStatus)
     }

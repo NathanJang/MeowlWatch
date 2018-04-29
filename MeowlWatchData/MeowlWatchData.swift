@@ -32,7 +32,7 @@ public func loadFromDefaults() {
     }
 
     if let intArray = userDefaults.object(forKey: "widgetArrangement") as? [Int], intArray.count == widgetArrangement.count {
-        let storedWidgetArrangement = intArray.flatMap { return QueryResult.WidgetDisplayItem(rawValue: $0) }
+        let storedWidgetArrangement = intArray.compactMap { return QueryResult.WidgetDisplayItem(rawValue: $0) }
         if storedWidgetArrangement.count == widgetArrangement.count {
             widgetArrangement = storedWidgetArrangement
         }
@@ -60,7 +60,7 @@ public func persistToUserDefaults() {
         userDefaults.set(data, forKey: "lastQuery")
     }
 
-    let intArray = widgetArrangement.flatMap { return $0.rawValue }
+    let intArray = widgetArrangement.compactMap { return $0.rawValue }
     userDefaults.set(intArray, forKey: "widgetArrangement")
 
     userDefaults.set(hiddenSections, forKey: "hiddenSections")
