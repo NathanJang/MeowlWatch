@@ -447,7 +447,6 @@
 				AB2990081E93F356003020CD /* Frameworks */,
 				AB2990091E93F356003020CD /* Headers */,
 				AB29900A1E93F356003020CD /* Resources */,
-				8368509888584618B2104189 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -484,7 +483,6 @@
 				AB7783021E84460B00925F72 /* Frameworks */,
 				AB7783041E84460B00925F72 /* Resources */,
 				AB77830A1E84460B00925F72 /* [CP] Embed Pods Frameworks */,
-				AB77830B1E84460B00925F72 /* [CP] Copy Pods Resources */,
 				AB77830C1E84460B00925F72 /* Embed App Extensions */,
 				AB29901D1E93F496003020CD /* Embed Frameworks */,
 			);
@@ -510,7 +508,6 @@
 				AB7B7FF51E8F26B400272655 /* Embed App Extensions */,
 				AB9B5FF61E9422C200754DBB /* Embed Frameworks */,
 				ED3CFFD09200734E852E8211 /* [CP] Embed Pods Frameworks */,
-				D890AE249245574AAAC1F4A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -719,21 +716,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8368509888584618B2104189 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AB7782FB1E84460B00925F72 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -774,36 +756,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AB77830B1E84460B00925F72 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D890AE249245574AAAC1F4A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeowlWatch Full/Pods-MeowlWatch Full-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ED3CFFD09200734E852E8211 /* [CP] Embed Pods Frameworks */ = {

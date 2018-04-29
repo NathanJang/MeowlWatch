@@ -10,7 +10,7 @@ import Foundation
 
 /// MARK - Siren UpdateType
 
-/// `UpdateType` defines what kind of update is available
+/// `UpdateType` defines what kind of update is available.
 /// It is used as parameter if user wants to use
 /// custom alert to inform the user about an update.
 ///
@@ -18,7 +18,7 @@ import Foundation
 /// - minor: Minor release available: a.B.c.d
 /// - patch: Patch release available: a.b.C.d
 /// - revision: Revision release available: a.b.c.D
-/// - unknown: No information available about the update
+/// - unknown: No information available about the update.
 public enum UpdateType: String {
     case major
     case minor
@@ -31,45 +31,42 @@ public enum UpdateType: String {
 
 /// Delegate that handles all codepaths for Siren upon version check completion.
 public protocol SirenDelegate: NSObjectProtocol {
+    /// Siren performed version check and did not display alert.
+    func sirenDidDetectNewVersionWithoutAlert(message: String, updateType: UpdateType)
+
+    /// Siren failed to perform version check.
+    ///
+    /// - Note:
+    ///     Depending on the reason for failure,
+    ///     a system-level error may be returned.
+    func sirenDidFailVersionCheck(error: Error)
+
     /// User presented with update dialog.
     func sirenDidShowUpdateDialog(alertType: Siren.AlertType)
 
-    /// User did click on button that launched App Store.app.
-    func sirenUserDidLaunchAppStore()
+    /// Siren performed a version check and latest version is installed.
+    func sirenLatestVersionInstalled()
 
-    /// User did click on button that skips version update.
-    func sirenUserDidSkipVersion()
+    /// Provides the decoded JSON information from a successful version check call.
+    ///
+    /// - Parameter lookupModel: The `Decodable` model representing the JSON results from the iTunes Lookup API.
+    func sirenNetworkCallDidReturnWithNewVersionInformation(lookupModel: SirenLookupModel)
 
     /// User did click on button that cancels update dialog.
     func sirenUserDidCancel()
 
-    /// Siren failed to perform version check (may return system-level error).
-    func sirenDidFailVersionCheck(error: Error)
+    /// User did click on button that launched "App Store.app".
+    func sirenUserDidLaunchAppStore()
 
-    /// Siren performed version check and did not display alert.
-    func sirenDidDetectNewVersionWithoutAlert(message: String, updateType: UpdateType)
-
-    /// Siren performed version check and latest version is installed.
-    func sirenLatestVersionInstalled()
+    /// User did click on button that skips version update.
+    func sirenUserDidSkipVersion()
 }
 
 // MARK: - SirenDelegate Protocol Extension
 
 public extension SirenDelegate {
 
-    func sirenDidShowUpdateDialog(alertType: Siren.AlertType) {
-        printMessage()
-    }
-
-    func sirenUserDidLaunchAppStore() {
-        printMessage()
-    }
-
-    func sirenUserDidSkipVersion() {
-        printMessage()
-    }
-
-    func sirenUserDidCancel() {
+    func sirenDidDetectNewVersionWithoutAlert(message: String, updateType: UpdateType) {
         printMessage()
     }
 
@@ -77,11 +74,27 @@ public extension SirenDelegate {
         printMessage()
     }
 
-    func sirenDidDetectNewVersionWithoutAlert(message: String, updateType: UpdateType) {
+    func sirenDidShowUpdateDialog(alertType: Siren.AlertType) {
         printMessage()
     }
 
     func sirenLatestVersionInstalled() {
+        printMessage()
+    }
+
+    func sirenUserDidCancel() {
+        printMessage()
+    }
+
+    func sirenUserDidLaunchAppStore() {
+        printMessage()
+    }
+
+    func sirenNetworkCallDidReturnWithNewVersionInformation(lookupModel: SirenLookupModel) {
+        printMessage()
+    }
+
+    func sirenUserDidSkipVersion() {
         printMessage()
     }
 

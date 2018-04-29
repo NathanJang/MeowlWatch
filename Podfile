@@ -20,5 +20,5 @@ target 'MeowlWatchData' do
 
   pod 'SwiftKeychainWrapper'
   pod 'Alamofire'
-  pod 'Kanna', :git => 'git@github.com:tid-kijyun/Kanna.git', :branch => 'feature/v4.0.0'
+  pod 'Kanna', '~> 4.0.0'
 end
