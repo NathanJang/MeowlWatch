@@ -194,6 +194,7 @@
 		AB3DEF891E96A84A0035F000 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeowlWatchData/Info.plist; sourceTree = SOURCE_ROOT; };
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		AB6478D12096540B00BBA481 /* .gitmodules */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -283,11 +284,11 @@
 		AB27C1D91E7CCCAC00A90072 = {
 			isa = PBXGroup;
 			children = (
-				AB7782CC1E82085900925F72 /* .gitignore */,
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
 				AB29900D1E93F356003020CD /* MeowlWatchData */,
 				ABFF17271EB2B944004BBEAE /* MeowlWatchTests */,
+				AB6478D22096540F00BBA481 /* Git */,
 				AB27C1E31E7CCCAC00A90072 /* Products */,
 				AB27C1FB1E7E0E3500A90072 /* Frameworks */,
 				EE7F08316547B41BCE27AF03 /* Pods */,
@@ -389,6 +390,15 @@
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB6478D22096540F00BBA481 /* Git */ = {
+			isa = PBXGroup;
+			children = (
+				AB7782CC1E82085900925F72 /* .gitignore */,
+				AB6478D12096540B00BBA481 /* .gitmodules */,
+			);
+			name = Git;
 			sourceTree = "<group>";
 		};
 		AB7782D41E8242B000925F72 /* MeowlWatch Widget */ = {
