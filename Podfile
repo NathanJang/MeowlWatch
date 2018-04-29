@@ -20,5 +20,5 @@ target 'MeowlWatchData' do
 
   pod 'SwiftKeychainWrapper'
   pod 'Alamofire'
-  pod 'Kanna', '~> 4.0.0'
+  pod 'Kanna', '~> 4.0.0', :inhibit_warnings => true
 end
