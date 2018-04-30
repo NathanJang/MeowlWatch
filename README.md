@@ -18,7 +18,7 @@ Installation
 ------------
 1. Clone the repo.
 2. Run `git submodule update --init` to fetch schedules managed by [another repo][Schedules].
-3. Open [`MeowlWatch.xcworkspace`] in Xcode 9.3.
+3. Open `MeowlWatch.xcworkspace` in Xcode 9.3.
 4. Change the "Bundle Identifier" and "Team" for all targets in the `MeowlWatch Project`.
 5. If building for Release, add a file `MeowlWatch/AdMobKeys-Release.plist` in the same format as `MeowlWatch/AdMobKeys-Debug.plist`.
 
@@ -26,10 +26,11 @@ Installation
 
 Overview
 --------
-This is a [`UITableViewController`]-based app. The main app links with:
+This is a [UITableViewController]-based app. The main app links with:
+
 - `MeowlWatch Widget`, which is the widget on the notification center
 - `MeowlWatchData`, which is a common framework that deals with fetching and storing data for the app
-- Additional frameworks in [`Podfile`] under their respective licenses
+- Additional frameworks in [Podfile] under their respective licenses
 
-[`UITableViewController`]: https://developer.apple.com/documentation/uikit/uitableviewcontroller
-[`Podfile`]: Podfile
+[UITableViewController]: https://developer.apple.com/documentation/uikit/uitableviewcontroller
+[Podfile]: Podfile
