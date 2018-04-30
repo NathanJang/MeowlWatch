@@ -11,10 +11,12 @@
 - [Installation]
 - [Overview]
 - [Contributing]
+- [Icon]
 
 [Installation]: #installation
 [Overview]: #overview
 [Contributing]: #contributing
+[Icon]: #icon
 
 Installation
 ------------
@@ -42,3 +44,7 @@ This is a [UITableViewController]-based app. The main app links with:
 See [Contributing file].
 
 [Contributing file]: CONTRIBUTING.md
+
+Icon
+----
+The [icon][App Icon] was designed by Isabel Nygard, and is used with permission.
