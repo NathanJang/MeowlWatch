@@ -39,8 +39,8 @@ This is a [UITableViewController]-based app. The main app links with:
 [UITableViewController]: https://developer.apple.com/documentation/uikit/uitableviewcontroller
 [Podfile]: Podfile
 
-[Contributing]
---------------
+Contributing
+------------
 See [Contributing file].
 
 [Contributing file]: CONTRIBUTING.md
