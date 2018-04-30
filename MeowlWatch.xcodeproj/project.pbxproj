@@ -84,7 +84,6 @@
 		ABD71CBE1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */; };
 		ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */; };
 		ABD71CC01EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */; };
-		ABFF17291EB2B944004BBEAE /* MeowlWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF17281EB2B944004BBEAE /* MeowlWatchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,13 +114,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = AB29900B1E93F356003020CD;
 			remoteInfo = MeowlWatchData;
-		};
-		ABFF172B1EB2B944004BBEAE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AB7782F81E84460B00925F72;
-			remoteInfo = MeowlWatch;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -227,9 +219,6 @@
 		ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewCell.swift; path = MeowlWatch/MeowlWatchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchTableViewCell.xib; path = MeowlWatch/MeowlWatchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DiningHallSchedules.plist; path = MeowlWatchData/Schedules/DiningHallSchedules.plist; sourceTree = SOURCE_ROOT; };
-		ABFF17261EB2B944004BBEAE /* MeowlWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeowlWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABFF17281EB2B944004BBEAE /* MeowlWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowlWatchTests.swift; sourceTree = "<group>"; };
-		ABFF172A1EB2B944004BBEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEE346F2A9AD169A19031085 /* Pods-MeowlWatchData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatchData.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData.debug.xcconfig"; sourceTree = "<group>"; };
 		E1B860E29B4CC6EE08E693B1 /* Pods_MeowlWatch_Full.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Full.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -271,13 +260,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABFF17231EB2B944004BBEAE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -287,7 +269,6 @@
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
 				AB29900D1E93F356003020CD /* MeowlWatchData */,
-				ABFF17271EB2B944004BBEAE /* MeowlWatchTests */,
 				AB6478D22096540F00BBA481 /* Git */,
 				AB27C1E31E7CCCAC00A90072 /* Products */,
 				AB27C1FB1E7E0E3500A90072 /* Frameworks */,
@@ -302,7 +283,6 @@
 				AB7783111E84460B00925F72 /* MeowlWatch.app */,
 				AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */,
 				AB29900C1E93F356003020CD /* MeowlWatchData.framework */,
-				ABFF17261EB2B944004BBEAE /* MeowlWatchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -410,15 +390,6 @@
 				AB7782F51E83DA4F00925F72 /* MeowlWatch Widget.entitlements */,
 			);
 			path = "MeowlWatch Widget";
-			sourceTree = "<group>";
-		};
-		ABFF17271EB2B944004BBEAE /* MeowlWatchTests */ = {
-			isa = PBXGroup;
-			children = (
-				ABFF17281EB2B944004BBEAE /* MeowlWatchTests.swift */,
-				ABFF172A1EB2B944004BBEAE /* Info.plist */,
-			);
-			path = MeowlWatchTests;
 			sourceTree = "<group>";
 		};
 		EE7F08316547B41BCE27AF03 /* Pods */ = {
@@ -530,24 +501,6 @@
 			productReference = AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ABFF17251EB2B944004BBEAE /* MeowlWatchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ABFF172D1EB2B944004BBEAE /* Build configuration list for PBXNativeTarget "MeowlWatchTests" */;
-			buildPhases = (
-				ABFF17221EB2B944004BBEAE /* Sources */,
-				ABFF17231EB2B944004BBEAE /* Frameworks */,
-				ABFF17241EB2B944004BBEAE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ABFF172C1EB2B944004BBEAE /* PBXTargetDependency */,
-			);
-			name = MeowlWatchTests;
-			productName = MeowlWatchTests;
-			productReference = ABFF17261EB2B944004BBEAE /* MeowlWatchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -591,12 +544,6 @@
 						DevelopmentTeam = 3A2N53KSLM;
 						LastSwiftMigration = 0900;
 					};
-					ABFF17251EB2B944004BBEAE = {
-						CreatedOnToolsVersion = 8.3.2;
-						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
-						TestTargetID = AB7782F81E84460B00925F72;
-					};
 				};
 			};
 			buildConfigurationList = AB27C1DD1E7CCCAC00A90072 /* Build configuration list for PBXProject "MeowlWatch" */;
@@ -616,7 +563,6 @@
 				AB7B7FC01E8E9F0500272655 /* MeowlWatch Full */,
 				AB7782D01E8242B000925F72 /* MeowlWatch Widget */,
 				AB29900B1E93F356003020CD /* MeowlWatchData */,
-				ABFF17251EB2B944004BBEAE /* MeowlWatchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -677,13 +623,6 @@
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */,
 				ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABFF17241EB2B944004BBEAE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,14 +796,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABFF17221EB2B944004BBEAE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABFF17291EB2B944004BBEAE /* MeowlWatchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -887,11 +818,6 @@
 			isa = PBXTargetDependency;
 			target = AB29900B1E93F356003020CD /* MeowlWatchData */;
 			targetProxy = AB9B5FF41E9422C200754DBB /* PBXContainerItemProxy */;
-		};
-		ABFF172C1EB2B944004BBEAE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AB7782F81E84460B00925F72 /* MeowlWatch */;
-			targetProxy = ABFF172B1EB2B944004BBEAE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1195,36 +1121,6 @@
 			};
 			name = Release;
 		};
-		ABFF172E1EB2B944004BBEAE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				INFOPLIST_FILE = MeowlWatchTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeowlWatch.app/MeowlWatch";
-			};
-			name = Debug;
-		};
-		ABFF172F1EB2B944004BBEAE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				INFOPLIST_FILE = MeowlWatchTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeowlWatch.app/MeowlWatch";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1269,15 +1165,6 @@
 			buildConfigurations = (
 				AB7B7FD91E8E9F0500272655 /* Debug */,
 				AB7B7FDA1E8E9F0500272655 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ABFF172D1EB2B944004BBEAE /* Build configuration list for PBXNativeTarget "MeowlWatchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ABFF172E1EB2B944004BBEAE /* Debug */,
-				ABFF172F1EB2B944004BBEAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
