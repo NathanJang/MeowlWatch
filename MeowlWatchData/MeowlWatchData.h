@@ -3,7 +3,7 @@
 //  MeowlWatchData
 //
 //  Created by Jonathan Chan on 2017-04-04.
-//  Copyright © 2017 Jonathan Chan. All rights reserved.
+//  Copyright © 2018 Jonathan Chan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
