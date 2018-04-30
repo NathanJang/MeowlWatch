@@ -187,6 +187,9 @@
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB6478D12096540B00BBA481 /* .gitmodules */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
+		AB6478D42096A1D700BBA481 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
+		AB6478D52096A1D800BBA481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AB6478D62096A1D800BBA481 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		AB7782B71E8107FB00925F72 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MeowlWatch/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		AB7782BA1E8107FB00925F72 /* MeowlWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewController.swift; path = MeowlWatch/MeowlWatchTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB7782C01E81083D00925F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MeowlWatch/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -269,6 +272,7 @@
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
 				AB29900D1E93F356003020CD /* MeowlWatchData */,
+				AB6478D32096A1BC00BBA481 /* Readmes */,
 				AB6478D22096540F00BBA481 /* Git */,
 				AB27C1E31E7CCCAC00A90072 /* Products */,
 				AB27C1FB1E7E0E3500A90072 /* Frameworks */,
@@ -379,6 +383,16 @@
 				AB6478D12096540B00BBA481 /* .gitmodules */,
 			);
 			name = Git;
+			sourceTree = "<group>";
+		};
+		AB6478D32096A1BC00BBA481 /* Readmes */ = {
+			isa = PBXGroup;
+			children = (
+				AB6478D52096A1D800BBA481 /* README.md */,
+				AB6478D42096A1D700BBA481 /* CONTRIBUTING.md */,
+				AB6478D62096A1D800BBA481 /* LICENSE.md */,
+			);
+			name = Readmes;
 			sourceTree = "<group>";
 		};
 		AB7782D41E8242B000925F72 /* MeowlWatch Widget */ = {
