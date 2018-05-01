@@ -9,6 +9,7 @@
 import UIKit
 import MeowlWatchData
 
+/// The VC responsible for searching for dining locations.
 class SearchResultsTableViewController: UITableViewController {
 
     var cafesAndCStoresStatuses: [(key: CafeOrCStore, status: DiningStatus)] = []
@@ -173,6 +174,8 @@ class SearchResultsTableViewController: UITableViewController {
     }
     */
 
+    /// Checks whether `diningLocation` and `searchString` match.
+    /// - Returns: `true` if there is a match, and `false` otherwise.
     func diningLocation<DiningLocation>(_ diningLocation: DiningLocation, contains searchString: String) -> Bool where DiningLocation : RawRepresentable, DiningLocation.RawValue == String {
         let normalize: ((String) -> String) = { originalString -> String in
             let allowedCharacterSet = NSMutableCharacterSet()
@@ -260,6 +263,7 @@ class SearchResultsTableViewController: UITableViewController {
         }
     }
 
+    /// Fetches dining statuses.
     func updateDiningStatuses() {
         let date = Date()
         cafesAndCStoresStatuses = MeowlWatchData.diningStatuses(at: date)

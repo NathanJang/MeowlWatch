@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A cell that contains a piece of information in the user's meal plan, like how many meal swipes remaining.
 class MeowlWatchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var numberLabel: UILabel!

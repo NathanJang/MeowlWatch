@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// A non-final VC that contains logic for a table view controller that can expand and hide sections.
 class ExpandableTableViewController: UITableViewController {
 
+    /// A list of sections that are hidden.
     var hiddenSections: [Int] = []
 
     override func viewDidLoad() {

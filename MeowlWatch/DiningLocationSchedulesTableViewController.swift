@@ -9,14 +9,21 @@
 import UIKit
 import MeowlWatchData
 
+/// A VC responsible for showing schedules for a single dining location.
 class DiningLocationSchedulesTableViewController: ExpandableTableViewController {
 
     var entries: [ScheduleEntry<DiningStatus>]?
 
+    /// The dining hall, if the location in question is one.
     var diningHall: DiningHall?
+
+    /// The cafe, if the location in question is one.
     var cafeOrCStore: CafeOrCStore?
+
+    /// The Norris location, if the location in question is one.
     var norrisLocation: NorrisLocation?
 
+    /// The index path to highlight.
     var selectedIndexPath: IndexPath?
 
     override func viewDidLoad() {

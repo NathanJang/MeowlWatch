@@ -27,10 +27,11 @@ class SettingsTableViewController: UITableViewController {
     #endif
 
     /// The logo designer's website's URL.
-    let isabelURLString = "https://isabel6389.wixsite.com/website"
+    let isabelURLString = "https://www.instagram.com/koalatydoodles"
 
     /// Shortened URL for designer's website.
-    let isabelShortURLString = "http://goo.gl/0IFpAi"
+    /// TODO: use a URL tracker or something.
+    var isabelShortURLString: String { return isabelURLString }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -358,6 +359,7 @@ class SettingsTableViewController: UITableViewController {
         return doneButton
     }()
 
+    /// Dismisses this VC.
     @objc
     func dismiss() {
         navigationController!.dismiss(animated: true, completion: nil)

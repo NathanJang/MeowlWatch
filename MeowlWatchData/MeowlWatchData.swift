@@ -266,6 +266,8 @@ private func finishQuery(result: QueryResult, onCompletion: ((_ result: QueryRes
 /// The result of the last query to the server.
 public var lastQuery: QueryResult?
 
+/// The sections on the main VC that are hidden.
+/// Initialized to a default value.
 public var hiddenSections: [Int] = [3, 4, 5]
 
 /// The time interval before we should refresh from the server.

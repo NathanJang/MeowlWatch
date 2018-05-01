@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A cell that contains an overview of a dining location's current state.
 class MeowlWatchDiningLocationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationNameLabel: UILabel!

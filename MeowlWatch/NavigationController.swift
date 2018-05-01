@@ -14,6 +14,8 @@ import Siren
     import GoogleMobileAds
 #endif
 
+/// This is the navigation controller that manages child view controllers.
+/// If enabled, a banner ad view is shown at the bottom of the screen.
 class NavigationController: UINavigationController {
 
     #if !MEOWLWATCH_FULL
@@ -23,6 +25,7 @@ class NavigationController: UINavigationController {
         /// The Google interstitial controller.
         var interstitial: GADInterstitial?
 
+        /// Creates a random ad request with a random birthday and location near Northwestern, since we don't profile users.
         lazy var adRequest: GADRequest = {
             let adRequest = GADRequest()
 
@@ -129,6 +132,7 @@ class NavigationController: UINavigationController {
 
     extension NavigationController {
 
+        /// Shows them annoying popups sometimes, based on RNG.
         func conditionallyDisplayModals() {
             if !didShowModals {
                 let randomNumberFrom0To10 = arc4random_uniform(10)
@@ -143,6 +147,7 @@ class NavigationController: UINavigationController {
             }
         }
 
+        /// Shows a full-screen ad.
         private func showInterstitial() {
             let interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
             self.interstitial = interstitial
@@ -150,6 +155,7 @@ class NavigationController: UINavigationController {
             interstitial.load(adRequest)
         }
 
+        /// Shows a tip reminder.
         private func showTipReminder() {
             let alertController = UIAlertController(title: "Love MeowlWatch? Leave a tip!", message: "Hosting this on the App Store is expensive as a solo developer. Help me by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Leave a Tip", style: .default) { [unowned self] _ in
@@ -164,7 +170,8 @@ class NavigationController: UINavigationController {
             present(alertController, animated: true, completion: nil)
         }
 
-
+        /// Directs the app to the settings scene.
+        /// Usually used when the user taps on the widget without having purchased the widget.
         func popToRootViewControllerOrSettingsAnimatedIfNeeded() {
             guard let meowlWatchTableViewController = self.topViewController as? MeowlWatchTableViewController else {
                 self.popToRootViewController(animated: false)

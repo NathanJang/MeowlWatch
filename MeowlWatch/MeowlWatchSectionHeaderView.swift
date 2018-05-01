@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// A `UITableViewHeaderFooterView` subclass that can handle hiding and showing sections.
+/// See `ExpandableTableViewController`.
 class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
 
     /*
@@ -20,16 +22,9 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureView()
     }
 
-    func configureView() {
-//        buttonView.setBackgroundColor(highlightedBackgroundColor, for: .highlighted)
-//        buttonView.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-//        let gestureRecognizer = UIGestureRecognizer()
-//        self.addGestureRecognizer(gestureRecognizer)
-    }
-
+    /// Handles results from users tapping this view.
     func didTap() {
         sectionHidden = !sectionHidden
         updateView(animated: true)
@@ -65,6 +60,7 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
 
     var sectionHidden = false
 
+    /// The current section index.
     var section: Int = -1
 
     var highlighted = false
@@ -92,10 +88,17 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
 
 }
 
+/// A delegate for objects that observe this section expanding or hiding.
+/// See `ExpandableTableViewController`.
 protocol SectionHeaderViewDelegate: class {
 
+    /// Notifies the delegate when this section is opened.
     func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int)
+
+    /// Notifies the delegate when this section is closed.
     func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionClosed section: Int)
+
+    /// A list of sections that are hidden.
     var hiddenSections: [Int] { get set }
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A cell that contains the user's name and meal plan.
 class MeowlWatchUserTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
