@@ -71,9 +71,6 @@ class NavigationController: UINavigationController {
                 bannerView.rootViewController = self
                 bannerView.load(adRequest)
 
-//                maybeShowInterstitial()
-//                conditionallyDisplayModals()
-
             } else {
                 self.setToolbarHidden(true, animated: false)
             }
@@ -127,16 +124,6 @@ class NavigationController: UINavigationController {
                 }
             }
         }
-
-        /// Loads the interstitial if the RNG allows.
-//        func maybeShowInterstitial() {
-//            if arc4random_uniform(3) < 1 && self.presentedViewController == nil {
-//                let interstitial = GADInterstitial(adUnitID: MeowlWatchData.adMobInterstitialAdUnitID)
-//                self.interstitial = interstitial
-//                interstitial.delegate = self
-//                interstitial.load(adRequest)
-//            }
-//        }
 
     }
 
