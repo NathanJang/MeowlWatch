@@ -113,6 +113,24 @@ class NavigationController: UINavigationController {
     }
     */
 
+    /// Directs the app to the settings scene.
+    /// Usually used when the user taps on the widget without having purchased the widget.
+    func popToRootViewControllerOrSettingsAnimatedIfNeeded() {
+        guard let meowlWatchTableViewController = self.topViewController as? MeowlWatchTableViewController else {
+            self.popToRootViewController(animated: false)
+            if let presentedViewController = self.topViewController?.presentedViewController {
+                presentedViewController.dismiss(animated: false, completion: nil)
+            }
+            return
+        }
+        if let presentedViewController = meowlWatchTableViewController.presentedViewController {
+            presentedViewController.dismiss(animated: false, completion: nil)
+        }
+        if !MeowlWatchData.widgetIsPurchased {
+            meowlWatchTableViewController.performSegue(withIdentifier: "ShowSettings", sender: self)
+        }
+    }
+
 }
 
 #if !MEOWLWATCH_FULL
@@ -168,24 +186,6 @@ class NavigationController: UINavigationController {
             alertController.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
             alertController.view.tintColor = view.tintColor
             present(alertController, animated: true, completion: nil)
-        }
-
-        /// Directs the app to the settings scene.
-        /// Usually used when the user taps on the widget without having purchased the widget.
-        func popToRootViewControllerOrSettingsAnimatedIfNeeded() {
-            guard let meowlWatchTableViewController = self.topViewController as? MeowlWatchTableViewController else {
-                self.popToRootViewController(animated: false)
-                if let presentedViewController = self.topViewController?.presentedViewController {
-                    presentedViewController.dismiss(animated: false, completion: nil)
-                }
-                return
-            }
-            if let presentedViewController = meowlWatchTableViewController.presentedViewController {
-                presentedViewController.dismiss(animated: false, completion: nil)
-            }
-            if !MeowlWatchData.widgetIsPurchased {
-                meowlWatchTableViewController.performSegue(withIdentifier: "ShowSettings", sender: self)
-            }
         }
 
     }
