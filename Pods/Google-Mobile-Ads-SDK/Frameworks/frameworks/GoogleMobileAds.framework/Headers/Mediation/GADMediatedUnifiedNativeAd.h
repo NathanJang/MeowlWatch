@@ -11,7 +11,7 @@
 #import <GoogleMobileAds/GADUnifiedNativeAdAssetIdentifiers.h>
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
-GAD_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /// Provides methods used for constructing native ads. The adapter must return an object conforming
 /// to this protocol for native ad requests.
@@ -59,6 +59,9 @@ GAD_ASSUME_NONNULL_BEGIN
 /// Indicates whether the ad has video content.
 @property(nonatomic, assign, readonly) BOOL hasVideoContent;
 
+/// Media content aspect ratio (width/height) or 0 if there's no media content.
+@property(nonatomic, readonly) CGFloat mediaContentAspectRatio;
+
 /// Tells the receiver that it has been rendered in |view| with clickable asset views and
 /// nonclickable asset views. viewController should be used to present modal views for the ad.
 - (void)didRenderInView:(UIView *)view
@@ -87,4 +90,4 @@ GAD_ASSUME_NONNULL_BEGIN
 
 @end
 
-GAD_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

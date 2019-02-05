@@ -10,19 +10,18 @@
 
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
-GAD_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol GADVideoControllerDelegate;
 
 /// The video controller class provides a way to get the video metadata and also manages video
 /// content of the ad rendered by the Google Mobile Ads SDK. You don't need to create an instance of
 /// this class. When the ad rendered by the Google Mobile Ads SDK loads video content, you may be
-/// able to get an instance of this class from the rendered ad object. Currently only native express
-/// ad view class exposes video controller.
+/// able to get an instance of this class from the rendered ad object.
 @interface GADVideoController : NSObject
 
 /// Delegate for receiving video notifications.
-@property(nonatomic, weak, GAD_NULLABLE) id<GADVideoControllerDelegate> delegate;
+@property(nonatomic, weak, nullable) id<GADVideoControllerDelegate> delegate;
 
 /// Mute or unmute video. Set to YES to mute the video. Set to NO to allow the video to play sound.
 - (void)setMute:(BOOL)mute;
@@ -39,11 +38,12 @@ GAD_ASSUME_NONNULL_BEGIN
 /// Returns the video's aspect ratio (width/height) or 0 if no video is present.
 - (double)aspectRatio;
 
-/// Indicates if video custom controls (i.e. play/pause/mute/unmute) are enabled.
+/// Indicates whether video custom controls (i.e. play/pause/mute/unmute) are enabled.
 - (BOOL)customControlsEnabled;
 
-/// Indicates if video click to expand behavior is enabled.
+/// Indicates whether video click to expand behavior is enabled.
 - (BOOL)clickToExpandEnabled;
+
 @end
 
-GAD_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

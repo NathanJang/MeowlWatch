@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MeowlWatchData.widgetIsPurchased = true
         #endif
 
-        Siren.shared.checkVersion(checkType: .immediately)
+        Siren.shared.wail()
 
         return true
     }

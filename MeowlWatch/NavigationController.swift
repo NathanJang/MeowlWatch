@@ -29,25 +29,7 @@ class NavigationController: UINavigationController {
         lazy var adRequest: GADRequest = {
             let adRequest = GADRequest()
 
-            var birthdayComponents = DateComponents()
             if let yearNow = Calendar.current.dateComponents([.year], from: Date()).year {
-                birthdayComponents.year = yearNow - 18 - Int(arc4random_uniform(4)) // Random year 18 to 22 years ago
-                let month = 1 + Int(arc4random_uniform(12))
-                birthdayComponents.month = month
-                let maxDaysInMonth: UInt32
-                switch month {
-                case 1, 3, 5, 7, 8, 10, 12:
-                    maxDaysInMonth = 31
-                case 4, 6, 9, 11:
-                    maxDaysInMonth = 30
-                case 2:
-                    maxDaysInMonth = 28
-                default:
-                    maxDaysInMonth = 0
-                }
-                birthdayComponents.day = 1 + Int(arc4random_uniform(maxDaysInMonth))
-                adRequest.birthday = Calendar.current.date(from: birthdayComponents)
-
                 adRequest.setLocationWithLatitude(42.0565262, longitude: -87.6745328, accuracy: 3000)
             }
 
