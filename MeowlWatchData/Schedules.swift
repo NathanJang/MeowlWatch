@@ -17,7 +17,7 @@ public enum DiningHall: String {
 
     case allison = "Allison"
 
-    case elder = "Elder"
+    case hinman = "Hinman"
 
     case plexEast = "Plex East"
 
@@ -27,7 +27,7 @@ public enum DiningHall: String {
     
 }
 
-public let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, .sargent]
+public let diningHalls: [DiningHall] = [.allison, .hinman, .plexEast, .plexWest, .sargent]
 
 /// An enum representing each cafe or C-Store.
 public enum CafeOrCStore: String {
@@ -38,63 +38,51 @@ public enum CafeOrCStore: String {
 
     case kresge = "Kresge Café"
 
-    case einstein = "Einstein at Pancoe"
-
-    case bergson = "Café Bergson"
+    case bergson = "Café Bergson at Main"
 
     case techExpress = "Tech Express"
 
+    case coralie = "Café Coralie at Pancoe"
+
     case lisas = "Lisa's Café at Slivka"
+
+    case hinman = "Hinman C-Store"
+
+    case starbucksTruck = "Starbucks Truck at Mudd"
 
 }
 
-public let cafesAndCStores: [CafeOrCStore] = [.plex, .frans, .kresge, .einstein, .bergson, .techExpress, .lisas]
+public let cafesAndCStores: [CafeOrCStore] = [.plex, .frans, .kresge, .bergson, .techExpress, .coralie, .lisas, .hinman, .starbucksTruck]
 
 /// An enum representing each location at Norris.
 public enum NorrisLocation: String {
 
-    case internationalStation = "International Station"
+    case deli = "Wildcat Deli"
 
-    case catShack = "Cat Shack"
+    case pattySquared = "Patty Squared"
 
     case wildcatDen = "Wildcat Den"
 
-    case theKiln = "The Kiln"
+    case budlong = "Budlong Hot Chicken"
 
-    case sushi = "Sushi"
+    case asiana = "Asiana Foodville"
 
-    case pawsNGo = "Paws 'n' Go C-Store"
-
-    case subway = "Subway"
+    case cStore = "Market C-Store"
 
     case starbucks = "Norbucks"
 
-    case dunkinDonuts = "Dunkin' Donuts"
+    case modPizza = "MOD Pizza"
 
-    case frontera = "Frontera Fresco"
+    case dunkinDonuts = "Dunkin' Donuts"
 
 }
 
-public let norrisLocations: [NorrisLocation] = [.internationalStation, .catShack, .wildcatDen, .theKiln, .sushi, .pawsNGo, .subway, .starbucks, .dunkinDonuts, .frontera]
+public let norrisLocations: [NorrisLocation] = [.deli, .pattySquared, .wildcatDen, .budlong, .asiana, .cStore, .starbucks, .modPizza, .dunkinDonuts]
 
 /// An enum representing the status of dining locations.
 public enum DiningStatus: String {
 
     case open = "Open"
-
-    case breakfast = "Breakfast"
-
-    case continentalBreakfast = "Continental Breakfast"
-
-    case brunch = "Brunch"
-
-    case lunch = "Lunch"
-
-    case liteLunch = "Lite Lunch"
-
-    case dinner = "Dinner"
-
-    case lateNight = "Late Night"
 
     case closingSoon = "Closing Soon"
 

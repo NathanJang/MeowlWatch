@@ -192,9 +192,6 @@ class SearchResultsTableViewController: UITableViewController {
             switch cafeOrCStore {
             case .plex:
                 searchSources += ["foster", "walker"]
-
-            case .einstein:
-                searchSources += ["brothers", "bros", "bagels"]
             
             case .bergson:
                 searchSources += ["university", "library"]
@@ -231,14 +228,11 @@ class SearchResultsTableViewController: UITableViewController {
             case .starbucks:
                 searchSources += ["starbucks", "coffee"]
 
-            case .theKiln:
+            case .modPizza:
                 searchSources += ["pizza"]
 
             case .dunkinDonuts:
                 searchSources += ["doughnuts"]
-
-            case .subway:
-                searchSources += ["sandwiches"]
 
             default:
                 break
