@@ -13,10 +13,12 @@ import Kanna
 /// Inherits from `NSObject` and conforms to `NSCoding` to encode and decode to and from user defaults.
 public class QueryResult: NSObject, NSCoding {
 
+    /// The row title taken from upstream.
     private enum RowTitle : String {
         case name = "Name:"
         case currentPlan = "Current Plan:"
         case board = "Board:"
+        case mealExchanges = "Meal Exchanges:"
         case diningDollars = "Dining Dollars:"
         case catCash = "Cat Cash:"
     }
@@ -79,7 +81,7 @@ public class QueryResult: NSObject, NSCoding {
         guard let html = try? HTML(html: htmlString.replacingOccurrences(of: "\r", with: ""), encoding: .utf8) else { return nil }
         guard let tableElement = html.at_css("#cpMain_pnlBalanceInfo > table") else { return nil }
         let rowNodes = tableElement.css("tr")
-        var name: String?, currentPlanName: String?, numberOfBoardMeals: UInt?, pointsInCents: UInt?, catCashInCents: UInt?
+        var name: String?, currentPlanName: String?, numberOfBoardMeals: UInt?, numberOfMealExchanges: UInt?, pointsInCents: UInt?, catCashInCents: UInt?
         for rowNode in rowNodes {
             if let titleNode = rowNode.at_css("th") {
                 guard let text = titleNode.text, let title = RowTitle(rawValue: text) else { continue }
@@ -91,6 +93,8 @@ public class QueryResult: NSObject, NSCoding {
                     currentPlanName = stringValue
                 case .board:
                     numberOfBoardMeals = UInt(stringValue)
+                case .mealExchanges:
+                    numberOfMealExchanges = UInt(stringValue)
                 case .diningDollars:
                     pointsInCents = UInt(toCentsWithString: stringValue)
                 case .catCash:
@@ -98,10 +102,11 @@ public class QueryResult: NSObject, NSCoding {
                 }
             }
         }
-        if let name = name, let currentPlanName = currentPlanName, let numberOfBoardMeals = numberOfBoardMeals, let pointsInCents = pointsInCents, let catCashInCents = catCashInCents {
+        if let name = name, let currentPlanName = currentPlanName, let numberOfBoardMeals = numberOfBoardMeals, let numberOfMealExchanges = numberOfMealExchanges, let pointsInCents = pointsInCents, let catCashInCents = catCashInCents {
             self.name = name
             self.currentPlanName = currentPlanName
             self.numberOfBoardMeals = numberOfBoardMeals
+            self.numberOfMealExchanges = numberOfMealExchanges
             self.pointsInCents = pointsInCents
             self.catCashInCents = catCashInCents
             self.error = nil
@@ -123,6 +128,7 @@ public class QueryResult: NSObject, NSCoding {
         self.name = lastQuery?.name ?? defaultNameString
         self.currentPlanName = lastQuery?.currentPlanName ?? defaultSubtitleString
         self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0
+        self.numberOfMealExchanges = lastQuery?.numberOfMealExchanges ?? 0
         self.pointsInCents = lastQuery?.pointsInCents ?? 0
         self.catCashInCents = lastQuery?.catCashInCents ?? 0
         self.error = error
@@ -142,6 +148,9 @@ public class QueryResult: NSObject, NSCoding {
 
     /// The number of board meals left.
     fileprivate let numberOfBoardMeals: UInt
+
+    /// The number of meal exchanges left.
+    fileprivate let numberOfMealExchanges: UInt
 
     /// The points left, stored in cents as an integer.
     /// Example: `"11.89" -> 1189`.
@@ -175,6 +184,7 @@ public class QueryResult: NSObject, NSCoding {
         aCoder.encode(name, forKey: "name")
         aCoder.encode(currentPlanName, forKey: "currentPlanName")
         aCoder.encode(numberOfBoardMeals, forKey: "numberOfBoardMeals")
+        aCoder.encode(numberOfMealExchanges, forKey: "numberOfMealExchanges")
         aCoder.encode(pointsInCents, forKey: "pointsInCents")
         aCoder.encode(catCashInCents, forKey: "catCashInCents")
         if let errorValue = error?.rawValue {
@@ -187,6 +197,7 @@ public class QueryResult: NSObject, NSCoding {
             let name = aDecoder.decodeObject(forKey: "name") as? String,
             let currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as? String,
             let numberOfBoardMeals = aDecoder.decodeObject(forKey: "numberOfBoardMeals") as? UInt,
+            let numberOfMealExchanges = aDecoder.decodeObject(forKey: "numberOfMealExchanges") as? UInt,
             let pointsInCents = aDecoder.decodeObject(forKey: "pointsInCents") as? UInt,
             let catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as? UInt
             else { return nil }
@@ -195,6 +206,7 @@ public class QueryResult: NSObject, NSCoding {
         self.name = name
         self.currentPlanName = currentPlanName
         self.numberOfBoardMeals = numberOfBoardMeals
+        self.numberOfMealExchanges = numberOfMealExchanges
         self.pointsInCents = pointsInCents
         self.catCashInCents = catCashInCents
 
