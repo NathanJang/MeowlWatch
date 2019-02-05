@@ -26,8 +26,9 @@
 		AB3DEF901E96A8570035F000 /* MeowlWatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3DEF871E96A84A0035F000 /* MeowlWatchData.swift */; };
 		AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
-		AB60AFA5220A479000C0C17B /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Strings.strings */; };
-		AB60AFA6220A479000C0C17B /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Strings.strings */; };
+		AB60AFA5220A479000C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Localizable.strings */; };
+		AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Localizable.strings */; };
+		AB60AFAD220A4D7B00C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFAC220A4D7B00C0C17B /* Localizable.strings */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* WidgetViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -188,8 +189,9 @@
 		AB3DEF891E96A84A0035F000 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeowlWatchData/Info.plist; sourceTree = SOURCE_ROOT; };
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
-		AB60AFA7220A479000C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Strings.strings; sourceTree = "<group>"; };
+		AB60AFA7220A479000C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB60AFAB220A486200C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MeowlWatch/en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB60AFAC220A4D7B00C0C17B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AB6478D12096540B00BBA481 /* .gitmodules */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		AB6478D42096A1D700BBA481 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		AB6478D52096A1D800BBA481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -307,7 +309,7 @@
 				AB7782C21E81084F00925F72 /* LaunchScreen.storyboard */,
 				AB27C1F11E7CCCAC00A90072 /* Info.plist */,
 				AB7782F41E83D99600925F72 /* MeowlWatch.entitlements */,
-				AB60AFA8220A479000C0C17B /* Strings.strings */,
+				AB60AFA8220A479000C0C17B /* Localizable.strings */,
 			);
 			name = MeowlWatch;
 			sourceTree = "<group>";
@@ -335,6 +337,7 @@
 				ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */,
 				AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */,
 				AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */,
+				AB60AFAC220A4D7B00C0C17B /* Localizable.strings */,
 			);
 			path = MeowlWatchData;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB60AFAD220A4D7B00C0C17B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,7 +624,7 @@
 				AB7783081E84460B00925F72 /* Main.storyboard in Resources */,
 				AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */,
 				AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
-				AB60AFA5220A479000C0C17B /* Strings.strings in Resources */,
+				AB60AFA5220A479000C0C17B /* Localizable.strings in Resources */,
 				ABC11B301EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
 				ABC11B341EB7938D00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
@@ -641,7 +645,7 @@
 				ABC11B311EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
 				AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */,
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
-				AB60AFA6220A479000C0C17B /* Strings.strings in Resources */,
+				AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */,
 				AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */,
 				ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
@@ -843,12 +847,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AB60AFA8220A479000C0C17B /* Strings.strings */ = {
+		AB60AFA8220A479000C0C17B /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AB60AFA7220A479000C0C17B /* en */,
 			);
-			name = Strings.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		AB7782BF1E81083D00925F72 /* Main.storyboard */ = {

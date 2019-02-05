@@ -157,15 +157,15 @@ class NavigationController: UINavigationController {
 
         /// Shows a tip reminder.
         private func showTipReminder() {
-            let alertController = UIAlertController(title: "Love MeowlWatch? Leave a tip!", message: "Hosting this on the App Store is expensive as a solo developer. Help me by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Leave a Tip", style: .default) { [unowned self] _ in
+            let alertController = UIAlertController(title: NSLocalizedString("TipTitle", comment: "Love MeowlWatch? Leave a tip!"), message: NSLocalizedString("TipMessage", comment: "Why they should tip"), preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("TipActionTitle", comment: "Button to tip"), style: .default) { [unowned self] _ in
                 self.popToRootViewControllerOrSettingsAnimatedIfNeeded()
             })
-            alertController.addAction(UIAlertAction(title: "Rate on App Store", style: .default) { _ in
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("TipRateOnAppStore", comment: "Button to go to app store"), style: .default) { _ in
                 let url = URL(string: rateOnAppStoreUrl)!
                 UIApplication.shared.openURL(url)
             })
-            alertController.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("TipDismiss", comment: "Button to dismiss"), style: .cancel, handler: nil))
             alertController.view.tintColor = view.tintColor
             present(alertController, animated: true, completion: nil)
         }

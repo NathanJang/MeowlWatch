@@ -34,8 +34,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(didTapAccountButton))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(didTapSettingsButton))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("MWTVCAccountButtonTitle", comment: "Account"), style: .plain, target: self, action: #selector(didTapAccountButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("MWTVCSettingsButtonTitle", comment: "Settings"), style: .plain, target: self, action: #selector(didTapSettingsButton))
 
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(didTriggerRefreshControl), for: .valueChanged)
@@ -77,7 +77,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         super.viewDidLayoutSubviews()
 
         // Here because of strange bug involving table view top margin and such
-        refreshControl!.attributedTitle = NSAttributedString(string: "Updated: \(self.queryResult?.dateRetrievedString ?? "Never")")
+        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("MWTVCUpdated: \(self.queryResult?.dateRetrievedString ?? NSLocalizedString("MWTVCNever", comment: "Never"))", comment: "Updated when?"))
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,15 +142,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
         switch section {
         case 1:
-            return "Meals"
+            return NSLocalizedString("MWTVCMealsHeading", comment: "Meals")
         case 2:
-            return "Dining Dollars"
+            return NSLocalizedString("MWTVCDiningDollarsHeading", comment: "Dining Dollars")
         case 3:
-            return "Cafés and C-Stores"
+            return NSLocalizedString("MWTVCCafesHeading", comment: "Cafés and C-Stores")
         case 4:
-            return "Dining Halls"
+            return NSLocalizedString("MWTVCDiningHallsHeading", comment: "Dining Halls")
         case 5:
-            return "Norris"
+            return NSLocalizedString("MWTVCNorrisHeading", comment: "Norris")
         default:
             return nil
         }
@@ -367,18 +367,18 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
     func showSignInAlert() {
-        let alertController = UIAlertController(title: "Sign In to Northwestern", message: "To look up your meal plan data, your NetID and password will only be sent to Northwestern's secure server \"websso.it.northwestern.edu\".\nSee Privacy Policy for details.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("SignInTitle", comment: "Sign In to Northwestern"), message: NSLocalizedString("SignInMessage", comment: "Why we need their details"), preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "NetID"
             textField.text = MeowlWatchData.netID
         }
         alertController.addTextField { textField in
-            textField.placeholder = "Password"
+            textField.placeholder = NSLocalizedString("SignInPasswordPlaceholder", comment: "Password")
             textField.isSecureTextEntry = true
             textField.text = MeowlWatchData.password
         }
 
-        let signInAction = UIAlertAction(title: "Sign In", style: .default) { [unowned self] _ in
+        let signInAction = UIAlertAction(title: NSLocalizedString("SignInActionTitle", comment: "Sign In"), style: .default) { [unowned self] _ in
             guard let textFields = alertController.textFields else { return }
             let netID = textFields[0].text ?? ""
             let password = textFields[1].text ?? ""
@@ -390,7 +390,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                 self.endRefreshing(animated: true)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [unowned self] _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("SignInDismiss", comment: "Cancel"), style: .cancel) { [unowned self] _ in
             self.endRefreshing(animated: true)
         }
 
