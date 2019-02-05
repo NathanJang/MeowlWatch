@@ -19,6 +19,8 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var rightDescriptionLabel: UILabel!
     @IBOutlet weak var secondaryLeftNumberLabel: UILabel!
     @IBOutlet weak var secondaryLeftDescriptionLabel: UILabel!
+    @IBOutlet weak var secondaryRightNumberLabel: UILabel!
+    @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
     @IBOutlet weak var purchaseRequiredLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
         
@@ -96,6 +98,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
         self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
         self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+        self.secondaryRightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
 
         if let query = query {
             if let error = query.error, error != .connectionError {
@@ -105,6 +108,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
                 self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
                 self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
                 self.updateNumberLabel(self.secondaryLeftNumberLabel, asItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
+                self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
             }
 
             self.updatedLabel.text = "\(QueryResult.dateRetrievedDescription): \(query.dateRetrievedString)"
