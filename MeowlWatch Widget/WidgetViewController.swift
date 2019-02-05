@@ -119,6 +119,8 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         switch item {
         case .boardMeals:
             label.text = query.boardMeals
+        case .mealExchanges:
+            label.text = query.mealExchanges
         case .points:
             label.text = query.points
         case .catCash:

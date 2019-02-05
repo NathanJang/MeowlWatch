@@ -125,7 +125,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case 0:
             return 1
         case 1:
-            return 1
+            return 2
         case 2:
             return 2
         case 3:
@@ -199,6 +199,10 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.boardMeals ?? "0",
                                                descriptionString: "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left")
+            case 1:
+                cell = meowlWatchTableViewCell(fromTableView: tableView,
+                                               numberString: queryResult?.mealExchanges ?? "0",
+                                               descriptionString: "\(QueryResult.description(forItem: .mealExchanges, withQuery: queryResult)) Left")
             default:
                 break
             }

@@ -238,6 +238,21 @@ extension QueryResult {
     /// The pluralized/singular description for board meals.
     var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
 
+    /// The number of meal exchanges as a string.
+    public var mealExchanges: String { return "\(numberOfMealExchanges)" }
+
+    /// Whether we should display the meal exchanges description in plural form.
+    private var mealExchangesIsPlural: Bool { return numberOfMealExchanges != 1 }
+
+    /// The description for 1 meal exchange.
+    private static var mealExchangesSingularDescription: String { return "Meal Exchange" }
+
+    /// The description for many meal exchanges.
+    private static var mealExchangesPluralDescription: String { return "Meal Exchanges" }
+
+    /// The pluralized/singular description for meal exchanges.
+    var mealExchangesDescription: String { return mealExchangesIsPlural ? QueryResult.mealExchangesPluralDescription : QueryResult.mealExchangesSingularDescription }
+
     /// The points as a string.
     public var points: String { return "$\(pointsInCents.centsToString())" }
 
@@ -291,6 +306,9 @@ extension QueryResult {
         /// Board meals.
         case boardMeals
 
+        /// Meal exchanges.
+        case mealExchanges
+
         /// Points.
         case points
 
@@ -306,6 +324,8 @@ extension QueryResult {
         switch item {
         case .boardMeals:
             return boardMealsDescription
+        case .mealExchanges:
+            return mealExchangesDescription
         case .points:
             return QueryResult.pointsDescription
         case .catCash:
@@ -321,6 +341,8 @@ extension QueryResult {
         switch item {
         case .boardMeals:
             return query?.description(forItem: .boardMeals) ?? boardMealsPluralDescription
+        case .mealExchanges:
+            return query?.description(forItem: .mealExchanges) ?? mealExchangesPluralDescription
         case .points:
             return pointsDescription
         case .catCash:
