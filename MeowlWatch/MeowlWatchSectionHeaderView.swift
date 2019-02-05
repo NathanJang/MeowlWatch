@@ -105,7 +105,7 @@ protocol SectionHeaderViewDelegate: class {
 
 extension UIButton {
 
-    fileprivate func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
+    fileprivate func setBackgroundColor(_ color: UIColor, for state: UIControl.State) {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
         guard let currentContext = UIGraphicsGetCurrentContext() else { return }
         currentContext.setFillColor(color.cgColor)

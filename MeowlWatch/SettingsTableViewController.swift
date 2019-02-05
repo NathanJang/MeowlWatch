@@ -190,7 +190,7 @@ class SettingsTableViewController: UITableViewController {
             return 488
         }
 
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -199,7 +199,7 @@ class SettingsTableViewController: UITableViewController {
             return self.view.frame.width * imageSize.height / imageSize.width
         }
 
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -269,7 +269,7 @@ class SettingsTableViewController: UITableViewController {
         MeowlWatchData.moveWidgetArrangement(fromIndex: fromIndexPath.row, toIndex: to.row)
     }
 
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
 
@@ -319,7 +319,7 @@ class SettingsTableViewController: UITableViewController {
                 let emailAddress = "JonathanChan2020+MeowlWatch@u.northwestern.edu"
                 let alertController = UIAlertController(title: "Send Feedback", message: "Please send feedback to \(emailAddress).", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Copy Email Address", style: .default) { _ in
-                    UIPasteboard.general.setValue(emailAddress, forPasteboardType: UIPasteboardTypeListString.firstObject as! String)
+                    UIPasteboard.general.setValue(emailAddress, forPasteboardType: UIPasteboard.typeListString.firstObject as! String)
                 })
                 if MFMailComposeViewController.canSendMail() {
                     alertController.addAction(UIAlertAction(title: "Open in Mail", style: .default) { [weak self] _ in
