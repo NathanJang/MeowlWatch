@@ -1,0 +1,105 @@
+/* 
+  Strings.strings
+  MeowlWatch
+
+  Created by Jonathan Chan on 2019-02-05.
+  Copyright © 2019 Jonathan Chan. All rights reserved.
+*/
+
+/** MWTVC */
+
+"MWTVCAccountButtonTitle" = "Account";
+"MWTVCSettingsButtonTitle" = "Settings";
+
+"MWTVCSearchBarPlaceholder" = "Search Dining Locations";
+"MWTVCUpdated: %@" = "Updated: %@";
+"MWTVCNever" = "Never";
+
+/* Headings */
+"MWTVCMealsHeading" = "Meals";
+"MWTVCDiningDollarsHeading" = "Dining Dollars";
+"MWTVCCafesHeading" = "Cafés and C-Stores";
+"MWTVCDiningHallsHeading" = "Dining Halls";
+"MWTVCNorrisHeading" = "Norris";
+
+/* Content */
+"MWTVCDiningDollarsLeft" = "Dining Dollars Left";
+"MWTVCCatCashLeft" = "Cat Cash Left";
+
+"MWTVCDiningDollars" = "Dining Dollars";
+"MWTVCCatCash" = "Cat Cash";
+
+/** Modals */
+"TipTitle" = "Love MeowlWatch? Leave a tip!";
+"TipMessage" = "Hosting this on the App Store is expensive as a solo developer. Help me by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!";
+"TipActionTitle" = "Leave a Tip";
+"TipRateOnAppStore" = "Rate on App Store";
+"TipDismiss" = "Done";
+
+"SignInTitle" = "Sign In to Northwestern";
+"SignInMessage" = "To look up your meal plan data, your NetID and password will only be sent to Northwestern's secure server \"websso.it.northwestern.edu\".\nSee Privacy Policy for details.";
+"SignInPasswordPlaceholder" = "Password";
+"SignInActionTitle" = "Sign In";
+"SignInDismiss" = "Cancel";
+
+/** Settings */
+"SettingsWidgetHeading" = "Widget";
+"SettingsLogoHeading" = "Logo";
+"SettingsLoadingTitle" = "Loading...";
+"SettingsIAPUnavailableTitle" = "(In-App Purchase Unavailable)";
+"SettingsRestorePurchasesTitle" = "Restore Purchases";
+"SettingsVisitDesignerWebsiteTitle" = "Visit Designer's Website";
+"SettingsSendFeedbackTitle" = "Send Feedback";
+"SettingsRateOnAppStoreTitle" = "Rate on App Store";
+"SettingsShowLegalTitle" = "Show Legal";
+"SettingsWidgetHelpMessage" = "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement.";
+"SettingsTipInfoMessage" = "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled.";
+"SettingsArtistInfoMessage: %@" = "The MeowlWatch logo was designed by Isabel Nygard. Visit %@ to see more.";
+"SettingsIAPUnavailableTitle" = "In-App Purchase Unavailable";
+"SettingsIAPUnavailableMessage" = "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.";
+"SettingsSendFeedbackInfoMessage: %@" = "Please send feedback to %@.";
+"SettingsCopyEmailActionTitle" = "Copy Email Address";
+"SettingsOpenInMailActionTitle" = "Open in Mail";
+"SettingsFeedbackSubject: %@" = "MeowlWatch Feedback (v%@)";
+"SettingsFeedbackDoneButtonTitle" = "Done";
+"SettingsDoneButton" = "Done";
+"SettingsCannotPayAlertTitle" = "Cannot Make Purchases";
+"SettingsCannotPayAlertMessage" = "Please go to Settings and configure your iTunes account, or enable In-App Purchases.";
+"SettingsCannotFetchAlertTitle" = "Unable to Fetch In-App Purchases";
+"SettingsCannotFetchAlertMessage" = "Please try again later.";
+"SettingsThanksAlertTitle" = "Thank you for your support!";
+"SettingsThanksAlertMessage" = "It may take a minute for the widget to be enabled.";
+"SettingsCannotRestorePurchaseAlertTitle" = "Unable To Restore Purchases";
+"SettingsCannotRestorePurchaseAlertMessage" = "No previous purchases could be found.";
+"SettingsRestorePurchaseFailedAlertTitle" = "Unable To Restore Purchases";
+"SettingsRestorePurchaseFailedAlertMessage" = "Please try again later.";
+"SettingsPurchaseFailedAlertTitle" = "Unable To Purchase";
+"SettingsPurchaseFailedAlertMessage" = "Please try again.";
+
+/** MWD */
+"DefaultUserName" = "Your Name";
+"DefaultUserSubtitleString" = "Tap Here To Get Started";
+
+"ScheduleDisclaimer" = "Schedules displayed are for normal school days only, and may differ. During holidays, refer to announcements.\n\nWeekly plans reset on Sundays at 7 AM Central Time.";
+
+"Open" = "Open";
+"Closing Soon" = "Closing Soon";
+"Closed" = "Closed";
+
+"DateRange: %@ - %@" = "%@ – %@";
+"TimeRange: %@ - %@" = "%@ – %@";
+"AllDay" = "All Day";
+"EveryDay" = "Every Day";
+"Sunday" = "Sunday";
+"Monday" = "Monday";
+"Tuesday" = "Tuesday";
+"Wednesday" = "Wednesday";
+"Thursday" = "Thursday";
+"Friday" = "Friday";
+"Saturday" = "Saturday";
+
+"%@ (Closed)" = "%@ (Closed)";
+"%@ (Closing Soon)" = "%@ (Closing Soon)";
+
+/** MWW */
+"MWWUpdateFailedMessage" = "Update Failed, Open App";

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MWTVCMealSwipesLeft: %d</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@MealSwipes@</string>
+		<key>MealSwipes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Meal Swipe Left</string>
+			<key>other</key>
+			<string>Meal Swipes Left</string>
+		</dict>
+	</dict>
+	<key>MWTVCMealSwipes: %d</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@MealSwipes@</string>
+		<key>MealSwipes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Meal Swipe</string>
+			<key>other</key>
+			<string>Meal Swipes</string>
+		</dict>
+	</dict>
+	<key>MWTVCMealExchangesLeft: %d</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@MealExchanges@</string>
+		<key>MealExchanges</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Meal Exchange Left</string>
+			<key>other</key>
+			<string>Meal Exchanges Left</string>
+		</dict>
+	</dict>
+	<key>MWTVCMealExchanges: %d</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@MealExchanges@</string>
+		<key>MealExchanges</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Meal Exchange</string>
+			<key>other</key>
+			<string>Meal Exchanges</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
