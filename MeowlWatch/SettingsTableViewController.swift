@@ -285,7 +285,7 @@ class SettingsTableViewController: UITableViewController {
                                 if widgetProduct != nil {
                                     buyWidgetIfAvailable()
                                 } else {
-                                    self.showMessageAlert(title: "In-App Purchase Unavailable", message: "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.")
+                                    self.showMessageAlert(title: NSLocalizedString("SettingsIAPUnavailableTitle", comment: ""), message: NSLocalizedString("SettingsIAPUnavailableMessage", comment: ""))
                                 }
                             } else {
                                 showCannotMakePaymentsAlert()
@@ -317,23 +317,23 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 let emailAddress = "JonathanChan2020+MeowlWatch@u.northwestern.edu"
-                let alertController = UIAlertController(title: "Send Feedback", message: "Please send feedback to \(emailAddress).", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Copy Email Address", style: .default) { _ in
+                let alertController = UIAlertController(title: NSLocalizedString("SettingsSendFeedbackTitle", comment: ""), message: String(format: NSLocalizedString("SettingsSendFeedbackInfoMessage: %@", comment: ""), emailAddress), preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("SettingsCopyEmailActionTitle", comment: ""), style: .default) { _ in
                     UIPasteboard.general.setValue(emailAddress, forPasteboardType: UIPasteboard.typeListString.firstObject as! String)
                 })
                 if MFMailComposeViewController.canSendMail() {
-                    alertController.addAction(UIAlertAction(title: "Open in Mail", style: .default) { [weak self] _ in
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("SettingsOpenInMailActionTitle", comment: ""), style: .default) { [weak self] _ in
                         guard self != nil else { return }
                         let composeVC = MFMailComposeViewController()
                         let versionString = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
                         composeVC.setToRecipients([emailAddress])
-                        composeVC.setSubject("MeowlWatch Feedback (v\(versionString))")
+                        composeVC.setSubject(String(format: NSLocalizedString("SettingsFeedbackSubject: %@", comment: ""), "\(versionString)"))
                         composeVC.view.tintColor = self!.view.tintColor
                         composeVC.mailComposeDelegate = self!
                         self!.present(composeVC, animated: true, completion: nil)
                     })
                 }
-                alertController.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("SettingsFeedbackDoneButtonTitle", comment: ""), style: .cancel, handler: nil))
                 alertController.view.tintColor = view.tintColor
                 present(alertController, animated: true, completion: nil)
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -355,7 +355,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     lazy var doneButton: UIBarButtonItem = {
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismiss as () -> Void))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("SettingsDoneButton", comment: "Done"), style: .done, target: self, action: #selector(dismiss as () -> Void))
         return doneButton
     }()
 
@@ -378,7 +378,7 @@ class SettingsTableViewController: UITableViewController {
         /// Shows an alert to notify the user that we cannot make purchases.
         func showCannotMakePaymentsAlert() {
             self.endRefreshing()
-            self.showMessageAlert(title: "Cannot Make Purchases", message: "Please go to Settings and configure your iTunes account, or enable In-App Purchases.")
+            self.showMessageAlert(title: NSLocalizedString("SettingsCannotPayAlertTitle", comment: ""), message: NSLocalizedString("SettingsCannotPayAlertMessage", comment: ""))
         }
 
         var isRefreshing = false
@@ -434,7 +434,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
-            self.showMessageAlert(title: "Unable to Fetch In-App Purchases", message: "Please try again later.", completion: { [weak self] in
+            self.showMessageAlert(title: NSLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: NSLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: { [weak self] in
                 self?.tableView.reloadData()
                 self?.endRefreshing()
             })
@@ -458,7 +458,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         /// What to do once the widget is purchased.
         func didPurchaseWidget() {
             SKPaymentQueue.default().remove(self)
-            self.showMessageAlert(title: "Thank you for your support!", message: "It may take a minute for the widget to be enabled.")
+            self.showMessageAlert(title: NSLocalizedString("SettingsThanksAlertTitle", comment: ""), message: NSLocalizedString("SettingsThanksAlertMessage", comment: ""))
 
             self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentInset.top), animated: true)
             self.endRefreshing()
@@ -492,13 +492,13 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             }
 
             if !MeowlWatchData.widgetIsPurchased {
-                self.showMessageAlert(title: "Unable To Restore Purchases", message: "No previous purchases could be found.")
+                self.showMessageAlert(title: NSLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: NSLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
                 self.endRefreshing()
             }
         }
 
         func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-            self.showMessageAlert(title: "Unable To Restore Purchases", message: "Please try again later.")
+            self.showMessageAlert(title: NSLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: NSLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
             self.endRefreshing()
         }
 
@@ -516,7 +516,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 
             case .failed:
                 self.endRefreshing()
-                self.showMessageAlert(title: "Unable To Purchase", message: "Please try again.")
+                self.showMessageAlert(title: NSLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: NSLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
                 queue.finishTransaction(transaction)
 
             default:
