@@ -23,9 +23,8 @@
 "MWTVCNorrisHeading" = "Norris";
 
 /* Content */
-"MWTVCMealSwipesLeft" = "餐券剩余";
-"MWTVCMealExchangesLeft" = "餐 Meal Exchange 剩余";
 "MWTVCDiningDollarsLeft" = "Dining Dollars 剩余";
+"MWTVCCatCashLeft" = "Cat Cash 剩余";
 
 /** Modals */
 "TipTitle" = "Love MeowlWatch? Leave a tip!";

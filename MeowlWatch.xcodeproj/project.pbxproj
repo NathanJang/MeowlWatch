@@ -28,6 +28,8 @@
 		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB60AFA5220A479000C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Localizable.strings */; };
 		AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Localizable.strings */; };
+		AB60AFBE220A9B4000C0C17B /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFC1220A9B4000C0C17B /* Localizable.stringsdict */; };
+		AB60AFBF220A9B4000C0C17B /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFC1220A9B4000C0C17B /* Localizable.stringsdict */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* WidgetViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -194,6 +196,8 @@
 		AB60AFAF220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MeowlWatch/zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		AB60AFB0220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		AB60AFB1220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AB60AFC0220A9B4000C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		AB60AFC3220A9F1800C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		AB6478D12096540B00BBA481 /* .gitmodules */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		AB6478D42096A1D700BBA481 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		AB6478D52096A1D800BBA481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				AB27C1F11E7CCCAC00A90072 /* Info.plist */,
 				AB7782F41E83D99600925F72 /* MeowlWatch.entitlements */,
 				AB60AFA8220A479000C0C17B /* Localizable.strings */,
+				AB60AFC1220A9B4000C0C17B /* Localizable.stringsdict */,
 			);
 			name = MeowlWatch;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				AB7783071E84460B00925F72 /* Assets.xcassets in Resources */,
 				ABC11B351EB7938D00491E7B /* CafeSchedules.plist in Resources */,
 				ABC11B241EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib in Resources */,
+				AB60AFBE220A9B4000C0C17B /* Localizable.stringsdict in Resources */,
 				AB7783081E84460B00925F72 /* Main.storyboard in Resources */,
 				AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */,
 				AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
@@ -643,6 +649,7 @@
 				ABC11B251EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib in Resources */,
 				ABC11B391EB7938E00491E7B /* CafeSchedules.plist in Resources */,
 				AB7B7FD11E8E9F0500272655 /* Assets.xcassets in Resources */,
+				AB60AFBF220A9B4000C0C17B /* Localizable.stringsdict in Resources */,
 				ABC11B311EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
 				AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */,
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
@@ -855,6 +862,15 @@
 				AB60AFB1220A50A000C0C17B /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AB60AFC1220A9B4000C0C17B /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB60AFC0220A9B4000C0C17B /* en */,
+				AB60AFC3220A9F1800C0C17B /* zh-Hans */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		AB7782BF1E81083D00925F72 /* Main.storyboard */ = {

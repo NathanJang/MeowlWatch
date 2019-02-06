@@ -200,11 +200,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 0:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.boardMeals ?? "0",
-                                               descriptionString: "\(QueryResult.description(forItem: .boardMeals, withQuery: queryResult)) Left")
+                                               descriptionString: String(format: NSLocalizedString("MWTVCMealSwipesLeft: %d", comment: "Meal Swipes Left"), queryResult?.boardMeals ?? 0))
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.mealExchanges ?? "0",
-                                               descriptionString: "\(QueryResult.description(forItem: .mealExchanges, withQuery: queryResult)) Left")
+                                               descriptionString: String(format: NSLocalizedString("MWTVCMealExchangesLeft: %d", comment: "Meal Exchanges Left"), queryResult?.mealExchanges ?? 0))
             default:
                 break
             }
@@ -213,11 +213,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 0:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.points ?? "$0.00",
-                                               descriptionString: "\(QueryResult.description(forItem: .points, withQuery: queryResult)) Left")
+                                               descriptionString: String(format: NSLocalizedString("MWTVCDiningDollarsLeft", comment: "Dining Dollars Left"), queryResult?.points ?? 0))
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.catCash ?? "$0.00",
-                                               descriptionString: "\(QueryResult.description(forItem: .catCash, withQuery: queryResult)) Left")
+                                               descriptionString: String(format: NSLocalizedString("MWTVCCatCashLeft", comment: "Cat Cash Left"), queryResult?.catCash ?? 0))
             default:
                 break
             }

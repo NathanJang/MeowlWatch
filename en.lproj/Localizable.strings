@@ -25,9 +25,10 @@
 "MWTVCNorrisHeading" = "Norris";
 
 /* Content */
-"MWTVCMealSwipesLeft" = "Meal Swipes Left";
-"MWTVCMealExchangesLeft" = "Meal Exchanges Left";
+"MWTVCMealSwipesLeft: %d" = "MWTVCMealSwipesLeft";
+"MWTVCMealExchangesLeft" = "MWTVCMealExchangesLeft";
 "MWTVCDiningDollarsLeft" = "Dining Dollars Left";
+"MWTVCCatCashLeft" = "Cat Cash Left";
 
 /** Modals */
 "TipTitle" = "Love MeowlWatch? Leave a tip!";
