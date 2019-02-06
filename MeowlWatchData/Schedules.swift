@@ -169,12 +169,13 @@ public struct ScheduleRow<Status> where Status : RawRepresentable, Status.RawVal
     }
 
     private func formattedTime(twentyFourHourTime: Int) -> String {
-        if twentyFourHourTime == 2400 { return "12:00 AM" }
-        let beforeNoon = twentyFourHourTime < 1200
-        let hour = beforeNoon ? (twentyFourHourTime == 0 ? "12" : "\(twentyFourHourTime / 100)") : (twentyFourHourTime == 1200 ? "12" : "\(twentyFourHourTime / 100 - 12)")
-        let minute = twentyFourHourTime % 100 < 10 ? "0\(twentyFourHourTime % 100)" : "\(twentyFourHourTime % 100)"
-        let amOrPm = beforeNoon ? "AM" : "PM"
-        return "\(hour):\(minute) \(amOrPm)"
+        let hour = twentyFourHourTime / 100
+        let minute = twentyFourHourTime % 60
+
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter.string(from: DateComponents(hour: hour, minute: minute))!
     }
 
     public var formattedTimeRange: String? {
