@@ -52,7 +52,7 @@
 "SettingsSendFeedbackTitle" = "幫助與反饋";
 "SettingsRateOnAppStoreTitle" = "App Store 評分";
 "SettingsShowLegalTitle" = "關於";
-"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，顯示順序在此設置。";
+"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，顯示順序在此設置。\n\n感謝您信任支持！";
 "SettingsTipInfoMessage" = "台上一分鐘，台下十年功。請您考慮給開發者留個小費！廣告也將消失。";
 "SettingsArtistInfoMessage: %@" = "程序圖標由 Isabel Nygard 設計。詳情請訪問 %@。";
 "SettingsIAPUnavailableTitle" = "In-App Purchases 不可用";
