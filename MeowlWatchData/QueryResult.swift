@@ -147,10 +147,10 @@ public class QueryResult: NSObject, NSCoding {
     public let currentPlanName: String
 
     /// The number of board meals left.
-    fileprivate let numberOfBoardMeals: UInt
+    public let numberOfBoardMeals: UInt
 
     /// The number of meal exchanges left.
-    fileprivate let numberOfMealExchanges: UInt
+    public let numberOfMealExchanges: UInt
 
     /// The points left, stored in cents as an integer.
     /// Example: `"11.89" -> 1189`.
@@ -226,32 +226,8 @@ extension QueryResult {
     /// The number of board meals as a string.
     public var boardMeals: String { return isUnlimited ? "∞" : "\(numberOfBoardMeals)" }
 
-    /// Whether we should display the board meals description in plural form.
-    private var boardMealsIsPlural: Bool { return numberOfBoardMeals != 1 }
-
-    /// The description for 1 board meal.
-    private static var boardMealSingularDescription: String { return "Meal Swipe" }
-
-    /// The description for many board meals.
-    private static var boardMealsPluralDescription: String { return "Meal Swipes" }
-
-    /// The pluralized/singular description for board meals.
-    var boardMealsDescription: String { return boardMealsIsPlural ? QueryResult.boardMealsPluralDescription : QueryResult.boardMealSingularDescription }
-
     /// The number of meal exchanges as a string.
     public var mealExchanges: String { return "\(numberOfMealExchanges)" }
-
-    /// Whether we should display the meal exchanges description in plural form.
-    private var mealExchangesIsPlural: Bool { return numberOfMealExchanges != 1 }
-
-    /// The description for 1 meal exchange.
-    private static var mealExchangesSingularDescription: String { return "Meal Exchange" }
-
-    /// The description for many meal exchanges.
-    private static var mealExchangesPluralDescription: String { return "Meal Exchanges" }
-
-    /// The pluralized/singular description for meal exchanges.
-    var mealExchangesDescription: String { return mealExchangesIsPlural ? QueryResult.mealExchangesPluralDescription : QueryResult.mealExchangesSingularDescription }
 
     /// The points as a string.
     public var points: String { return "$\(pointsInCents.centsToString())" }
@@ -264,12 +240,6 @@ extension QueryResult {
 
     /// The total Cat Cash as a string.
     public var catCash: String { return "$\(catCashInCents.centsToString())" }
-
-    /// The description for Cat Cash.
-    public var catCashDescription: String { return "Cat Cash" }
-
-    /// The description for Cat Cash, also available when the controller does not have a query result object.
-    public static var catCashDescription: String { return "Cat Cash" }
 
     /// Whether the user is on an unlimited meal plan or not.
     var isUnlimited: Bool {
@@ -317,22 +287,6 @@ extension QueryResult {
         
     }
 
-    /// The displayed description given a widget item type.
-    /// - Parameter item: The display item type.
-    /// - Returns: A string to display.
-    private func description(forItem item: WidgetDisplayItem) -> String {
-        switch item {
-        case .boardMeals:
-            return boardMealsDescription
-        case .mealExchanges:
-            return mealExchangesDescription
-        case .points:
-            return QueryResult.pointsDescription
-        case .catCash:
-            return QueryResult.catCashDescription
-        }
-    }
-
     /// The displayed description given a widget item type and a query result to pluralize it if needed.
     /// - Parameter item: The display item type.
     /// - Parameter query: A query result.
@@ -340,9 +294,9 @@ extension QueryResult {
     public static func description(forItem item: WidgetDisplayItem, withQuery query: QueryResult?) -> String {
         switch item {
         case .boardMeals:
-            return String(format: NSLocalizedString("MWTVCMealSwipes: %d", comment: ""), query?.boardMeals ?? 0)
+            return String.localizedStringWithFormat(NSLocalizedString("MWTVCMealSwipes: %d", comment: ""), query?.numberOfBoardMeals ?? 0)
         case .mealExchanges:
-            return String(format: NSLocalizedString("MWTVCMealExchanges: %d", comment: ""), query?.mealExchanges ?? 0)
+            return String.localizedStringWithFormat(NSLocalizedString("MWTVCMealExchanges: %d", comment: ""), query?.numberOfMealExchanges ?? 0)
         case .points:
             return NSLocalizedString("MWTVCDiningDollars", comment: "")
         case .catCash:

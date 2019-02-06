@@ -200,11 +200,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 0:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.boardMeals ?? "0",
-                                               descriptionString: String(format: NSLocalizedString("MWTVCMealSwipesLeft: %d", comment: "Meal Swipes Left"), queryResult?.boardMeals ?? 0))
+                                               descriptionString: String.localizedStringWithFormat(NSLocalizedString("MWTVCMealSwipesLeft: %d", comment: "Meal Swipes Left"), queryResult?.numberOfBoardMeals ?? 0))
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.mealExchanges ?? "0",
-                                               descriptionString: String(format: NSLocalizedString("MWTVCMealExchangesLeft: %d", comment: "Meal Exchanges Left"), queryResult?.mealExchanges ?? 0))
+                                               descriptionString: String.localizedStringWithFormat(NSLocalizedString("MWTVCMealExchangesLeft: %d", comment: "Meal Exchanges Left"), queryResult?.numberOfMealExchanges ?? 0))
             default:
                 break
             }
