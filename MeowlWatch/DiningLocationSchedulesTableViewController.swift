@@ -46,9 +46,9 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             if title != nil {
                 let status = diningStatus(for: diningHall, at: date)
                 if status == .closed {
-                    title! += " (Closed)"
+                    title = String(format: NSLocalizedString("%@ (Closed)", comment: ""), title!)
                 } else if status == .closingSoon {
-                    title! += " (Closing Soon)"
+                    title = String(format: NSLocalizedString("%@ (Closing Soon)", comment: ""), title!)
                 }
             }
 
@@ -67,9 +67,9 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             if title != nil {
                 let status = diningStatus(for: cafeOrCStore, at: date)
                 if status == .closed {
-                    title! += " (Closed)"
+                    title = String(format: NSLocalizedString("%@ (Closed)", comment: ""), title!)
                 } else if status == .closingSoon {
-                    title! += " (Closing Soon)"
+                    title = String(format: NSLocalizedString("%@ (Closing Soon)", comment: ""), title!)
                 }
             }
 
@@ -88,9 +88,9 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             if title != nil {
                 let status = diningStatus(for: norrisLocation, at: date)
                 if status == .closed {
-                    title! += " (Closed)"
+                    title = String(format: NSLocalizedString("%@ (Closed)", comment: ""), title!)
                 } else if status == .closingSoon {
-                    title! += " (Closing Soon)"
+                    title = String(format: NSLocalizedString("%@ (Closing Soon)", comment: ""), title!)
                 }
             }
 
@@ -212,5 +212,5 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             tableView.selectRow(at: selectedIndexPath!, animated: true, scrollPosition: .none)
         }
     }
-    
+
 }

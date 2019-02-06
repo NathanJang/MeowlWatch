@@ -59,3 +59,6 @@
 "Thursday" = "周四";
 "Friday" = "周五";
 "Saturday" = "周六";
+
+"%@ (Closed)" = "%@（休息中）";
+"%@ (Closing Soon)" = "%@（即将休息）";
