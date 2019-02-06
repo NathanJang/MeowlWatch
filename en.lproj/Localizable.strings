@@ -43,6 +43,19 @@
 "SignInActionTitle" = "Sign In";
 "SignInDismiss" = "Cancel";
 
+/** Settings */
+"SettingsWidgetHeading" = "Widget";
+"SettingsLogoHeading" = "Logo";
+"SettingsLoadingTitle" = "Loading...";
+"SettingsIAPUnavailableTitle" = "(In-App Purchase Unavailable)";
+"SettingsRestorePurchasesTitle" = "Restore Purchases";
+"SettingsSendFeedbackTitle" = "Send Feedback";
+"SettingsRateOnAppStoreTitle" = "Rate on App Store";
+"SettingsShowLegalTitle" = "Rate on App Store";
+"SettingsWidgetHelpMessage" = "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement.";
+"SettingsTipInfoMessage" = "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled.";
+"SettingsArtistInfoMessage: %@" = "The MeowlWatch logo was designed by Isabel Nygard. Visit %@ to see more.";
+
 /** MWD */
 "DefaultUserName" = "Your Name";
 "DefaultUserSubtitleString" = "Tap Here To Get Started";

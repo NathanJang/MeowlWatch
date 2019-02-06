@@ -39,6 +39,10 @@
 "SignInActionTitle" = "登录";
 "SignInDismiss" = "取消";
 
+/** Settings */
+"SettingsWidgetHeading" = "小部件";
+"SettingsLogoHeading" = "图标";
+
 /** MWD */
 "DefaultUserName" = "您的名字";
 "DefaultUserSubtitleString" = "点击此处登录";

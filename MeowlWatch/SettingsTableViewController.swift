@@ -115,9 +115,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Widget"
+            return NSLocalizedString("SettingsWidgetHeading", comment: "Widget")
         case 1:
-            return "Logo"
+            return NSLocalizedString("SettingsLogoHeading", comment: "Logo")
         default:
             return nil
         }
@@ -139,19 +139,19 @@ class SettingsTableViewController: UITableViewController {
                     case 0:
                         if isRefreshing {
                             cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
-                            cell!.textLabel!.text = "Loading..."
+                            cell!.textLabel!.text = NSLocalizedString("SettingLoadingTitle", comment: "")
                         } else {
                             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
                             if let widgetProduct = widgetProduct {
                                 cell!.textLabel!.text = widgetProduct.localizedTitle
                             } else {
-                                cell!.textLabel!.text = "(In-App Purchase Unavailable)"
+                                cell!.textLabel!.text = NSLocalizedString("SettingsIAPUnavailableTitle", comment: "")
                             }
                         }
 
                     case 1:
                         cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                        cell!.textLabel!.text = "Restore Purchases"
+                        cell!.textLabel!.text = NSLocalizedString("SettingsRestorePurchasesTitle", comment: "")
 
                     case 2:
                         cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
@@ -169,11 +169,11 @@ class SettingsTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             switch indexPath.row {
             case 0:
-                cell!.textLabel!.text = "Send Feedback"
+                cell!.textLabel!.text = NSLocalizedString("SettingsSendFeedbackTitle", comment: "")
             case 1:
-                cell!.textLabel!.text = "Rate on App Store"
+                cell!.textLabel!.text = NSLocalizedString("SettingsRateOnAppStoreTitle", comment: "")
             case 2:
-                cell!.textLabel!.text = "Show Legal"
+                cell!.textLabel!.text = NSLocalizedString("SettingsShowLegalTitle", comment: "")
             default:
                 break
             }
@@ -206,12 +206,12 @@ class SettingsTableViewController: UITableViewController {
         switch section {
         case 0:
             if MeowlWatchData.widgetIsPurchased {
-                return "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement."
+                return NSLocalizedString("SettingsWidgetHelpMessage", comment: "")
             } else {
-                return "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled."
+                return NSLocalizedString("SettingsTipInfoMessage", comment: "")
             }
         case 1:
-            return "The MeowlWatch logo was designed by Isabel Nygard. Visit \(isabelURLString) to see more."
+            return String(format: NSLocalizedString("SettingsArtistInfoMessage: %@", comment: ""), isabelURLString)
         default:
             return nil
         }
