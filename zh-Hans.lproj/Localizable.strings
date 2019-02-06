@@ -47,3 +47,15 @@
 
 "Open" = "营业";
 "Closed" = "休息";
+
+"DateRange: %@ - %@" = "%@至%@";
+"TimeRange: %@ - %@" = "%@ – %@";
+"AllDay" = "全日";
+"EveryDay" = "每天";
+"Sunday" = "周日";
+"Monday" = "周一";
+"Tuesday" = "周二";
+"Wednesday" = "周三";
+"Thursday" = "周四";
+"Friday" = "周五";
+"Saturday" = "周六";

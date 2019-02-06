@@ -24,7 +24,7 @@ public enum DiningHall: String {
     case plexWest = "Plex West"
 
     case sargent = "Sargent"
-    
+
 }
 
 public let diningHalls: [DiningHall] = [.allison, .hinman, .plexEast, .plexWest, .sargent]
@@ -87,7 +87,7 @@ public enum DiningStatus: String {
     case closingSoon = "Closing Soon"
 
     case closed = "Closed"
-    
+
 }
 
 /// In minutes
@@ -136,19 +136,19 @@ private func dayOfWeek(string: String?) -> Int? {
 private func dayOfWeekString(_ int: Int) -> String? {
     switch int {
     case 1:
-        return "Sunday"
+        return NSLocalizedString("Sunday", comment: "")
     case 2:
-        return "Monday"
+        return NSLocalizedString("Monday", comment: "")
     case 3:
-        return "Tuesday"
+        return NSLocalizedString("Tuesday", comment: "")
     case 4:
-        return "Wednesday"
+        return NSLocalizedString("Wednesday", comment: "")
     case 5:
-        return "Thursday"
+        return NSLocalizedString("Thursday", comment: "")
     case 6:
-        return "Friday"
+        return NSLocalizedString("Friday", comment: "")
     case 7:
-        return "Saturday"
+        return NSLocalizedString("Saturday", comment: "")
     default:
         return nil
     }
@@ -178,10 +178,10 @@ public struct ScheduleRow<Status> where Status : RawRepresentable, Status.RawVal
     }
 
     public var formattedTimeRange: String? {
-        if startingTime == 0 && endingTime == 2400 { return "All Day" }
-        return "\(formattedTime(twentyFourHourTime: startingTime)) – \(formattedTime(twentyFourHourTime: endingTime))"
+        if startingTime == 0 && endingTime == 2400 { return NSLocalizedString("AllDay", comment: "") }
+        return String(format: NSLocalizedString("TimeRange: %@ - %@", comment: ""), formattedTime(twentyFourHourTime: startingTime), formattedTime(twentyFourHourTime: endingTime))
     }
-    
+
 }
 
 /// An object representing a schedule entry with a starting day of week, ending day of week, and array of time-status pairs during those specified days.
@@ -231,9 +231,9 @@ public struct ScheduleEntry<Status> where Status : RawRepresentable, Status.RawV
     public var formattedWeekdayRange: String {
         if startingDayOfWeek != endingDayOfWeek {
             if startingDayOfWeek == 1 && endingDayOfWeek == 7 {
-                return "Every Day"
+                return NSLocalizedString("EveryDay", comment: "")
             }
-            return "\(dayOfWeekString(startingDayOfWeek)!) – \(dayOfWeekString(endingDayOfWeek)!)"
+            return String(format: NSLocalizedString("DateRange: %@ - %@", comment: ""), dayOfWeekString(startingDayOfWeek)!, dayOfWeekString(endingDayOfWeek)!)
         } else {
             return "\(dayOfWeekString(startingDayOfWeek)!)"
         }
