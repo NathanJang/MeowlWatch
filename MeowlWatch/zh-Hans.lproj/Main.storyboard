@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dVB-Lu-zgW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dVB-Lu-zgW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -169,11 +170,7 @@
         <scene sceneID="hMH-ph-97S">
             <objects>
                 <viewController title="关于" id="kF4-Xw-Rxe" customClass="LegalViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Yrd-y6-PUa"/>
-                        <viewControllerLayoutGuide type="bottom" id="p3Y-eN-fn9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GCp-qB-LO6">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="GCp-qB-LO6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -181,8 +178,23 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
+                                    <fragment content="MeowlWatch">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="：">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="12" name=".PingFangTC-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
                                     <fragment>
-                                        <string key="content">MeowlWatch:
+                                        <string key="content" base64-UTF8="YES">
+Cg
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -198,10 +210,26 @@
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content"> © 2017 Jonathan Chan
+                                        <string key="content"> © 2017 – 2019 Jonathan Chan
 Class of 2020, Northwestern University
 
-MeowlWatch App Icon and Logo:
+MeowlWatch </string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="标志：">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="12" name=".PingFangTC-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -694,11 +722,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rid-em-Kl6" firstAttribute="top" secondItem="Yrd-y6-PUa" secondAttribute="bottom" id="3F1-Vq-RAV"/>
-                            <constraint firstItem="Rid-em-Kl6" firstAttribute="leading" secondItem="GCp-qB-LO6" secondAttribute="leading" id="5sh-k2-Qkz"/>
-                            <constraint firstItem="p3Y-eN-fn9" firstAttribute="top" secondItem="Rid-em-Kl6" secondAttribute="bottom" id="ar2-5B-j95"/>
-                            <constraint firstAttribute="trailing" secondItem="Rid-em-Kl6" secondAttribute="trailing" id="koY-rr-HzW"/>
+                            <constraint firstItem="Rid-em-Kl6" firstAttribute="top" secondItem="9kd-I3-CKG" secondAttribute="top" id="3F1-Vq-RAV"/>
+                            <constraint firstItem="Rid-em-Kl6" firstAttribute="leading" secondItem="9kd-I3-CKG" secondAttribute="leading" id="5sh-k2-Qkz"/>
+                            <constraint firstAttribute="bottom" secondItem="Rid-em-Kl6" secondAttribute="bottom" id="ar2-5B-j95"/>
+                            <constraint firstItem="9kd-I3-CKG" firstAttribute="trailing" secondItem="Rid-em-Kl6" secondAttribute="trailing" id="koY-rr-HzW"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="9kd-I3-CKG"/>
                     </view>
                     <connections>
                         <outlet property="textView" destination="Rid-em-Kl6" id="I9h-je-xgv"/>

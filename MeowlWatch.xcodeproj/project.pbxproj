@@ -194,7 +194,6 @@
 		AB3DEF8A1E96A84A0035F000 /* MeowlWatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeowlWatchData.h; path = MeowlWatchData/MeowlWatchData.h; sourceTree = SOURCE_ROOT; };
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB60AFA7220A479000C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AB60AFAB220A486200C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MeowlWatch/en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB60AFAF220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MeowlWatch/zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		AB60AFB0220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		AB60AFB1220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -203,6 +202,7 @@
 		AB60AFC4220AA0A200C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "MeowlWatch/zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		AB60AFC9220AC46100C0C17B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB60AFCE220AC49900C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		AB60AFD2220AC97D00C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = MeowlWatch/en.lproj/Main.strings; sourceTree = "<group>"; };
 		AB6478D12096540B00BBA481 /* .gitmodules */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		AB6478D42096A1D700BBA481 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		AB6478D52096A1D800BBA481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -893,8 +893,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB7782C01E81083D00925F72 /* Base */,
-				AB60AFAB220A486200C0C17B /* en */,
 				AB60AFC4220AA0A200C0C17B /* zh-Hans */,
+				AB60AFD2220AC97D00C0C17B /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
