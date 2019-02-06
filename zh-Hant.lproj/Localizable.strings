@@ -37,7 +37,7 @@
 "TipDismiss" = "完成";
 
 "SignInTitle" = "登錄 Northwestern";
-"SignInMessage" = "為了查詢您的用餐情況，您的 NetID 和密碼將加密後送至西北的服務器 \"websso.it.northwestern.edu\"。詳情請參考私隱條例。";
+"SignInMessage" = "為了查詢您的用餐情況，您的 NetID 和密碼將加密後送至西北的伺服器 \"websso.it.northwestern.edu\"。詳情請參考私隱條例。";
 "SignInPasswordPlaceholder" = "密碼";
 "SignInActionTitle" = "登錄";
 "SignInDismiss" = "取消";
