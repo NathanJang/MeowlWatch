@@ -25,10 +25,11 @@
 "MWTVCNorrisHeading" = "Norris";
 
 /* Content */
-"MWTVCMealSwipesLeft: %d" = "MWTVCMealSwipesLeft";
-"MWTVCMealExchangesLeft" = "MWTVCMealExchangesLeft";
 "MWTVCDiningDollarsLeft" = "Dining Dollars Left";
 "MWTVCCatCashLeft" = "Cat Cash Left";
+
+"MWTVCDiningDollars" = "Dining Dollars";
+"MWTVCCatCash" = "Cat Cash";
 
 /** Modals */
 "TipTitle" = "Love MeowlWatch? Leave a tip!";
@@ -84,6 +85,7 @@
 "ScheduleDisclaimer" = "Schedules displayed are for normal school days only, and may differ. During holidays, refer to announcements.\n\nWeekly plans reset on Sundays at 7 AM Central Time.";
 
 "Open" = "Open";
+"Closing Soon" = "Closing Soon";
 "Closed" = "Closed";
 
 "DateRange: %@ - %@" = "%@ – %@";
@@ -100,3 +102,6 @@
 
 "%@ (Closed)" = "%@ (Closed)";
 "%@ (Closing Soon)" = "%@ (Closing Soon)";
+
+/** MWW */
+"MWWUpdateFailedMessage" = "Update Failed, Open App";

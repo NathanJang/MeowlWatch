@@ -340,13 +340,13 @@ extension QueryResult {
     public static func description(forItem item: WidgetDisplayItem, withQuery query: QueryResult?) -> String {
         switch item {
         case .boardMeals:
-            return query?.description(forItem: .boardMeals) ?? boardMealsPluralDescription
+            return String(format: NSLocalizedString("MWTVCMealSwipes: %d", comment: ""), query?.boardMeals ?? 0)
         case .mealExchanges:
-            return query?.description(forItem: .mealExchanges) ?? mealExchangesPluralDescription
+            return String(format: NSLocalizedString("MWTVCMealExchanges: %d", comment: ""), query?.mealExchanges ?? 0)
         case .points:
-            return pointsDescription
+            return NSLocalizedString("MWTVCDiningDollars", comment: "")
         case .catCash:
-            return catCashDescription
+            return NSLocalizedString("MWTVCCatCash", comment: "")
         }
     }
 

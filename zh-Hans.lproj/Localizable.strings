@@ -26,6 +26,9 @@
 "MWTVCDiningDollarsLeft" = "Dining Dollars 剩余";
 "MWTVCCatCashLeft" = "Cat Cash 剩余";
 
+"MWTVCDiningDollars" = "Dining Dollars";
+"MWTVCCatCash" = "Cat Cash";
+
 /** Modals */
 "TipTitle" = "爱 MeowlWatch 吗？留个消费吧！";
 "TipMessage" = "独立开发者在 App Store 开帐很不容易的。请考虑看看 MeowlWatch 的小配件，留个小小费，让广告也消失了，或在 App Store 评评分！";
@@ -80,6 +83,7 @@
 "ScheduleDisclaimer" = "时间表只供平日参考，假期以地点公告为准。\n\n周制的套餐将在每周日早上7点重制。";
 
 "Open" = "营业";
+"Closing Soon" = "即将休息";
 "Closed" = "休息";
 
 "DateRange: %@ - %@" = "%@至%@";
@@ -96,3 +100,6 @@
 
 "%@ (Closed)" = "%@（休息中）";
 "%@ (Closing Soon)" = "%@（即将休息）";
+
+/** MWW */
+"MWWUpdateFailedMessage" = "无法更新，请打开程序";

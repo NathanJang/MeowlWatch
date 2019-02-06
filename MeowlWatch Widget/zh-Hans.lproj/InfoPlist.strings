@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  MeowlWatch
+
+  Created by Jonathan Chan on 2019-02-06.
+  Copyright © 2019 Jonathan Chan. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "用餐情况";

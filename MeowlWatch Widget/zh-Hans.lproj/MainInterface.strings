@@ -6,7 +6,7 @@
 "C4U-Ft-tRy.text" = "Cat Cash";
 
 /* Class = "UILabel"; text = "In-App Purchase Required"; ObjectID = "EfC-3X-LcA"; */
-"EfC-3X-LcA.text" = "In-App Purchase Required";
+"EfC-3X-LcA.text" = "需有 In-App Purchase";
 
 /* Class = "UILabel"; text = "Dining Dollars"; ObjectID = "KUB-f2-HvF"; */
 "KUB-f2-HvF.text" = "Dining Dollars";
@@ -15,13 +15,13 @@
 "QII-MZ-5nP.text" = "--";
 
 /* Class = "UILabel"; text = "Meal Swipes"; ObjectID = "RWY-hX-emE"; */
-"RWY-hX-emE.text" = "Meal Swipes";
+"RWY-hX-emE.text" = "餐券";
 
 /* Class = "UILabel"; text = "--"; ObjectID = "gWw-o7-na7"; */
 "gWw-o7-na7.text" = "--";
 
 /* Class = "UILabel"; text = "Updated: Never"; ObjectID = "mHj-DV-aIM"; */
-"mHj-DV-aIM.text" = "Updated: Never";
+"mHj-DV-aIM.text" = "更新：从未";
 
 /* Class = "UILabel"; text = "Meal Exchanges"; ObjectID = "w02-My-Ekv"; */
 "w02-My-Ekv.text" = "Meal Exchanges";
