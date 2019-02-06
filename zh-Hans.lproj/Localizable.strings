@@ -30,14 +30,14 @@
 "MWTVCCatCash" = "Cat Cash";
 
 /** Modals */
-"TipTitle" = "爱 MeowlWatch 吗？留个消费吧！";
-"TipMessage" = "独立开发者在 App Store 开帐很不容易的。请考虑启动 MeowlWatch 小配件，留个小小费，让广告也消失了，或在 App Store 评评分！";
+"TipTitle" = "爱 MeowlWatch 吗？留个小费吧！";
+"TipMessage" = "独立开发程序不简单哦。请考虑启动 MeowlWatch 小部件，留个小小费，让广告也消失了，或在 App Store 评评分！";
 "TipActionTitle" = "留个小费";
 "TipRateOnAppStore" = "App Store 评分";
 "TipDismiss" = "完成";
 
 "SignInTitle" = "登录 Northwestern";
-"SignInMessage" = "为了查询您的用餐情况，您的NetID和密码将加密后送至西北的服务器 \"websso.it.northwestern.edu\"。详情请参考私隐条例。";
+"SignInMessage" = "为了查询您的用餐情况，您的 NetID 和密码将加密后送至西北的服务器 \"websso.it.northwestern.edu\"。详情请参考私隐条例。";
 "SignInPasswordPlaceholder" = "密码";
 "SignInActionTitle" = "登录";
 "SignInDismiss" = "取消";
@@ -67,8 +67,8 @@
 "SettingsCannotPayAlertMessage" = "请前往系统设置登录 iTunes，启用 In-App Purchases。";
 "SettingsCannotFetchAlertTitle" = "无法访问 iTunes";
 "SettingsCannotFetchAlertMessage" = "请稍后重试。";
-"SettingsThanksAlertTitle" = "感谢您支持信任！";
-"SettingsThanksAlertMessage" = "可能过几分钟小配件才可用。";
+"SettingsThanksAlertTitle" = "感谢您信任支持！";
+"SettingsThanksAlertMessage" = "小部件可能过几分钟才可用。";
 "SettingsCannotRestorePurchaseAlertTitle" = "无法恢复购物记录";
 "SettingsCannotRestorePurchaseAlertMessage" = "您从无购买过产品。";
 "SettingsRestorePurchaseFailedAlertTitle" = "无法恢复购物记录";
@@ -78,9 +78,9 @@
 
 /** MWD */
 "DefaultUserName" = "您的名字";
-"DefaultUserSubtitleString" = "点击此处登录";
+"DefaultUserSubtitleString" = "轻点此处登录";
 
-"ScheduleDisclaimer" = "时间表只供平日参考，假期以学校公告为准。\n\n周制套餐将在每周日中部时间早上7点重制。";
+"ScheduleDisclaimer" = "时间表只供平日参考，假期以学校公告为准。\n\n周制套餐将在每周日中部时间早上7点重置。";
 
 "Open" = "营业";
 "Closing Soon" = "即将休息";

@@ -1,0 +1,105 @@
+/* 
+  Strings.strings
+  MeowlWatch
+
+  Created by Jonathan Chan on 2019-02-05.
+  Copyright © 2019 Jonathan Chan. All rights reserved.
+*/
+
+/** MWTVC */
+
+"MWTVCAccountButtonTitle" = "賬戶";
+"MWTVCSettingsButtonTitle" = "設置";
+
+"MWTVCSearchBarPlaceholder" = "搜索食堂";
+"MWTVCUpdated: %@" = "更新：%@";
+"MWTVCNever" = "從未";
+
+/* Headings */
+"MWTVCMealsHeading" = "我的餐券";
+"MWTVCDiningDollarsHeading" = "我的餐款";
+"MWTVCCafesHeading" = "餐廳、便利店";
+"MWTVCDiningHallsHeading" = "食堂";
+"MWTVCNorrisHeading" = "Norris";
+
+/* Content */
+"MWTVCDiningDollarsLeft" = "Dining Dollars 剩餘";
+"MWTVCCatCashLeft" = "Cat Cash 剩餘";
+
+"MWTVCDiningDollars" = "Dining Dollars";
+"MWTVCCatCash" = "Cat Cash";
+
+/** Modals */
+"TipTitle" = "愛 MeowlWatch 嗎？留個小費吧！";
+"TipMessage" = "獨立開發程序不簡單哦。請考慮啟動 MeowlWatch 小部件，留個小小費，讓廣告也消失了，或在 App Store 評評分！";
+"TipActionTitle" = "留個小費";
+"TipRateOnAppStore" = "App Store 評分";
+"TipDismiss" = "完成";
+
+"SignInTitle" = "登錄 Northwestern";
+"SignInMessage" = "為了查詢您的用餐情況，您的 NetID 和密碼將加密後送至西北的服務器 \"websso.it.northwestern.edu\"。詳情請參考私隱條例。";
+"SignInPasswordPlaceholder" = "密碼";
+"SignInActionTitle" = "登錄";
+"SignInDismiss" = "取消";
+
+/** Settings */
+"SettingsWidgetHeading" = "小部件";
+"SettingsLogoHeading" = "圖標";
+"SettingsLoadingTitle" = "加載中…";
+"SettingsIAPUnavailableTitle" = "（In-App Purchases 不可用）";
+"SettingsRestorePurchasesTitle" = "恢復購物記錄";
+"SettingsVisitDesignerWebsiteTitle" = "參觀設計師網站";
+"SettingsSendFeedbackTitle" = "幫助與反饋";
+"SettingsRateOnAppStoreTitle" = "App Store 評分";
+"SettingsShowLegalTitle" = "關於";
+"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，顯示順序在此設置。";
+"SettingsTipInfoMessage" = "台上一分鐘，台下十年功。請您考慮給開發者留個小費！廣告也將消失。";
+"SettingsArtistInfoMessage: %@" = "程序圖標由 Isabel Nygard 設計。詳情請訪問 %@。";
+"SettingsIAPUnavailableTitle" = "In-App Purchases 不可用";
+"SettingsIAPUnavailableMessage" = "請檢查網絡。或許，iTunes 與 In-App Purchases 可能暫時出錯。請稍後重試。";
+"SettingsSendFeedbackInfoMessage: %@" = "請向 %@ 反饋。";
+"SettingsCopyEmailActionTitle" = "複製郵址";
+"SettingsOpenInMailActionTitle" = "打開郵件程序";
+"SettingsFeedbackSubject: %@" = "MeowlWatch 反饋（v%@）";
+"SettingsFeedbackDoneButtonTitle" = "完成";
+"SettingsDoneButton" = "完成";
+"SettingsCannotPayAlertTitle" = "無法付款";
+"SettingsCannotPayAlertMessage" = "請前往系統設置登錄 iTunes，啟用 In-App Purchases。";
+"SettingsCannotFetchAlertTitle" = "無法訪問 iTunes";
+"SettingsCannotFetchAlertMessage" = "請稍後重試。";
+"SettingsThanksAlertTitle" = "感謝您信任支持！";
+"SettingsThanksAlertMessage" = "小部件可能過幾分鐘才可用。";
+"SettingsCannotRestorePurchaseAlertTitle" = "無法恢復購物記錄";
+"SettingsCannotRestorePurchaseAlertMessage" = "您從無購買過產品。";
+"SettingsRestorePurchaseFailedAlertTitle" = "無法恢復購物記錄";
+"SettingsRestorePurchaseFailedAlertMessage" = "請稍後重試。";
+"SettingsPurchaseFailedAlertTitle" = "無法購買";
+"SettingsPurchaseFailedAlertMessage" = "請重試。";
+
+/** MWD */
+"DefaultUserName" = "您的名字";
+"DefaultUserSubtitleString" = "輕點此處登錄";
+
+"ScheduleDisclaimer" = "時間表只供平日參考，假期以學校公告為準。 \n\n週制套餐將在每週日中部時間早上7點重置。";
+
+"Open" = "營業";
+"Closing Soon" = "即將休息";
+"Closed" = "休息";
+
+"DateRange: %@ - %@" = "%@至%@";
+"TimeRange: %@ - %@" = "%@ – %@";
+"AllDay" = "全日";
+"EveryDay" = "每天";
+"Sunday" = "周日";
+"Monday" = "周一";
+"Tuesday" = "周二";
+"Wednesday" = "周三";
+"Thursday" = "周四";
+"Friday" = "周五";
+"Saturday" = "周六";
+
+"%@ (Closed)" = "%@（休息中）";
+"%@ (Closing Soon)" = "%@（即將休息）";
+
+/** MWW */
+"MWWUpdateFailedMessage" = "無法更新，請打開主程序";

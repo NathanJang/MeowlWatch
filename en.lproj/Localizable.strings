@@ -7,8 +7,6 @@
 */
 
 /** MWTVC */
-"MWTVCUserName" = "Your Name";
-"MWTVCUserSubtitle" = "Tap Here To Get Started";
 
 "MWTVCAccountButtonTitle" = "Account";
 "MWTVCSettingsButtonTitle" = "Settings";
