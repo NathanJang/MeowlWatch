@@ -31,8 +31,8 @@
 
 /** Modals */
 "TipTitle" = "爱 MeowlWatch 吗？留个消费吧！";
-"TipMessage" = "独立开发者在 App Store 开帐很不容易的。请考虑看看 MeowlWatch 的小配件，留个小小费，让广告也消失了，或在 App Store 评评分！";
-"TipActionTitle" = "留个消费";
+"TipMessage" = "独立开发者在 App Store 开帐很不容易的。请考虑启动 MeowlWatch 小配件，留个小小费，让广告也消失了，或在 App Store 评评分！";
+"TipActionTitle" = "留个小费";
 "TipRateOnAppStore" = "App Store 评分";
 "TipDismiss" = "完成";
 
@@ -52,11 +52,11 @@
 "SettingsSendFeedbackTitle" = "帮助与反馈";
 "SettingsRateOnAppStoreTitle" = "App Store 评分";
 "SettingsShowLegalTitle" = "关于";
-"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，以上设置显示顺序。";
-"SettingsTipInfoMessage" = "台上一分钟，台下十年功。请您考虑给开发者留个消费！广告也将消失。";
+"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，显示顺序在此设置。";
+"SettingsTipInfoMessage" = "台上一分钟，台下十年功。请您考虑给开发者留个小费！广告也将消失。";
 "SettingsArtistInfoMessage: %@" = "程序图标由 Isabel Nygard 设计。详情请访问 %@。";
-"SettingsIAPUnavailableTitle" = "In-App Purchase 不可用";
-"SettingsIAPUnavailableMessage" = "请您检查网络。也许，iTunes 与 In-App Purchases 有可能暂时出错。请您稍后重试。";
+"SettingsIAPUnavailableTitle" = "In-App Purchases 不可用";
+"SettingsIAPUnavailableMessage" = "请检查网络。或许，iTunes 与 In-App Purchases 可能暂时出错。请稍后重试。";
 "SettingsSendFeedbackInfoMessage: %@" = "请向 %@ 反馈。";
 "SettingsCopyEmailActionTitle" = "拷贝邮址";
 "SettingsOpenInMailActionTitle" = "打开邮件程序";
@@ -64,11 +64,11 @@
 "SettingsFeedbackDoneButtonTitle" = "完成";
 "SettingsDoneButton" = "完成";
 "SettingsCannotPayAlertTitle" = "无法付款";
-"SettingsCannotPayAlertMessage" = "请前往系统设置登录 iTunes，启动 In-App Purchases。";
+"SettingsCannotPayAlertMessage" = "请前往系统设置登录 iTunes，启用 In-App Purchases。";
 "SettingsCannotFetchAlertTitle" = "无法访问 iTunes";
 "SettingsCannotFetchAlertMessage" = "请稍后重试。";
-"SettingsThanksAlertTitle" = "感谢您的信任！";
-"SettingsThanksAlertMessage" = "小配件有可能过几分钟才显示。";
+"SettingsThanksAlertTitle" = "感谢您支持信任！";
+"SettingsThanksAlertMessage" = "可能过几分钟小配件才可用。";
 "SettingsCannotRestorePurchaseAlertTitle" = "无法恢复购物记录";
 "SettingsCannotRestorePurchaseAlertMessage" = "您从无购买过产品。";
 "SettingsRestorePurchaseFailedAlertTitle" = "无法恢复购物记录";
@@ -80,7 +80,7 @@
 "DefaultUserName" = "您的名字";
 "DefaultUserSubtitleString" = "点击此处登录";
 
-"ScheduleDisclaimer" = "时间表只供平日参考，假期以地点公告为准。\n\n周制的套餐将在每周日早上7点重制。";
+"ScheduleDisclaimer" = "时间表只供平日参考，假期以学校公告为准。\n\n周制套餐将在每周日中部时间早上7点重制。";
 
 "Open" = "营业";
 "Closing Soon" = "即将休息";
@@ -102,4 +102,4 @@
 "%@ (Closing Soon)" = "%@（即将休息）";
 
 /** MWW */
-"MWWUpdateFailedMessage" = "无法更新，请打开程序";
+"MWWUpdateFailedMessage" = "无法更新，请打开主程序";
