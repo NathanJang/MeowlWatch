@@ -135,11 +135,11 @@ class NavigationController: UINavigationController {
         /// Shows them annoying popups sometimes, based on RNG.
         func conditionallyDisplayModals() {
             if !didShowModals {
-                let randomNumberFrom0To10 = arc4random_uniform(10)
+                let randomNumberFrom0To10 = arc4random_uniform(100)
                 if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
                     if randomNumberFrom0To10 < 10 {
                         showTipReminder()
-                    } else if randomNumberFrom0To10 < 4 {
+                    } else if randomNumberFrom0To10 < 5 {
                         showInterstitial()
                     }
                 }

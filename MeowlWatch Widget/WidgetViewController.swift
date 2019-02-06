@@ -67,9 +67,9 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         guard MeowlWatchData.canQuery else {
             return completionHandler(.failed)
         }
-        MeowlWatchData.query { [unowned self] queryResult in
-            DispatchQueue.main.async { [unowned self] in
-                self.updateLabels(with: queryResult)
+        MeowlWatchData.query { [weak self] queryResult in
+            DispatchQueue.main.async { [weak self] in
+                self?.updateLabels(with: queryResult)
                 MeowlWatchData.persistToUserDefaults()
                 completionHandler(.newData)
             }
