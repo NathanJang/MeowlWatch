@@ -146,7 +146,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         // Configure the cell...
         let entry = entries[indexPath.section]
         cell.textLabel!.text = entry.formattedTimeRange(atIndex: indexPath.row)
-        cell.detailTextLabel!.text = entry.schedule[indexPath.row].status.rawValue
+        cell.detailTextLabel!.text = NSLocalizedString(entry.schedule[indexPath.row].status.rawValue, comment: "")
         cell.detailTextLabel!.textColor = entry.schedule[indexPath.row].status != .closed ? view.tintColor : UIColor.red
 
         cell.isUserInteractionEnabled = indexPath == selectedIndexPath

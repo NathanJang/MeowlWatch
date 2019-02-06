@@ -172,7 +172,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     func diningLocationTableViewCell(fromTableView tableView: UITableView, locationName: String, status: DiningStatus) -> MeowlWatchDiningLocationTableViewCell {
         let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell") as! MeowlWatchDiningLocationTableViewCell
         diningLocationCell.locationNameLabel.text = locationName
-        diningLocationCell.statusLabel.text = status.rawValue
+        diningLocationCell.statusLabel.text = NSLocalizedString(status.rawValue, comment: "Open or Closed")
         switch status {
         case .closed:
             diningLocationCell.statusLabel.textColor = .red

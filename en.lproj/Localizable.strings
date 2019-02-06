@@ -47,4 +47,7 @@
 "DefaultUserName" = "Your Name";
 "DefaultUserSubtitleString" = "Tap Here To Get Started";
 
-"ScheduleDisclaimer" = "Schedules displayed are for normal school days only, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time.";
+"ScheduleDisclaimer" = "Schedules displayed are for normal school days only, and may differ. During holidays, refer to announcements.\n\nWeekly plans reset on Sundays at 7 AM Central Time.";
+
+"Open" = "Open";
+"Closed" = "Closed";

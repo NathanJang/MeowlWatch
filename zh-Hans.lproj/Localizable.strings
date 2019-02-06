@@ -43,4 +43,7 @@
 "DefaultUserName" = "您的名字";
 "DefaultUserSubtitleString" = "点击此处登录";
 
-"ScheduleDisclaimer" = "时间表只供平日参考。\n\n周制的套餐将在每周日早上7点重制。";
+"ScheduleDisclaimer" = "时间表只供平日参考，假期以地点公告为准。\n\n周制的套餐将在每周日早上7点重制。";
+
+"Open" = "营业";
+"Closed" = "休息";
