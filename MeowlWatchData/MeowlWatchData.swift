@@ -284,8 +284,8 @@ public var shouldRefresh: Bool {
 /// Not to be confused with the date formatter used when parsing the HTML.
 var displayDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    dateFormatter.dateFormat = "h:mm a 'on' E MMM d"
+    dateFormatter.dateStyle = .short
+    dateFormatter.timeStyle = .short
     return dateFormatter
 }()
 
