@@ -491,7 +491,7 @@ Cgo
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="本程序的免費版將顯示 Google 廣告，而 Google 有可能會記錄您設備使用情况，除非您退出。您可在系统設置 &gt; 私隱 &gt; 限制廣告跟踪選擇退出。當您應用内購買（In-App Purchase）任何產品，廣告將消失。">
+                                    <fragment content="本程序的免費版將顯示 Google 廣告，而 Google 有可能會記錄您設備使用情况，除非您退出。您可在系统設置 &gt; 私隱權 &gt; 限制廣告跟踪選擇退出。當您應用内購買（In-App Purchase）任何產品，廣告將消失。">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".PingFangTC-Regular"/>
