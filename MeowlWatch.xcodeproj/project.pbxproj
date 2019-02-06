@@ -28,7 +28,6 @@
 		AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */; };
 		AB60AFA5220A479000C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Localizable.strings */; };
 		AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFA8220A479000C0C17B /* Localizable.strings */; };
-		AB60AFAD220A4D7B00C0C17B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB60AFAC220A4D7B00C0C17B /* Localizable.strings */; };
 		AB7782D31E8242B000925F72 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7782D21E8242B000925F72 /* NotificationCenter.framework */; };
 		AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7782E21E83C18900925F72 /* WidgetViewController.swift */; };
 		AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782EC1E83C1AD00925F72 /* MainInterface.storyboard */; };
@@ -191,7 +190,10 @@
 		AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandableTableViewController.swift; path = MeowlWatch/ExpandableTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		AB60AFA7220A479000C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB60AFAB220A486200C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MeowlWatch/en.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AB60AFAC220A4D7B00C0C17B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		AB60AFAE220A509F00C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MeowlWatch/zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		AB60AFAF220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MeowlWatch/zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		AB60AFB0220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainInterface.strings"; sourceTree = "<group>"; };
+		AB60AFB1220A50A000C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AB6478D12096540B00BBA481 /* .gitmodules */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		AB6478D42096A1D700BBA481 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		AB6478D52096A1D800BBA481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -337,7 +339,6 @@
 				ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */,
 				AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */,
 				AB321A731EB6D0D8002BFD39 /* NorrisSchedules.plist */,
-				AB60AFAC220A4D7B00C0C17B /* Localizable.strings */,
 			);
 			path = MeowlWatchData;
 			sourceTree = "<group>";
@@ -575,6 +576,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = AB27C1D91E7CCCAC00A90072;
 			productRefGroup = AB27C1E31E7CCCAC00A90072 /* Products */;
@@ -594,7 +596,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB60AFAD220A4D7B00C0C17B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +852,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB60AFA7220A479000C0C17B /* en */,
+				AB60AFB1220A50A000C0C17B /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -860,6 +862,7 @@
 			children = (
 				AB7782C01E81083D00925F72 /* Base */,
 				AB60AFAB220A486200C0C17B /* en */,
+				AB60AFAE220A509F00C0C17B /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB7782C31E81084F00925F72 /* Base */,
+				AB60AFAF220A50A000C0C17B /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -876,6 +880,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB7782ED1E83C1AD00925F72 /* Base */,
+				AB60AFB0220A50A000C0C17B /* zh-Hans */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -887,6 +892,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -944,6 +950,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

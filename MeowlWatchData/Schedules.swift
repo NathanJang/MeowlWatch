@@ -410,4 +410,4 @@ private func diningScheduleDictionaryFromPlist(_ fileName: String) -> [String : 
     return diningScheduleEntriesDictionaryDictionary[fileName]!
 }
 
-public let scheduleDisclaimerString = "Schedules displayed are for normal school days only, and may differ.\n\nWeekly plans reset on Sundays at 7 AM Central Time."
+public let scheduleDisclaimerString = NSLocalizedString("ScheduleDisclaimer", comment: "Schedules displayed are for normal school days only")

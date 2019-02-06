@@ -1,0 +1,47 @@
+/* 
+  Strings.strings
+  MeowlWatch
+
+  Created by Jonathan Chan on 2019-02-05.
+  Copyright © 2019 Jonathan Chan. All rights reserved.
+*/
+
+/** MWTVC */
+
+"MWTVCAccountButtonTitle" = "账户";
+"MWTVCSettingsButtonTitle" = "设置";
+
+"MWTVCSearchBarPlaceholder" = "搜索食堂";
+"MWTVCUpdated: %@" = "更新：%@";
+"MWTVCNever" = "从未";
+
+/* Headings */
+"MWTVCMealsHeading" = "我的餐券";
+"MWTVCDiningDollarsHeading" = "我的餐款";
+"MWTVCCafesHeading" = "便利店";
+"MWTVCDiningHallsHeading" = "食堂";
+"MWTVCNorrisHeading" = "Norris";
+
+/* Content */
+"MWTVCMealSwipesLeft" = "餐剩余";
+"MWTVCMealExchangesLeft" = "Meal Exchanges 剩余";
+"MWTVCDiningDollarsLeft" = "Dining Dollars 剩余";
+
+/** Modals */
+"TipTitle" = "Love MeowlWatch? Leave a tip!";
+"TipMessage" = "Hosting this on the App Store is expensive as a solo developer. Help me by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!";
+"TipActionTitle" = "Leave a Tip";
+"TipRateOnAppStore" = "Rate on App Store";
+"TipDismiss" = "Done";
+
+"SignInTitle" = "登录 Northwestern";
+"SignInMessage" = "您的NetID和密码将加密后送达西北的服务器“websso.it.northwestern.edu”而查询您的用餐情况。请参考私隐条例。";
+"SignInPasswordPlaceholder" = "密码";
+"SignInActionTitle" = "登录";
+"SignInDismiss" = "取消";
+
+/** MWD */
+"DefaultUserName" = "您的名字";
+"DefaultUserSubtitleString" = "点击此处登录";
+
+"ScheduleDisclaimer" = "时间表只供平日参考。\n\n周制的套餐将在每周日早上7点重制。";

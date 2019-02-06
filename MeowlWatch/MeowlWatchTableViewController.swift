@@ -57,7 +57,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             searchController.searchBar.sizeToFit() // iOS 8
             tableView.tableHeaderView = searchController.searchBar
         }
-        searchController.searchBar.placeholder = "Search Dining Locations"
+        searchController.searchBar.placeholder = NSLocalizedString("MWTVCSearchBarPlaceholder", comment: "Search Dining Locations")
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.autocorrectionType = .no
         searchController.searchBar.delegate = self
@@ -77,7 +77,9 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         super.viewDidLayoutSubviews()
 
         // Here because of strange bug involving table view top margin and such
-        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("MWTVCUpdated: \(self.queryResult?.dateRetrievedString ?? NSLocalizedString("MWTVCNever", comment: "Never"))", comment: "Updated when?"))
+//        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("MWTVCUpdated: \(self.queryResult?.dateRetrievedString ?? NSLocalizedString("MWTVCNever", comment: "Never"))", comment: "Updated when?"))
+        refreshControl!.attributedTitle = NSAttributedString(string: String(format: NSLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), self.queryResult?.dateRetrievedString ?? NSLocalizedString("MWTVCNever", comment: "Never")))
+
     }
 
     override func didReceiveMemoryWarning() {

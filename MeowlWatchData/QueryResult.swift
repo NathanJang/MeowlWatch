@@ -412,7 +412,7 @@ extension UInt {
     
 }
 
-public let defaultNameString = "Your Name"
+public let defaultNameString = NSLocalizedString("DefaultUserName", comment: "Your Name")
 
 /// In place of the plan when no credentials
-public let defaultSubtitleString = "Tap Here To Get Started"
+public let defaultSubtitleString = NSLocalizedString("DefaultUserSubtitleString", comment: "Tap Here To Get Started")
