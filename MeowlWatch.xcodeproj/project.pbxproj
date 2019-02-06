@@ -201,7 +201,6 @@
 		AB60AFC4220AA0A200C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "MeowlWatch/zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		AB60AFC9220AC46100C0C17B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB60AFCE220AC49900C0C17B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		AB60AFD2220AC97D00C0C17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = MeowlWatch/en.lproj/Main.strings; sourceTree = "<group>"; };
 		AB60AFD3220B477E00C0C17B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		AB60AFD4220B477E00C0C17B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hant"; path = "MeowlWatch/zh-Hant.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		AB60AFD6220B477F00C0C17B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -902,7 +901,6 @@
 			children = (
 				AB7782C01E81083D00925F72 /* Base */,
 				AB60AFC4220AA0A200C0C17B /* zh-Hans */,
-				AB60AFD2220AC97D00C0C17B /* en */,
 				AB60AFD4220B477E00C0C17B /* zh-Hant */,
 			);
 			name = Main.storyboard;
