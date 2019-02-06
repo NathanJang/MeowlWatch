@@ -18,13 +18,13 @@
 /* Headings */
 "MWTVCMealsHeading" = "我的餐券";
 "MWTVCDiningDollarsHeading" = "我的餐款";
-"MWTVCCafesHeading" = "便利店";
+"MWTVCCafesHeading" = "餐厅、便利店";
 "MWTVCDiningHallsHeading" = "食堂";
 "MWTVCNorrisHeading" = "Norris";
 
 /* Content */
-"MWTVCMealSwipesLeft" = "餐剩余";
-"MWTVCMealExchangesLeft" = "Meal Exchanges 剩余";
+"MWTVCMealSwipesLeft" = "餐券剩余";
+"MWTVCMealExchangesLeft" = "餐 Meal Exchange 剩余";
 "MWTVCDiningDollarsLeft" = "Dining Dollars 剩余";
 
 /** Modals */
@@ -35,7 +35,7 @@
 "TipDismiss" = "Done";
 
 "SignInTitle" = "登录 Northwestern";
-"SignInMessage" = "您的NetID和密码将加密后送达西北的服务器“websso.it.northwestern.edu”而查询您的用餐情况。请参考私隐条例。";
+"SignInMessage" = "为了查询您的用餐情况，您的NetID和密码将加密后送至西北的服务器 \"websso.it.northwestern.edu\"。详情请参考私隐条例。";
 "SignInPasswordPlaceholder" = "密码";
 "SignInActionTitle" = "登录";
 "SignInDismiss" = "取消";

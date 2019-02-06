@@ -192,8 +192,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         switch indexPath.section {
         case 0: // User cell
             let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserTableViewCell") as! MeowlWatchUserTableViewCell
-            userCell.nameLabel.text = queryResult?.name ?? MeowlWatchData.defaultNameString
-            userCell.planLabel.text = queryResult?.currentPlanName ?? MeowlWatchData.defaultSubtitleString
+            userCell.nameLabel.text = queryResult?.name ?? NSLocalizedString(MeowlWatchData.defaultNameString, comment: "Your Name")
+            userCell.planLabel.text = queryResult?.currentPlanName ?? NSLocalizedString(MeowlWatchData.defaultSubtitleString, comment: "Tap Here To Get Started")
             cell = userCell
         case 1:
             switch indexPath.row {
