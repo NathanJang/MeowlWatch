@@ -49,15 +49,15 @@
 "SettingsLoadingTitle" = "Loading...";
 "SettingsIAPUnavailableTitle" = "(In-App Purchase Unavailable)";
 "SettingsRestorePurchasesTitle" = "Restore Purchases";
+"SettingsVisitDesignerWebsiteTitle" = "Visit Designer's Website";
 "SettingsSendFeedbackTitle" = "Send Feedback";
 "SettingsRateOnAppStoreTitle" = "Rate on App Store";
-"SettingsShowLegalTitle" = "Rate on App Store";
+"SettingsShowLegalTitle" = "Show Legal";
 "SettingsWidgetHelpMessage" = "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement.";
 "SettingsTipInfoMessage" = "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled.";
 "SettingsArtistInfoMessage: %@" = "The MeowlWatch logo was designed by Isabel Nygard. Visit %@ to see more.";
 "SettingsIAPUnavailableTitle" = "In-App Purchase Unavailable";
 "SettingsIAPUnavailableMessage" = "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.";
-"SettingsSendFeedbackTitle" = "Send Feedback";
 "SettingsSendFeedbackInfoMessage: %@" = "Please send feedback to %@.";
 "SettingsCopyEmailActionTitle" = "Copy Email Address";
 "SettingsOpenInMailActionTitle" = "Open in Mail";

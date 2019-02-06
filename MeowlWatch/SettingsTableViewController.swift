@@ -139,7 +139,7 @@ class SettingsTableViewController: UITableViewController {
                     case 0:
                         if isRefreshing {
                             cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
-                            cell!.textLabel!.text = NSLocalizedString("SettingLoadingTitle", comment: "")
+                            cell!.textLabel!.text = NSLocalizedString("SettingsLoadingTitle", comment: "")
                         } else {
                             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
                             if let widgetProduct = widgetProduct {
@@ -163,7 +163,7 @@ class SettingsTableViewController: UITableViewController {
             }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-            cell!.textLabel!.text = "Visit Designer's Website"
+            cell!.textLabel!.text = NSLocalizedString("SettingsVisitDesignerWebsiteTitle", comment: "")
 
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
