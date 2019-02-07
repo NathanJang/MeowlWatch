@@ -105,7 +105,7 @@ public class QueryResult: NSObject, NSCoding {
         if let name = name, let currentPlanName = currentPlanName, let numberOfBoardMeals = numberOfBoardMeals, let numberOfMealExchanges = numberOfMealExchanges, let pointsInCents = pointsInCents, let catCashInCents = catCashInCents {
             self.name = name
             self.currentPlanName = currentPlanName
-            self.numberOfBoardMeals = numberOfBoardMeals
+            self.numberOfBoardMeals = QueryResult.isUnlimited(currentPlanName: self.currentPlanName) ? .max - 1 : numberOfBoardMeals
             self.numberOfMealExchanges = numberOfMealExchanges
             self.pointsInCents = pointsInCents
             self.catCashInCents = catCashInCents
@@ -242,7 +242,9 @@ extension QueryResult {
     public var catCash: String { return "$\(catCashInCents.centsToString())" }
 
     /// Whether the user is on an unlimited meal plan or not.
-    var isUnlimited: Bool {
+    var isUnlimited: Bool { return QueryResult.isUnlimited(currentPlanName: self.currentPlanName) }
+
+    private class func isUnlimited(currentPlanName: String) -> Bool {
         do {
             let match = try currentPlanName.firstMatch(regexPattern: "Open Access").first
             return match != nil
