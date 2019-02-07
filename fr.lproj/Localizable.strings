@@ -36,7 +36,7 @@
 
 /** Modals */
 "TipTitle" = "Vous aimez Meowlwatch ? Veuillez laisser un pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher pour mettre cette application sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou notez-nous sur App Store !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher pour mettre cette app sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou la notez sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
 "TipRateOnAppStore" = "Noter sur App Store";
 "TipDismiss" = "OK";
