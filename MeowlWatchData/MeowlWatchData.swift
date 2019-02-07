@@ -49,6 +49,11 @@ public func loadFromDefaults() {
         userDefaults.removeObject(forKey: "widgetPurchased")
     }
 
+    if let storedCurrentLanguageId = userDefaults.string(forKey: "currentLanguageId"), let storedCurrentLanguage = Language(rawValue: storedCurrentLanguageId) {
+        currentLanguage = storedCurrentLanguage
+        selectedLanguage = currentLanguage
+    }
+
 }
 
 /// Writes data from the MeowlWatchData to user defaults.
@@ -66,6 +71,12 @@ public func persistToUserDefaults() {
     userDefaults.set(hiddenSections, forKey: "hiddenSections")
 
     keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .always)
+
+    if selectedLanguage == .default {
+        userDefaults.removeObject(forKey: "currentLanguageId")
+    } else {
+        userDefaults.set(selectedLanguage.rawValue, forKey: "currentLanguageId")
+    }
 }
 
 /// A boolean representing whether we're prepared to query the server.
@@ -357,3 +368,16 @@ public var rateOnAppStoreUrl: String {
         return "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appId)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software&action=write-review"
     }
 }
+
+/// Supported languages.
+public enum Language: String {
+    case `default`
+    case english = "en"
+    case chineseSimplified = "zh-Hans"
+    case chineseTraditional = "zh-Hant"
+    case french = "fr"
+}
+
+public var selectedLanguage = Language.default
+
+public private(set) var currentLanguage = Language.default

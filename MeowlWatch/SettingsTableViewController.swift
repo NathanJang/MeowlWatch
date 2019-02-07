@@ -33,6 +33,8 @@ class SettingsTableViewController: UITableViewController {
     /// TODO: use a URL tracker or something.
     var isabelShortURLString: String { return isabelURLString }
 
+    let languages = [Language.default, .english, .chineseSimplified, .chineseTraditional, .french]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,6 +61,8 @@ class SettingsTableViewController: UITableViewController {
         }
 
         navigationItem.setRightBarButton(doneButton, animated: false)
+
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "LocaleCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,7 +96,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,6 +110,8 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             return 1
         case 2:
+            return languages.count
+        case 3:
             return 3
         default:
             return 0
@@ -118,6 +124,8 @@ class SettingsTableViewController: UITableViewController {
             return NSLocalizedString("SettingsWidgetHeading", comment: "Widget")
         case 1:
             return NSLocalizedString("SettingsLogoHeading", comment: "Logo")
+        case 2:
+            return "Language"
         default:
             return nil
         }
@@ -166,6 +174,12 @@ class SettingsTableViewController: UITableViewController {
             cell!.textLabel!.text = NSLocalizedString("SettingsVisitDesignerWebsiteTitle", comment: "")
 
         case 2:
+            cell = tableView.dequeueReusableCell(withIdentifier: "LocaleCell", for: indexPath)
+            let language = languages[indexPath.row]
+            cell?.textLabel?.text = language.rawValue
+            cell?.accessoryType = language == selectedLanguage ? .checkmark : .none
+
+        case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             switch indexPath.row {
             case 0:
@@ -314,6 +328,13 @@ class SettingsTableViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
 
         case 2:
+            let previousLanguage = selectedLanguage
+            selectedLanguage = languages[indexPath.row]
+            tableView.reloadRows(at: [indexPath, IndexPath(row: languages.firstIndex(of: previousLanguage)!, section: indexPath.section)], with: .none)
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            tableView.deselectRow(at: indexPath, animated: true)
+
+        case 3:
             switch indexPath.row {
             case 0:
                 let emailAddress = "JonathanChan2020+MeowlWatch@u.northwestern.edu"
