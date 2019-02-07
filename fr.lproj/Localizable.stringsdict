@@ -12,10 +12,12 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>zero</key>
+			<string>Coup restant</string>
 			<key>one</key>
-			<string>Meal Swipe Left</string>
+			<string>Coup restant</string>
 			<key>other</key>
-			<string>Meal Swipes Left</string>
+			<string>Coups restants</string>
 		</dict>
 	</dict>
 	<key>MWTVCMealSwipes: %d</key>
@@ -28,10 +30,12 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>zero</key>
+			<string>Coup de repas</string>
 			<key>one</key>
-			<string>Meal Swipe</string>
+			<string>Coup de repas</string>
 			<key>other</key>
-			<string>Meal Swipes</string>
+			<string>Coups de repas</string>
 		</dict>
 	</dict>
 	<key>MWTVCMealExchangesLeft: %d</key>
@@ -44,10 +48,12 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>zero</key>
+			<string>Échange restant</string>
 			<key>one</key>
-			<string>Meal Exchange Left</string>
+			<string>Échange restant</string>
 			<key>other</key>
-			<string>Meal Exchanges Left</string>
+			<string>Échanges restants</string>
 		</dict>
 	</dict>
 	<key>MWTVCMealExchanges: %d</key>
@@ -60,10 +66,12 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>zero</key>
+			<string>Échange de repas</string>
 			<key>one</key>
-			<string>Meal Exchange</string>
+			<string>Échange de repas</string>
 			<key>other</key>
-			<string>Meal Exchanges</string>
+			<string>Échanges de repas</string>
 		</dict>
 	</dict>
 </dict>

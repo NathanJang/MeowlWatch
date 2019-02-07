@@ -3,28 +3,28 @@
 "2gX-C0-KcY.text" = "--";
 
 /* Class = "UILabel"; text = "Cat Cash"; ObjectID = "C4U-Ft-tRy"; */
-"C4U-Ft-tRy.text" = "Cat Cash";
+"C4U-Ft-tRy.text" = "Cat cash";
 
 /* Class = "UILabel"; text = "In-App Purchase Required"; ObjectID = "EfC-3X-LcA"; */
-"EfC-3X-LcA.text" = "In-App Purchase Required";
+"EfC-3X-LcA.text" = "Achat intégré exigé";
 
 /* Class = "UILabel"; text = "Dining Dollars"; ObjectID = "KUB-f2-HvF"; */
-"KUB-f2-HvF.text" = "Dining Dollars";
+"KUB-f2-HvF.text" = "Dining dollars";
 
 /* Class = "UILabel"; text = "--"; ObjectID = "QII-MZ-5nP"; */
 "QII-MZ-5nP.text" = "--";
 
 /* Class = "UILabel"; text = "Meal Swipes"; ObjectID = "RWY-hX-emE"; */
-"RWY-hX-emE.text" = "Meal Swipes";
+"RWY-hX-emE.text" = "Coups de repas";
 
 /* Class = "UILabel"; text = "--"; ObjectID = "gWw-o7-na7"; */
 "gWw-o7-na7.text" = "--";
 
 /* Class = "UILabel"; text = "Updated: Never"; ObjectID = "mHj-DV-aIM"; */
-"mHj-DV-aIM.text" = "Updated: Never";
+"mHj-DV-aIM.text" = "Mise à jour : jamais";
 
 /* Class = "UILabel"; text = "Meal Exchanges"; ObjectID = "w02-My-Ekv"; */
-"w02-My-Ekv.text" = "Meal Exchanges";
+"w02-My-Ekv.text" = "Échanges de repas";
 
 /* Class = "UILabel"; text = "--"; ObjectID = "xOb-Cy-whO"; */
 "xOb-Cy-whO.text" = "--";

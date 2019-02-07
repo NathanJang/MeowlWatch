@@ -13,7 +13,7 @@
 
 "MWTVCSearchBarPlaceholder" = "Rechercher dans les lieux";
 "MWTVCUpdated: %@" = "Mise à jour : %@";
-"MWTVCNever" = "Jamais";
+"MWTVCNever" = "jamais";
 
 /* Headings */
 "MWTVCMealsHeading" = "Repas";
@@ -23,15 +23,15 @@
 "MWTVCNorrisHeading" = "Norris";
 
 /* Content */
-"MWTVCDiningDollarsLeft" = "Dining Dollars Restants";
-"MWTVCCatCashLeft" = "Cat Cash Restants";
+"MWTVCDiningDollarsLeft" = "Dining Dollars restants";
+"MWTVCCatCashLeft" = "Cat Cash restants";
 
 "MWTVCDiningDollars" = "Dining Dollars";
 "MWTVCCatCash" = "Cat Cash";
 
 /** Modals */
 "TipTitle" = "Aimez Meowlwatch ? Veuillez laisser un pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher pour hôter cette application sur App Store. Aidez-moi par regarder le widget et me laisser un petit pourboire (je déteste des publicités aussi), ou ajouter un avis sur App Store !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher pour hôter cette application sur App Store. Aidez-moi par regarder le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou ajouter un avis sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
 "TipRateOnAppStore" = "Avis sur App Store";
 "TipDismiss" = "OK";
@@ -80,7 +80,7 @@
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Tapez ici pour commencer";
 
-"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant des vacances, veuillez consulter des annonces de l'université.\n\nDes plans hebdomadaire réinitialisent à 7h heure centrale le dimanche.";
+"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant des vacances, veuillez consulter des annonces de l'université.\n\nDes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
 
 "Open" = "Ouvert";
 "Closing Soon" = "Ferme bientôt";
