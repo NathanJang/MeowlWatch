@@ -58,7 +58,7 @@
 "SettingsSendFeedbackTitle" = "Signaler un problème";
 "SettingsRateOnAppStoreTitle" = "Noter sur App Store";
 "SettingsShowLegalTitle" = "À propos";
-"SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles vont apparaître dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
+"SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles apparaîtront dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
 "SettingsTipInfoMessage" = "C'est un dur travail pour faire des apps utiles comme MeowlWatch. Veuillez envisager de laisser moi un petit pourboire ci-dessus ! :) Les publicités seront désactivés aussi.";
 "SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Voyez %@ pour plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponible";
@@ -86,7 +86,7 @@
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Touchez ici pour commencer";
 
-"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant les vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaires réinitialisent le dimanche à 7h heure centrale.";
+"ScheduleDisclaimer" = "Cet horaire-ci est seulement pour les jours normaux, et peut différer. Pendant les vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaires réinitialisent le dimanche heure centrale à 7h.";
 
 "Open" = "Ouvert";
 "Closing Soon" = "Ferme bientôt";
