@@ -349,7 +349,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             MeowlWatchData.query { [unowned self] queryResult in
                 DispatchQueue.main.async { [unowned self] in
                     if queryResult.error != nil {
-                        self.showMessageAlert(title: "Oops!", message: queryResult.errorString)
+                        self.showMessageAlert(title: NSLocalizedString("MWTVCRefreshErrorTitle", comment: "Oops!"), message: queryResult.errorString)
                     }
 
                     self.tableView.reloadData()

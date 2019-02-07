@@ -29,6 +29,11 @@
 "MWTVCDiningDollars" = "Dining Dollars";
 "MWTVCCatCash" = "Cat Cash";
 
+"MWTVCRefreshErrorTitle" = "Oops!";
+"QueryErrorConnection" = "Unable to connect to the server. Please make sure your device is connected to the internet.";
+"QueryErrorAuthentication" = "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct.";
+"QueryErrorParse" = "An unexpected error occurred. Please try again. If the issue persists, please contact the developer through Settings > Send Feedback.";
+
 /** Modals */
 "TipTitle" = "Love MeowlWatch? Leave a tip!";
 "TipMessage" = "Hosting this on the App Store is expensive as a solo developer. Help me by checking out the widget and leaving me a small tip (I hate ads too), or rating the app on the App Store!";

@@ -29,6 +29,11 @@
 "MWTVCDiningDollars" = "Dining Dollars";
 "MWTVCCatCash" = "Cat Cash";
 
+"MWTVCRefreshErrorTitle" = "Oups !";
+"QueryErrorConnection" = "Échec de connecter au serveur. Veuillez vérifier que votre appareil est connecté à Internet.";
+"QueryErrorAuthentication" = "Échec de se connecter à Northwestern. Veuillez toucher « Compte » et vérifier que votre NetID et votre mot de passe sont exacts.";
+"QueryErrorParse" = "Il y a un problème inconnu. Veuillez réssayer. Si le problème persiste, veuillez contacter le programmeur à Réglages > Signaler un problème.";
+
 /** Modals */
 "TipTitle" = "Vous aimez Meowlwatch ? Veuillez laisser un pourboire !";
 "TipMessage" = "Pour un programmeur solo, c'est très cher pour mettre cette application sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou notez-nous sur App Store !";
@@ -37,7 +42,7 @@
 "TipDismiss" = "OK";
 
 "SignInTitle" = "Se connecter à Northwestern";
-"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID et votre mot de passe seront envoyés seulement aux serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
+"SignInMessage" = "Pour télécharger votre solde de repas, votre NetID et votre mot de passe seront envoyés seulement aux serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
 "SignInPasswordPlaceholder" = "Mot de passe";
 "SignInActionTitle" = "Se connecter";
 "SignInDismiss" = "Annuler";
@@ -45,7 +50,7 @@
 /** Settings */
 "SettingsWidgetHeading" = "Widget";
 "SettingsLogoHeading" = "Logo";
-"SettingsLoadingTitle" = "Téléchargement...";
+"SettingsLoadingTitle" = "Téléchargement en cours...";
 "SettingsIAPUnavailableTitle" = "(Achats intégrés non disponible)";
 "SettingsRestorePurchasesTitle" = "Restaurer vos achats";
 "SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de la conceptrice";
@@ -80,7 +85,7 @@
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Touchez ici pour commencer";
 
-"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant des vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
+"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant les vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
 
 "Open" = "Ouvert";
 "Closing Soon" = "Ferme bientôt";
@@ -102,4 +107,4 @@
 "%@ (Closing Soon)" = "%@ (ferme bientôt)";
 
 /** MWW */
-"MWWUpdateFailedMessage" = "Échec de mise à jour, ouvrez l'app";
+"MWWUpdateFailedMessage" = "Échec de mettre à jour, ouvrez l'app";

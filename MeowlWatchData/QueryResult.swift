@@ -261,11 +261,11 @@ extension QueryResult {
         guard let error = error else { return nil }
         switch error {
         case .connectionError:
-            return "Unable to connect to the server. Please make sure your device is connected to the internet."
+            return NSLocalizedString("QueryErrorConnection", comment: "")
         case .authenticationError:
-            return "Unable to sign in to Northwestern. Please tap \"Account\" to make sure your NetID and password are correct."
+            return NSLocalizedString("QueryErrorAuthentication", comment: "")
         case .parseError:
-            return "An unexpected error occurred. Please try again. If the issue persists, please contact the developer through Settings > Send Feedback."
+            return NSLocalizedString("QueryErrorParse", comment: "")
         }
     }
 

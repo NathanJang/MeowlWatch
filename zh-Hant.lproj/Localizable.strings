@@ -29,6 +29,11 @@
 "MWTVCDiningDollars" = "Dining Dollars";
 "MWTVCCatCash" = "Cat Cash";
 
+"MWTVCRefreshErrorTitle" = "出错了！";
+"QueryErrorConnection" = "無法連接服伺服器。請檢查網絡。";
+"QueryErrorAuthentication" = "無法登錄 Northwestern。請輕點“賬戶”檢查您的密碼。";
+"QueryErrorParse" = "錯誤原因未知。請重試。如果錯誤持續出現，請前往設置 > 幫助與反饋以聯繫開發者。";
+
 /** Modals */
 "TipTitle" = "愛 MeowlWatch 嗎？留個小費吧！";
 "TipMessage" = "獨立開發程序不簡單哦。請考慮啟動 MeowlWatch 小部件，留個小小費，讓廣告也消失了，或在 App Store 評評分！";
