@@ -64,7 +64,7 @@
 "SettingsFeedbackDoneButtonTitle" = "Done";
 "SettingsDoneButton" = "Done";
 "SettingsCannotPayAlertTitle" = "Cannot Make Purchases";
-"SettingsCannotPayAlertMessage" = "Please go to Settings and configure your iTunes account, or enable In-App Purchases.";
+"SettingsCannotPayAlertMessage" = "Please go to Settings and configure your iTunes account, and enable In-App Purchases.";
 "SettingsCannotFetchAlertTitle" = "Unable to Fetch In-App Purchases";
 "SettingsCannotFetchAlertMessage" = "Please try again later.";
 "SettingsThanksAlertTitle" = "Thank you for your support!";

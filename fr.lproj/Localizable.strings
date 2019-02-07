@@ -37,7 +37,7 @@
 "TipDismiss" = "OK";
 
 "SignInTitle" = "Connexion à Northwestern";
-"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID et mot de passe seront envoyés seulement à les serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
+"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID votre et mot de passe seront envoyés seulement à les serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
 "SignInPasswordPlaceholder" = "Mot de passe";
 "SignInActionTitle" = "Connexion";
 "SignInDismiss" = "Annuler";
