@@ -263,11 +263,11 @@ extension QueryResult {
         guard let error = error else { return nil }
         switch error {
         case .connectionError:
-            return NSLocalizedString("QueryErrorConnection", comment: "")
+            return mwLocalizedString("QueryErrorConnection", comment: "")
         case .authenticationError:
-            return NSLocalizedString("QueryErrorAuthentication", comment: "")
+            return mwLocalizedString("QueryErrorAuthentication", comment: "")
         case .parseError:
-            return NSLocalizedString("QueryErrorParse", comment: "")
+            return mwLocalizedString("QueryErrorParse", comment: "")
         }
     }
 
@@ -296,13 +296,13 @@ extension QueryResult {
     public static func description(forItem item: WidgetDisplayItem, withQuery query: QueryResult?) -> String {
         switch item {
         case .boardMeals:
-            return String.localizedStringWithFormat(NSLocalizedString("MWTVCMealSwipes: %d", comment: ""), query?.numberOfBoardMeals ?? 0)
+            return String.localizedStringWithFormat(mwLocalizedString("MWTVCMealSwipes: %d", comment: ""), query?.numberOfBoardMeals ?? 0)
         case .mealExchanges:
-            return String.localizedStringWithFormat(NSLocalizedString("MWTVCMealExchanges: %d", comment: ""), query?.numberOfMealExchanges ?? 0)
+            return String.localizedStringWithFormat(mwLocalizedString("MWTVCMealExchanges: %d", comment: ""), query?.numberOfMealExchanges ?? 0)
         case .points:
-            return NSLocalizedString("MWTVCDiningDollars", comment: "")
+            return mwLocalizedString("MWTVCDiningDollars", comment: "")
         case .catCash:
-            return NSLocalizedString("MWTVCCatCash", comment: "")
+            return mwLocalizedString("MWTVCCatCash", comment: "")
         }
     }
 

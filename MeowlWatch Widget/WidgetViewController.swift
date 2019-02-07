@@ -103,7 +103,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         if let query = query {
             if let error = query.error, error != .connectionError {
                 self.purchaseRequiredLabel.isHidden = false
-                self.purchaseRequiredLabel.text = NSLocalizedString("MWWUpdateFailedMessage", comment: "")
+                self.purchaseRequiredLabel.text = mwLocalizedString("MWWUpdateFailedMessage", comment: "")
             } else {
                 self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
                 self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
@@ -111,7 +111,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
                 self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
             }
 
-            self.updatedLabel.text = String(format: NSLocalizedString("MWTVCUpdated: %@", comment: ""), query.dateRetrievedString)
+            self.updatedLabel.text = String(format: mwLocalizedString("MWTVCUpdated: %@", comment: ""), query.dateRetrievedString)
         }
     }
 

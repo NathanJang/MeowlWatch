@@ -369,6 +369,8 @@ public var rateOnAppStoreUrl: String {
     }
 }
 
+// MARK: - Localization
+
 /// Supported languages.
 public enum Language: String {
     case `default`
@@ -381,3 +383,14 @@ public enum Language: String {
 public var selectedLanguage = Language.default
 
 public private(set) var currentLanguage = Language.default
+
+public func mwLocalizedString(_ key: String, comment: String = "") -> String {
+    let bundle: Bundle
+    if currentLanguage == .default {
+        bundle = .main
+    } else {
+        let path = Bundle.main.path(forResource: currentLanguage.rawValue, ofType: "lproj")!
+        bundle = Bundle(path: path)!
+    }
+    return NSLocalizedString(key, bundle: bundle, comment: comment)
+}

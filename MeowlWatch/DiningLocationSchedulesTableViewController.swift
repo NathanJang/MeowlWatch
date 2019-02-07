@@ -46,9 +46,9 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             if title != nil {
                 let status = diningStatus(for: diningHall, at: date)
                 if status == .closed {
-                    title = String(format: NSLocalizedString("%@ (Closed)", comment: ""), title!)
+                    title = String(format: mwLocalizedString("%@ (Closed)", comment: ""), title!)
                 } else if status == .closingSoon {
-                    title = String(format: NSLocalizedString("%@ (Closing Soon)", comment: ""), title!)
+                    title = String(format: mwLocalizedString("%@ (Closing Soon)", comment: ""), title!)
                 }
             }
 
@@ -67,9 +67,9 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             if title != nil {
                 let status = diningStatus(for: cafeOrCStore, at: date)
                 if status == .closed {
-                    title = String(format: NSLocalizedString("%@ (Closed)", comment: ""), title!)
+                    title = String(format: mwLocalizedString("%@ (Closed)", comment: ""), title!)
                 } else if status == .closingSoon {
-                    title = String(format: NSLocalizedString("%@ (Closing Soon)", comment: ""), title!)
+                    title = String(format: mwLocalizedString("%@ (Closing Soon)", comment: ""), title!)
                 }
             }
 
@@ -88,9 +88,9 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             if title != nil {
                 let status = diningStatus(for: norrisLocation, at: date)
                 if status == .closed {
-                    title = String(format: NSLocalizedString("%@ (Closed)", comment: ""), title!)
+                    title = String(format: mwLocalizedString("%@ (Closed)", comment: ""), title!)
                 } else if status == .closingSoon {
-                    title = String(format: NSLocalizedString("%@ (Closing Soon)", comment: ""), title!)
+                    title = String(format: mwLocalizedString("%@ (Closing Soon)", comment: ""), title!)
                 }
             }
 
@@ -146,7 +146,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         // Configure the cell...
         let entry = entries[indexPath.section]
         cell.textLabel!.text = entry.formattedTimeRange(atIndex: indexPath.row)
-        cell.detailTextLabel!.text = NSLocalizedString(entry.schedule[indexPath.row].status.rawValue, comment: "")
+        cell.detailTextLabel!.text = mwLocalizedString(entry.schedule[indexPath.row].status.rawValue, comment: "")
         cell.detailTextLabel!.textColor = entry.schedule[indexPath.row].status != .closed ? view.tintColor : UIColor.red
 
         cell.isUserInteractionEnabled = indexPath == selectedIndexPath

@@ -134,19 +134,19 @@ private func dayOfWeek(string: String?) -> Int? {
 private func dayOfWeekString(_ int: Int) -> String? {
     switch int {
     case 1:
-        return NSLocalizedString("Sunday", comment: "")
+        return mwLocalizedString("Sunday", comment: "")
     case 2:
-        return NSLocalizedString("Monday", comment: "")
+        return mwLocalizedString("Monday", comment: "")
     case 3:
-        return NSLocalizedString("Tuesday", comment: "")
+        return mwLocalizedString("Tuesday", comment: "")
     case 4:
-        return NSLocalizedString("Wednesday", comment: "")
+        return mwLocalizedString("Wednesday", comment: "")
     case 5:
-        return NSLocalizedString("Thursday", comment: "")
+        return mwLocalizedString("Thursday", comment: "")
     case 6:
-        return NSLocalizedString("Friday", comment: "")
+        return mwLocalizedString("Friday", comment: "")
     case 7:
-        return NSLocalizedString("Saturday", comment: "")
+        return mwLocalizedString("Saturday", comment: "")
     default:
         return nil
     }
@@ -179,8 +179,8 @@ public struct ScheduleRow<Status> where Status : RawRepresentable, Status.RawVal
     }
 
     public var formattedTimeRange: String? {
-        if startingTime == 0 && endingTime == 2400 { return NSLocalizedString("AllDay", comment: "") }
-        return String(format: NSLocalizedString("TimeRange: %@ - %@", comment: ""), formattedTime(twentyFourHourTime: startingTime), formattedTime(twentyFourHourTime: endingTime))
+        if startingTime == 0 && endingTime == 2400 { return mwLocalizedString("AllDay", comment: "") }
+        return String(format: mwLocalizedString("TimeRange: %@ - %@", comment: ""), formattedTime(twentyFourHourTime: startingTime), formattedTime(twentyFourHourTime: endingTime))
     }
 
 }
@@ -232,9 +232,9 @@ public struct ScheduleEntry<Status> where Status : RawRepresentable, Status.RawV
     public var formattedWeekdayRange: String {
         if startingDayOfWeek != endingDayOfWeek {
             if startingDayOfWeek == 1 && endingDayOfWeek == 7 {
-                return NSLocalizedString("EveryDay", comment: "")
+                return mwLocalizedString("EveryDay", comment: "")
             }
-            return String(format: NSLocalizedString("DateRange: %@ - %@", comment: ""), dayOfWeekString(startingDayOfWeek)!, dayOfWeekString(endingDayOfWeek)!)
+            return String(format: mwLocalizedString("DateRange: %@ - %@", comment: ""), dayOfWeekString(startingDayOfWeek)!, dayOfWeekString(endingDayOfWeek)!)
         } else {
             return "\(dayOfWeekString(startingDayOfWeek)!)"
         }
@@ -411,4 +411,4 @@ private func diningScheduleDictionaryFromPlist(_ fileName: String) -> [String : 
     return diningScheduleEntriesDictionaryDictionary[fileName]!
 }
 
-public let scheduleDisclaimerString = NSLocalizedString("ScheduleDisclaimer", comment: "Schedules displayed are for normal school days only")
+public let scheduleDisclaimerString = mwLocalizedString("ScheduleDisclaimer", comment: "Schedules displayed are for normal school days only")

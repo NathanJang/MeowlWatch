@@ -35,8 +35,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("MWTVCAccountButtonTitle", comment: "Account"), style: .plain, target: self, action: #selector(didTapAccountButton))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("MWTVCSettingsButtonTitle", comment: "Settings"), style: .plain, target: self, action: #selector(didTapSettingsButton))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: mwLocalizedString("MWTVCAccountButtonTitle", comment: "Account"), style: .plain, target: self, action: #selector(didTapAccountButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: mwLocalizedString("MWTVCSettingsButtonTitle", comment: "Settings"), style: .plain, target: self, action: #selector(didTapSettingsButton))
 
         self.refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(didTriggerRefreshControl), for: .valueChanged)
@@ -58,7 +58,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             searchController.searchBar.sizeToFit() // iOS 8
             tableView.tableHeaderView = searchController.searchBar
         }
-        searchController.searchBar.placeholder = NSLocalizedString("MWTVCSearchBarPlaceholder", comment: "Search Dining Locations")
+        searchController.searchBar.placeholder = mwLocalizedString("MWTVCSearchBarPlaceholder", comment: "Search Dining Locations")
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.autocorrectionType = .no
         searchController.searchBar.delegate = self
@@ -78,8 +78,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         super.viewDidLayoutSubviews()
 
         // Here because of strange bug involving table view top margin and such
-//        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("MWTVCUpdated: \(self.queryResult?.dateRetrievedString ?? NSLocalizedString("MWTVCNever", comment: "Never"))", comment: "Updated when?"))
-        refreshControl!.attributedTitle = NSAttributedString(string: String(format: NSLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), self.queryResult?.dateRetrievedString ?? NSLocalizedString("MWTVCNever", comment: "Never")))
+//        refreshControl!.attributedTitle = NSAttributedString(string: mwLocalizedString("MWTVCUpdated: \(self.queryResult?.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never"))", comment: "Updated when?"))
+        refreshControl!.attributedTitle = NSAttributedString(string: String(format: mwLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), self.queryResult?.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never")))
 
     }
 
@@ -145,15 +145,15 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
         switch section {
         case 1:
-            return NSLocalizedString("MWTVCMealsHeading", comment: "Meals")
+            return mwLocalizedString("MWTVCMealsHeading", comment: "Meals")
         case 2:
-            return NSLocalizedString("MWTVCDiningDollarsHeading", comment: "Dining Dollars")
+            return mwLocalizedString("MWTVCDiningDollarsHeading", comment: "Dining Dollars")
         case 3:
-            return NSLocalizedString("MWTVCCafesHeading", comment: "Cafés and C-Stores")
+            return mwLocalizedString("MWTVCCafesHeading", comment: "Cafés and C-Stores")
         case 4:
-            return NSLocalizedString("MWTVCDiningHallsHeading", comment: "Dining Halls")
+            return mwLocalizedString("MWTVCDiningHallsHeading", comment: "Dining Halls")
         case 5:
-            return NSLocalizedString("MWTVCNorrisHeading", comment: "Norris")
+            return mwLocalizedString("MWTVCNorrisHeading", comment: "Norris")
         default:
             return nil
         }
@@ -173,7 +173,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     func diningLocationTableViewCell(fromTableView tableView: UITableView, locationName: String, status: DiningStatus) -> MeowlWatchDiningLocationTableViewCell {
         let diningLocationCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchDiningLocationTableViewCell") as! MeowlWatchDiningLocationTableViewCell
         diningLocationCell.locationNameLabel.text = locationName
-        diningLocationCell.statusLabel.text = NSLocalizedString(status.rawValue, comment: "Open or Closed")
+        diningLocationCell.statusLabel.text = mwLocalizedString(status.rawValue, comment: "Open or Closed")
         switch status {
         case .closed:
             diningLocationCell.statusLabel.textColor = .red
@@ -193,19 +193,19 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         switch indexPath.section {
         case 0: // User cell
             let userCell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchUserTableViewCell") as! MeowlWatchUserTableViewCell
-            userCell.nameLabel.text = queryResult?.name ?? NSLocalizedString(MeowlWatchData.defaultNameString, comment: "Your Name")
-            userCell.planLabel.text = queryResult?.currentPlanName ?? NSLocalizedString(MeowlWatchData.defaultSubtitleString, comment: "Tap Here To Get Started")
+            userCell.nameLabel.text = queryResult?.name ?? mwLocalizedString(MeowlWatchData.defaultNameString, comment: "Your Name")
+            userCell.planLabel.text = queryResult?.currentPlanName ?? mwLocalizedString(MeowlWatchData.defaultSubtitleString, comment: "Tap Here To Get Started")
             cell = userCell
         case 1:
             switch indexPath.row {
             case 0:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.boardMeals ?? "0",
-                                               descriptionString: String.localizedStringWithFormat(NSLocalizedString("MWTVCMealSwipesLeft: %d", comment: "Meal Swipes Left"), queryResult?.numberOfBoardMeals ?? 0))
+                                               descriptionString: String.localizedStringWithFormat(mwLocalizedString("MWTVCMealSwipesLeft: %d", comment: "Meal Swipes Left"), queryResult?.numberOfBoardMeals ?? 0))
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.mealExchanges ?? "0",
-                                               descriptionString: String.localizedStringWithFormat(NSLocalizedString("MWTVCMealExchangesLeft: %d", comment: "Meal Exchanges Left"), queryResult?.numberOfMealExchanges ?? 0))
+                                               descriptionString: String.localizedStringWithFormat(mwLocalizedString("MWTVCMealExchangesLeft: %d", comment: "Meal Exchanges Left"), queryResult?.numberOfMealExchanges ?? 0))
             default:
                 break
             }
@@ -214,11 +214,11 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 0:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.points ?? "$0.00",
-                                               descriptionString: String(format: NSLocalizedString("MWTVCDiningDollarsLeft", comment: "Dining Dollars Left"), queryResult?.points ?? 0))
+                                               descriptionString: String(format: mwLocalizedString("MWTVCDiningDollarsLeft", comment: "Dining Dollars Left"), queryResult?.points ?? 0))
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.catCash ?? "$0.00",
-                                               descriptionString: String(format: NSLocalizedString("MWTVCCatCashLeft", comment: "Cat Cash Left"), queryResult?.catCash ?? 0),
+                                               descriptionString: String(format: mwLocalizedString("MWTVCCatCashLeft", comment: "Cat Cash Left"), queryResult?.catCash ?? 0),
                                                selectable: true)
 
             default:
@@ -253,7 +253,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 2:
-            return NSLocalizedString("MWTVCAddCatCashMessage", comment: "")
+            return mwLocalizedString("MWTVCAddCatCashMessage", comment: "")
 
         case 5:
             if let errorString = queryResult?.errorString {
@@ -359,7 +359,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             MeowlWatchData.query { [unowned self] queryResult in
                 DispatchQueue.main.async { [unowned self] in
                     if queryResult.error != nil {
-                        self.showMessageAlert(title: NSLocalizedString("MWTVCRefreshErrorTitle", comment: "Oops!"), message: queryResult.errorString)
+                        self.showMessageAlert(title: mwLocalizedString("MWTVCRefreshErrorTitle", comment: "Oops!"), message: queryResult.errorString)
                     }
 
                     self.tableView.reloadData()
@@ -379,18 +379,18 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     /// Shows an alert controller prompting for a NetID and password, and then refreshes when the user is finished.
     func showSignInAlert() {
-        let alertController = UIAlertController(title: NSLocalizedString("SignInTitle", comment: "Sign In to Northwestern"), message: NSLocalizedString("SignInMessage", comment: "Why we need their details"), preferredStyle: .alert)
+        let alertController = UIAlertController(title: mwLocalizedString("SignInTitle", comment: "Sign In to Northwestern"), message: mwLocalizedString("SignInMessage", comment: "Why we need their details"), preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "NetID"
             textField.text = MeowlWatchData.netID
         }
         alertController.addTextField { textField in
-            textField.placeholder = NSLocalizedString("SignInPasswordPlaceholder", comment: "Password")
+            textField.placeholder = mwLocalizedString("SignInPasswordPlaceholder", comment: "Password")
             textField.isSecureTextEntry = true
             textField.text = MeowlWatchData.password
         }
 
-        let signInAction = UIAlertAction(title: NSLocalizedString("SignInActionTitle", comment: "Sign In"), style: .default) { [unowned self] _ in
+        let signInAction = UIAlertAction(title: mwLocalizedString("SignInActionTitle", comment: "Sign In"), style: .default) { [unowned self] _ in
             guard let textFields = alertController.textFields else { return }
             let netID = textFields[0].text ?? ""
             let password = textFields[1].text ?? ""
@@ -402,7 +402,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
                 self.endRefreshing(animated: true)
             }
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("SignInDismiss", comment: "Cancel"), style: .cancel) { [unowned self] _ in
+        let cancelAction = UIAlertAction(title: mwLocalizedString("SignInDismiss", comment: "Cancel"), style: .cancel) { [unowned self] _ in
             self.endRefreshing(animated: true)
         }
 

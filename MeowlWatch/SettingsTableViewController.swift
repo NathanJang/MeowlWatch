@@ -121,9 +121,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return NSLocalizedString("SettingsWidgetHeading", comment: "Widget")
+            return mwLocalizedString("SettingsWidgetHeading", comment: "Widget")
         case 1:
-            return NSLocalizedString("SettingsLogoHeading", comment: "Logo")
+            return mwLocalizedString("SettingsLogoHeading", comment: "Logo")
         case 2:
             return "Language"
         default:
@@ -147,19 +147,19 @@ class SettingsTableViewController: UITableViewController {
                     case 0:
                         if isRefreshing {
                             cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
-                            cell!.textLabel!.text = NSLocalizedString("SettingsLoadingTitle", comment: "")
+                            cell!.textLabel!.text = mwLocalizedString("SettingsLoadingTitle", comment: "")
                         } else {
                             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
                             if let widgetProduct = widgetProduct {
                                 cell!.textLabel!.text = widgetProduct.localizedTitle
                             } else {
-                                cell!.textLabel!.text = NSLocalizedString("SettingsIAPUnavailableTitle", comment: "")
+                                cell!.textLabel!.text = mwLocalizedString("SettingsIAPUnavailableTitle", comment: "")
                             }
                         }
 
                     case 1:
                         cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                        cell!.textLabel!.text = NSLocalizedString("SettingsRestorePurchasesTitle", comment: "")
+                        cell!.textLabel!.text = mwLocalizedString("SettingsRestorePurchasesTitle", comment: "")
 
                     case 2:
                         cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
@@ -171,7 +171,7 @@ class SettingsTableViewController: UITableViewController {
             }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-            cell!.textLabel!.text = NSLocalizedString("SettingsVisitDesignerWebsiteTitle", comment: "")
+            cell!.textLabel!.text = mwLocalizedString("SettingsVisitDesignerWebsiteTitle", comment: "")
 
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "LocaleCell", for: indexPath)
@@ -183,11 +183,11 @@ class SettingsTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             switch indexPath.row {
             case 0:
-                cell!.textLabel!.text = NSLocalizedString("SettingsSendFeedbackTitle", comment: "")
+                cell!.textLabel!.text = mwLocalizedString("SettingsSendFeedbackTitle", comment: "")
             case 1:
-                cell!.textLabel!.text = NSLocalizedString("SettingsRateOnAppStoreTitle", comment: "")
+                cell!.textLabel!.text = mwLocalizedString("SettingsRateOnAppStoreTitle", comment: "")
             case 2:
-                cell!.textLabel!.text = NSLocalizedString("SettingsShowLegalTitle", comment: "")
+                cell!.textLabel!.text = mwLocalizedString("SettingsShowLegalTitle", comment: "")
             default:
                 break
             }
@@ -220,12 +220,12 @@ class SettingsTableViewController: UITableViewController {
         switch section {
         case 0:
             if MeowlWatchData.widgetIsPurchased {
-                return NSLocalizedString("SettingsWidgetHelpMessage", comment: "")
+                return mwLocalizedString("SettingsWidgetHelpMessage", comment: "")
             } else {
-                return NSLocalizedString("SettingsTipInfoMessage", comment: "")
+                return mwLocalizedString("SettingsTipInfoMessage", comment: "")
             }
         case 1:
-            return String(format: NSLocalizedString("SettingsArtistInfoMessage: %@", comment: ""), isabelURLString)
+            return String(format: mwLocalizedString("SettingsArtistInfoMessage: %@", comment: ""), isabelURLString)
         default:
             return nil
         }
@@ -299,7 +299,7 @@ class SettingsTableViewController: UITableViewController {
                                 if widgetProduct != nil {
                                     buyWidgetIfAvailable()
                                 } else {
-                                    self.showMessageAlert(title: NSLocalizedString("SettingsIAPUnavailableTitle", comment: ""), message: NSLocalizedString("SettingsIAPUnavailableMessage", comment: ""))
+                                    self.showMessageAlert(title: mwLocalizedString("SettingsIAPUnavailableTitle", comment: ""), message: mwLocalizedString("SettingsIAPUnavailableMessage", comment: ""))
                                 }
                             } else {
                                 showCannotMakePaymentsAlert()
@@ -338,23 +338,23 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 let emailAddress = "JonathanChan2020+MeowlWatch@u.northwestern.edu"
-                let alertController = UIAlertController(title: NSLocalizedString("SettingsSendFeedbackTitle", comment: ""), message: String(format: NSLocalizedString("SettingsSendFeedbackInfoMessage: %@", comment: ""), emailAddress), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("SettingsCopyEmailActionTitle", comment: ""), style: .default) { _ in
+                let alertController = UIAlertController(title: mwLocalizedString("SettingsSendFeedbackTitle", comment: ""), message: String(format: mwLocalizedString("SettingsSendFeedbackInfoMessage: %@", comment: ""), emailAddress), preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: mwLocalizedString("SettingsCopyEmailActionTitle", comment: ""), style: .default) { _ in
                     UIPasteboard.general.setValue(emailAddress, forPasteboardType: UIPasteboard.typeListString.firstObject as! String)
                 })
                 if MFMailComposeViewController.canSendMail() {
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("SettingsOpenInMailActionTitle", comment: ""), style: .default) { [weak self] _ in
+                    alertController.addAction(UIAlertAction(title: mwLocalizedString("SettingsOpenInMailActionTitle", comment: ""), style: .default) { [weak self] _ in
                         guard self != nil else { return }
                         let composeVC = MFMailComposeViewController()
                         let versionString = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
                         composeVC.setToRecipients([emailAddress])
-                        composeVC.setSubject(String(format: NSLocalizedString("SettingsFeedbackSubject: %@", comment: ""), "\(versionString)"))
+                        composeVC.setSubject(String(format: mwLocalizedString("SettingsFeedbackSubject: %@", comment: ""), "\(versionString)"))
                         composeVC.view.tintColor = self!.view.tintColor
                         composeVC.mailComposeDelegate = self!
                         self!.present(composeVC, animated: true, completion: nil)
                     })
                 }
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("SettingsFeedbackDoneButtonTitle", comment: ""), style: .cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: mwLocalizedString("SettingsFeedbackDoneButtonTitle", comment: ""), style: .cancel, handler: nil))
                 alertController.view.tintColor = view.tintColor
                 present(alertController, animated: true, completion: nil)
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -376,7 +376,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     lazy var doneButton: UIBarButtonItem = {
-        let doneButton = UIBarButtonItem(title: NSLocalizedString("SettingsDoneButton", comment: "Done"), style: .done, target: self, action: #selector(dismiss as () -> Void))
+        let doneButton = UIBarButtonItem(title: mwLocalizedString("SettingsDoneButton", comment: "Done"), style: .done, target: self, action: #selector(dismiss as () -> Void))
         return doneButton
     }()
 
@@ -399,7 +399,7 @@ class SettingsTableViewController: UITableViewController {
         /// Shows an alert to notify the user that we cannot make purchases.
         func showCannotMakePaymentsAlert() {
             self.endRefreshing()
-            self.showMessageAlert(title: NSLocalizedString("SettingsCannotPayAlertTitle", comment: ""), message: NSLocalizedString("SettingsCannotPayAlertMessage", comment: ""))
+            self.showMessageAlert(title: mwLocalizedString("SettingsCannotPayAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotPayAlertMessage", comment: ""))
         }
 
         var isRefreshing = false
@@ -455,7 +455,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
-            self.showMessageAlert(title: NSLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: NSLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: { [weak self] in
+            self.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: { [weak self] in
                 self?.tableView.reloadData()
                 self?.endRefreshing()
             })
@@ -479,7 +479,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         /// What to do once the widget is purchased.
         func didPurchaseWidget() {
             SKPaymentQueue.default().remove(self)
-            self.showMessageAlert(title: NSLocalizedString("SettingsThanksAlertTitle", comment: ""), message: NSLocalizedString("SettingsThanksAlertMessage", comment: ""))
+            self.showMessageAlert(title: mwLocalizedString("SettingsThanksAlertTitle", comment: ""), message: mwLocalizedString("SettingsThanksAlertMessage", comment: ""))
 
             self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentInset.top), animated: true)
             self.endRefreshing()
@@ -513,13 +513,13 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             }
 
             if !MeowlWatchData.widgetIsPurchased {
-                self.showMessageAlert(title: NSLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: NSLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
+                self.showMessageAlert(title: mwLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
                 self.endRefreshing()
             }
         }
 
         func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-            self.showMessageAlert(title: NSLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: NSLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
+            self.showMessageAlert(title: mwLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
             self.endRefreshing()
         }
 
@@ -537,7 +537,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 
             case .failed:
                 self.endRefreshing()
-                self.showMessageAlert(title: NSLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: NSLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
+                self.showMessageAlert(title: mwLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
                 queue.finishTransaction(transaction)
 
             default:
