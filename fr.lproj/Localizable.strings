@@ -59,7 +59,7 @@
 "SettingsShowLegalTitle" = "À propos";
 "SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles vont apparaître dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
 "SettingsTipInfoMessage" = "C'est un dur travail pour faire des apps utiles comme MeowlWatch. Veuillez envisager de laisser moi un petit pourboire ci-dessus ! :) Les publicités seront désactivés aussi.";
-"SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch était fait par Isabel Nygard. Voyez %@ pour plus.";
+"SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Voyez %@ pour plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponible";
 "SettingsIAPUnavailableMessage" = "Veuillez vérifier votre connexion Internet. En plus, iTunes pourrait avoir des problèmes avec des achats intégrés au moment. Veuillez ressayer plus tard.";
 "SettingsSendFeedbackInfoMessage: %@" = "Veuillez envoyer vos remarques à %@.";
