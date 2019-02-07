@@ -21,6 +21,7 @@
 "MWTVCCafesHeading" = "餐廳、便利店";
 "MWTVCDiningHallsHeading" = "食堂";
 "MWTVCNorrisHeading" = "Norris";
+"MWTVCAddCatCashMessage" = "輕點充值 Cat Cash。";
 
 /* Content */
 "MWTVCDiningDollarsLeft" = "Dining Dollars 剩餘";

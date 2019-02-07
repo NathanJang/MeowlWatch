@@ -8,6 +8,7 @@
 
 import UIKit
 import MeowlWatchData
+import SafariServices
 
 /// The main table view controller for MeowlWatch, displaying the user's meal plan.
 class MeowlWatchTableViewController: ExpandableTableViewController {
@@ -164,7 +165,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchTableViewCell") as! MeowlWatchTableViewCell
         cell.numberLabel.text = numberString
         cell.descriptionLabel.text = descriptionString
-        cell.accessoryType = selectable ? .disclosureIndicator : .none
+        cell.accessoryType = selectable ? .detailDisclosureButton : .none
         cell.selectionStyle = selectable ? .default : .none
         return cell
     }
@@ -217,7 +218,9 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             case 1:
                 cell = meowlWatchTableViewCell(fromTableView: tableView,
                                                numberString: queryResult?.catCash ?? "$0.00",
-                                               descriptionString: String(format: NSLocalizedString("MWTVCCatCashLeft", comment: "Cat Cash Left"), queryResult?.catCash ?? 0))
+                                               descriptionString: String(format: NSLocalizedString("MWTVCCatCashLeft", comment: "Cat Cash Left"), queryResult?.catCash ?? 0),
+                                               selectable: true)
+
             default:
                 break
             }
@@ -249,6 +252,9 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
+        case 2:
+            return NSLocalizedString("MWTVCAddCatCashMessage", comment: "")
+
         case 5:
             if let errorString = queryResult?.errorString {
                 return "\(errorString)\n\n\(MeowlWatchData.scheduleDisclaimerString)"
@@ -261,7 +267,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 || indexPath == IndexPath(row: 1, section: 1 ) || indexPath.section >= 3 { return indexPath }
+        if indexPath.section == 0 || indexPath == IndexPath(row: 1, section: 2) || indexPath.section >= 3 { return indexPath }
         else { return nil }
     }
 
@@ -305,6 +311,10 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         if indexPath.section == 0 {
             showSignInAlert()
             tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        if indexPath == IndexPath(row: 1, section: 2) {
+            showCatCashVC()
             return
         }
         if let viewController = schedulesTableViewController(forRowAt: indexPath) {
@@ -432,6 +442,17 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         cafesAndCStoresStatuses = MeowlWatchData.diningStatuses(at: date)
         diningHallsStatuses = MeowlWatchData.diningStatuses(at: date)
         norrisLocationsStatuses = MeowlWatchData.diningStatuses(at: date)
+    }
+
+    private let addCatCashUrlString = "https://www.dineoncampus.com/northwestern/meal-plan-purchase"
+
+    func showCatCashVC() {
+        let url = URL(string: addCatCashUrlString)!
+        let safariVC = SFSafariViewController(url: url)
+        if #available(iOS 10.0, *) {
+            safariVC.preferredControlTintColor = self.view.tintColor
+        }
+        self.present(safariVC, animated: true, completion: nil)
     }
 
 }

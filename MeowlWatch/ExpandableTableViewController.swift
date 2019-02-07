@@ -81,6 +81,11 @@ class ExpandableTableViewController: UITableViewController {
         return 44
     }
 
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        self.tableView(tableView, didSelectRowAt: indexPath)
+    }
+
 }
 
 extension ExpandableTableViewController: SectionHeaderViewDelegate {
