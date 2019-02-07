@@ -166,10 +166,10 @@
             </objects>
             <point key="canvasLocation" x="1884" y="832"/>
         </scene>
-        <!--Legal-->
+        <!--À propos-->
         <scene sceneID="hMH-ph-97S">
             <objects>
-                <viewController title="Legal" id="kF4-Xw-Rxe" customClass="LegalViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="À propos" id="kF4-Xw-Rxe" customClass="LegalViewController" customModule="MeowlWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="GCp-qB-LO6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,25 +179,27 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">MeowlWatch:
+                                        <mutableString key="content">MeowlWatch :
 Copyright © 2017 – 2019 Jonathan Chan
 Class of 2020, Northwestern University
 
-MeowlWatch App Icon and Logo:
-Copyright © 2017 Isabel Nygard, used with permission.
+Logo de l'app MeowlWatch :
+Copyright © 2017 Isabel Nygard, utilisé avec la permission.
 Class of 2020, Northwestern University
 
-By using this app, you agree to the disclaimer and privacy policy below.
+En utilisant cette app, vous acceptez le démenti et la politique de confidentialité ci-dessous.
 </mutableString>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
                                         <string key="content">
-Disclaimer</string>
+Démenti</string>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="18" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -205,53 +207,74 @@ Disclaimer</string>
                                     <fragment>
                                         <mutableString key="content">
 
-While the developer, Jonathan Chan, is a student at Northwestern, he is unaffiliated with the Northwestern administration and Northwestern Dining. This app was developed independently of Northwestern, and its content does not necessarily reflect the views of Northwestern University. Although the developer will make the best effort to ensure that the app functions as expected, he has no control over the web servers and cannot guarantee 100% accuracy. The developer of MeowlWatch assumes no liability for injury to any party arising from the use of this app. By downloading MeowlWatch, users agree to proceed at their own risk.
+Bien que le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'est pas affilié à Northwestern University et Northwestern Dining. Cette app a été fait indépendamment de Northwestern, et son contenu ne reflète pas nécessairement les vues de Northwestern. Bien que le programmeur fera de son mieux pour s'assurer que cette app marchera comme prévu, il n'ai pas de contrôle sur les serveurs web et ne peut pas garantir une exactitude 100 %. Le programmeur de MeowlWatch n'assume aucune responsabilité du préjudice à n'importe qui en utiliser. En téléchargeant cette app, des utilisateurs acceptent qu'ils continuent à leurs propres risques.
 
-TL;DR: I made a thing to make your life easier. Please don't sue me if anything happens :).
+« J'ai fait une chose pour faire votre vie plus facile. Merci de ne m'en vouloir pas pour tout :) »
 </mutableString>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
-Privacy Policy</string>
-                                        <attributes>
-                                            <font key="NSFont" size="18" name=".SFNSText"/>
-                                            <font key="NSOriginalFont" size="18" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <mutableString key="content">
-
-Your NetID and password will be sent securely to https://websso.it.northwestern.edu, Northwestern Dining's online portal, to check your meal plan balance. Your NetID and password will also be stored securely on your iOS device, so you can open the app every time without re-entering your password. Your credentials will NOT be used for any other purpose or sent to any other destination.
-
-Your meal plan balance will be stored on your device and will not be sent online.
-
-The free version of this app will display advertisements by Google, which may track your browsing habits (independently of MeowlWatch) to show more relevant ads, unless you opt out. You may do so in System Settings &gt; Privacy &gt; Advertising &gt; Limit Ad Tracking. Upon any successful in-app purchase, advertisements will be disabled.
-</mutableString>
-                                        <attributes>
-                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-Third-Party Software</string>
-                                        <attributes>
-                                            <font key="NSFont" size="18" name=".SFNSText"/>
-                                            <font key="NSOriginalFont" size="18" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-
-MeowlWatch utilizes third-party software under the following licenses:
+                                        <string key="content" base64-UTF8="YES">
+Cg
 </string>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="18" name=".SFNSText"/>
+                                            <font key="NSOriginalFont" size="18" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Confidentialité">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="18" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">
+
+Votre NetID et votre mot de passe seront envoyés cryptés à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre NetID et votre mot de passe seront aussi enregistrés cryptés sur votre appareil, pour qu'il ne faut pas se connecter toutes les fois que cette app est ouvert. Votre mot de passe ne sera jamais utilisé pour un autre but et ne sera pas envoyé à une autre lieu.
+
+Vos données de repas seront enregistrées sur votre appareil et ne sera envoyée nulle part.
+
+La version gratuite de cette app affichera des publicités par Google, ce qui pourrait suivre vos habitudes pour afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez en faire à Réglages systeme &gt; Confidentialité &gt; Publicité &gt; Suivi publicitaire limité. Lors d'un achat intégré réussi, les publicités seront désactivés.
+</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="18" name=".SFNSText"/>
+                                            <font key="NSOriginalFont" size="18" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Logicielle au tiers">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="18" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+
+MeowlWatch utilise le logicielle au tiers sous ces licences-ci :
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -260,6 +283,7 @@ MeowlWatch utilizes third-party software under the following licenses:
                                         <string key="content">
 Alamofire</string>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="14" name=".SFNSText"/>
                                             <font key="NSOriginalFont" size="14" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -276,6 +300,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </mutableString>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -284,6 +309,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                         <string key="content">
 SwiftKeychainWrapper</string>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="14" name=".SFNSText"/>
                                             <font key="NSOriginalFont" size="14" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -303,6 +329,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </mutableString>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -311,6 +338,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                         <string key="content">
 Siren</string>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="14" name=".SFNSText"/>
                                             <font key="NSOriginalFont" size="14" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -329,6 +357,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -378,7 +407,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         </scene>
     </scenes>
     <resources>
-        <image name="WidgetPreviewFull" width="310.5" height="366"/>
+        <image name="WidgetPreviewFull" width="828" height="976"/>
     </resources>
     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
