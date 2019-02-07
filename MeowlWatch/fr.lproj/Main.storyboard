@@ -184,7 +184,7 @@ Copyright © 2017 – 2019 Jonathan Chan
 Class of 2020, Northwestern University
 
 Logo de l'app MeowlWatch :
-Copyright © 2017 Isabel Nygard, utilisé avec la permission.
+Copyright © 2017 Isabel Nygard, utilisé avec permission.
 Class of 2020, Northwestern University
 
 En utilisant cette app, vous acceptez le démenti et la politique de confidentialité ci-dessous.
@@ -224,7 +224,7 @@ Bien que le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'e
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content"> votre vie. Merci de ne m'en vouloir pas pour tout :).)
+                                        <string key="content"> votre vie. Merci de ne m'en vouloir pas :).)
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
