@@ -61,8 +61,6 @@ class SettingsTableViewController: UITableViewController {
         }
 
         navigationItem.setRightBarButton(doneButton, animated: false)
-
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "LocaleCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,7 +123,7 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             return mwLocalizedString("SettingsLogoHeading", comment: "Logo")
         case 2:
-            return "Language"
+            return mwLocalizedString("SettingsLanguageTitle")
         default:
             return nil
         }
@@ -174,9 +172,14 @@ class SettingsTableViewController: UITableViewController {
             cell!.textLabel!.text = mwLocalizedString("SettingsVisitDesignerWebsiteTitle", comment: "")
 
         case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: "LocaleCell", for: indexPath)
+            cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             let language = languages[indexPath.row]
-            cell?.textLabel?.text = language.rawValue
+            if language == .default {
+                cell?.textLabel?.text = String(format: mwLocalizedString("SettingsLanguageDefault: %@"), NSLocale(localeIdentifier: Locale.current.identifier).displayName(forKey: .languageCode, value: NSLocale.Key(rawValue: Locale.preferredLanguages.first!))!)
+                cell?.detailTextLabel?.text = currentLanguage != .default ? "System Default" : nil
+            } else {
+                cell?.textLabel?.text = mwLocalizedString("SettingsLanguage_\(language.rawValue)")
+            }
             cell?.accessoryType = language == selectedLanguage ? .checkmark : .none
 
         case 3:
@@ -226,6 +229,8 @@ class SettingsTableViewController: UITableViewController {
             }
         case 1:
             return String(format: mwLocalizedString("SettingsArtistInfoMessage: %@", comment: ""), isabelURLString)
+        case 2:
+            return mwLocalizedString("SettingsLanguageFooter")
         default:
             return nil
         }

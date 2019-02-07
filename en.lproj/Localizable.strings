@@ -21,7 +21,7 @@
 "MWTVCCafesHeading" = "Cafés and C-Stores";
 "MWTVCDiningHallsHeading" = "Dining Halls";
 "MWTVCNorrisHeading" = "Norris";
-"MWTVCAddCatCashMessage" = "Touch to add Cat Cash. It may take a few days before completing.";
+"MWTVCAddCatCashMessage" = "Tap to add Cat Cash. It may take a few days before completing.";
 
 /* Content */
 "MWTVCDiningDollarsLeft" = "Dining Dollars Left";
@@ -81,6 +81,14 @@
 "SettingsRestorePurchaseFailedAlertMessage" = "Please try again later.";
 "SettingsPurchaseFailedAlertTitle" = "Unable To Purchase";
 "SettingsPurchaseFailedAlertMessage" = "Please try again.";
+
+"SettingsLanguageTitle" = "Language";
+"SettingsLanguageDefault: %@" = "System Default (%@)";
+"SettingsLanguage_en" = "English";
+"SettingsLanguage_zh-Hans" = "简体中文 (Simplified Chinese)";
+"SettingsLanguage_zh-Hant" = "繁體中文 (Traditional Chinese)";
+"SettingsLanguage_fr" = "Français (French)";
+"SettingsLanguageFooter" = "Changes will apply after you relaunch the app.";
 
 /** MWD */
 "DefaultUserName" = "Your Name";

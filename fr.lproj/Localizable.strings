@@ -82,6 +82,14 @@
 "SettingsPurchaseFailedAlertTitle" = "Échec d'acheter";
 "SettingsPurchaseFailedAlertMessage" = "Veuillez ressayer.";
 
+"SettingsLanguageTitle" = "Langue";
+"SettingsLanguageDefault: %@" = "Par défaut (%@)";
+"SettingsLanguage_en" = "English (Anglais)";
+"SettingsLanguage_zh-Hans" = "简体中文 (Chinois simplfié)";
+"SettingsLanguage_zh-Hant" = "繁體中文 (Chinois traditionnel)";
+"SettingsLanguage_fr" = "Français";
+"SettingsLanguageFooter" = "Vos modifications seront réussis àpres le redémarrage de l'app.";
+
 /** MWD */
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Touchez ici pour commencer";

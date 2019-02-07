@@ -82,6 +82,14 @@
 "SettingsPurchaseFailedAlertTitle" = "无法购买";
 "SettingsPurchaseFailedAlertMessage" = "请重试。";
 
+"SettingsLanguageTitle" = "语言";
+"SettingsLanguageDefault: %@" = "系统默认（%@）";
+"SettingsLanguage_en" = "English（英语）";
+"SettingsLanguage_zh-Hans" = "简体中文";
+"SettingsLanguage_zh-Hant" = "繁體中文";
+"SettingsLanguage_fr" = "Français (法语)";
+"SettingsLanguageFooter" = "选择后请重启程序。";
+
 /** MWD */
 "DefaultUserName" = "您的名字";
 "DefaultUserSubtitleString" = "轻点此处登录";
