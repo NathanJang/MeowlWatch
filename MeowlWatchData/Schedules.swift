@@ -61,8 +61,6 @@ public enum NorrisLocation: String {
 
     case pattySquared = "Patty Squared"
 
-    case wildcatDen = "Wildcat Den"
-
     case budlong = "Budlong Hot Chicken"
 
     case asiana = "Asiana Foodville"
@@ -77,7 +75,7 @@ public enum NorrisLocation: String {
 
 }
 
-public let norrisLocations: [NorrisLocation] = [.deli, .pattySquared, .wildcatDen, .budlong, .asiana, .cStore, .starbucks, .modPizza, .dunkinDonuts]
+public let norrisLocations: [NorrisLocation] = [.deli, .pattySquared, .budlong, .asiana, .cStore, .starbucks, .modPizza, .dunkinDonuts]
 
 /// An enum representing the status of dining locations.
 public enum DiningStatus: String {
