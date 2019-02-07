@@ -21,7 +21,7 @@
 "MWTVCCafesHeading" = "Cafés and C-Stores";
 "MWTVCDiningHallsHeading" = "Dining Halls";
 "MWTVCNorrisHeading" = "Norris";
-"MWTVCAddCatCashMessage" = "Touch to add Cat Cash.";
+"MWTVCAddCatCashMessage" = "Touch to add Cat Cash. It may take a few days before completing.";
 
 /* Content */
 "MWTVCDiningDollarsLeft" = "Dining Dollars Left";

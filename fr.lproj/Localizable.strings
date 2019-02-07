@@ -21,7 +21,7 @@
 "MWTVCCafesHeading" = "Cafés et Épiceries";
 "MWTVCDiningHallsHeading" = "Cantines";
 "MWTVCNorrisHeading" = "Norris";
-"MWTVCAddCatCashMessage" = "Touchez pour ajouter du Cat Cash.";
+"MWTVCAddCatCashMessage" = "Touchez pour ajouter du Cat Cash. Il pourrait falloir quelques jours avant de réussir.";
 
 /* Content */
 "MWTVCDiningDollarsLeft" = "Dining Dollars restants";
