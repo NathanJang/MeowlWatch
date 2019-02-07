@@ -89,7 +89,7 @@ public enum DiningStatus: String {
 }
 
 /// In minutes
-let closingSoonThreshold = 30
+let closingSoonThreshold = 60
 
 /// The calendar used by dining halls.
 /// Gregorian calendar in Chicago.
