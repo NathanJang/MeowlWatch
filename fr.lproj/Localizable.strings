@@ -31,15 +31,15 @@
 
 /** Modals */
 "TipTitle" = "Aimez Meowlwatch ? Veuillez laisser un pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher pour hôter cette application sur App Store. Aidez-moi par regarder le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou ajouter un avis sur App Store !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher pour mettre cette application sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou ajoutez un avis sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
 "TipRateOnAppStore" = "Avis sur App Store";
 "TipDismiss" = "OK";
 
-"SignInTitle" = "Connexion à Northwestern";
-"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID votre et mot de passe seront envoyés seulement à les serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
+"SignInTitle" = "Se connecter à Northwestern";
+"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID et votre mot de passe seront envoyés seulement à les serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
 "SignInPasswordPlaceholder" = "Mot de passe";
-"SignInActionTitle" = "Connexion";
+"SignInActionTitle" = "Se connecter";
 "SignInDismiss" = "Annuler";
 
 /** Settings */
@@ -52,35 +52,35 @@
 "SettingsSendFeedbackTitle" = "Signaler un problème";
 "SettingsRateOnAppStoreTitle" = "Ajouter un avis sur App Store";
 "SettingsShowLegalTitle" = "À propos";
-"SettingsWidgetHelpMessage" = "Vous pourriez ajouter le widget MeowlWatch au centre de notifications. Les articles vont apparaître dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
+"SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles vont apparaître dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
 "SettingsTipInfoMessage" = "C'est un dur travail pour faire des apps utiles comme MeowlWatch. Veuillez envisager de laisser moi un petit pourboire ci-dessus ! :) Les publicités seront désactivés aussi.";
 "SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch était fait par Isabel Nygard. Voyez %@ pour plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponible";
 "SettingsIAPUnavailableMessage" = "Veuillez vérifier votre connexion Internet. En plus, iTunes pourrait avoir des problèmes avec des achats intégrés au moment. Veuillez ressayer plus tard.";
 "SettingsSendFeedbackInfoMessage: %@" = "Veuillez envoyer vos remarques à %@.";
-"SettingsCopyEmailActionTitle" = "Copier l'addresse";
+"SettingsCopyEmailActionTitle" = "Copier l'adresse";
 "SettingsOpenInMailActionTitle" = "Ouvrir dans Mail";
 "SettingsFeedbackSubject: %@" = "Remarques pour MeowlWatch (v%@)";
 "SettingsFeedbackDoneButtonTitle" = "OK";
 "SettingsDoneButton" = "OK";
-"SettingsCannotPayAlertTitle" = "Ne peut pas acheter";
-"SettingsCannotPayAlertMessage" = "Veuillez aller à Réglages systeme et configurer votre compte iTunes, et activez les achats intégrés.";
-"SettingsCannotFetchAlertTitle" = "Ne peut pas télécharger les achats intégrés";
+"SettingsCannotPayAlertTitle" = "Échec d'acheter";
+"SettingsCannotPayAlertMessage" = "Veuillez aller à Réglages système et configurer votre compte iTunes, et activez les achats intégrés.";
+"SettingsCannotFetchAlertTitle" = "Échec de télécharger les achats intégrés";
 "SettingsCannotFetchAlertMessage" = "Veuillez ressayer plus tard.";
 "SettingsThanksAlertTitle" = "Merci beaucoup pour votre soutien !";
 "SettingsThanksAlertMessage" = "Il pourrait falloir quelques minutes avant l'activation du widget.";
-"SettingsCannotRestorePurchaseAlertTitle" = "Ne peut pas restaurer des achats";
+"SettingsCannotRestorePurchaseAlertTitle" = "Échec de restaurer des achats";
 "SettingsCannotRestorePurchaseAlertMessage" = "Nous n'avons pas pu trouvé un achat précédent.";
-"SettingsRestorePurchaseFailedAlertTitle" = "Ne peut pas restaurer des achats";
+"SettingsRestorePurchaseFailedAlertTitle" = "Échec de restaurer des achats";
 "SettingsRestorePurchaseFailedAlertMessage" = "Veuillez ressayer plus tard.";
-"SettingsPurchaseFailedAlertTitle" = "Ne peut pas acheter";
+"SettingsPurchaseFailedAlertTitle" = "Échec d'acheter";
 "SettingsPurchaseFailedAlertMessage" = "Veuillez ressayer.";
 
 /** MWD */
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Tapez ici pour commencer";
 
-"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant des vacances, veuillez consulter des annonces de l'université.\n\nDes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
+"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant des vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
 
 "Open" = "Ouvert";
 "Closing Soon" = "Ferme bientôt";
@@ -98,8 +98,8 @@
 "Friday" = "Vendredi";
 "Saturday" = "Samedi";
 
-"%@ (Closed)" = "%@ (Fermé)";
-"%@ (Closing Soon)" = "%@ (Ferme bientôt)";
+"%@ (Closed)" = "%@ (fermé)";
+"%@ (Closing Soon)" = "%@ (ferme bientôt)";
 
 /** MWW */
-"MWWUpdateFailedMessage" = "Èchec de mise à jour, ouvrez l'app";
+"MWWUpdateFailedMessage" = "Échec de mise à jour, ouvrez l'app";
