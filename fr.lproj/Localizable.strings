@@ -30,14 +30,14 @@
 "MWTVCCatCash" = "Cat Cash";
 
 /** Modals */
-"TipTitle" = "Aimez Meowlwatch ? Veuillez laisser un pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher pour mettre cette application sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou ajoutez un avis sur App Store !";
+"TipTitle" = "Vous aimez Meowlwatch ? Veuillez laisser un pourboire !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher pour mettre cette application sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou notez-nous sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
-"TipRateOnAppStore" = "Avis sur App Store";
+"TipRateOnAppStore" = "Noter sur App Store";
 "TipDismiss" = "OK";
 
 "SignInTitle" = "Se connecter à Northwestern";
-"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID et votre mot de passe seront envoyés seulement à les serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
+"SignInMessage" = "Pour télécharger votre compte de repas, votre NetID et votre mot de passe seront envoyés seulement aux serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
 "SignInPasswordPlaceholder" = "Mot de passe";
 "SignInActionTitle" = "Se connecter";
 "SignInDismiss" = "Annuler";
@@ -50,7 +50,7 @@
 "SettingsRestorePurchasesTitle" = "Restaurer vos achats";
 "SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de la conceptrice";
 "SettingsSendFeedbackTitle" = "Signaler un problème";
-"SettingsRateOnAppStoreTitle" = "Ajouter un avis sur App Store";
+"SettingsRateOnAppStoreTitle" = "Noter sur App Store";
 "SettingsShowLegalTitle" = "À propos";
 "SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles vont apparaître dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
 "SettingsTipInfoMessage" = "C'est un dur travail pour faire des apps utiles comme MeowlWatch. Veuillez envisager de laisser moi un petit pourboire ci-dessus ! :) Les publicités seront désactivés aussi.";
@@ -78,7 +78,7 @@
 
 /** MWD */
 "DefaultUserName" = "Votre nom";
-"DefaultUserSubtitleString" = "Tapez ici pour commencer";
+"DefaultUserSubtitleString" = "Touchez ici pour commencer";
 
 "ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant des vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
 
