@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "Simulator Screen Shot - iPhone 8 Plus - 2019-02-06 at 23.08.18-2.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Simulator Screen Shot - iPhone 8 Plus - 2019-02-06 at 23.08.18-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Simulator Screen Shot - iPhone 8 Plus - 2019-02-06 at 23.08.18.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

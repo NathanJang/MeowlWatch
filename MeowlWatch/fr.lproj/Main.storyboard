@@ -86,7 +86,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="487.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WidgetPreviewFull" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-nX-rJB">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WidgetPreviewFull_fr" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-nX-rJB">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="487.5"/>
                                         </imageView>
                                     </subviews>
@@ -422,7 +422,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         </scene>
     </scenes>
     <resources>
-        <image name="WidgetPreviewFull" width="828" height="976"/>
+        <image name="WidgetPreviewFull_fr" width="828" height="976"/>
     </resources>
     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
