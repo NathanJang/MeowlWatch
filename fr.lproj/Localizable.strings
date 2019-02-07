@@ -86,7 +86,7 @@
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Touchez ici pour commencer";
 
-"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant les vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaire réinitialisent le dimanche à 7h heure centrale.";
+"ScheduleDisclaimer" = "L'horaire affiché ici est seulement pour des journées normales, et peut différer. Pendant les vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaires réinitialisent le dimanche à 7h heure centrale.";
 
 "Open" = "Ouvert";
 "Closing Soon" = "Ferme bientôt";
