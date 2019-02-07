@@ -384,7 +384,7 @@ public var selectedLanguage = Language.default
 
 public private(set) var currentLanguage = Language.default
 
-public func mwLocalizedString(_ key: String, comment: String = "") -> String {
+public var currentLocalizedBundle: Bundle {
     let bundle: Bundle
     if currentLanguage == .default {
         bundle = .main
@@ -392,5 +392,9 @@ public func mwLocalizedString(_ key: String, comment: String = "") -> String {
         let path = Bundle.main.path(forResource: currentLanguage.rawValue, ofType: "lproj")!
         bundle = Bundle(path: path)!
     }
-    return NSLocalizedString(key, bundle: bundle, comment: comment)
+    return bundle
+}
+
+public func mwLocalizedString(_ key: String, comment: String = "") -> String {
+    return NSLocalizedString(key, bundle: currentLocalizedBundle, comment: comment)
 }

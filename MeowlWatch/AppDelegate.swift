@@ -28,6 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         MeowlWatchData.loadFromDefaults()
 
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let bundleToLoad: Bundle = currentLocalizedBundle.path(forResource: "Main", ofType: "storyboardc") != nil ? currentLocalizedBundle : Bundle(path: Bundle.main.path(forResource: "Base", ofType: "lproj")!)!
+        let storyboard = UIStoryboard(name: "Main", bundle: bundleToLoad)
+        let rootViewController = storyboard.instantiateInitialViewController()
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+
         #if !MEOWLWATCH_FULL
             if MeowlWatchData.shouldDisplayAds {
                 GADMobileAds.configure(withApplicationID: MeowlWatchData.adMobAppID)
