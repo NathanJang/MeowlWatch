@@ -23,6 +23,8 @@ class MenuTableViewController: ExpandableTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuItemCell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 75
 
         getMenu(locationId: locationId!) { [weak self] menu in
             DispatchQueue.main.async { [weak self] in
@@ -39,7 +41,7 @@ class MenuTableViewController: ExpandableTableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return menu?.periods.count ?? 0
+        return menu?.periods.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
@@ -47,11 +49,15 @@ class MenuTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        return menu?.periods[section].name ?? nil
+        return menu?.periods[section].name ?? "Loading"
+    }
+
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +68,7 @@ class MenuTableViewController: ExpandableTableViewController {
         cell.selectionStyle = .none
         let item = menu!.periods[indexPath.section].items[indexPath.row]
         cell.nameLabel.text = item.name
-        cell.planLabel.text = item.description ?? "(none)"
+        cell.planLabel.text = item.description ?? ""
 
         return cell
     }
