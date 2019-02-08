@@ -73,9 +73,7 @@ class NavigationController: UINavigationController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         #if !MEOWLWATCH_FULL
-            if MeowlWatchData.shouldDisplayAds {
-                conditionallyDisplayModals()
-            }
+            conditionallyDisplayModals()
         #endif
     }
 
@@ -139,12 +137,14 @@ class NavigationController: UINavigationController {
                     showUpdatedMessage()
                     appVersion = currentAppVersion
                 } else {
-                    let randomNumberFrom0To10 = arc4random_uniform(100)
-                    if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
-                        if randomNumberFrom0To10 < 10 {
-                            showTipReminder()
-                        } else if randomNumberFrom0To10 < 5 {
-                            showInterstitial()
+                    if MeowlWatchData.shouldDisplayAds {
+                        let randomNumberFrom0To10 = arc4random_uniform(100)
+                        if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
+                            if randomNumberFrom0To10 < 10 {
+                                showTipReminder()
+                            } else if randomNumberFrom0To10 < 5 {
+                                showInterstitial()
+                            }
                         }
                     }
                 }

@@ -48,9 +48,6 @@ class SettingsTableViewController: UITableViewController {
 
         #if !MEOWLWATCH_FULL
             if !MeowlWatchData.anythingIsPurchased {
-                let refreshControl = UIRefreshControl()
-                self.refreshControl = refreshControl
-                refreshControl.addTarget(self, action: #selector(requestProductData), for: .valueChanged)
                 requestProductData()
             }
             SKPaymentQueue.default().add(self)
@@ -302,7 +299,7 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             if !MeowlWatchData.widgetIsPurchased {
                 #if !MEOWLWATCH_FULL
-                    if let refreshControl = refreshControl, !refreshControl.isRefreshing {
+                    if isRefreshing {
                         switch indexPath.row {
                         case 0:
                             if canMakePayments {
@@ -316,7 +313,6 @@ class SettingsTableViewController: UITableViewController {
                             }
 
                         case 1:
-                            self.beginRefreshing()
                             navigationItem.setRightBarButton(nil, animated: true)
                             SKPaymentQueue.default().restoreCompletedTransactions()
 
@@ -402,42 +398,17 @@ class SettingsTableViewController: UITableViewController {
             guard let widgetProduct = widgetProduct else { return }
             let payment = SKPayment(product: widgetProduct)
             SKPaymentQueue.default().add(payment)
-            self.beginRefreshing()
             navigationItem.setRightBarButton(nil, animated: true)
         }
 
         /// Shows an alert to notify the user that we cannot make purchases.
         func showCannotMakePaymentsAlert() {
-            self.endRefreshing()
             self.showMessageAlert(title: mwLocalizedString("SettingsCannotPayAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotPayAlertMessage", comment: ""))
         }
 
-        var isRefreshing = false
+        var isRefreshing = true
 
 
-        /// Makes the refresh control start refreshing, if it exists.
-        func beginRefreshing() {
-            guard let refreshControl = self.refreshControl else { return }
-            isRefreshing = true
-            refreshControl.beginRefreshing()
-            if #available(iOS 11.0, *) {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top), animated: true)
-            } else {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-            }
-        }
-
-        /// Makes the refresh control stop spinning, if it exists.
-        func endRefreshing() {
-            guard let refreshControl = self.refreshControl else { return }
-            isRefreshing = false
-            DispatchQueue.main.async { [weak refreshControl] in
-                refreshControl?.endRefreshing()
-            }
-            if navigationItem.rightBarButtonItem == nil {
-                navigationItem.setRightBarButton(doneButton, animated: true)
-            }
-        }
     #endif
 
 }
@@ -460,14 +431,12 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                     self.widgetProduct = product
                 }
             }
-            self.tableView?.reloadData()
-            self.endRefreshing()
+            self.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
             self.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: { [weak self] in
-                self?.tableView.reloadData()
-                self?.endRefreshing()
+                self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
             })
         }
 
@@ -476,14 +445,11 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             guard SKPaymentQueue.canMakePayments() else {
                 return
             }
-            if let refreshControl = refreshControl, !refreshControl.isRefreshing {
-                self.beginRefreshing()
-            }
             self.canMakePayments = true
             let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.widgetProductIdentifier])
             request.delegate = self
             request.start()
-            self.tableView.reloadData()
+            self.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
         }
 
         /// What to do once the widget is purchased.
@@ -492,8 +458,6 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             self.showMessageAlert(title: mwLocalizedString("SettingsThanksAlertTitle", comment: ""), message: mwLocalizedString("SettingsThanksAlertMessage", comment: ""))
 
             self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentInset.top), animated: true)
-            self.endRefreshing()
-            self.refreshControl!.removeFromSuperview()
 
             MeowlWatchData.widgetIsPurchased = true
             let navigationController = self.navigationController!.presentingViewController as! NavigationController
@@ -524,13 +488,11 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 
             if !MeowlWatchData.widgetIsPurchased {
                 self.showMessageAlert(title: mwLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
-                self.endRefreshing()
             }
         }
 
         func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
             self.showMessageAlert(title: mwLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
-            self.endRefreshing()
         }
 
         /// What to do once we receive a transaction.
@@ -539,14 +501,12 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
             switch transaction.transactionState {
             case .purchased, .restored:
-                self.endRefreshing()
                 if transaction.payment.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     didPurchaseWidget()
                     queue.finishTransaction(transaction)
                 }
 
             case .failed:
-                self.endRefreshing()
                 self.showMessageAlert(title: mwLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
                 queue.finishTransaction(transaction)
 

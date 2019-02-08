@@ -48,6 +48,10 @@
 "SignInActionTitle" = "Connextion";
 "SignInDismiss" = "Annuler";
 
+"UpdatedVersion" = "3.0";
+"UpdatedTitle" = "MeowlWatch 3.0";
+"UpdatedMessage" = "Yay ! 😋 Vous pouvez maintenant voir les menus des cantines, et ajouter du Cat Cash dans l'app. En plus, nous sommes disponibles en chinois et en français.";
+
 "Back" = "Retour";
 
 "SeeMenu" = "Voir le menu du jour";
