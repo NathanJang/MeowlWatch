@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MeowlWatchData.loadFromDefaults()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MenuTableViewController(style: .grouped)
-//        reloadRootVC()
+//        window?.rootViewController = MenuTableViewController(style: .grouped)
+        reloadRootVC()
         window?.makeKeyAndVisible()
 
         #if !MEOWLWATCH_FULL

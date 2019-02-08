@@ -38,7 +38,8 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         let date = Date()
 
         if let diningHall = diningHall {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall, at: date)
+            var (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: diningHall, at: date)
+            selectedSectionIndex += 1
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             }
@@ -53,13 +54,14 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
-            for i in 0..<numberOfSections {
+            for i in 1..<numberOfSections {
                 if i != selectedSectionIndex {
                     hiddenSections.append(i)
                 }
             }
         } else if let cafeOrCStore = cafeOrCStore {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: date)
+            var (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: date)
+            selectedSectionIndex += 1
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             }
@@ -74,13 +76,14 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
-            for i in 0..<numberOfSections {
+            for i in 1..<numberOfSections {
                 if i != selectedSectionIndex {
                     hiddenSections.append(i)
                 }
             }
         } else if let norrisLocation = norrisLocation {
-            let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: date)
+            var (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: date)
+            selectedSectionIndex += 1
             if let selectedRowIndex = selectedRowIndex {
                 selectedIndexPath = IndexPath(row: selectedRowIndex, section: selectedSectionIndex)
             }
@@ -95,13 +98,14 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             }
 
             let numberOfSections = self.numberOfSections(in: tableView)
-            for i in 0..<numberOfSections {
+            for i in 1..<numberOfSections {
                 if i != selectedSectionIndex {
                     hiddenSections.append(i)
                 }
             }
         }
 
+        tableView.allowsMultipleSelection = true
         clearsSelectionOnViewWillAppear = false
 
         if #available(iOS 11.0, *) {
@@ -124,27 +128,36 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        guard let entries = entries else { return 0 }
-        return entries.count
+        guard let entries = entries else { return 1 }
+        return entries.count + 1
     }
 
     override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if section == 0 { return 1 }
         guard let entries = entries else { return 0 }
-        return entries[section].schedule.count
+        return entries[section - 1].schedule.count
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
+        if section == 0 { return nil }
         guard let entries = entries else { return nil }
-        return entries[section].formattedWeekdayRange
+        return entries[section - 1].formattedWeekdayRange
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = "Menu"
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath)
         guard let entries = entries else { return super.tableView(tableView, cellForRowAt: indexPath) }
 
         // Configure the cell...
-        let entry = entries[indexPath.section]
+        let entry = entries[indexPath.section - 1]
         cell.textLabel!.text = entry.formattedTimeRange(atIndex: indexPath.row)
         cell.detailTextLabel!.text = mwLocalizedString(entry.schedule[indexPath.row].status.rawValue, comment: "")
         cell.detailTextLabel!.textColor = entry.schedule[indexPath.row].status != .closed ? view.tintColor : UIColor.red
@@ -152,6 +165,15 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         cell.isUserInteractionEnabled = indexPath == selectedIndexPath
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+
+            let menuVC = MenuTableViewController(style: .grouped)
+            navigationController?.pushViewController(menuVC, animated: true)
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
