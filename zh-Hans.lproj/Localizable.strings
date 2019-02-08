@@ -83,6 +83,7 @@
 "SettingsPurchaseFailedAlertMessage" = "请重试。";
 
 "SettingsLanguageTitle" = "语言";
+"SettingsLanguageDefault" = "系统默认";
 "SettingsLanguageDefault: %@" = "系统默认（%@）";
 "SettingsLanguage_en" = "English（英语）";
 "SettingsLanguage_zh-Hans" = "简体中文";

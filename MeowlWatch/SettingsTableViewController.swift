@@ -183,8 +183,8 @@ class SettingsTableViewController: UITableViewController {
             cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             let language = languages[indexPath.row]
             if language == .default {
-                cell?.textLabel?.text = String(format: mwLocalizedString("SettingsLanguageDefault: %@"), NSLocale(localeIdentifier: systemDefaultLanguage().rawValue).displayName(forKey: .languageCode, value: systemDefaultLanguage().rawValue) ?? "--")
-                cell?.detailTextLabel?.text = currentLanguage != .default && currentLanguage != .english ? "System Default" : nil
+                cell?.textLabel?.text = String(format: NSLocalizedString("SettingsLanguageDefault: %@", comment: ""), NSLocale(localeIdentifier: systemDefaultLanguage().rawValue).displayName(forKey: .languageCode, value: systemDefaultLanguage().rawValue) ?? "--")
+                cell?.detailTextLabel?.text = currentLanguage != .default ? mwLocalizedString("SettingsLanguageDefault") : nil
             } else {
                 cell?.textLabel?.text = mwLocalizedString("SettingsLanguage_\(language.rawValue)")
             }

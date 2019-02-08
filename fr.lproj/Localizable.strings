@@ -83,6 +83,7 @@
 "SettingsPurchaseFailedAlertMessage" = "Veuillez ressayer.";
 
 "SettingsLanguageTitle" = "Langue";
+"SettingsLanguageDefault" = "Par défaut";
 "SettingsLanguageDefault: %@" = "Par défaut (%@)";
 "SettingsLanguage_en" = "English (Anglais)";
 "SettingsLanguage_zh-Hans" = "简体中文 (Chinois simplfié)";
