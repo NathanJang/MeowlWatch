@@ -24,8 +24,8 @@
 "MWTVCAddCatCashMessage" = "Touchez pour ajouter du Cat Cash. Il faudra quelques jours avant de réussir.";
 
 /* Content */
-"MWTVCDiningDollarsLeft" = "Dining Dollars restants";
-"MWTVCCatCashLeft" = "Cat Cash restants";
+"MWTVCDiningDollarsLeft" = "Dining Dollars restant(s)";
+"MWTVCCatCashLeft" = "Cat Cash restant(s)";
 
 "MWTVCDiningDollars" = "Dining Dollars";
 "MWTVCCatCash" = "Cat Cash";
@@ -45,7 +45,7 @@
 "SignInTitle" = "Se connecter à Northwestern";
 "SignInMessage" = "Pour télécharger votre solde de repas, votre NetID et votre mot de passe seront envoyés seulement aux serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
 "SignInPasswordPlaceholder" = "Mot de passe";
-"SignInActionTitle" = "Connextion";
+"SignInActionTitle" = "Connexion";
 "SignInDismiss" = "Annuler";
 
 "UpdatedVersion" = "3.0";
