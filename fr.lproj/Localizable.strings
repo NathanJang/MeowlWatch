@@ -37,7 +37,7 @@
 
 /** Modals */
 "TipTitle" = "Vous aimez Meowlwatch ? Veuillez laisser un pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher à mettre cette app sur App Store. Aidez-moi par voir le widget et laisser moi un petit pourboire (je déteste des publicités aussi), ou notez-la sur App Store !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher à mettre cette app sur App Store. Aidez-moi par voir le widget et laisser-moi un petit pourboire (je déteste des publicités aussi), ou notez-la sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
 "TipRateOnAppStore" = "Noter sur App Store";
 "TipDismiss" = "OK";
@@ -47,6 +47,8 @@
 "SignInPasswordPlaceholder" = "Mot de passe";
 "SignInActionTitle" = "Connextion";
 "SignInDismiss" = "Annuler";
+
+"Back" = "Retour";
 
 /** Settings */
 "SettingsWidgetHeading" = "Widget";

@@ -48,6 +48,8 @@
 "SignInActionTitle" = "登录";
 "SignInDismiss" = "取消";
 
+"Back" = "返回";
+
 /** Settings */
 "SettingsWidgetHeading" = "小部件";
 "SettingsLogoHeading" = "图标";

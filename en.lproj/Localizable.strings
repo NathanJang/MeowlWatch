@@ -48,6 +48,8 @@
 "SignInActionTitle" = "Sign In";
 "SignInDismiss" = "Cancel";
 
+"Back" = "Back";
+
 /** Settings */
 "SettingsWidgetHeading" = "Widget";
 "SettingsLogoHeading" = "Logo";

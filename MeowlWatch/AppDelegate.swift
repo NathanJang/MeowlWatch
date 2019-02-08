@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         reloadRootVC()
+        window?.makeKeyAndVisible()
 
         #if !MEOWLWATCH_FULL
             if MeowlWatchData.shouldDisplayAds {

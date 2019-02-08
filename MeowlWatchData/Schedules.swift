@@ -175,6 +175,9 @@ public struct ScheduleRow<Status> where Status : RawRepresentable, Status.RawVal
         dateFormatter.dateFormat = "H:mm"
         let refDate = dateFormatter.date(from: durationString)!
         dateFormatter.timeStyle = .short
+        if currentLanguage != .default {
+            dateFormatter.locale = Locale(identifier: currentLanguage.rawValue)
+        }
         return dateFormatter.string(from: refDate)
     }
 

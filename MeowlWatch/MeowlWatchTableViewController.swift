@@ -72,6 +72,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         updateDiningStatuses()
 
         tableView.layoutMargins.left = 8
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: mwLocalizedString("Back"), style: .plain, target: nil, action: nil)
     }
 
     override func viewDidLayoutSubviews() {
