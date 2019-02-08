@@ -176,6 +176,12 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         }
     }
 
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if indexPath.section != 0 {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
+    }
+
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == numberOfSections(in: tableView) - 1 {
             return MeowlWatchData.scheduleDisclaimerString
