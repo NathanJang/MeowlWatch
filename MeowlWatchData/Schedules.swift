@@ -260,6 +260,19 @@ public struct ScheduleEntry<Status> where Status : RawRepresentable, Status.RawV
 
 }
 
+public let diningLocationIds: [String: String] = {
+    let path = Bundle.main.path(forResource: plistNameForDiningHallSchedules, ofType: "plist")!
+    let dictionary = NSDictionary(contentsOfFile: path)! as! [String : Any] // [String : [String : [String : Any]]]; dictionary[locationName][arrayIndex][entryKey]
+    var diningLocationIds = [String : String]()
+    for locationName in dictionary.keys {
+            // Dining hall with location ID
+        let locationDict = dictionary[locationName] as! [String : Any]
+        let locationId = locationDict["LocationId"] as! String
+        diningLocationIds[locationName] = locationId
+    }
+    return diningLocationIds
+}()
+
 /// A dictionary of dictionaries of arrays of `ScheduleEntry`s.
 /// `scheduleEntriesDictionaryDictionary[plistName][locationName]`
 private let diningScheduleEntriesDictionaryDictionary: [String : [String : [ScheduleEntry<DiningStatus>]]] = { () -> [String : [String : [ScheduleEntry<DiningStatus>]]] in
@@ -275,9 +288,19 @@ private let diningScheduleEntriesDictionaryDictionary: [String : [String : [Sche
         diningScheduleEntriesDictionaryDictionary[plistName] = [:]
         for locationName in dictionary.keys {
             var entries: [ScheduleEntry<DiningStatus>] = []
-            for dictionaryEntry in dictionary[locationName] as! [[String : Any]] {
-                // Sorted already
-                entries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
+            if let entriesOfLocation = dictionary[locationName] as? [[String : Any]] {
+                for dictionaryEntry in entriesOfLocation {
+                    // Sorted already
+                    entries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
+                }
+            } else {
+                // Dining hall with location ID
+                let locationDict = dictionary[locationName] as! [String : Any]
+                let locationId = locationDict["LocationId"] as! String
+                let entriesOfLocation = locationDict["Schedules"] as! [[String : Any]]
+                for dictionaryEntry in entriesOfLocation {
+                    entries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
+                }
             }
 
             diningScheduleEntriesDictionaryDictionary[plistName]![locationName] = entries

@@ -11,7 +11,7 @@ import MeowlWatchData
 
 class MenuTableViewController: ExpandableTableViewController {
 
-    var locationId: String? = "5b33ae291178e909d807593e"
+    var locationId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
