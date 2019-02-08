@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MeowlWatchData
 
 extension UIViewController {
 
@@ -27,7 +28,7 @@ extension UIViewController {
     /// - Parameter message: The message in the alert controller.
     func showMessageAlert(title: String, message: String?, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: mwLocalizedString("TipDismiss"), style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: completion)
         alertController.view.tintColor = self.view.tintColor
     }

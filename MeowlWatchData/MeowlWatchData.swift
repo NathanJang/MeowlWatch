@@ -54,6 +54,7 @@ public func loadFromDefaults() {
         selectedLanguage = currentLanguage
     }
 
+    appVersion = userDefaults.string(forKey: "appVersion")
 }
 
 /// Writes data from the MeowlWatchData to user defaults.
@@ -77,7 +78,11 @@ public func persistToUserDefaults() {
     } else {
         userDefaults.set(selectedLanguage.rawValue, forKey: "currentLanguageId")
     }
+
+    userDefaults.set(appVersion, forKey: "appVersion")
 }
+
+public var appVersion: String?
 
 /// A boolean representing whether we're prepared to query the server.
 public var canQuery: Bool { return netID != nil && !netID!.isEmpty && password != nil }

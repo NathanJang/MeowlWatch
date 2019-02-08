@@ -135,16 +135,25 @@ class NavigationController: UINavigationController {
         /// Shows them annoying popups sometimes, based on RNG.
         func conditionallyDisplayModals() {
             if !didShowModals {
-                let randomNumberFrom0To10 = arc4random_uniform(100)
-                if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
-                    if randomNumberFrom0To10 < 10 {
-                        showTipReminder()
-                    } else if randomNumberFrom0To10 < 5 {
-                        showInterstitial()
+                if let oldAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, oldAppVersion != appVersion {
+                    showUpdatedMessage()
+                    appVersion = oldAppVersion
+                } else {
+                    let randomNumberFrom0To10 = arc4random_uniform(100)
+                    if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
+                        if randomNumberFrom0To10 < 10 {
+                            showTipReminder()
+                        } else if randomNumberFrom0To10 < 5 {
+                            showInterstitial()
+                        }
                     }
                 }
                 didShowModals = true
             }
+        }
+
+        func showUpdatedMessage() {
+            showMessageAlert(title: mwLocalizedString("UpdatedTitle"), message: mwLocalizedString("UpdatedMessage"))
         }
 
         /// Shows a full-screen ad.
