@@ -28,7 +28,6 @@ class MenuTableViewController: ExpandableTableViewController {
 
         getMenu(locationId: locationId!) { [weak self] menu in
             DispatchQueue.main.async { [weak self] in
-                print("yolo")
                 self?.menu = menu
                 self?.tableView.reloadData()
             }
@@ -49,7 +48,7 @@ class MenuTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        return menu?.periods[section].name ?? "Loading"
+        return menu?.periods[section].name ?? mwLocalizedString("MenuLoadingMessage")
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

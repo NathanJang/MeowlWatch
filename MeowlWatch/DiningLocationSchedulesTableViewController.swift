@@ -151,7 +151,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == numberOfSections(in: tableView) - 1 && locationId != nil {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Menu"
+            cell.textLabel?.text = mwLocalizedString("SeeMenu")
             cell.accessoryType = .disclosureIndicator
             return cell
         }
@@ -176,7 +176,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
             let menuVC = MenuTableViewController(style: .grouped)
             menuVC.locationId = locationId!
-            menuVC.title = title
+            menuVC.title = String(format: mwLocalizedString("MenuFor: %@"), title!)
             navigationController?.pushViewController(menuVC, animated: true)
         }
     }

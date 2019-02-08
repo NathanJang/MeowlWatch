@@ -50,6 +50,10 @@
 
 "Back" = "返回";
 
+"SeeMenu" = "今日餐牌";
+"MenuLoadingMessage" = "加載中…";
+"MenuFor: %@" = "餐牌 — %@";
+
 /** Settings */
 "SettingsWidgetHeading" = "小部件";
 "SettingsLogoHeading" = "圖標";

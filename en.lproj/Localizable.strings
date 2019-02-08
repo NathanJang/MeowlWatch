@@ -50,6 +50,10 @@
 
 "Back" = "Back";
 
+"SeeMenu" = "See Today's Menu";
+"MenuLoadingMessage" = "Loading menu...";
+"MenuFor: %@" = "Menu — %@";
+
 /** Settings */
 "SettingsWidgetHeading" = "Widget";
 "SettingsLogoHeading" = "Logo";

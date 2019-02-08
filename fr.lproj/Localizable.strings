@@ -50,10 +50,14 @@
 
 "Back" = "Retour";
 
+"SeeMenu" = "Voir le menu du jour";
+"MenuLoadingMessage" = "Chargement du menu...";
+"MenuFor: %@" = "Menu — %@";
+
 /** Settings */
 "SettingsWidgetHeading" = "Widget";
 "SettingsLogoHeading" = "Logo";
-"SettingsLoadingTitle" = "Téléchargement en cours...";
+"SettingsLoadingTitle" = "Chargement en cours...";
 "SettingsIAPUnavailableTitle" = "(Achats intégrés non disponible)";
 "SettingsRestorePurchasesTitle" = "Restaurer vos achats";
 "SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de la conceptrice";
