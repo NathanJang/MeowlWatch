@@ -33,8 +33,6 @@ class SettingsTableViewController: UITableViewController {
     /// TODO: use a URL tracker or something.
     var isabelShortURLString: String { return isabelURLString }
 
-    let languages = [Language.default, .english, .chineseSimplified, .chineseTraditional, .french]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -175,7 +173,7 @@ class SettingsTableViewController: UITableViewController {
             cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             let language = languages[indexPath.row]
             if language == .default {
-                cell?.textLabel?.text = String(format: mwLocalizedString("SettingsLanguageDefault: %@"), NSLocale(localeIdentifier: Locale.current.identifier).displayName(forKey: .languageCode, value: NSLocale.Key(rawValue: Locale.preferredLanguages.first!))!)
+                cell?.textLabel?.text = String(format: mwLocalizedString("SettingsLanguageDefault: %@"), NSLocale(localeIdentifier: Locale.preferredLanguages.first!).displayName(forKey: .languageCode, value: Locale.preferredLanguages.filter { languages.map { $0.rawValue }.contains(String($0[$0.startIndex..<$0.index($0.startIndex, offsetBy: 2)])) }.first ?? "en")!)
                 cell?.detailTextLabel?.text = currentLanguage != .default ? "System Default" : nil
             } else {
                 cell?.textLabel?.text = mwLocalizedString("SettingsLanguage_\(language.rawValue)")

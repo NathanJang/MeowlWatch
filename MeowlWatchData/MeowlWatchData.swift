@@ -380,6 +380,8 @@ public enum Language: String {
     case french = "fr"
 }
 
+public let languages = [Language.default, .english, .chineseSimplified, .chineseTraditional, .french]
+
 public var selectedLanguage = Language.default
 
 public private(set) var currentLanguage = Language.default
