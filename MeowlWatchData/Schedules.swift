@@ -411,4 +411,6 @@ private func diningScheduleDictionaryFromPlist(_ fileName: String) -> [String : 
     return diningScheduleEntriesDictionaryDictionary[fileName]!
 }
 
-public let scheduleDisclaimerString = mwLocalizedString("ScheduleDisclaimer", comment: "Schedules displayed are for normal school days only")
+public var scheduleDisclaimerString: String {
+    return mwLocalizedString("ScheduleDisclaimer", comment: "Schedules displayed are for normal school days only")
+}
