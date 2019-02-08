@@ -11,7 +11,7 @@
 "MWTVCAccountButtonTitle" = "賬戶";
 "MWTVCSettingsButtonTitle" = "設置";
 
-"MWTVCSearchBarPlaceholder" = "搜索食堂";
+"MWTVCSearchBarPlaceholder" = "搜索飯堂";
 "MWTVCUpdated: %@" = "更新：%@";
 "MWTVCNever" = "從未";
 
@@ -19,7 +19,7 @@
 "MWTVCMealsHeading" = "我的餐券";
 "MWTVCDiningDollarsHeading" = "我的餘額";
 "MWTVCCafesHeading" = "餐廳、便利店";
-"MWTVCDiningHallsHeading" = "食堂";
+"MWTVCDiningHallsHeading" = "飯堂";
 "MWTVCNorrisHeading" = "Norris";
 "MWTVCAddCatCashMessage" = "輕點充值 Cat Cash，可能過幾天才到帳。";
 
@@ -47,6 +47,10 @@
 "SignInPasswordPlaceholder" = "密碼";
 "SignInActionTitle" = "登錄";
 "SignInDismiss" = "取消";
+
+"UpdatedVersion" = "3.0";
+"UpdatedTitle" = "MeowlWatch 3.0";
+"UpdatedMessage" = "耶 ✌️！您现在可查看飯堂餐牌，和在程序中充值 Cat Cash。還有，現在有中文、法文版了。";
 
 "Back" = "返回";
 

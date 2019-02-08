@@ -135,9 +135,9 @@ class NavigationController: UINavigationController {
         /// Shows them annoying popups sometimes, based on RNG.
         func conditionallyDisplayModals() {
             if !didShowModals {
-                if let oldAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, oldAppVersion != appVersion {
+                if let currentAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, currentAppVersion != appVersion && mwLocalizedString("UpdatedVersion") == currentAppVersion {
                     showUpdatedMessage()
-                    appVersion = oldAppVersion
+                    appVersion = currentAppVersion
                 } else {
                     let randomNumberFrom0To10 = arc4random_uniform(100)
                     if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {

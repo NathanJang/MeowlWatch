@@ -48,6 +48,10 @@
 "SignInActionTitle" = "登录";
 "SignInDismiss" = "取消";
 
+"UpdatedVersion" = "3.0";
+"UpdatedTitle" = "MeowlWatch 3.0";
+"UpdatedMessage" = "耶 ✌️！您现在可查看食堂菜单，和在程序中充值 Cat Cash。还有，现在有中文、法语版了。";
+
 "Back" = "返回";
 
 "SeeMenu" = "今天菜单";
