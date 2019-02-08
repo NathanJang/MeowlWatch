@@ -94,6 +94,8 @@
 		ABF2FF86220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */; };
 		ABF2FF87220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */; };
 		ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */; };
+		ABF2FF8A220D52E000E97BB3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */; };
+		ABF2FF8C220D5A8700E97BB3 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF8B220D5A8700E97BB3 /* Menu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +252,8 @@
 		ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchTableViewCell.xib; path = MeowlWatch/MeowlWatchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetPreviewTableViewCell.xib; sourceTree = "<group>"; };
+		ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		ABF2FF8B220D5A8700E97BB3 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DiningHallSchedules.plist; path = MeowlWatchData/Schedules/DiningHallSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AEE346F2A9AD169A19031085 /* Pods-MeowlWatchData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatchData.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData.debug.xcconfig"; sourceTree = "<group>"; };
 		E1B860E29B4CC6EE08E693B1 /* Pods_MeowlWatch_Full.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Full.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,6 +361,7 @@
 				AB3DEF871E96A84A0035F000 /* MeowlWatchData.swift */,
 				AB321A771EB6EAD9002BFD39 /* Schedules.swift */,
 				AB3DEF881E96A84A0035F000 /* QueryResult.swift */,
+				ABF2FF8B220D5A8700E97BB3 /* Menu.swift */,
 				AB3DEF891E96A84A0035F000 /* Info.plist */,
 				ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */,
 				AB321A711EB6C7B4002BFD39 /* CafeSchedules.plist */,
@@ -374,6 +379,7 @@
 				AB4521F51EB90D3500B6A1C1 /* ExpandableTableViewController.swift */,
 				ABC11B261EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
+				ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -799,6 +805,7 @@
 			files = (
 				AB321A781EB6EAD9002BFD39 /* Schedules.swift in Sources */,
 				AB3DEF901E96A8570035F000 /* MeowlWatchData.swift in Sources */,
+				ABF2FF8C220D5A8700E97BB3 /* Menu.swift in Sources */,
 				AB3DEF8F1E96A8540035F000 /* QueryResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,6 +833,7 @@
 				ABF2FF86220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
 				AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,
 				AB3DEF851E969FED0035F000 /* NavigationController.swift in Sources */,
+				ABF2FF8A220D52E000E97BB3 /* MenuTableViewController.swift in Sources */,
 				ABC11B281EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift in Sources */,
 				ABC11B1E1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift in Sources */,
 				ABC11B2E1EB7345800491E7B /* ScheduleRowTableViewCell.swift in Sources */,

@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MeowlWatchData.loadFromDefaults()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        reloadRootVC()
+        window?.rootViewController = MenuTableViewController(style: .grouped)
+//        reloadRootVC()
         window?.makeKeyAndVisible()
 
         #if !MEOWLWATCH_FULL
@@ -91,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: bundleToLoad)
         let rootViewController = storyboard.instantiateInitialViewController()
         window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
     }
 
 }
