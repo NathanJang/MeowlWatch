@@ -159,7 +159,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">MeowlWatch :
+                                        <mutableString key="content">MeowlWatch :
 Copyright © 2017 – 2019 Jonathan Chan
 Class of 2020, Northwestern University
 
@@ -168,7 +168,7 @@ Copyright © 2017 Isabel Nygard, utilisé avec permission.
 Class of 2020, Northwestern University
 
 En utilisant cette app, vous acceptez le démenti et la politique de confidentialité ci-dessous.
-</string>
+</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -185,11 +185,11 @@ Démenti</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
+                                        <mutableString key="content">
 
 Bien que le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'est affilié ni à Northwestern University ni à Northwestern Dining. Cette app a été fait indépendamment de Northwestern, et son contenu ne reflète pas nécessairement les vues de Northwestern. Bien que le programmeur fera de son mieux pour s'assurer que cette app marchera comme prévu, il n'a pas de contrôle sur les serveurs web et ne peut pas garantir une exactitude 100 %. Le programmeur de MeowlWatch n'assume aucune responsabilité du préjudice à n'importe qui en utiliser. En téléchargeant cette app, les utilisateurs acceptent qu'ils continuent à leurs propres risques.
 
-(J'ai fait une chose pour faire </string>
+(J'ai fait quelque chose pour faire </mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -231,14 +231,14 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
+                                        <mutableString key="content">
 
 Votre NetID et votre mot de passe seront envoyés cryptés à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre NetID et votre mot de passe seront aussi enregistrés cryptés sur votre appareil, pour qu'il ne faut pas se connecter toutes les fois lors d'en ouvrir. Votre mot de passe ne sera jamais ni utilisé pour un autre but ni envoyé à une autre lieu.
 
 Vos données de repas seront enregistrées sur votre appareil et ne seront envoyée nulle part.
 
 La version gratuite de cette app affichera des publicités par Google, ce qui pourrait suivre vos habitudes pour afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez en faire à Réglages système &gt; Confidentialité &gt; Publicité &gt; Suivi publicitaire limité. Lors d'un achat intégré réussi, les publicités seront désactivés.
-</string>
+</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -285,7 +285,7 @@ Alamofire</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
+                                        <mutableString key="content">
  Copyright © 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -293,7 +293,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</string>
+</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -311,7 +311,7 @@ SwiftKeychainWrapper</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
+                                        <mutableString key="content">
 
 The MIT License (MIT)
 
@@ -322,7 +322,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</string>
+</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -340,7 +340,7 @@ Siren</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">
+                                        <mutableString key="content">
 
 The MIT License (MIT)
 
@@ -350,7 +350,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>

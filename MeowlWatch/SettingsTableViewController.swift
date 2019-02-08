@@ -220,7 +220,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !MeowlWatchData.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
-            return 488
+            return tableView.frame.width * 488 / 414
         }
 
         return UITableView.automaticDimension
