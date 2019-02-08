@@ -88,7 +88,6 @@
 "SettingsLanguage_zh-Hans" = "简体中文 (Simplified Chinese)";
 "SettingsLanguage_zh-Hant" = "繁體中文 (Traditional Chinese)";
 "SettingsLanguage_fr" = "Français (French)";
-"SettingsLanguageFooter" = "Changes will apply after you relaunch the app.";
 
 /** MWD */
 "DefaultUserName" = "Your Name";

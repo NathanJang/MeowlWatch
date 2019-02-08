@@ -384,7 +384,7 @@ public let languages = [Language.default, .english, .chineseSimplified, .chinese
 
 public var selectedLanguage = Language.default
 
-public private(set) var currentLanguage = Language.default
+public var currentLanguage = Language.default
 
 public var currentLocalizedBundle: Bundle {
     let bundle: Bundle
@@ -399,4 +399,10 @@ public var currentLocalizedBundle: Bundle {
 
 public func mwLocalizedString(_ key: String, comment: String = "") -> String {
     return NSLocalizedString(key, bundle: currentLocalizedBundle, comment: comment)
+}
+
+public func systemDefaultLanguage() -> Language {
+    func dropLastComponent(id: String) -> String { return id.split(separator: "-" ).dropLast().joined(separator: "-") }
+    let firstAvailableLocaleId = Locale.preferredLanguages.map { dropLastComponent(id: $0) }.filter { languages.map { $0.rawValue }.contains($0) }.first ?? "en"
+    return Language(rawValue: firstAvailableLocaleId) ?? .english
 }

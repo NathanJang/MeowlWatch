@@ -88,7 +88,6 @@
 "SettingsLanguage_zh-Hans" = "简体中文";
 "SettingsLanguage_zh-Hant" = "繁體中文";
 "SettingsLanguage_fr" = "Français (法文)";
-"SettingsLanguageFooter" = "選擇後請重啟程序。";
 
 /** MWD */
 "DefaultUserName" = "您的名字";

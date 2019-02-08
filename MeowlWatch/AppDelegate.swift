@@ -29,11 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MeowlWatchData.loadFromDefaults()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        let bundleToLoad: Bundle = currentLocalizedBundle.path(forResource: "Main", ofType: "storyboardc") != nil ? currentLocalizedBundle : Bundle(path: Bundle.main.path(forResource: "Base", ofType: "lproj")!)!
-        let storyboard = UIStoryboard(name: "Main", bundle: bundleToLoad)
-        let rootViewController = storyboard.instantiateInitialViewController()
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
+        reloadRootVC()
 
         #if !MEOWLWATCH_FULL
             if MeowlWatchData.shouldDisplayAds {
@@ -87,6 +83,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         (window!.rootViewController as! NavigationController).popToRootViewControllerOrSettingsAnimatedIfNeeded()
         return true
+    }
+
+    func reloadRootVC() {
+        let bundleToLoad: Bundle = currentLocalizedBundle.path(forResource: "Main", ofType: "storyboardc") != nil ? currentLocalizedBundle : Bundle(path: Bundle.main.path(forResource: "Base", ofType: "lproj")!)!
+        let storyboard = UIStoryboard(name: "Main", bundle: bundleToLoad)
+        let rootViewController = storyboard.instantiateInitialViewController()
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
     }
 
 }

@@ -44,6 +44,8 @@ class SettingsTableViewController: UITableViewController {
 
         self.setEditing(true, animated: false)
 
+        tableView.register(UINib(nibName: "WidgetPreviewTableViewCell", bundle: nil), forCellReuseIdentifier: "WidgetPreviewCell")
+
         #if !MEOWLWATCH_FULL
             if !MeowlWatchData.anythingIsPurchased {
                 let refreshControl = UIRefreshControl()
@@ -87,6 +89,12 @@ class SettingsTableViewController: UITableViewController {
         #if !MEOWLWATCH_FULL
             SKPaymentQueue.default().remove(self)
         #endif
+
+        if currentLanguage != selectedLanguage {
+            currentLanguage = selectedLanguage
+            let delegate = UIApplication.shared.delegate as? AppDelegate
+            delegate?.reloadRootVC()
+        }
     }
 
     // MARK: - Table view data source
@@ -158,7 +166,9 @@ class SettingsTableViewController: UITableViewController {
                         cell!.textLabel!.text = mwLocalizedString("SettingsRestorePurchasesTitle", comment: "")
 
                     case 2:
-                        cell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath)
+                        let previewCell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath) as? WidgetPreviewTableViewCell
+                        previewCell?.previewImageView.image = UIImage(named: "WidgetPreviewFull_\((currentLanguage != .default ? currentLanguage : systemDefaultLanguage()).rawValue)")
+                        cell = previewCell
 
                     default:
                         break
@@ -173,8 +183,8 @@ class SettingsTableViewController: UITableViewController {
             cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             let language = languages[indexPath.row]
             if language == .default {
-                cell?.textLabel?.text = String(format: mwLocalizedString("SettingsLanguageDefault: %@"), NSLocale(localeIdentifier: Locale.preferredLanguages.first!).displayName(forKey: .languageCode, value: Locale.preferredLanguages.filter { languages.map { $0.rawValue }.contains(String($0[$0.startIndex..<$0.index($0.startIndex, offsetBy: 2)])) }.first ?? "en")!)
-                cell?.detailTextLabel?.text = currentLanguage != .default ? "System Default" : nil
+                cell?.textLabel?.text = String(format: mwLocalizedString("SettingsLanguageDefault: %@"), NSLocale(localeIdentifier: systemDefaultLanguage().rawValue).displayName(forKey: .languageCode, value: systemDefaultLanguage().rawValue) ?? "--")
+                cell?.detailTextLabel?.text = currentLanguage != .default && currentLanguage != .english ? "System Default" : nil
             } else {
                 cell?.textLabel?.text = mwLocalizedString("SettingsLanguage_\(language.rawValue)")
             }
@@ -210,8 +220,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !MeowlWatchData.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
-            let imageSize = #imageLiteral(resourceName: "WidgetPreviewFull").size
-            return self.view.frame.width * imageSize.height / imageSize.width
+            return 488
         }
 
         return UITableView.automaticDimension
@@ -227,8 +236,6 @@ class SettingsTableViewController: UITableViewController {
             }
         case 1:
             return String(format: mwLocalizedString("SettingsArtistInfoMessage: %@", comment: ""), isabelURLString)
-        case 2:
-            return mwLocalizedString("SettingsLanguageFooter")
         default:
             return nil
         }

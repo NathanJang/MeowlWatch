@@ -91,6 +91,9 @@
 		ABD71CBE1EA08B3900B715AE /* MeowlWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */; };
 		ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */; };
 		ABD71CC01EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */; };
+		ABF2FF86220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */; };
+		ABF2FF87220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */; };
+		ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +248,8 @@
 		ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleRowTableViewCell.xib; path = MeowlWatch/ScheduleRowTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewCell.swift; path = MeowlWatch/MeowlWatchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchTableViewCell.xib; path = MeowlWatch/MeowlWatchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewTableViewCell.swift; sourceTree = "<group>"; };
+		ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DiningHallSchedules.plist; path = MeowlWatchData/Schedules/DiningHallSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AEE346F2A9AD169A19031085 /* Pods-MeowlWatchData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatchData.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData.debug.xcconfig"; sourceTree = "<group>"; };
 		E1B860E29B4CC6EE08E693B1 /* Pods_MeowlWatch_Full.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Full.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,6 +387,7 @@
 				ABC11B201EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift */,
 				AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */,
 				ABC11B2C1EB7345800491E7B /* ScheduleRowTableViewCell.swift */,
+				ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -396,6 +402,7 @@
 				ABC11B211EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib */,
 				AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */,
 				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
+				ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */,
 				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
 			);
@@ -645,6 +652,7 @@
 				AB7783071E84460B00925F72 /* Assets.xcassets in Resources */,
 				ABC11B351EB7938D00491E7B /* CafeSchedules.plist in Resources */,
 				ABC11B241EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib in Resources */,
+				ABF2FF87220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib in Resources */,
 				AB60AFBE220A9B4000C0C17B /* Localizable.stringsdict in Resources */,
 				AB7783081E84460B00925F72 /* Main.storyboard in Resources */,
 				AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */,
@@ -815,6 +823,7 @@
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
+				ABF2FF86220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
 				AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,
 				AB3DEF851E969FED0035F000 /* NavigationController.swift in Sources */,
 				ABC11B281EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift in Sources */,
@@ -837,6 +846,7 @@
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */,
+				ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
 				AB8AF1E61EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,
 				AB7B7FC91E8E9F0500272655 /* LegalViewController.swift in Sources */,
 				AB2990061E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
