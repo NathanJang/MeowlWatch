@@ -96,6 +96,7 @@
 		ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */; };
 		ABF2FF8A220D52E000E97BB3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */; };
 		ABF2FF8C220D5A8700E97BB3 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF8B220D5A8700E97BB3 /* Menu.swift */; };
+		ABF2FF8D220E541400E97BB3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -857,6 +858,7 @@
 				ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
 				AB8AF1E61EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */,
 				AB7B7FC91E8E9F0500272655 /* LegalViewController.swift in Sources */,
+				ABF2FF8D220E541400E97BB3 /* MenuTableViewController.swift in Sources */,
 				AB2990061E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				ABC11B231EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift in Sources */,
 				AB3DEF861E969FED0035F000 /* NavigationController.swift in Sources */,
