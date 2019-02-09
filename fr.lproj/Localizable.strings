@@ -83,7 +83,7 @@
 "SettingsCannotPayAlertMessage" = "Veuillez aller à Réglages système et configurer votre compte iTunes, et activez les achats intégrés.";
 "SettingsCannotFetchAlertTitle" = "Échec de télécharger les achats intégrés";
 "SettingsCannotFetchAlertMessage" = "Veuillez ressayer plus tard.";
-"SettingsThanksAlertTitle" = "Merci beaucoup pour votre soutien !";
+"SettingsThanksAlertTitle" = "Merci beaucoup pour votre soutien ! 🎉🎉🎉";
 "SettingsThanksAlertMessage" = "Il pourrait falloir quelques minutes avant l'activation du widget.";
 "SettingsCannotRestorePurchaseAlertTitle" = "Échec de restaurer des achats";
 "SettingsCannotRestorePurchaseAlertMessage" = "Nous n'avons pas pu trouvé un achat précédent.";

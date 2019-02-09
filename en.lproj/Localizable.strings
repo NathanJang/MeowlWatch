@@ -83,7 +83,7 @@
 "SettingsCannotPayAlertMessage" = "Please go to Settings and configure your iTunes account, and enable In-App Purchases.";
 "SettingsCannotFetchAlertTitle" = "Unable to Fetch In-App Purchases";
 "SettingsCannotFetchAlertMessage" = "Please try again later.";
-"SettingsThanksAlertTitle" = "Thank you for your support!";
+"SettingsThanksAlertTitle" = "Thank you for your support! 🎉🎉🎉";
 "SettingsThanksAlertMessage" = "It may take a minute for the widget to be enabled.";
 "SettingsCannotRestorePurchaseAlertTitle" = "Unable To Restore Purchases";
 "SettingsCannotRestorePurchaseAlertMessage" = "No previous purchases could be found.";

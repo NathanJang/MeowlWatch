@@ -83,7 +83,7 @@
 "SettingsCannotPayAlertMessage" = "請前往系統設置登錄 iTunes，啟用 In-App Purchases。";
 "SettingsCannotFetchAlertTitle" = "無法訪問 iTunes";
 "SettingsCannotFetchAlertMessage" = "請稍後重試。";
-"SettingsThanksAlertTitle" = "感謝您信任支持！";
+"SettingsThanksAlertTitle" = "感謝您信任支持！🎉🎉🎉";
 "SettingsThanksAlertMessage" = "小部件可能過幾分鐘才可用。";
 "SettingsCannotRestorePurchaseAlertTitle" = "無法恢復購物記錄";
 "SettingsCannotRestorePurchaseAlertMessage" = "您從無購買過產品。";
