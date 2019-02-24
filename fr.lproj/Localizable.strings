@@ -36,21 +36,21 @@
 "QueryErrorParse" = "Il y a un problème inconnu. Veuillez réssayer. Si le problème persiste, veuillez contacter le programmeur à Réglages > Signaler un problème.";
 
 /** Modals */
-"TipTitle" = "Vous aimez Meowlwatch ? Veuillez laisser un pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher à mettre cette app sur App Store. Aidez-moi par voir le widget et laisser-moi un petit pourboire (je déteste aussi des publicités), ou notez-la sur App Store !";
+"TipTitle" = "Vous aimez Meowlwatch ? Pensez au pourboire !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher de publier cette app sur App Store. Voyez le widget et veuillez m'aider en laissant un petit pourboire (je déteste aussi des publicités), ou notez-la sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
 "TipRateOnAppStore" = "Noter sur App Store";
 "TipDismiss" = "OK";
 
 "SignInTitle" = "Se connecter à Northwestern";
-"SignInMessage" = "Pour télécharger votre solde de repas, votre NetID et votre mot de passe seront seulement envoyés aux serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
+"SignInMessage" = "Pour vérifier votre solde de repas, votre NetID et votre mot de passe seront seulement envoyés aux serveurs securisés de Northwestern. Veuillez voir la politique de confidentialité pour plus de détails.";
 "SignInPasswordPlaceholder" = "Mot de passe";
 "SignInActionTitle" = "Connexion";
 "SignInDismiss" = "Annuler";
 
 "UpdatedVersion" = "3.0";
 "UpdatedTitle" = "MeowlWatch 3.0";
-"UpdatedMessage" = "Yay ! 😋 Vous pouvez maintenant voir les menus des cantines, et ajouter du Cat Cash dans l'app. En plus, nous sommes disponibles en chinois et en français.";
+"UpdatedMessage" = "Yay ! 😋 Vous pouvez maintenant voir les menus des cantines, et ajouter du Cat Cash dans l'app. En plus, l'app est maintenant disponible en chinois et en français.";
 
 "Back" = "Retour";
 
@@ -62,16 +62,16 @@
 "SettingsWidgetHeading" = "Widget";
 "SettingsLogoHeading" = "Logo";
 "SettingsLoadingTitle" = "Chargement en cours...";
-"SettingsIAPUnavailableTitle" = "(Achats intégrés non disponible)";
+"SettingsIAPUnavailableTitle" = "(Achats intégrés non disponibles)";
 "SettingsRestorePurchasesTitle" = "Restaurer vos achats";
-"SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de la conceptrice";
+"SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de l'artiste";
 "SettingsSendFeedbackTitle" = "Signaler un problème";
 "SettingsRateOnAppStoreTitle" = "Noter sur App Store";
 "SettingsShowLegalTitle" = "À propos";
 "SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles apparaîtront dans cet ordre-ci.\n\nMerci beaucoup pour votre soutien !";
-"SettingsTipInfoMessage" = "C'est un dur travail de faire les apps utiles comme MeowlWatch. Veuillez envisager de laisser moi un petit pourboire ci-dessus ! :) Les publicités seront aussi désactivés.";
-"SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Voyez %@ pour plus.";
-"SettingsIAPUnavailableTitle" = "Achats intégrés non disponible";
+"SettingsTipInfoMessage" = "C'est un travail très dur de faire les apps utiles comme MeowlWatch. Veuillez envisager de me laisser un petit pourboire ci-dessus ! :) Les publicités seront aussi désactivés.";
+"SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Visitez %@ pour plus.";
+"SettingsIAPUnavailableTitle" = "Achats intégrés non disponibles";
 "SettingsIAPUnavailableMessage" = "Veuillez vérifier votre connexion Internet. En plus, iTunes pourrait avoir des problèmes avec des achats intégrés au moment. Veuillez ressayer plus tard.";
 "SettingsSendFeedbackInfoMessage: %@" = "Veuillez envoyer vos commentaires à %@.";
 "SettingsCopyEmailActionTitle" = "Copier l'adresse";
@@ -80,7 +80,7 @@
 "SettingsFeedbackDoneButtonTitle" = "OK";
 "SettingsDoneButton" = "OK";
 "SettingsCannotPayAlertTitle" = "Échec d'achat";
-"SettingsCannotPayAlertMessage" = "Veuillez aller aux réglages système et configurer votre compte iTunes, et activez les achats intégrés.";
+"SettingsCannotPayAlertMessage" = "Veuillez aller aux réglages du système et configurer votre compte iTunes, et activez les achats intégrés.";
 "SettingsCannotFetchAlertTitle" = "Échec de chargerment les achats intégrés";
 "SettingsCannotFetchAlertMessage" = "Veuillez ressayer plus tard.";
 "SettingsThanksAlertTitle" = "Merci beaucoup pour votre soutien ! 🎉🎉🎉";
@@ -104,7 +104,7 @@
 "DefaultUserName" = "Votre nom";
 "DefaultUserSubtitleString" = "Touchez ici pour commencer";
 
-"ScheduleDisclaimer" = "Cet horaire-ci est seulement pour les jours normaux, et peut différer. Pendant les vacances, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaires réinitialisent le dimanche heure centrale à 7h.";
+"ScheduleDisclaimer" = "Cet horaire-ci est seulement pour les jours ouvrables et les week-ends, et peut différer. Pendant les jours fériés, veuillez consulter les annonces de l'université.\n\nLes plans hebdomadaires réinitialisent le dimanche à 7h (heure du centre).";
 
 "Open" = "Ouvert";
 "Closing Soon" = "Ferme bientôt";
