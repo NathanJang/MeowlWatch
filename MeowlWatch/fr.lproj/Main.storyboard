@@ -218,7 +218,7 @@ Cg
                                     <fragment>
                                         <mutableString key="content">
 
-Votre NetID et votre mot de passe seront envoyés cryptés à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre NetID et votre mot de passe seront aussi enregistrés cryptés sur votre appareil, pour ne pas se connecter chaque fois lors de l'ouverture. Votre mot de passe ne sera ni utilisé pour un autre but ni envoyé à une autre lieu.
+Votre NetID et votre mot de passe seront envoyés chiffrés à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre NetID et votre mot de passe seront aussi enregistrés cryptés sur votre appareil, pour ne pas se connecter chaque fois lors de l'ouverture. Votre mot de passe ne sera ni utilisé pour un autre but ni envoyé à une autre lieu.
 
 Vos données de repas seront enregistrées sur votre appareil et ne seront envoyée nulle part.
 
