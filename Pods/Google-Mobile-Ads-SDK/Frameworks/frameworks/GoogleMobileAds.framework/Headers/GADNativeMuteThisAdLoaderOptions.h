@@ -7,6 +7,7 @@
 
 #import <GoogleMobileAds/GADAdLoader.h>
 
+/// Mute This Ad options.
 @interface GADNativeMuteThisAdLoaderOptions : GADAdLoaderOptions
 
 /// Set to YES to request the custom Mute This Ad feature. By default, this property's value is YES.

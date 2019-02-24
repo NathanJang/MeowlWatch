@@ -21,7 +21,7 @@
 "MWTVCCafesHeading" = "Cafés et Épiceries";
 "MWTVCDiningHallsHeading" = "Cantines";
 "MWTVCNorrisHeading" = "Norris";
-"MWTVCAddCatCashMessage" = "Touchez pour ajouter du Cat Cash. Il faudra quelques jours avant de réussir.";
+"MWTVCAddCatCashMessage" = "Touchez pour ajouter du Cat Cash. Il faudra plusieurs jours avant de réussir.";
 
 /* Content */
 "MWTVCDiningDollarsLeft" = "Dining Dollars restant(s)";
@@ -84,7 +84,7 @@
 "SettingsCannotFetchAlertTitle" = "Échec de chargerment les achats intégrés";
 "SettingsCannotFetchAlertMessage" = "Veuillez ressayer plus tard.";
 "SettingsThanksAlertTitle" = "Merci beaucoup pour votre soutien ! 🎉🎉🎉";
-"SettingsThanksAlertMessage" = "Il pourrait falloir quelques minutes avant l'activation du widget.";
+"SettingsThanksAlertMessage" = "Il pourrait falloir plusieurs minutes avant l'activation du widget.";
 "SettingsCannotRestorePurchaseAlertTitle" = "Échec de restauration des achats";
 "SettingsCannotRestorePurchaseAlertMessage" = "Nous n'avons pas pu trouvé un achat précédent.";
 "SettingsRestorePurchaseFailedAlertTitle" = "Échec de restauration des achats";

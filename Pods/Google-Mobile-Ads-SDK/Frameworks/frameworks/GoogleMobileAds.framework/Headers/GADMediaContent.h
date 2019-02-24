@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// media content aspect ratio is unknown.
 @property(nonatomic, readonly) CGFloat aspectRatio;
 
+/// The main image to be displayed when the media content doesn't contain video.
+@property(nonatomic, nullable) UIImage *mainImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -60,10 +60,10 @@ GAD_DEPRECATED_ATTRIBUTE
 /// Enum of the different statuses resulting from processing a purchase.
 GAD_DEPRECATED_ATTRIBUTE
 typedef NS_ENUM(NSInteger, GADInAppPurchaseStatus) {
-  kGADInAppPurchaseStatusError = 0,          ///< Error occured while processing the purchase.
+  kGADInAppPurchaseStatusError = 0,          ///< Error occurred while processing the purchase.
   kGADInAppPurchaseStatusSuccessful = 1,     ///< Purchase was completed successfully.
   kGADInAppPurchaseStatusCancel = 2,         ///< Purchase was cancelled by the user.
-  kGADInAppPurchaseStatusInvalidProduct = 3  ///< Error occured while looking up the product.
+  kGADInAppPurchaseStatusInvalidProduct = 3  ///< Error occurred while looking up the product.
 };
 
 /// The in-app purchase item to be purchased with the purchase flow handled by you, the

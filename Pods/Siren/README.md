@@ -54,6 +54,8 @@ Siren is built to work with the [**Semantic Versioning**](https://semver.org/) s
 ### Future Features
 A list of future development work can be found on [Siren's Kanban Board](https://github.com/ArtSabintsev/Siren/projects/1).
 
+---
+
 ## Screenshots
 - The **left picture** forces the user to update the app.
 - The **center picture** gives the user the option to update the app.
@@ -73,6 +75,8 @@ A list of future development work can be found on [Siren's Kanban Board](https:/
 - **React Native (iOS)**
    - [**Gant Laborde's Siren library**](https://github.com/GantMan/react-native-siren)
    - The Siren Swift library inspired the React Native library.
+
+---
 
 # Installation and Integration
 
@@ -131,8 +135,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 ```
 
 Siren also has plenty of customization options. All examples can be found in the Example Project's [**AppDelegate**](https://github.com/ArtSabintsev/Siren/blob/master/Example/Example/AppDelegate.swift) file. Uncomment the example you'd like to test.
- 
-**WARNING**: Siren should ONLY be placed in [UIApplication.didFinishLaunchingWithOptions](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application) and only after the `window?.makeKeyAndVisible()` call. Siren initializes a listener on [didBecomeActiveNotification](https://developer.apple.com/reference/foundation/nsnotification.name/1622953-uiapplicationdidbecomeactive) to perform version checks.
+
+---
 
 # Device-Specific Checks
 
@@ -146,12 +150,14 @@ If your user's device is set to one of the supported locales, an update message 
 You may want the update dialog to *always* appear in a certain language, ignoring the user's device-specific setting. You can enable it like so:
 
 ```swift
-// In this example, we force the `russian` language.
+// In this example, we force the `Russian` language.
 Siren.shared.presentationManager = PresentationManager(forceLanguageLocalization: .russian)
 ```
 
 ## Device Compatibility
 If an app update is available, Siren checks to make sure that the version of iOS on the user's device is compatible with the one that is required by the app update. For example, if a user has iOS 11 installed on their device, but the app update requires iOS 12, an alert will not be shown. This takes care of the *false positive* case regarding app updating.
+
+---
 
 # Testing
 
@@ -162,6 +168,8 @@ If you currently don't have an app in the store, change your bundleID to one tha
 
 ## Words of Caution
 Occasionally, the iTunes JSON will update faster than the App Store CDN, meaning the JSON may state that the new version of the app has been released, while no new binary is made available for download via the App Store. It is for this reason that Siren will, by default, wait 1 day (24 hours) after the JSON has been updated to prompt the user to update. To change the default setting, please modify the value of `showAlertAfterCurrentVersionHasBeenReleasedForDays`.
+
+---
 
 # App Submission
 
@@ -175,7 +183,10 @@ In 2017, Apple announced the [ability to rollout app updates gradually (a.k.a. P
 - You can set `showAlertAfterCurrentVersionHasBeenReleasedForDays` to `7`, and Siren will not prompt any users until the latest version is 7 days old, after the phased rollout is complete.
 - You can remotely disable Siren until the rollout is done using your own API / backend logic.
 
+---
+
 # Attribution 
+
 ## Special Thanks
 A massive shout-out and thank you goes to the following folks: 
 

@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Pause the video. Doesn't do anything if the video is already paused.
 - (void)pause;
 
+/// Stops the video and displays the video's first frame. Call -play to resume playback at the start
+/// of the video. Contact your account manager to enable this feature.
+- (void)stop;
+
 /// Returns a Boolean indicating if the receiver has video content.
 - (BOOL)hasVideoContent;
 
