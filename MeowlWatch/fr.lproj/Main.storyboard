@@ -164,7 +164,7 @@ Copyright © 2017 – 2019 Jonathan Chan
 Class of 2020, Northwestern University
 
 Logo de l'app MeowlWatch :
-Copyright © 2017 Isabel Nygard, utilisé avec permission.
+Copyright © 2017 Isabel Nygard, permission d'utilisation.
 Class of 2020, Northwestern University
 
 En utilisant cette app, vous acceptez le démenti et la politique de confidentialité ci-dessous.
@@ -187,25 +187,10 @@ Démenti</string>
                                     <fragment>
                                         <mutableString key="content">
 
-Bien que le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'est affilié ni à Northwestern University ni à Northwestern Dining. Cette app a été fait indépendamment de Northwestern, et son contenu ne reflète pas nécessairement les vues de Northwestern. Bien que le programmeur fera de son mieux pour s'assurer que cette app marchera comme prévu, il n'a pas de contrôle sur les serveurs web et ne peut pas garantir une exactitude 100 %. Le programmeur de MeowlWatch n'assume aucune responsabilité du préjudice à n'importe qui en utiliser. En téléchargeant cette app, les utilisateurs acceptent qu'ils continuent à leurs propres risques.
+Bien que le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'est affilié à ni Northwestern University ni Northwestern Dining. Cette app a été fait indépendamment de Northwestern, et son contenu ne reflète pas nécessairement les vues de Northwestern. Bien que le programmeur fera de son mieux pour s'assurer que cette app marche comme prévu, il n'a pas de contrôle sur les serveurs web et ne peut pas garantir une exactitude 100 %. Le programmeur de MeowlWatch n'assume aucune responsabilité du préjudice à n'importe qui en l'utilisant. En téléchargeant cette app, les utilisateurs acceptent qu'ils continuent à leurs propres risques.
 
-(J'ai fait quelque chose pour faire </mutableString>
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="plus facile">
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content"> votre vie. Merci de ne m'en vouloir pas :).)
-</string>
+(J'ai fait quelque chose pour faciliter votre vie. Merci de ne m'en vouloir pas :).)
+</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
@@ -233,11 +218,11 @@ Cg
                                     <fragment>
                                         <mutableString key="content">
 
-Votre NetID et votre mot de passe seront envoyés cryptés à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre NetID et votre mot de passe seront aussi enregistrés cryptés sur votre appareil, pour qu'il ne faut pas se connecter toutes les fois lors d'en ouvrir. Votre mot de passe ne sera jamais ni utilisé pour un autre but ni envoyé à une autre lieu.
+Votre NetID et votre mot de passe seront envoyés cryptés à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre NetID et votre mot de passe seront aussi enregistrés cryptés sur votre appareil, pour ne pas se connecter chaque fois lors de l'ouverture. Votre mot de passe ne sera ni utilisé pour un autre but ni envoyé à une autre lieu.
 
 Vos données de repas seront enregistrées sur votre appareil et ne seront envoyée nulle part.
 
-La version gratuite de cette app affichera des publicités par Google, ce qui pourrait suivre vos habitudes pour afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez en faire à Réglages système &gt; Confidentialité &gt; Publicité &gt; Suivi publicitaire limité. Lors d'un achat intégré réussi, les publicités seront désactivés.
+La version gratuite de cette app affichera des publicités par Google, ce qui pourrait suivre vos habitudes d'utilisation pour afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez le faire à Réglages système &gt; Confidentialité &gt; Publicité &gt; Suivi publicitaire limité. Lors d'un achat intégré réussi, les publicités seront désactivés.
 </mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -266,7 +251,7 @@ Cg
                                     <fragment>
                                         <string key="content">
 
-MeowlWatch utilise le logicielle au tiers sous ces licences-ci :
+MeowlWatch utilise le logicielle d'un tiers sous ces licences-ci :
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
