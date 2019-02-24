@@ -56,7 +56,8 @@
 
 "SeeMenu" = "See Today's Menu";
 "MenuLoadingMessage" = "Loading menu...";
-"MenuFor: %@" = "Menu — %@";
+"MenuLoadErrorMessage" = "Could not load menu";
+"MenuFor: %@" = "Menu for %@";
 
 /** Settings */
 "SettingsWidgetHeading" = "Widget";

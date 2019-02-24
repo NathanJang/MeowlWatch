@@ -31,8 +31,8 @@
 "MWTVCCatCash" = "Cat Cash";
 
 "MWTVCRefreshErrorTitle" = "Oups !";
-"QueryErrorConnection" = "Échec de connexion au serveur. Veuillez vérifier que votre appareil est connecté à Internet.";
-"QueryErrorAuthentication" = "Échec de connexion à Northwestern. Veuillez toucher « Compte » et vérifier que votre NetID et votre mot de passe sont exacts.";
+"QueryErrorConnection" = "Échec de la connexion au serveur. Veuillez vérifier que votre appareil est connecté à Internet.";
+"QueryErrorAuthentication" = "Échec de la connexion à Northwestern. Veuillez toucher « Compte » et vérifier que votre NetID et votre mot de passe sont exacts.";
 "QueryErrorParse" = "Il y a un problème inconnu. Veuillez réssayer. Si le problème persiste, veuillez contacter le programmeur à Réglages > Signaler un problème.";
 
 /** Modals */
@@ -56,7 +56,8 @@
 
 "SeeMenu" = "Voir le menu du jour";
 "MenuLoadingMessage" = "Chargement du menu...";
-"MenuFor: %@" = "Menu — %@";
+"MenuLoadErrorMessage" = "Échec du chargement";
+"MenuFor: %@" = "Menu pour %@";
 
 /** Settings */
 "SettingsWidgetHeading" = "Widget";
@@ -79,17 +80,17 @@
 "SettingsFeedbackSubject: %@" = "Commentaires sur MeowlWatch (v%@)";
 "SettingsFeedbackDoneButtonTitle" = "OK";
 "SettingsDoneButton" = "OK";
-"SettingsCannotPayAlertTitle" = "Échec d'achat";
+"SettingsCannotPayAlertTitle" = "Échec de l'achat";
 "SettingsCannotPayAlertMessage" = "Veuillez aller aux réglages du système et configurer votre compte iTunes, et activez les achats intégrés.";
-"SettingsCannotFetchAlertTitle" = "Échec de chargerment les achats intégrés";
+"SettingsCannotFetchAlertTitle" = "Échec du chargement des achats intégrés";
 "SettingsCannotFetchAlertMessage" = "Veuillez ressayer plus tard.";
 "SettingsThanksAlertTitle" = "Merci beaucoup pour votre soutien ! 🎉🎉🎉";
 "SettingsThanksAlertMessage" = "Il pourrait falloir plusieurs minutes avant l'activation du widget.";
-"SettingsCannotRestorePurchaseAlertTitle" = "Échec de restauration des achats";
+"SettingsCannotRestorePurchaseAlertTitle" = "Échec de la restauration des achats";
 "SettingsCannotRestorePurchaseAlertMessage" = "Nous n'avons pas pu trouvé un achat précédent.";
-"SettingsRestorePurchaseFailedAlertTitle" = "Échec de restauration des achats";
+"SettingsRestorePurchaseFailedAlertTitle" = "Échec de la restauration des achats";
 "SettingsRestorePurchaseFailedAlertMessage" = "Veuillez ressayer plus tard.";
-"SettingsPurchaseFailedAlertTitle" = "Échec d'achat";
+"SettingsPurchaseFailedAlertTitle" = "Échec de l'achat";
 "SettingsPurchaseFailedAlertMessage" = "Veuillez ressayer.";
 
 "SettingsLanguageTitle" = "Langue";
@@ -126,4 +127,4 @@
 "%@ (Closing Soon)" = "%@ (ferme bientôt)";
 
 /** MWW */
-"MWWUpdateFailedMessage" = "Échec de mise à jour, ouvrez l'app";
+"MWWUpdateFailedMessage" = "Échec de la mise à jour, ouvrez l'app";

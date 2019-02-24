@@ -26,15 +26,25 @@ class MenuTableViewController: ExpandableTableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 75
 
+        hiddenSections = [0]
+
         getMenu(locationId: locationId!) { [weak self] menu in
             DispatchQueue.main.async { [weak self] in
+                guard let menu = menu else {
+                    self?.hasError = true
+                    self?.tableView.reloadData()
+                    return
+                }
                 self?.menu = menu
+                self?.hiddenSections = [Int](0..<menu.periods.count)
                 self?.tableView.reloadData()
             }
         }
     }
 
     var menu: Menu?
+
+    var hasError = false
 
     // MARK: - Table view data source
 
@@ -48,7 +58,10 @@ class MenuTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        return menu?.periods[section].name ?? mwLocalizedString("MenuLoadingMessage")
+        guard let menu = menu else {
+            return mwLocalizedString(hasError ? "MenuLoadErrorMessage" : "MenuLoadingMessage")
+        }
+        return menu.periods[section].name
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

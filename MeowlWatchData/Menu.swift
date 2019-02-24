@@ -44,7 +44,7 @@ public struct Menu: Codable {
 
 }
 
-public func getMenu(locationId: String, date: Date = Date(), completion: ((Menu) -> Void)?) {
+public func getMenu(locationId: String, date: Date = Date(), completion: ((Menu?) -> Void)?) {
     let dateString: String = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-M-d"
@@ -54,7 +54,7 @@ public func getMenu(locationId: String, date: Date = Date(), completion: ((Menu)
     Alamofire.request(urlString).responseData { response in
         let data = response.result.value!
         let decoder = JSONDecoder()
-        let response = try! decoder.decode(MenuResponseBody.self, from: data)
-        completion?(response.menu)
+        let response = try? decoder.decode(MenuResponseBody.self, from: data)
+        completion?(response?.menu)
     }
 }
