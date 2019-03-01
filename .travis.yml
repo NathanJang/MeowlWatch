@@ -4,10 +4,6 @@ xcode_workspace: MeowlWatch.xcworkspace
 xcode_scheme: MeowlWatch
 platform: iOS Simulator,OS=12.1,name=iPhone 8 Plus
 
-before_script:
-  # Copy debug keys to test build
-  - cp MeowlWatch/AdMobKeys-Debug.plist MeowlWatch/AdMobKeys-Release.plist
-
 script:
   - set -o pipefail
-  - xcodebuild -workspace MeowlWatch.xcworkspace -scheme MeowlWatch -configuration Release | xcpretty
+  - xcodebuild -workspace MeowlWatch.xcworkspace -scheme MeowlWatch build | xcpretty
