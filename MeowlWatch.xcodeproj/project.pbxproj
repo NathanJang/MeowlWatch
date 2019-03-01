@@ -97,6 +97,7 @@
 		ABF2FF8A220D52E000E97BB3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */; };
 		ABF2FF8C220D5A8700E97BB3 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF8B220D5A8700E97BB3 /* Menu.swift */; };
 		ABF2FF8D220E541400E97BB3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */; };
+		ABF6FE6F2229DF4800C7D831 /* MeowlWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6FE6E2229DF4800C7D831 /* MeowlWatchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = AB29900B1E93F356003020CD;
 			remoteInfo = MeowlWatchData;
+		};
+		ABF6FE682229DE2D00C7D831 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB27C1DA1E7CCCAC00A90072 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB7782F81E84460B00925F72;
+			remoteInfo = MeowlWatch;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -255,6 +263,8 @@
 		ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		ABF2FF8B220D5A8700E97BB3 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		ABF6FE632229DE2D00C7D831 /* MeowlWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeowlWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABF6FE6E2229DF4800C7D831 /* MeowlWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowlWatchTests.swift; sourceTree = "<group>"; };
 		ABFF170F1EB27BB3004BBEAE /* DiningHallSchedules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DiningHallSchedules.plist; path = MeowlWatchData/Schedules/DiningHallSchedules.plist; sourceTree = SOURCE_ROOT; };
 		AEE346F2A9AD169A19031085 /* Pods-MeowlWatchData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeowlWatchData.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeowlWatchData/Pods-MeowlWatchData.debug.xcconfig"; sourceTree = "<group>"; };
 		E1B860E29B4CC6EE08E693B1 /* Pods_MeowlWatch_Full.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeowlWatch_Full.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,12 +307,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABF6FE602229DE2D00C7D831 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		AB27C1D91E7CCCAC00A90072 = {
 			isa = PBXGroup;
 			children = (
+				ABF6FE6D2229DF0600C7D831 /* Tests */,
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
 				AB29900D1E93F356003020CD /* MeowlWatchData */,
@@ -321,6 +339,7 @@
 				AB7783111E84460B00925F72 /* MeowlWatch.app */,
 				AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */,
 				AB29900C1E93F356003020CD /* MeowlWatchData.framework */,
+				ABF6FE632229DE2D00C7D831 /* MeowlWatchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -447,6 +466,14 @@
 			path = "MeowlWatch Widget";
 			sourceTree = "<group>";
 		};
+		ABF6FE6D2229DF0600C7D831 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6FE6E2229DF4800C7D831 /* MeowlWatchTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		EE7F08316547B41BCE27AF03 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,13 +583,31 @@
 			productReference = AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */;
 			productType = "com.apple.product-type.application";
 		};
+		ABF6FE622229DE2D00C7D831 /* MeowlWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABF6FE6C2229DE2D00C7D831 /* Build configuration list for PBXNativeTarget "MeowlWatchTests" */;
+			buildPhases = (
+				ABF6FE5F2229DE2D00C7D831 /* Sources */,
+				ABF6FE602229DE2D00C7D831 /* Frameworks */,
+				ABF6FE612229DE2D00C7D831 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABF6FE692229DE2D00C7D831 /* PBXTargetDependency */,
+			);
+			name = MeowlWatchTests;
+			productName = MeowlWatchTests;
+			productReference = ABF6FE632229DE2D00C7D831 /* MeowlWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		AB27C1DA1E7CCCAC00A90072 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jonathan Chan";
 				TargetAttributes = {
@@ -599,6 +644,13 @@
 						DevelopmentTeam = 3A2N53KSLM;
 						LastSwiftMigration = 0900;
 					};
+					ABF6FE622229DE2D00C7D831 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 3A2N53KSLM;
+						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AB7782F81E84460B00925F72;
+					};
 				};
 			};
 			buildConfigurationList = AB27C1DD1E7CCCAC00A90072 /* Build configuration list for PBXProject "MeowlWatch" */;
@@ -621,6 +673,7 @@
 				AB7B7FC01E8E9F0500272655 /* MeowlWatch Full */,
 				AB7782D01E8242B000925F72 /* MeowlWatch Widget */,
 				AB29900B1E93F356003020CD /* MeowlWatchData */,
+				ABF6FE622229DE2D00C7D831 /* MeowlWatchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -689,6 +742,13 @@
 				AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */,
 				AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */,
 				ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABF6FE612229DE2D00C7D831 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,6 +927,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABF6FE5F2229DE2D00C7D831 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABF6FE6F2229DF4800C7D831 /* MeowlWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -889,6 +957,11 @@
 			isa = PBXTargetDependency;
 			target = AB29900B1E93F356003020CD /* MeowlWatchData */;
 			targetProxy = AB9B5FF41E9422C200754DBB /* PBXContainerItemProxy */;
+		};
+		ABF6FE692229DE2D00C7D831 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB7782F81E84460B00925F72 /* MeowlWatch */;
+			targetProxy = ABF6FE682229DE2D00C7D831 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1232,6 +1305,58 @@
 			};
 			name = Release;
 		};
+		ABF6FE6A2229DE2D00C7D831 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MeowlWatchTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeowlWatch.app/MeowlWatch";
+			};
+			name = Debug;
+		};
+		ABF6FE6B2229DE2D00C7D831 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3A2N53KSLM;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MeowlWatchTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeowlWatch.app/MeowlWatch";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1276,6 +1401,15 @@
 			buildConfigurations = (
 				AB7B7FD91E8E9F0500272655 /* Debug */,
 				AB7B7FDA1E8E9F0500272655 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABF6FE6C2229DE2D00C7D831 /* Build configuration list for PBXNativeTarget "MeowlWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABF6FE6A2229DE2D00C7D831 /* Debug */,
+				ABF6FE6B2229DE2D00C7D831 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
