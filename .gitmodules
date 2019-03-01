@@ -1,4 +1,4 @@
 [submodule "Schedules"]
 	path = MeowlWatchData/Schedules
-	url = git@github.com:NathanJang/MeowlWatch-Schedules.git
+	url = https://github.com/NathanJang/MeowlWatch-Schedules.git
 	branch = master
