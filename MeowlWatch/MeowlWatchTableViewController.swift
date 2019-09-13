@@ -423,7 +423,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
     @objc override func sectionHeaderView(_ sectionHeaderView: MeowlWatchSectionHeaderView, sectionOpened section: Int) {
         super.sectionHeaderView(sectionHeaderView, sectionOpened: section)
-        if let index = MeowlWatchData.hiddenSections.index(of: section) {
+        if let index = MeowlWatchData.hiddenSections.firstIndex(of: section) {
             MeowlWatchData.hiddenSections.remove(at: index)
         }
     }
