@@ -27,19 +27,11 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-        if #available(iOSApplicationExtension 10.0, *) {
-            if let extensionContext = extensionContext {
-                extensionContext.widgetLargestAvailableDisplayMode = .expanded
-            }
-        } else {
-            // Fallback on earlier versions
-            self.preferredContentSize = CGSize(width: self.preferredContentSize.width, height: 220)
-            let descriptionColor = UIColor.white
-            self.leftDescriptionLabel.textColor = descriptionColor
-            self.rightDescriptionLabel.textColor = descriptionColor
-            self.secondaryLeftDescriptionLabel.textColor = descriptionColor
-            self.purchaseRequiredLabel.textColor = descriptionColor
-            self.updatedLabel.textColor = descriptionColor
+        if let extensionContext = extensionContext {
+            extensionContext.widgetLargestAvailableDisplayMode = .expanded
+        }
+        for label in [self.leftNumberLabel, self.rightNumberLabel, self.secondaryLeftNumberLabel, self.secondaryRightNumberLabel] {
+            label?.textColor = .purplePride
         }
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView(sender:))))
@@ -77,7 +69,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 
     }
 
-    @available(iOSApplicationExtension 10.0, *)
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .expanded {
             self.preferredContentSize = CGSize(width: maxSize.width, height: 220)

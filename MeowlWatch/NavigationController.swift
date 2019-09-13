@@ -63,11 +63,9 @@ class NavigationController: UINavigationController {
             self.setToolbarHidden(true, animated: false)
         #endif
 
-        view.tintColor = (UIApplication.shared.delegate as! AppDelegate).tintColor
+        view.tintColor = .purplePride
 
-        if #available(iOS 11.0, *) {
-            navigationBar.prefersLargeTitles = true
-        }
+        navigationBar.prefersLargeTitles = true
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -63,6 +63,12 @@
 		AB9B5FF31E9422C200754DBB /* MeowlWatchData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB29900C1E93F356003020CD /* MeowlWatchData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */; };
 		AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */; };
+		ABA71FC0232B8FFC0024C964 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA71FBF232B8FFC0024C964 /* Colors.xcassets */; };
+		ABA71FC1232B8FFC0024C964 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA71FBF232B8FFC0024C964 /* Colors.xcassets */; };
+		ABA71FC2232B8FFC0024C964 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA71FBF232B8FFC0024C964 /* Colors.xcassets */; };
+		ABA71FC5232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA71FC4232B90E20024C964 /* UIColor+MeowlWatch.swift */; };
+		ABA71FC6232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA71FC4232B90E20024C964 /* UIColor+MeowlWatch.swift */; };
+		ABA71FC7232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA71FC4232B90E20024C964 /* UIColor+MeowlWatch.swift */; };
 		ABA9714B1E898ADB001A6AD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA9714A1E898ADB001A6AD8 /* StoreKit.framework */; };
 		ABC11B1E1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */; };
 		ABC11B1F1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */; };
@@ -249,6 +255,8 @@
 		AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchSectionHeaderView.swift; path = MeowlWatch/MeowlWatchSectionHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchSectionHeaderView.xib; path = MeowlWatch/MeowlWatchSectionHeaderView.xib; sourceTree = SOURCE_ROOT; };
 		AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsTableViewController.swift; path = MeowlWatch/SearchResultsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		ABA71FBF232B8FFC0024C964 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		ABA71FC4232B90E20024C964 /* UIColor+MeowlWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+MeowlWatch.swift"; sourceTree = "<group>"; };
 		ABA9714A1E898ADB001A6AD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		ABC11B1C1EB712FE00491E7B /* MeowlWatchUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchUserTableViewCell.swift; path = MeowlWatch/MeowlWatchUserTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ABC11B1D1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchUserTableViewCell.xib; path = MeowlWatch/MeowlWatchUserTableViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -320,6 +328,7 @@
 		AB27C1D91E7CCCAC00A90072 = {
 			isa = PBXGroup;
 			children = (
+				ABA71FC3232B90BD0024C964 /* Shared UI */,
 				ABF6FE6D2229DF0600C7D831 /* Tests */,
 				AB27C1E41E7CCCAC00A90072 /* MeowlWatch */,
 				AB7782D41E8242B000925F72 /* MeowlWatch Widget */,
@@ -464,6 +473,15 @@
 				AB60AFCF220AC49900C0C17B /* InfoPlist.strings */,
 			);
 			path = "MeowlWatch Widget";
+			sourceTree = "<group>";
+		};
+		ABA71FC3232B90BD0024C964 /* Shared UI */ = {
+			isa = PBXGroup;
+			children = (
+				ABA71FBF232B8FFC0024C964 /* Colors.xcassets */,
+				ABA71FC4232B90E20024C964 /* UIColor+MeowlWatch.swift */,
+			);
+			path = "Shared UI";
 			sourceTree = "<group>";
 		};
 		ABF6FE6D2229DF0600C7D831 /* Tests */ = {
@@ -695,6 +713,7 @@
 				AB7782EE1E83C1AD00925F72 /* MainInterface.storyboard in Resources */,
 				ABC11B3C1EB7938F00491E7B /* DiningHallSchedules.plist in Resources */,
 				ABC11B3D1EB7938F00491E7B /* CafeSchedules.plist in Resources */,
+				ABA71FC2232B8FFC0024C964 /* Colors.xcassets in Resources */,
 				AB60AFCD220AC49900C0C17B /* InfoPlist.strings in Resources */,
 				AB60AFD1220AC63C00C0C17B /* Localizable.stringsdict in Resources */,
 			);
@@ -719,6 +738,7 @@
 				AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB60AFA5220A479000C0C17B /* Localizable.strings in Resources */,
 				ABC11B301EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
+				ABA71FC0232B8FFC0024C964 /* Colors.xcassets in Resources */,
 				ABC11B341EB7938D00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,6 +760,7 @@
 				AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */,
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */,
+				ABA71FC1232B8FFC0024C964 /* Colors.xcassets in Resources */,
 				AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */,
 				ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
@@ -875,6 +896,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA71FC7232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */,
 				AB7782E31E83C18900925F72 /* WidgetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -889,6 +911,7 @@
 				ABC11B221EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.swift in Sources */,
 				AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
+				ABA71FC5232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
 				ABF2FF86220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
@@ -913,6 +936,7 @@
 				AB3DEF831E969E410035F000 /* BannerAdToolbar.swift in Sources */,
 				AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
+				ABA71FC6232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */,
 				ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
@@ -1155,7 +1179,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatchData/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1182,7 +1206,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatchData/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatchData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1202,7 +1226,7 @@
 				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1220,7 +1244,7 @@
 				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.jonathanchan.MeowlWatch.MeowlWatch-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1239,7 +1263,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1258,7 +1282,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1276,7 +1300,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"MEOWLWATCH_FULL\"";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;
@@ -1296,7 +1320,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeowlWatch/MeowlWatch.entitlements;
 				DEVELOPMENT_TEAM = 3A2N53KSLM;
 				INFOPLIST_FILE = "$(SRCROOT)/MeowlWatch/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"MEOWLWATCH_FULL\"";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.MeowlWatch;

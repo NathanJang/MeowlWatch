@@ -53,9 +53,7 @@ class SettingsTableViewController: UITableViewController {
             SKPaymentQueue.default().add(self)
         #endif
 
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .never
-        }
+        navigationItem.largeTitleDisplayMode = .never
 
         navigationItem.setRightBarButton(doneButton, animated: false)
     }
@@ -327,9 +325,7 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             guard let url = URL(string: self.isabelShortURLString) else { return }
             let safariVC = SFSafariViewController(url: url)
-            if #available(iOS 10.0, *) {
-                safariVC.preferredControlTintColor = self.view.tintColor
-            }
+            safariVC.preferredControlTintColor = self.view.tintColor
             self.present(safariVC, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
 
@@ -434,8 +430,10 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 }
             }
             isRefreshing = false
-            navigationItem.setRightBarButton(doneButton, animated: false)
-            self.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            DispatchQueue.main.async { [weak self] in
+                self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            }
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {

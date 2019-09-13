@@ -367,11 +367,7 @@ public var shouldDisplayAds: Bool { return !anythingIsPurchased }
 
 public var rateOnAppStoreUrl: String {
     let appId = 1219875692
-    if #available(iOS 11.0, *) {
-        return "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(appId)&action=write-review"
-    } else {
-        return "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appId)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software&action=write-review"
-    }
+    return "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(appId)&action=write-review"
 }
 
 // MARK: - Localization

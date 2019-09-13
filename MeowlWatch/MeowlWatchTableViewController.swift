@@ -51,13 +51,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
 
         let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
         self.searchController = searchController
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
-            navigationItem.hidesSearchBarWhenScrolling = false
-        } else {
-            searchController.searchBar.sizeToFit() // iOS 8
-            tableView.tableHeaderView = searchController.searchBar
-        }
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.placeholder = mwLocalizedString("MWTVCSearchBarPlaceholder", comment: "Search Dining Locations")
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.autocorrectionType = .no
@@ -180,9 +175,9 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case .closed:
             diningLocationCell.statusLabel.textColor = .red
         case .closingSoon:
-            diningLocationCell.statusLabel.textColor = (UIApplication.shared.delegate as! AppDelegate).warningColor
+            diningLocationCell.statusLabel.textColor = .warning
         default:
-            diningLocationCell.statusLabel.textColor = (UIApplication.shared.delegate as! AppDelegate).tintColor
+            diningLocationCell.statusLabel.textColor = .warning
         }
         return diningLocationCell
     }
@@ -329,12 +324,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
-            if #available(iOS 11.0, *) {
-                self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
-            } else {
-                // Fallback on earlier versions
-                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - refreshControl.frame.height), animated: animated)
-            }
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
         }
         refresh(animated: animated)
     }
@@ -346,12 +336,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
 
             refreshControl.endRefreshing()
-            if #available(iOS 11.0, *) {
-                tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
-            } else {
-                // Fallback on earlier versions
-                    self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: true)
-            }
+            tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
         }
     }
 
@@ -451,9 +436,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     func showCatCashVC() {
         let url = URL(string: addCatCashUrlString)!
         let safariVC = SFSafariViewController(url: url)
-        if #available(iOS 10.0, *) {
-            safariVC.preferredControlTintColor = self.view.tintColor
-        }
+        safariVC.preferredControlTintColor = self.view.tintColor
         self.present(safariVC, animated: true, completion: nil)
     }
 

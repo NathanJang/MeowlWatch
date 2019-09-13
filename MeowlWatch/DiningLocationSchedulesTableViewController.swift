@@ -109,9 +109,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
         tableView.allowsMultipleSelection = true
         clearsSelectionOnViewWillAppear = false
 
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .never
-        }
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     override func viewWillAppear(_ animated: Bool) {
