@@ -362,7 +362,7 @@ class SettingsTableViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
 
             case 1:
-                UIApplication.shared.openURL(URL(string: rateOnAppStoreUrl)!)
+                UIApplication.shared.open(URL(string: rateOnAppStoreUrl)!)
                 tableView.deselectRow(at: indexPath, animated: true)
 
             case 2:

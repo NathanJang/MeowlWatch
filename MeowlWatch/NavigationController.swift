@@ -171,7 +171,7 @@ class NavigationController: UINavigationController {
             })
             alertController.addAction(UIAlertAction(title: mwLocalizedString("TipRateOnAppStore", comment: "Button to go to app store"), style: .default) { _ in
                 let url = URL(string: rateOnAppStoreUrl)!
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             })
             alertController.addAction(UIAlertAction(title: mwLocalizedString("TipDismiss", comment: "Button to dismiss"), style: .cancel, handler: nil))
             alertController.view.tintColor = view.tintColor
