@@ -429,8 +429,8 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                     self.widgetProduct = product
                 }
             }
-            isRefreshing = false
             DispatchQueue.main.async { [weak self] in
+                self?.isRefreshing = false
                 self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
                 self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
             }
@@ -438,9 +438,11 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
             self.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: { [weak self] in
-                self?.isRefreshing = false
-                self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
-                self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                DispatchQueue.main.async {
+                    self?.isRefreshing = false
+                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                    self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                }
             })
         }
 
@@ -459,17 +461,20 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         /// What to do once the widget is purchased.
         func didPurchaseWidget() {
             SKPaymentQueue.default().remove(self)
-            self.showMessageAlert(title: mwLocalizedString("SettingsThanksAlertTitle", comment: ""), message: mwLocalizedString("SettingsThanksAlertMessage", comment: ""))
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.showMessageAlert(title: mwLocalizedString("SettingsThanksAlertTitle", comment: ""), message: mwLocalizedString("SettingsThanksAlertMessage", comment: ""))
 
-            self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentInset.top), animated: true)
-            isRefreshing = false
-            navigationItem.setRightBarButton(doneButton, animated: false)
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentInset.top), animated: true)
+                self.isRefreshing = false
+                self.navigationItem.setRightBarButton(self.doneButton, animated: false)
 
-            MeowlWatchData.widgetIsPurchased = true
-            let navigationController = self.navigationController!.presentingViewController as! NavigationController
-            navigationController.bannerView = nil
-            navigationController.setToolbarHidden(true, animated: false)
-            self.tableView.reloadData()
+                MeowlWatchData.widgetIsPurchased = true
+                let navigationController = self.navigationController!.presentingViewController as! NavigationController
+                navigationController.bannerView = nil
+                navigationController.setToolbarHidden(true, animated: false)
+                self.tableView.reloadData()
+            }
         }
 
     }
@@ -493,16 +498,20 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             }
 
             if !MeowlWatchData.widgetIsPurchased {
-                self.showMessageAlert(title: mwLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
-                isRefreshing = false
-                navigationItem.setRightBarButton(doneButton, animated: false)
+                DispatchQueue.main.async { [weak self] in
+                    self?.showMessageAlert(title: mwLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
+                    self?.isRefreshing = false
+                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                }
             }
         }
 
         func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-            self.showMessageAlert(title: mwLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
-            isRefreshing = false
-            navigationItem.setRightBarButton(doneButton, animated: false)
+            DispatchQueue.main.async { [weak self] in
+                self?.showMessageAlert(title: mwLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
+                self?.isRefreshing = false
+                self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+            }
         }
 
         /// What to do once we receive a transaction.
@@ -511,17 +520,21 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         func handleTransaction(_ transaction: SKPaymentTransaction, withQueue queue: SKPaymentQueue) {
             switch transaction.transactionState {
             case .purchased, .restored:
-                isRefreshing = false
-                navigationItem.setRightBarButton(doneButton, animated: false)
+                DispatchQueue.main.async { [weak self] in
+                    self?.isRefreshing = false
+                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                }
                 if transaction.payment.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     didPurchaseWidget()
                     queue.finishTransaction(transaction)
                 }
 
             case .failed:
-                isRefreshing = false
-                navigationItem.setRightBarButton(doneButton, animated: false)
-                self.showMessageAlert(title: mwLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
+                DispatchQueue.main.async { [weak self] in
+                    self?.isRefreshing = false
+                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                    self?.showMessageAlert(title: mwLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
+                }
                 queue.finishTransaction(transaction)
 
             default:
