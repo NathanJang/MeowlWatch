@@ -31,13 +31,13 @@
 "MWTVCCatCash" = "Cat Cash";
 
 "MWTVCRefreshErrorTitle" = "Oups !";
-"QueryErrorConnection" = "Échec de la connexion au serveur. Veuillez vérifier que votre appareil est connecté à Internet.";
-"QueryErrorAuthentication" = "Échec de la connexion à Northwestern. Veuillez toucher « Compte » et vérifier que votre NetID et votre mot de passe sont exacts.";
-"QueryErrorParse" = "Il y a un problème inconnu. Veuillez réssayer. Si le problème persiste, veuillez contacter le programmeur dans Réglages > Signaler un problème.";
+"QueryErrorConnection" = "Échec de la connexion au serveur. Vérifiez que votre appareil est connecté à Internet.";
+"QueryErrorAuthentication" = "Échec de la connexion à Northwestern. Touchez « Compte » et vérifiez que votre NetID et votre mot de passe sont exacts.";
+"QueryErrorParse" = "Un problème inconnu s'est produit. Éssayez à nouveau. Si le problème persiste, veuillez contacter le programmeur dans Réglages > Signaler un problème.";
 
 /** Modals */
 "TipTitle" = "Vous aimez Meowlwatch ? Pensez au pourboire !";
-"TipMessage" = "Pour un programmeur solo, c'est très cher de publier cette app sur App Store. Voyez le widget et veuillez m'aider en laissant un petit pourboire (je déteste aussi des publicités), ou notez-la sur App Store !";
+"TipMessage" = "Pour un programmeur solo, c'est très cher de publier cette app sur App Store. Voyez le widget et m'aidez en laissant un petit pourboire (je déteste aussi des publicités), ou notez-la sur App Store !";
 "TipActionTitle" = "Laisser un pourboire";
 "TipRateOnAppStore" = "Noter sur App Store";
 "TipDismiss" = "OK";
