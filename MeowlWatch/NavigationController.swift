@@ -138,10 +138,11 @@ class NavigationController: UINavigationController {
                     if MeowlWatchData.shouldDisplayAds {
                         let randomNumberFrom0To10 = arc4random_uniform(100)
                         if self.presentedViewController == nil && MeowlWatchData.lastQuery != nil {
-                            if randomNumberFrom0To10 < 10 {
+                            if randomNumberFrom0To10 < 5 {
                                 showTipReminder()
                             } else if randomNumberFrom0To10 < 5 {
-                                showInterstitial()
+                                // Deprecated because i'm nice
+                                // showInterstitial()
                             }
                         }
                     }

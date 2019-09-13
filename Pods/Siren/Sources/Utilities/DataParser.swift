@@ -6,7 +6,7 @@
 //  Copyright © 2018 Sabintsev iOS Projects. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Version parsing functions for Siren.
 struct DataParser {
@@ -30,7 +30,7 @@ struct DataParser {
     ///
     /// - Parameter model: The iTunes Lookup Model.
     /// - Returns: `true` if the latest version is compatible with the device's current version of iOS. Otherwise, `false`.
-    static func isUpdateCompatibleWithDeviceOS(for model: LookupModel) -> Bool {
+    static func isUpdateCompatibleWithDeviceOS(for model: APIModel) -> Bool {
         guard let requiredOSVersion = model.results.first?.minimumOSVersion else {
             return false
         }
@@ -45,12 +45,12 @@ struct DataParser {
         return true
     }
 
-    /// The type of update that is returned from the API in relation to the verison of the app that is installed.
+    /// The type of update that is returned from the API in relation to the version of the app that is installed.
     ///
     /// - Parameters:
     ///   - installedVersion: The installed version of the app.
     ///   - appStoreVersion: The App Store version of the app.
-    /// - Returns: The type of update in relation to the verison of the app that is installed.
+    /// - Returns: The type of update in relation to the version of the app that is installed.
     static func parseForUpdate(forInstalledVersion installedVersion: String?,
                                andAppStoreVersion appStoreVersion: String?) -> RulesManager.UpdateType {
         guard let installedVersion = installedVersion,

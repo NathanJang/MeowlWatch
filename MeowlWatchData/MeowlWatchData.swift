@@ -322,11 +322,6 @@ private func adMobObject(forKey key: String) -> Any? {
 
 // MARK: AdMob
 
-/// The app ID for AdMob.
-public var adMobAppID: String {
-    return adMobObject(forKey: "AdMobAppID") as! String
-}
-
 /// The banner ad unit ID for AdMob.
 public var adMobBannerAdUnitID: String {
     return adMobObject(forKey: "AdMobBannerAdUnitID") as! String

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '8.1'
+platform :ios, '11.0'
 
 target 'MeowlWatch' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -20,5 +20,5 @@ target 'MeowlWatchData' do
 
   pod 'SwiftKeychainWrapper'
   pod 'Alamofire'
-  pod 'Kanna', '~> 4.0.0', :inhibit_warnings => true
+  pod 'Kanna'
 end

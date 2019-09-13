@@ -6,7 +6,7 @@
 //  Copyright © 2017 Sabintsev iOS Projects. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// PresentationManager for Siren
 public struct PresentationManager {
@@ -123,9 +123,8 @@ extension PresentationManager {
         case .force:
             alertController?.addAction(updateAlertAction(completion: handler))
         case .option:
-
-            alertController?.addAction(updateAlertAction(completion: handler))
             alertController?.addAction(nextTimeAlertAction(completion: handler))
+            alertController?.addAction(updateAlertAction(completion: handler))
         case .skip:
             alertController?.addAction(updateAlertAction(completion: handler))
             alertController?.addAction(nextTimeAlertAction(completion: handler))

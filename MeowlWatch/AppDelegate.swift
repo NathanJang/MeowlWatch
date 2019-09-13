@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         #if !MEOWLWATCH_FULL
             if MeowlWatchData.shouldDisplayAds {
-                GADMobileAds.configure(withApplicationID: MeowlWatchData.adMobAppID)
+                GADMobileAds.sharedInstance().start()
             }
         #else
             MeowlWatchData.widgetIsPurchased = true
