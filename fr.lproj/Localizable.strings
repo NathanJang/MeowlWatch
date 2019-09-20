@@ -21,7 +21,7 @@
 "MWTVCCafesHeading" = "Cafés et Épiceries";
 "MWTVCDiningHallsHeading" = "Cantines";
 "MWTVCNorrisHeading" = "Norris";
-"MWTVCAddCatCashMessage" = "Touchez pour ajouter du Cat Cash. Il faudra plusieurs jours avant de réussir.";
+"MWTVCAddCatCashMessage" = "Touchez pour ajouter de Cat Cash. Il faudra plusieurs jours avant de réussir.";
 
 /* Content */
 "MWTVCDiningDollarsLeft" = "Dining Dollars restant(s)";
@@ -31,8 +31,8 @@
 "MWTVCCatCash" = "Cat Cash";
 
 "MWTVCRefreshErrorTitle" = "Oups !";
-"QueryErrorConnection" = "Échec de la connexion au serveur. Vérifiez que votre appareil est connecté à Internet.";
-"QueryErrorAuthentication" = "Échec de la connexion à Northwestern. Touchez « Compte » et vérifiez que votre NetID et votre mot de passe sont exacts.";
+"QueryErrorConnection" = "Échec de la connexion au serveur. Vérifiez que vous êtes connecté à Internet.";
+"QueryErrorAuthentication" = "Échec de la connexion à Northwestern. Touchez « Compte » et vérifiez que le NetID et le mot de passe sont exacts.";
 "QueryErrorParse" = "Un problème inconnu s'est produit. Éssayez à nouveau. Si le problème persiste, veuillez contacter le programmeur dans Réglages > Signaler un problème.";
 
 /** Modals */
@@ -70,10 +70,10 @@
 "SettingsRateOnAppStoreTitle" = "Noter sur App Store";
 "SettingsShowLegalTitle" = "À propos";
 "SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles se montreront dans cet ordre-ci.\n\nMerci beaucoup de m'avoir soutenu !";
-"SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Veuillez envisager de me laisser un petit pourboire ci-dessus ! :) Les publicités seront aussi désactivés.";
+"SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Pensez à me laisser un petit pourboire ci-dessus ! :) En plus, les publicités seront bien désactivés.";
 "SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Visitez %@ pour en savoir plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponibles";
-"SettingsIAPUnavailableMessage" = "Veuillez vérifier votre connexion Internet. En plus, iTunes pourrait avoir des problèmes avec des achats intégrés en ce moment. Veuillez ressayer plus tard.";
+"SettingsIAPUnavailableMessage" = "Vérifiez que vous êtes connecté à internet. iTunes pourrait aussi avoir des problèmes avec des achats intégrés en ce moment. Veuillez ressayer plus tard.";
 "SettingsSendFeedbackInfoMessage: %@" = "Envoyez les commentaires à %@.";
 "SettingsCopyEmailActionTitle" = "Copier l'adresse";
 "SettingsOpenInMailActionTitle" = "Ouvrir dans Mail";
@@ -87,7 +87,7 @@
 "SettingsThanksAlertTitle" = "Merci beaucoup de m'avoir soutenu ! 🎉🎉🎉";
 "SettingsThanksAlertMessage" = "Il faudra plusieurs minutes avant l'activation du widget.";
 "SettingsCannotRestorePurchaseAlertTitle" = "Échec de la restauration des achats";
-"SettingsCannotRestorePurchaseAlertMessage" = "Nous n'avons pu trouver aucun achat précédent.";
+"SettingsCannotRestorePurchaseAlertMessage" = "Nous ne trouvons aucun achat précédent.";
 "SettingsRestorePurchaseFailedAlertTitle" = "Échec de la restauration des achats";
 "SettingsRestorePurchaseFailedAlertMessage" = "Veuillez ressayer plus tard.";
 "SettingsPurchaseFailedAlertTitle" = "Échec de l'achat";
