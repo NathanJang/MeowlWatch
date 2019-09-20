@@ -52,7 +52,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         let searchController = UISearchController(searchResultsController: searchResultsTableViewController)
         self.searchController = searchController
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.placeholder = mwLocalizedString("MWTVCSearchBarPlaceholder", comment: "Search Dining Locations")
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.autocorrectionType = .no
@@ -162,7 +161,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MeowlWatchTableViewCell") as! MeowlWatchTableViewCell
         cell.numberLabel.text = numberString
         cell.descriptionLabel.text = descriptionString
-        cell.accessoryType = selectable ? .detailDisclosureButton : .none
+        cell.accessoryType = selectable ? .disclosureIndicator : .none
         cell.selectionStyle = selectable ? .default : .none
         return cell
     }
@@ -177,7 +176,7 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         case .closingSoon:
             diningLocationCell.statusLabel.textColor = .warning
         default:
-            diningLocationCell.statusLabel.textColor = .warning
+            diningLocationCell.statusLabel.textColor = .purplePride
         }
         return diningLocationCell
     }

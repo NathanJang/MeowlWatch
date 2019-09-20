@@ -52,7 +52,10 @@ public func getMenu(locationId: String, date: Date = Date(), completion: ((Menu?
     }()
     let urlString = "https://api.dineoncampus.com/v1/location/menu?site_id=5acea5d8f3eeb60b08c5a50d&platform=0&location_id=\(locationId)&date=\(dateString)"
     Alamofire.request(urlString).responseData { response in
-        let data = response.result.value!
+        guard let data = response.result.value else {
+            completion?(nil)
+            return
+        }
         let decoder = JSONDecoder()
         let response = try? decoder.decode(MenuResponseBody.self, from: data)
         completion?(response?.menu)

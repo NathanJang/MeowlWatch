@@ -65,7 +65,13 @@ class MeowlWatchSectionHeaderView: UITableViewHeaderFooterView {
 
     var highlighted = false
 
-    fileprivate let highlightedBackgroundColor: UIColor = UIColor(red: 0xD0/0xFF, green: 0xD0/0xFF, blue: 0xD0/0xFF, alpha: 1)
+    fileprivate let highlightedBackgroundColor: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .quaternaryLabel
+        } else {
+            return UIColor(red: 0xD0/0xFF, green: 0xD0/0xFF, blue: 0xD0/0xFF, alpha: 1)
+        }
+    }()
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

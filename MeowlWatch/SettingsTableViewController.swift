@@ -437,13 +437,13 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         }
 
         func request(_ request: SKRequest, didFailWithError error: Error) {
-            self.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: { [weak self] in
-                DispatchQueue.main.async {
-                    self?.isRefreshing = false
-                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
-                    self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-                }
-            })
+            DispatchQueue.main.async { [weak self] in
+                self?.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: {
+                        self?.isRefreshing = false
+                        self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                        self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                })
+            }
         }
 
         /// Query the app store for the IAPs.
@@ -455,7 +455,6 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.widgetProductIdentifier])
             request.delegate = self
             request.start()
-            self.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
         }
 
         /// What to do once the widget is purchased.
