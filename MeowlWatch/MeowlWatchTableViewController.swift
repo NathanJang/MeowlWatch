@@ -325,7 +325,9 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             refreshControl.beginRefreshing()
             self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
         }
-        refresh(animated: animated)
+        DispatchQueue.main.async { [unowned self] in
+            self.refresh(animated: animated)
+        }
     }
 
     /// Updates the UI to hide the spinner.
@@ -335,7 +337,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
             refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
 
             refreshControl.endRefreshing()
-            tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
         }
     }
 
