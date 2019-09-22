@@ -286,19 +286,12 @@ private let diningScheduleEntriesDictionaryDictionary: [String : [String : [Sche
         diningScheduleEntriesDictionaryDictionary[plistName] = [:]
         for locationName in dictionary.keys {
             var entries: [ScheduleEntry<DiningStatus>] = []
-            if let entriesOfLocation = dictionary[locationName] as? [[String : Any]] {
-                for dictionaryEntry in entriesOfLocation {
-                    // Sorted already
-                    entries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
-                }
-            } else {
-                // Dining hall with location ID
-                let locationDict = dictionary[locationName] as! [String : Any]
-                let locationId = locationDict["LocationId"] as! String
-                let entriesOfLocation = locationDict["Schedules"] as! [[String : Any]]
-                for dictionaryEntry in entriesOfLocation {
-                    entries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
-                }
+            // Dining hall with location ID
+            let locationDict = dictionary[locationName] as! [String : Any]
+            let locationId = locationDict["LocationId"] as? String
+            let entriesOfLocation = locationDict["Schedules"] as! [[String : Any]]
+            for dictionaryEntry in entriesOfLocation {
+                entries.append(ScheduleEntry(dictionaryEntry: dictionaryEntry)!)
             }
 
             diningScheduleEntriesDictionaryDictionary[plistName]![locationName] = entries
