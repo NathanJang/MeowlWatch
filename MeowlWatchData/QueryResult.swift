@@ -185,6 +185,7 @@ public class QueryResult: NSObject, NSCoding {
     // MARK: NSCoding
 
     public func encode(with aCoder: NSCoder) {
+        aCoder.encode(dateRetrieved, forKey: "dateRetrieved")
         aCoder.encode(dateUpdated, forKey: "dateUpdated")
         aCoder.encode(name, forKey: "name")
         aCoder.encode(currentPlanName, forKey: "currentPlanName")
