@@ -14,6 +14,7 @@ end
 target 'MeowlWatch Full' do
   use_frameworks!
   pod 'Siren'
+  pod 'TSMarkdownParser'
 end
 
 target 'MeowlWatchData' do
