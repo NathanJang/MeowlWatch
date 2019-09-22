@@ -17,7 +17,7 @@ public enum DiningHall: String {
 
     case allison = "Allison"
 
-    case hinman = "Hinman"
+    case elder = "Elder"
 
     case plexEast = "Plex East"
 
@@ -27,7 +27,7 @@ public enum DiningHall: String {
 
 }
 
-public let diningHalls: [DiningHall] = [.allison, .hinman, .plexEast, .plexWest, .sargent]
+public let diningHalls: [DiningHall] = [.allison, .elder, .plexEast, .plexWest, .sargent]
 
 /// An enum representing each cafe or C-Store.
 public enum CafeOrCStore: String {
@@ -40,19 +40,17 @@ public enum CafeOrCStore: String {
 
     case bergson = "Café Bergson at Main"
 
+    case cohenCommons = "Cohen Commons"
+
     case techExpress = "Tech Express"
 
     case coralie = "Café Coralie at Pancoe"
 
     case lisas = "Lisa's Café at Slivka"
 
-    case hinman = "Hinman C-Store"
-
-    case starbucksTruck = "Starbucks Truck at Mudd"
-
 }
 
-public let cafesAndCStores: [CafeOrCStore] = [.plex, .frans, .kresge, .bergson, .techExpress, .coralie, .lisas, .hinman, .starbucksTruck]
+public let cafesAndCStores: [CafeOrCStore] = [.plex, .frans, .kresge, .bergson, .cohenCommons, .techExpress, .coralie, .lisas]
 
 /// An enum representing each location at Norris.
 public enum NorrisLocation: String {
@@ -61,7 +59,7 @@ public enum NorrisLocation: String {
 
     case pattySquared = "Patty Squared"
 
-    case budlong = "Budlong Hot Chicken"
+    case bestOfLocal = "Best of Local"
 
     case asiana = "Asiana Foodville"
 
@@ -75,7 +73,7 @@ public enum NorrisLocation: String {
 
 }
 
-public let norrisLocations: [NorrisLocation] = [.deli, .pattySquared, .budlong, .asiana, .cStore, .starbucks, .modPizza, .dunkinDonuts]
+public let norrisLocations: [NorrisLocation] = [.deli, .pattySquared, .bestOfLocal, .asiana, .cStore, .starbucks, .modPizza, .dunkinDonuts]
 
 /// An enum representing the status of dining locations.
 public enum DiningStatus: String {
