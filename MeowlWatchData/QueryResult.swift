@@ -76,6 +76,7 @@ public class QueryResult: NSObject, NSCoding {
      */
     /// - Parameter html: The HTML string.
     init?(htmlString: String) {
+        self.dateUpdated = Date()
         self.dateRetrieved = Date()
 
         guard let html = try? HTML(html: htmlString.replacingOccurrences(of: "\r", with: ""), encoding: .utf8) else { return nil }
@@ -124,7 +125,8 @@ public class QueryResult: NSObject, NSCoding {
     /// - Parameter error: The error value.
     /// - Parameter lastQuery: The result of the previous query.
     public init(lastQuery: QueryResult?, error: Error?) {
-        self.dateRetrieved = (error != nil ? lastQuery?.dateRetrieved : Date()) ?? Date()
+        self.dateUpdated = Date()
+        self.dateRetrieved = lastQuery?.dateRetrieved
         self.name = lastQuery?.name ?? defaultNameString
         self.currentPlanName = lastQuery?.currentPlanName ?? defaultSubtitleString
         self.numberOfBoardMeals = lastQuery?.numberOfBoardMeals ?? 0
@@ -136,9 +138,12 @@ public class QueryResult: NSObject, NSCoding {
 
     // MARK: Instance Variables
 
-    /// The date the data was fetched from the server.
-    /// Not to be confused with `dateUpdated`.
-    public let dateRetrieved: Date
+    /// The date the result was created (could be an error).
+    /// Not to be confused with `dateRetrieved`.
+    public let dateUpdated: Date
+
+    /// The date the result was fetched from the server.
+    public let dateRetrieved: Date?
 
     /// The user's name.
     public let name: String
@@ -180,7 +185,7 @@ public class QueryResult: NSObject, NSCoding {
     // MARK: NSCoding
 
     public func encode(with aCoder: NSCoder) {
-        aCoder.encode(dateRetrieved, forKey: "dateRetrieved")
+        aCoder.encode(dateUpdated, forKey: "dateUpdated")
         aCoder.encode(name, forKey: "name")
         aCoder.encode(currentPlanName, forKey: "currentPlanName")
         aCoder.encode(numberOfBoardMeals, forKey: "numberOfBoardMeals")
@@ -194,6 +199,7 @@ public class QueryResult: NSObject, NSCoding {
 
     required public init?(coder aDecoder: NSCoder) {
         guard let dateRetrieved = aDecoder.decodeObject(forKey: "dateRetrieved") as? Date,
+            let dateUpdated = aDecoder.decodeObject(forKey: "dateUpdated") as? Date,
             let name = aDecoder.decodeObject(forKey: "name") as? String,
             let currentPlanName = aDecoder.decodeObject(forKey: "currentPlanName") as? String,
             let numberOfBoardMeals = aDecoder.decodeObject(forKey: "numberOfBoardMeals") as? UInt,
@@ -202,6 +208,7 @@ public class QueryResult: NSObject, NSCoding {
             let catCashInCents = aDecoder.decodeObject(forKey: "catCashInCents") as? UInt
             else { return nil }
 
+        self.dateUpdated = dateUpdated
         self.dateRetrieved = dateRetrieved
         self.name = name
         self.currentPlanName = currentPlanName
@@ -252,11 +259,12 @@ extension QueryResult {
     }
 
     /// The date retrieved as a formatted string.
-    public var dateRetrievedString: String { return MeowlWatchData.displayDateFormatter.string(from: dateRetrieved) }
+    public var dateRetrievedString: String? {
+        guard let dateRetrieved = dateRetrieved else { return nil }
+        return MeowlWatchData.displayDateFormatter.string(from: dateRetrieved)
+    }
 
     public static var dateRetrievedDescription: String { return "Updated" }
-
-    public static var dateRetrievedDescriptionForUnavailable: String { return "Never" }
 
     /// The message to display if there is an error.
     public var errorString: String? {

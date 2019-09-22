@@ -102,7 +102,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
                 self.updateNumberLabel(self.secondaryRightNumberLabel, asItem: MeowlWatchData.widgetArrangement[3], withQuery: query)
             }
 
-            self.updatedLabel.text = String(format: mwLocalizedString("MWTVCUpdated: %@", comment: ""), query.dateRetrievedString)
+            self.updatedLabel.text = String(format: mwLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), query.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never"))
         }
     }
 

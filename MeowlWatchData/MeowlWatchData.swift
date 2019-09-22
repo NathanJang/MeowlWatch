@@ -289,11 +289,18 @@ public var hiddenSections: [Int] = [3, 4, 5]
 /// The time interval before we should refresh from the server.
 private let refreshThreshold: TimeInterval = 60 * 30
 
+private let errorRefreshThreshold: TimeInterval = 60 * 5
+
 /// Whether we should refresh.
 public var shouldRefresh: Bool {
     guard canQuery else { return false }
-    guard let lastQuery = lastQuery, lastQuery.error == nil else { return true }
-    return Date().timeIntervalSince(lastQuery.dateRetrieved) > refreshThreshold
+    guard let lastQuery = lastQuery else { return true }
+    let intervalSinceLastUpdated = Date().timeIntervalSince(lastQuery.dateUpdated)
+    if lastQuery.error != nil {
+        return intervalSinceLastUpdated > errorRefreshThreshold
+    } else {
+        return intervalSinceLastUpdated > refreshThreshold
+    }
 }
 
 /// The date formatter for displaying dates to the user.

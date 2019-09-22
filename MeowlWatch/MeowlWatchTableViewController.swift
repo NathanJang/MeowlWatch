@@ -74,8 +74,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         super.viewDidLayoutSubviews()
 
         // Here because of strange bug involving table view top margin and such
-//        refreshControl!.attributedTitle = NSAttributedString(string: mwLocalizedString("MWTVCUpdated: \(self.queryResult?.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never"))", comment: "Updated when?"))
-        refreshControl!.attributedTitle = NSAttributedString(string: String(format: mwLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), self.queryResult?.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never")))
+//        refreshControl!.attributedTitle = NSAttributedString(string: String(format: mwLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), self.queryResult?.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never")))
+        endRefreshing(animated: false)
 
     }
 
@@ -333,9 +333,8 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
     /// Updates the UI to hide the spinner.
     func endRefreshing(animated: Bool) {
         guard let refreshControl = refreshControl else { return }
+        refreshControl.attributedTitle = NSAttributedString(string: String(format: mwLocalizedString("MWTVCUpdated: %@", comment: "Updated:"), self.queryResult?.dateRetrievedString ?? mwLocalizedString("MWTVCNever", comment: "Never")))
         if refreshControl.isRefreshing {
-            refreshControl.attributedTitle = NSAttributedString(string: "\(QueryResult.dateRetrievedDescription): \(queryResult?.dateRetrievedString ?? QueryResult.dateRetrievedDescriptionForUnavailable)")
-
             refreshControl.endRefreshing()
         }
     }
