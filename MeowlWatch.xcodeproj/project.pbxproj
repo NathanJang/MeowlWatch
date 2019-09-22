@@ -273,7 +273,7 @@
 		ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleRowTableViewCell.xib; path = MeowlWatch/ScheduleRowTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewCell.swift; path = MeowlWatch/MeowlWatchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchTableViewCell.xib; path = MeowlWatch/MeowlWatchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewTableViewCell.swift; sourceTree = "<group>"; };
+		ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WidgetPreviewTableViewCell.swift; path = MeowlWatch/WidgetPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		ABF2FF8B220D5A8700E97BB3 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
