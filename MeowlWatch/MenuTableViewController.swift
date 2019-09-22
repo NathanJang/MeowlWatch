@@ -25,6 +25,8 @@ class MenuTableViewController: ExpandableTableViewController {
         tableView.register(UINib(nibName: "MenuItemTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuItemCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 75
+        // Not sure why
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
 
         hiddenSections = [0]
 
@@ -81,6 +83,13 @@ class MenuTableViewController: ExpandableTableViewController {
         cell.subtitleLabelText = item.description ?? ""
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == self.numberOfSections(in: tableView) - 1 {
+            return mwLocalizedString("MenuDisclaimer")
+        }
+        return nil
     }
 
     /*

@@ -24,11 +24,6 @@ class ExpandableTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         tableView.register(UINib(nibName: "MeowlWatchSectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "MeowlWatchSectionHeaderView")
-
-        // If the first section does not have a header, set the correct top insets.
-        if self.tableView(tableView, titleForExpandableHeaderInSection: 0) != nil {
-            tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        }
     }
 
     override func didReceiveMemoryWarning() {

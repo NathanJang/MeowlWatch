@@ -107,6 +107,8 @@
 
 "ScheduleDisclaimer" = "时间表只供平日参考，假期以学校公告为准。\n\n周制套餐将在每周日中部时间早上7点重置。";
 
+"MenuDisclaimer" = "菜单由餐饮公司提供。";
+
 "Open" = "营业";
 "Closing Soon" = "即将休息";
 "Closed" = "休息";
