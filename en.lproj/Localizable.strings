@@ -68,6 +68,7 @@
 "SettingsVisitDesignerWebsiteTitle" = "Visit Designer's Website";
 "SettingsSendFeedbackTitle" = "Send Feedback";
 "SettingsRateOnAppStoreTitle" = "Rate on App Store";
+"SettingsContributeTitle" = "Contribute to MeowlWatch";
 "SettingsShowLegalTitle" = "About";
 "SettingsWidgetHelpMessage" = "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement.\n\nThank you for your support!";
 "SettingsTipInfoMessage" = "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled.";

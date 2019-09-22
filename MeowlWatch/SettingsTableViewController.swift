@@ -104,7 +104,7 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             return languages.count
         case 3:
-            return 3
+            return 4
         default:
             return 0
         }
@@ -186,6 +186,8 @@ class SettingsTableViewController: UITableViewController {
             case 1:
                 cell!.textLabel!.text = mwLocalizedString("SettingsRateOnAppStoreTitle", comment: "")
             case 2:
+                cell!.textLabel?.text = mwLocalizedString("SettingsContributeTitle")
+            case 3:
                 cell!.textLabel!.text = mwLocalizedString("SettingsShowLegalTitle", comment: "")
             default:
                 break
@@ -359,6 +361,10 @@ class SettingsTableViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
 
             case 2:
+                UIApplication.shared.open(URL(string: githubUrl)!)
+                tableView.deselectRow(at: indexPath, animated: true)
+
+            case 3:
                 self.performSegue(withIdentifier: "ShowLegal", sender: self)
 
             default:

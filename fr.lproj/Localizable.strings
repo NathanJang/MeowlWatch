@@ -68,10 +68,11 @@
 "SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de l'artiste";
 "SettingsSendFeedbackTitle" = "Signaler un problème";
 "SettingsRateOnAppStoreTitle" = "Noter sur App Store";
+"SettingsContributeTitle" = "Contribuer à MeowlWatch";
 "SettingsShowLegalTitle" = "À propos";
 "SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles se montreront dans cet ordre-ci.\n\nMerci beaucoup de m'avoir soutenu !";
 "SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Pensez à me laisser un petit pourboire ci-dessus ! :) En plus, les publicités seront bien désactivés.";
-"SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Visitez %@ pour en savoir plus.";
+"SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Passez à %@ pour en savoir plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponibles";
 "SettingsIAPUnavailableMessage" = "Vérifiez que vous êtes connecté à internet. iTunes pourrait aussi avoir des problèmes avec des achats intégrés en ce moment. Veuillez ressayer plus tard.";
 "SettingsSendFeedbackInfoMessage: %@" = "Envoyez les commentaires à %@.";

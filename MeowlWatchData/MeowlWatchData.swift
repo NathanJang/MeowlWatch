@@ -372,6 +372,10 @@ public var rateOnAppStoreUrl: String {
     return "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(appId)&action=write-review"
 }
 
+public var githubUrl: String {
+    return "https://github.com/NathanJang/MeowlWatch"
+}
+
 // MARK: - Localization
 
 /// Supported languages.
