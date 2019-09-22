@@ -234,6 +234,9 @@ class SearchResultsTableViewController: UITableViewController {
             case .dunkinDonuts:
                 searchSources += ["doughnuts"]
 
+            case .pattySquared:
+                searchSources += ["burgers", "hamburgers", "cheeseburgers"]
+
             default:
                 break
             }
