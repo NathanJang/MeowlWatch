@@ -48,9 +48,9 @@
 "SignInActionTitle" = "登錄";
 "SignInDismiss" = "取消";
 
-"UpdatedVersion" = "3.0";
-"UpdatedTitle" = "MeowlWatch 3.0";
-"UpdatedMessage" = "耶 ✌️！您现在可查看飯堂餐牌，和在程序中充值 Cat Cash。還有，現在有中文、法文版了。";
+"UpdatedVersion" = "3.1";
+"UpdatedTitle" = "MeowlWatch 3.1";
+"UpdatedMessage" = "歡迎 Class of 2023！已添加 iOS 13 深色模式、Google Maps 連結，修了各種 bug。";
 
 "Back" = "返回";
 

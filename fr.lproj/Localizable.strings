@@ -48,9 +48,9 @@
 "SignInActionTitle" = "Connexion";
 "SignInDismiss" = "Annuler";
 
-"UpdatedVersion" = "3.0";
-"UpdatedTitle" = "MeowlWatch 3.0";
-"UpdatedMessage" = "Yay ! 😋 Vous pouvez maintenant voir les menus des cantines, et ajouter du Cat Cash dans l'app. En plus, l'app est maintenant disponible en chinois et en français.";
+"UpdatedVersion" = "3.1";
+"UpdatedTitle" = "MeowlWatch 3.1";
+"UpdatedMessage" = "Bienvenue les '2023 ! J'ai mis le mode sombre pour iOS 13, des liens Google Maps, et de bugfixes.";
 
 "Back" = "Retour";
 
