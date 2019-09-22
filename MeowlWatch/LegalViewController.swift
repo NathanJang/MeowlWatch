@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MeowlWatchData
+import TSMarkdownParser
 
 /// The view controller displaying a text view with legal text.
 class LegalViewController: UIViewController {
@@ -18,6 +20,13 @@ class LegalViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        guard let path = MeowlWatchData.currentLocalizedBundle.path(forResource: "About", ofType: "md"),
+            let contents = try? String(contentsOfFile: path)
+            else { return }
+        textView.attributedText = TSMarkdownParser.standard().attributedString(fromMarkdown: contents)
+        if #available(iOS 13.0, *) {
+            textView.textColor = .label
+        }
     }
 
     override func didReceiveMemoryWarning() {

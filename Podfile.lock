@@ -32,6 +32,7 @@ PODS:
   - nanopb/encode (0.3.901)
   - Siren (5.1.2)
   - SwiftKeychainWrapper (3.4.0)
+  - TSMarkdownParser (2.1.5)
 
 DEPENDENCIES:
   - Alamofire
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - Kanna
   - Siren
   - SwiftKeychainWrapper
+  - TSMarkdownParser
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -50,6 +52,7 @@ SPEC REPOS:
     - nanopb
     - Siren
     - SwiftKeychainWrapper
+    - TSMarkdownParser
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
@@ -60,7 +63,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Siren: ee674e4ab57f5cc23186202a11313bc50a661a61
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
+  TSMarkdownParser: 3224ea196ecc7148fa7e03bc438f9390d4edfb6d
 
-PODFILE CHECKSUM: aec3dd7d659ee8a9e46f87158b629dc1801bd9b4
+PODFILE CHECKSUM: eb5dc8b80b6e457552e27c97ba8564475b9e1b02
 
 COCOAPODS: 1.7.5

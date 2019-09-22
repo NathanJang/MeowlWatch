@@ -8,6 +8,7 @@ target 'MeowlWatch' do
   # Pods for MeowlWatch
   pod 'Google-Mobile-Ads-SDK'
   pod 'Siren'
+  pod 'TSMarkdownParser'
 end
 
 target 'MeowlWatch Full' do

@@ -55,6 +55,8 @@
 		AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7782BF1E81083D00925F72 /* Main.storyboard */; };
 		AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB7782CA1E82062900925F72 /* AdMobKeys-Release.plist */; };
 		AB7B7FF21E8F26B300272655 /* MeowlWatch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AB83F3022336F9F4009F8881 /* About.md in Resources */ = {isa = PBXBuildFile; fileRef = AB83F3052336F9F4009F8881 /* About.md */; };
+		AB83F3032336F9F4009F8881 /* About.md in Resources */ = {isa = PBXBuildFile; fileRef = AB83F3052336F9F4009F8881 /* About.md */; };
 		AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */; };
 		AB8AF1E61EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */; };
 		AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */; };
@@ -252,6 +254,10 @@
 		AB7782F51E83DA4F00925F72 /* MeowlWatch Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MeowlWatch Widget.entitlements"; path = "MeowlWatch Widget/MeowlWatch Widget.entitlements"; sourceTree = SOURCE_ROOT; };
 		AB7783111E84460B00925F72 /* MeowlWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowlWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7B7FDB1E8E9F0500272655 /* MeowlWatch Full.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeowlWatch Full.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB83F3072336F9F7009F8881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/About.md"; sourceTree = "<group>"; };
+		AB83F3082336F9F8009F8881 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/About.md"; sourceTree = "<group>"; };
+		AB83F3092336F9F8009F8881 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/About.md; sourceTree = "<group>"; };
+		AB83F30B2336FD32009F8881 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/About.md; sourceTree = "<group>"; };
 		AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchSectionHeaderView.swift; path = MeowlWatch/MeowlWatchSectionHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchSectionHeaderView.xib; path = MeowlWatch/MeowlWatchSectionHeaderView.xib; sourceTree = SOURCE_ROOT; };
 		AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsTableViewController.swift; path = MeowlWatch/SearchResultsTableViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -409,6 +415,7 @@
 				ABC11B261EB72DFD00491E7B /* DiningLocationSchedulesTableViewController.swift */,
 				AB7782F11E83CCD100925F72 /* SettingsTableViewController.swift */,
 				ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */,
+				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -438,8 +445,8 @@
 				AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */,
 				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
 				ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */,
-				AB009E631E8CC00A0096C625 /* LegalViewController.swift */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
+				AB83F3052336F9F4009F8881 /* About.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -723,6 +730,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB83F3022336F9F4009F8881 /* About.md in Resources */,
 				ABC11B361EB7938D00491E7B /* NorrisSchedules.plist in Resources */,
 				ABD71CBF1EA08B3900B715AE /* MeowlWatchTableViewCell.xib in Resources */,
 				ABC11B1F1EB712FE00491E7B /* MeowlWatchUserTableViewCell.xib in Resources */,
@@ -757,6 +765,7 @@
 				AB7B7FD11E8E9F0500272655 /* Assets.xcassets in Resources */,
 				AB60AFBF220A9B4000C0C17B /* Localizable.stringsdict in Resources */,
 				ABC11B311EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
+				AB83F3032336F9F4009F8881 /* About.md in Resources */,
 				AB7B7FD21E8E9F0500272655 /* Main.storyboard in Resources */,
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */,
@@ -845,6 +854,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-MeowlWatch/Pods-MeowlWatch-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
+				"${BUILT_PRODUCTS_DIR}/TSMarkdownParser/TSMarkdownParser.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
@@ -854,6 +864,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TSMarkdownParser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
@@ -1054,6 +1065,17 @@
 				AB60AFD9220B7F3D00C0C17B /* fr */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		AB83F3052336F9F4009F8881 /* About.md */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB83F3072336F9F7009F8881 /* zh-Hans */,
+				AB83F3082336F9F8009F8881 /* zh-Hant */,
+				AB83F3092336F9F8009F8881 /* fr */,
+				AB83F30B2336FD32009F8881 /* en */,
+			);
+			name = About.md;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
