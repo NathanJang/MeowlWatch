@@ -10,17 +10,17 @@ En utilisant cette app, vous acceptez le démenti et la politique de confidentia
 
 ## Démenti
 
-Même si le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'est affilié à ni Northwestern University ni Northwestern Dining. Cette app a été faite indépendamment de Northwestern, et ne représente pas Northwestern. Même si le programmeur fait de son mieux pour s'assurer bien que cette app marche, il n'a pas de contrôle sur les serveurs web et ne peut pas garantir une exactitude 100 %. Le programmeur de MeowlWatch n'assume aucune responsabilité du préjudice à quiconque l'utilise. En téléchargeant cette app, vous continuez à vos propres risques.
+Même si le programmeur, Jonathan Chan, est un étudiant à Northwestern, il n'est pas affilié. Cette app a été produite indépendamment, et ne représente pas Northwestern. Même si le programmeur fait de son mieux pour s'assurer bien que cette app marche, il n'a aucun contrôle sur les serveurs web et ne peut pas garantir une exactitude 100 %. Le programmeur de MeowlWatch n'assume aucune responsabilité du préjudice à quiconque l'utilise. En téléchargeant cette app, vous poursuivez à vos propres risques.
 
 (J'ai fait quelque chose pour faciliter la vie. Merci de ne pas m'en vouloir :).)
 
 ## Confidentialité
 
-Votre pièce d'identité sera envoyée chiffrée à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre pièce d'identité sera aussi enregistrée chiffrée sur votre appareil, pour que vous restiez connecté(e). Votre identifiant ne sera jamais utilisé à des fins commerciales.
+Votre pièce d'identité sera envoyée chiffrée à https://websso.it.northwestern.edu, le portail web de Northwestern Dining. Votre pièce d'identité sera aussi enregistrée chiffrée sur votre appareil, afin que vous restiez connecté. Votre identifiant ne sert jamais à des autres fins.
 
 Vos données de repas seront enregistrées sur votre appareil et ne seront envoyée nulle part.
 
-La version gratuite de cette app montra des publicités depuis Google, qui pourrait suivre vos habitudes d'utilisation afin d'afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez le faire à Réglages système > Confidentialité > Publicité > Suivi publicitaire limité. Lors d'une réussite d'un achat intégré, les publicités seront désactivés.
+La version gratuite de cette app montra des publicités depuis Google, qui pourrait suivre vos habitudes d'utilisation afin d'afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez le faire à Réglages système > Confidentialité > Publicité > Suivi publicitaire limité. Lors d'une réussite d'un achat intégré, les publicités seront désactivées.
 
 ## Logicielle au tiers
 

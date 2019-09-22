@@ -43,7 +43,7 @@
 "TipDismiss" = "OK";
 
 "SignInTitle" = "Connectez-vous à Northwestern";
-"SignInMessage" = "Pour vérifier votre solde disponible pour le repas, votre NetID et votre mot de passe seront seulement envoyés aux serveurs securisés de Northwestern. Voyez la politique de confidentialité pour en savoir plus.";
+"SignInMessage" = "Afin de vérifier votre solde disponible pour le repas, votre NetID et votre mot de passe seront seulement envoyés aux serveurs securisés de Northwestern. Lisez la politique de confidentialité pour en savoir plus.";
 "SignInPasswordPlaceholder" = "Mot de passe";
 "SignInActionTitle" = "Connexion";
 "SignInDismiss" = "Annuler";
@@ -56,7 +56,7 @@
 
 "SeeMenu" = "Menu du jour";
 "MenuLoadingMessage" = "Chargement du menu...";
-"MenuLoadErrorMessage" = "Échec du chargement";
+"MenuLoadErrorMessage" = "Chargement échoué";
 "MenuFor: %@" = "Menu pour %@";
 
 /** Settings */
@@ -127,4 +127,4 @@
 "%@ (Closing Soon)" = "%@ (ferme bientôt)";
 
 /** MWW */
-"MWWUpdateFailedMessage" = "Échec de la mise à jour, ouvrez l'app";
+"MWWUpdateFailedMessage" = "Mise à jour échouée, ouvrez l'app";
