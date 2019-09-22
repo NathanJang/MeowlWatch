@@ -59,6 +59,8 @@
 		AB83F3032336F9F4009F8881 /* About.md in Resources */ = {isa = PBXBuildFile; fileRef = AB83F3052336F9F4009F8881 /* About.md */; };
 		AB83F30E2336FE6F009F8881 /* MenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */; };
 		AB83F30F2336FE6F009F8881 /* MenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */; };
+		AB83F311233709E3009F8881 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB83F310233709E3009F8881 /* MenuItemTableViewCell.swift */; };
+		AB83F312233709E3009F8881 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB83F310233709E3009F8881 /* MenuItemTableViewCell.swift */; };
 		AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */; };
 		AB8AF1E61EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */; };
 		AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */; };
@@ -261,6 +263,7 @@
 		AB83F3092336F9F8009F8881 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/About.md; sourceTree = "<group>"; };
 		AB83F30B2336FD32009F8881 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/About.md; sourceTree = "<group>"; };
 		AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuItemTableViewCell.xib; path = MeowlWatch/MenuItemTableViewCell.xib; sourceTree = "<group>"; };
+		AB83F310233709E3009F8881 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuItemTableViewCell.swift; path = MeowlWatch/MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchSectionHeaderView.swift; path = MeowlWatch/MeowlWatchSectionHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchSectionHeaderView.xib; path = MeowlWatch/MeowlWatchSectionHeaderView.xib; sourceTree = SOURCE_ROOT; };
 		AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsTableViewController.swift; path = MeowlWatch/SearchResultsTableViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -433,6 +436,7 @@
 				AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */,
 				ABC11B2C1EB7345800491E7B /* ScheduleRowTableViewCell.swift */,
 				ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */,
+				AB83F310233709E3009F8881 /* MenuItemTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -933,6 +937,7 @@
 				AB4521F61EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
 				AB009E641E8CC00A0096C625 /* LegalViewController.swift in Sources */,
 				ABA71FC5232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */,
+				AB83F311233709E3009F8881 /* MenuItemTableViewCell.swift in Sources */,
 				AB2990051E93F293003020CD /* UIViewController+Alerts.swift in Sources */,
 				AB9C72311EC4BD470060ABC4 /* SearchResultsTableViewController.swift in Sources */,
 				ABF2FF86220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,
@@ -958,6 +963,7 @@
 				AB4521F71EB90D3500B6A1C1 /* ExpandableTableViewController.swift in Sources */,
 				AB7B7FC61E8E9F0500272655 /* SettingsTableViewController.swift in Sources */,
 				ABA71FC6232B90E20024C964 /* UIColor+MeowlWatch.swift in Sources */,
+				AB83F312233709E3009F8881 /* MenuItemTableViewCell.swift in Sources */,
 				AB7B7FC71E8E9F0500272655 /* AppDelegate.swift in Sources */,
 				AB9C72321EC4BD4A0060ABC4 /* SearchResultsTableViewController.swift in Sources */,
 				ABF2FF88220D43F000E97BB3 /* WidgetPreviewTableViewCell.swift in Sources */,

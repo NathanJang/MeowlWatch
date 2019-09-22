@@ -73,12 +73,12 @@ class MenuTableViewController: ExpandableTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemCell", for: indexPath) as! MeowlWatchUserTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemCell", for: indexPath) as! MenuItemTableViewCell
 
         // Configure the cell...
         let item = menu!.periods[indexPath.section].items[indexPath.row]
-        cell.nameLabel.text = item.name
-        cell.planLabel.text = item.description ?? ""
+        cell.titleLabel.text = item.name
+        cell.subtitleLabelText = item.description ?? ""
 
         return cell
     }
