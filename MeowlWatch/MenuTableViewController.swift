@@ -22,7 +22,7 @@ class MenuTableViewController: ExpandableTableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        tableView.register(UINib(nibName: "MeowlWatchUserTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuItemCell")
+        tableView.register(UINib(nibName: "MenuItemTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuItemCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 75
 
@@ -76,8 +76,6 @@ class MenuTableViewController: ExpandableTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemCell", for: indexPath) as! MeowlWatchUserTableViewCell
 
         // Configure the cell...
-        cell.accessoryType = .none
-        cell.selectionStyle = .none
         let item = menu!.periods[indexPath.section].items[indexPath.row]
         cell.nameLabel.text = item.name
         cell.planLabel.text = item.description ?? ""

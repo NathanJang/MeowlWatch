@@ -57,6 +57,8 @@
 		AB7B7FF21E8F26B300272655 /* MeowlWatch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AB7782D11E8242B000925F72 /* MeowlWatch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AB83F3022336F9F4009F8881 /* About.md in Resources */ = {isa = PBXBuildFile; fileRef = AB83F3052336F9F4009F8881 /* About.md */; };
 		AB83F3032336F9F4009F8881 /* About.md in Resources */ = {isa = PBXBuildFile; fileRef = AB83F3052336F9F4009F8881 /* About.md */; };
+		AB83F30E2336FE6F009F8881 /* MenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */; };
+		AB83F30F2336FE6F009F8881 /* MenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */; };
 		AB8AF1E51EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */; };
 		AB8AF1E61EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */; };
 		AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */; };
@@ -258,6 +260,7 @@
 		AB83F3082336F9F8009F8881 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/About.md"; sourceTree = "<group>"; };
 		AB83F3092336F9F8009F8881 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/About.md; sourceTree = "<group>"; };
 		AB83F30B2336FD32009F8881 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/About.md; sourceTree = "<group>"; };
+		AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuItemTableViewCell.xib; path = MeowlWatch/MenuItemTableViewCell.xib; sourceTree = "<group>"; };
 		AB8AF1E41EB860E500BE45A1 /* MeowlWatchSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchSectionHeaderView.swift; path = MeowlWatch/MeowlWatchSectionHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchSectionHeaderView.xib; path = MeowlWatch/MeowlWatchSectionHeaderView.xib; sourceTree = SOURCE_ROOT; };
 		AB9C72301EC4BD470060ABC4 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsTableViewController.swift; path = MeowlWatch/SearchResultsTableViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -274,8 +277,8 @@
 		ABD71CBB1EA08B3900B715AE /* MeowlWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeowlWatchTableViewCell.swift; path = MeowlWatch/MeowlWatchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		ABD71CBC1EA08B3900B715AE /* MeowlWatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeowlWatchTableViewCell.xib; path = MeowlWatch/MeowlWatchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		ABF2FF84220D43EA00E97BB3 /* WidgetPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WidgetPreviewTableViewCell.swift; path = MeowlWatch/WidgetPreviewTableViewCell.swift; sourceTree = "<group>"; };
-		ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetPreviewTableViewCell.xib; sourceTree = "<group>"; };
-		ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WidgetPreviewTableViewCell.xib; path = MeowlWatch/WidgetPreviewTableViewCell.xib; sourceTree = "<group>"; };
+		ABF2FF89220D52E000E97BB3 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = MeowlWatch/MenuTableViewController.swift; sourceTree = "<group>"; };
 		ABF2FF8B220D5A8700E97BB3 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		ABF6FE632229DE2D00C7D831 /* MeowlWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeowlWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF6FE6E2229DF4800C7D831 /* MeowlWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowlWatchTests.swift; sourceTree = "<group>"; };
@@ -444,6 +447,7 @@
 				ABC11B211EB71EF100491E7B /* MeowlWatchDiningLocationTableViewCell.xib */,
 				AB8AF1EA1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib */,
 				ABC11B2D1EB7345800491E7B /* ScheduleRowTableViewCell.xib */,
+				AB83F30D2336FE6F009F8881 /* MenuItemTableViewCell.xib */,
 				ABF2FF85220D43EA00E97BB3 /* WidgetPreviewTableViewCell.xib */,
 				AB2990041E93F293003020CD /* UIViewController+Alerts.swift */,
 				AB83F3052336F9F4009F8881 /* About.md */,
@@ -743,6 +747,7 @@
 				AB60AFBE220A9B4000C0C17B /* Localizable.stringsdict in Resources */,
 				AB7783081E84460B00925F72 /* Main.storyboard in Resources */,
 				AB7783091E84460B00925F72 /* AdMobKeys-Release.plist in Resources */,
+				AB83F30E2336FE6F009F8881 /* MenuItemTableViewCell.xib in Resources */,
 				AB8AF1EB1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB60AFA5220A479000C0C17B /* Localizable.strings in Resources */,
 				ABC11B301EB7345800491E7B /* ScheduleRowTableViewCell.xib in Resources */,
@@ -770,6 +775,7 @@
 				AB8AF1EC1EB864D800BE45A1 /* MeowlWatchSectionHeaderView.xib in Resources */,
 				AB60AFA6220A479000C0C17B /* Localizable.strings in Resources */,
 				ABA71FC1232B8FFC0024C964 /* Colors.xcassets in Resources */,
+				AB83F30F2336FE6F009F8881 /* MenuItemTableViewCell.xib in Resources */,
 				AB7B7FD31E8E9F0500272655 /* AdMobKeys-Release.plist in Resources */,
 				ABC11B381EB7938E00491E7B /* DiningHallSchedules.plist in Resources */,
 			);
