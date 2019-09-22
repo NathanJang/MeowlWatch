@@ -22,7 +22,7 @@ Vos données de repas seront enregistrées sur votre appareil et ne seront envoy
 
 La version gratuite de cette app montra des publicités depuis Google, qui pourrait suivre vos habitudes d'utilisation afin d'afficher les publicités plus utile, sauf si vous en désactiver. Vous pouvez le faire à Réglages système > Confidentialité > Publicité > Suivi publicitaire limité. Lors d'une réussite d'un achat intégré, les publicités seront désactivées.
 
-## Logicielle au tiers
+## Logicielle de tierce partie
 
 MeowlWatch utilise le logicielle de tierce partie sous ces licences-ci :
 
