@@ -55,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
 
         navigationItem.largeTitleDisplayMode = .never
 
-        navigationItem.setRightBarButton(doneButton, animated: false)
+        setCanDismiss(true, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -304,7 +304,7 @@ class SettingsTableViewController: UITableViewController {
                             }
 
                         case 1:
-                            navigationItem.setRightBarButton(nil, animated: true)
+                            setCanDismiss(false, animated: true)
                             SKPaymentQueue.default().restoreCompletedTransactions()
 
                         default:
@@ -375,6 +375,13 @@ class SettingsTableViewController: UITableViewController {
         return doneButton
     }()
 
+    func setCanDismiss(_ canDismiss: Bool, animated: Bool) {
+        navigationItem.setRightBarButton(canDismiss ? doneButton : nil, animated: animated)
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = !canDismiss
+        }
+    }
+
     /// Dismisses this VC.
     @objc
     func dismiss() {
@@ -387,14 +394,14 @@ class SettingsTableViewController: UITableViewController {
             guard let widgetProduct = widgetProduct else { return }
             let payment = SKPayment(product: widgetProduct)
             SKPaymentQueue.default().add(payment)
-            navigationItem.setRightBarButton(nil, animated: true)
+            setCanDismiss(false, animated: true)
         }
 
         /// Shows an alert to notify the user that we cannot make purchases.
         func showCannotMakePaymentsAlert() {
             self.showMessageAlert(title: mwLocalizedString("SettingsCannotPayAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotPayAlertMessage", comment: ""))
             isRefreshing = false
-            navigationItem.setRightBarButton(doneButton, animated: false)
+            setCanDismiss(true, animated: false)
         }
 
         var isRefreshing = true
@@ -424,7 +431,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             }
             DispatchQueue.main.async { [weak self] in
                 self?.isRefreshing = false
-                self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                self?.setCanDismiss(true, animated: false)
                 self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
             }
         }
@@ -433,7 +440,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             DispatchQueue.main.async { [weak self] in
                 self?.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: {
                         self?.isRefreshing = false
-                        self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                    self?.setCanDismiss(true, animated: false)
                         self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
                 })
             }
@@ -459,7 +466,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
 
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentInset.top), animated: true)
                 self.isRefreshing = false
-                self.navigationItem.setRightBarButton(self.doneButton, animated: false)
+                self.setCanDismiss(true, animated: false)
 
                 MeowlWatchData.widgetIsPurchased = true
                 let navigationController = self.navigationController!.presentingViewController as! NavigationController
@@ -493,7 +500,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 DispatchQueue.main.async { [weak self] in
                     self?.showMessageAlert(title: mwLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
                     self?.isRefreshing = false
-                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                    self?.setCanDismiss(true, animated: false)
                 }
             }
         }
@@ -502,7 +509,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             DispatchQueue.main.async { [weak self] in
                 self?.showMessageAlert(title: mwLocalizedString("SettingsRestorePurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsRestorePurchaseFailedAlertMessage", comment: ""))
                 self?.isRefreshing = false
-                self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                self?.setCanDismiss(true, animated: false)
             }
         }
 
@@ -514,7 +521,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             case .purchased, .restored:
                 DispatchQueue.main.async { [weak self] in
                     self?.isRefreshing = false
-                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                    self?.setCanDismiss(true, animated: false)
                 }
                 if transaction.payment.productIdentifier == MeowlWatchData.widgetProductIdentifier {
                     didPurchaseWidget()
@@ -524,7 +531,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             case .failed:
                 DispatchQueue.main.async { [weak self] in
                     self?.isRefreshing = false
-                    self?.navigationItem.setRightBarButton(self?.doneButton, animated: false)
+                    self?.setCanDismiss(true, animated: false)
                     self?.showMessageAlert(title: mwLocalizedString("SettingsPurchaseFailedAlertTitle", comment: ""), message: mwLocalizedString("SettingsPurchaseFailedAlertMessage", comment: ""))
                 }
                 queue.finishTransaction(transaction)
