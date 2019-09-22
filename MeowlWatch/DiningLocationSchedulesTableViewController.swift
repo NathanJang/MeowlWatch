@@ -19,6 +19,8 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     var locationId: String?
 
+    var mapUrl: String?
+
     /// The cafe, if the location in question is one.
     var cafeOrCStore: CafeOrCStore?
 
@@ -62,6 +64,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
             }
 
             locationId = diningLocationIds[diningHall.rawValue]
+            mapUrl = mapUrls[diningHall.rawValue]
         } else if let cafeOrCStore = cafeOrCStore {
             let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: cafeOrCStore, at: date)
             if let selectedRowIndex = selectedRowIndex {
@@ -83,6 +86,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                     hiddenSections.append(i)
                 }
             }
+            mapUrl = mapUrls[cafeOrCStore.rawValue]
         } else if let norrisLocation = norrisLocation {
             let (selectedRowIndex, selectedSectionIndex) = indexPathOfOpenDiningScheduleEntries(for: norrisLocation, at: date)
             if let selectedRowIndex = selectedRowIndex {
@@ -104,6 +108,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
                     hiddenSections.append(i)
                 }
             }
+            mapUrl = mapUrls[norrisLocation.rawValue]
         }
 
         tableView.allowsMultipleSelection = true
@@ -128,30 +133,43 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         guard let entries = entries else { return 0 }
-        return entries.count + (locationId != nil ? 1 : 0)
+        var numberOfSections = entries.count
+        if locationId != nil || mapUrl != nil { numberOfSections += 1 }
+        return numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, defaultNumberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == numberOfSections(in: tableView) - 1 && locationId != nil {
-            return 1
+        if section == numberOfSections(in: tableView) - 1 && (locationId != nil || mapUrl != nil) {
+            var numberOfRows = 0
+            if locationId != nil { numberOfRows += 1 }
+            if mapUrl != nil { numberOfRows += 1 }
+            return numberOfRows
         }
         guard let entries = entries else { return 0 }
         return entries[section].schedule.count
     }
 
     override func tableView(_ tableView: UITableView, titleForExpandableHeaderInSection section: Int) -> String? {
-        if section == numberOfSections(in: tableView) - 1 && locationId != nil { return nil }
+        if section == numberOfSections(in: tableView) - 1 && (locationId != nil || mapUrl != nil) { return nil }
         guard let entries = entries else { return nil }
         return entries[section].formattedWeekdayRange
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == numberOfSections(in: tableView) - 1 && locationId != nil {
-            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = mwLocalizedString("SeeMenu")
-            cell.accessoryType = .disclosureIndicator
-            return cell
+        if indexPath.section == numberOfSections(in: tableView) - 1 {
+            if locationId != nil && indexPath.row == 0 {
+                let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+                cell.textLabel?.text = mwLocalizedString("SeeMenu")
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            }
+            if mapUrl != nil {
+                let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+                cell.textLabel?.text = mwLocalizedString("SeeMap")
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            }
         }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath)
@@ -169,13 +187,21 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == numberOfSections(in: tableView) - 1 && locationId != nil {
-            tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == numberOfSections(in: tableView) - 1 {
+            if locationId != nil && indexPath.row == 0 {
+                tableView.deselectRow(at: indexPath, animated: true)
 
-            let menuVC = MenuTableViewController(style: .grouped)
-            menuVC.locationId = locationId!
-            menuVC.title = String(format: mwLocalizedString("MenuFor: %@"), title!)
-            navigationController?.pushViewController(menuVC, animated: true)
+                let menuVC = MenuTableViewController(style: .grouped)
+                menuVC.locationId = locationId!
+                menuVC.title = String(format: mwLocalizedString("MenuFor: %@"), title!)
+                navigationController?.pushViewController(menuVC, animated: true)
+                return
+            }
+            if mapUrl != nil {
+                tableView.deselectRow(at: indexPath, animated: true)
+
+                UIApplication.shared.open(URL(string: mapUrl!)!)
+            }
         }
     }
 

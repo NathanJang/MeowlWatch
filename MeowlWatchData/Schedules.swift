@@ -263,12 +263,28 @@ public let diningLocationIds: [String: String] = {
     let dictionary = NSDictionary(contentsOfFile: path)! as! [String : Any] // [String : [String : [String : Any]]]; dictionary[locationName][arrayIndex][entryKey]
     var diningLocationIds = [String : String]()
     for locationName in dictionary.keys {
-            // Dining hall with location ID
+        // Dining hall with location ID
         let locationDict = dictionary[locationName] as! [String : Any]
         let locationId = locationDict["LocationId"] as! String
         diningLocationIds[locationName] = locationId
     }
     return diningLocationIds
+}()
+
+/// A dictionary mapping location name to map url if exists.
+public let mapUrls: [String: String] = {
+    var mapUrls = [String : String]()
+    let paths = [plistNameForDiningHallSchedules, plistNameForCafeOrCStoreSchedules, plistNameForNorrisLocationSchedules].map { Bundle.main.path(forResource: $0, ofType: "plist")! }
+    for path in paths {
+        let dictionary = NSDictionary(contentsOfFile: path)! as! [String : Any] // [String : [String : [String : Any]]]; dictionary[locationName][arrayIndex][entryKey]
+        for locationName in dictionary.keys {
+            // Dining hall with location ID
+            let locationDict = dictionary[locationName] as! [String : Any]
+            let locationId = locationDict["GoogleMapsUrl"] as? String
+            mapUrls[locationName] = locationId
+        }
+    }
+    return mapUrls
 }()
 
 /// A dictionary of dictionaries of arrays of `ScheduleEntry`s.
