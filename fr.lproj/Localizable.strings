@@ -66,7 +66,7 @@
 "SettingsIAPUnavailableTitle" = "(Achats intégrés non disponibles)";
 "SettingsRestorePurchasesTitle" = "Restaurer vos achats";
 "SettingsVisitDesignerWebsiteTitle" = "Voir le site-web de l'artiste";
-"SettingsSendFeedbackTitle" = "Signaler un problème";
+"SettingsSendFeedbackTitle" = "Envoyer un commentaire";
 "SettingsRateOnAppStoreTitle" = "Noter sur App Store";
 "SettingsContributeTitle" = "Contribuer à MeowlWatch";
 "SettingsShowLegalTitle" = "À propos";
@@ -107,7 +107,7 @@
 "DefaultUserSubtitleString" = "Touchez ici pour commencer";
 
 "ScheduleDisclaimer" = "Cet horaire-ci est seulement valable pour les jours ouvrables et les week-ends, et n'est pas garanti. Pendant les jours fériés, consultez les annonces de l'université.\n\nLes plans hebdomadaires se réinitialisent le dimanche à 7h (heure du centre).";
-"SeeMap" = "Voir sur Google Maps";
+"SeeMap" = "Ouvrir dans Google Maps";
 
 "MenuDisclaimer" = "Données de menu fournies par le resto.";
 

@@ -213,7 +213,7 @@ class DiningLocationSchedulesTableViewController: ExpandableTableViewController 
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         let numberOfSections = self.numberOfSections(in: tableView)
-        if section == numberOfSections - 1 && locationId == nil || section == numberOfSections - 2 && locationId != nil {
+        if section == numberOfSections - 1 && (locationId == nil && mapUrl == nil) || section == numberOfSections - 2 && (locationId != nil || mapUrl != nil) {
             return MeowlWatchData.scheduleDisclaimerString
         }
         return nil
