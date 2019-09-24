@@ -140,7 +140,7 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 if MeowlWatchData.removeAdsIsPurchased {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                    cell = tableView.dequeueReusableCell(withIdentifier: "ThanksForTipCell", for: indexPath)
                     cell!.textLabel!.text = mwLocalizedString("SettingsRemoveAdsAlreadyPurchased", comment: "Remove Ads Purchased!")
                 } else if isRefreshing {
                     cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)

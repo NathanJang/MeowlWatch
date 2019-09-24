@@ -75,7 +75,6 @@
 "SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Pensez à me laisser un petit pourboire ci-dessus ! :) En plus, les publicités se seront cachées. Pourquoi pas aussi écrire un avis sur App Store ?\n\nJe suis près de sortir ! Si vous vouliez maintenir MeowlWatch, envoyez-moi un message ci-dessous ou contribuer directement sur GitHub.";
 "SettingsRemoveAdsAlreadyPurchased" = "🎉 Merci pour le café ! 💜";
 "SettingsTipThankMessage" = "Merci beaucoup de m'avoir soutenu ! Si vous vouliez m'aider d'une autre façon envoyez-moi un message ci-dessous. :)\n\nJe suis près de sortir ! Si vous vouliez maintenir MeowlWatch, envoyez-moi un message ci-dessous ou contribuer directement sur GitHub.";
-"SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Pensez à me laisser un petit pourboire ci-dessus ! :) En plus, les publicités seront bien désactivés.";
 "SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Passez à %@ pour en savoir plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponibles";
 "SettingsIAPUnavailableMessage" = "Vérifiez que vous êtes connecté à internet. iTunes pourrait aussi avoir des problèmes avec des achats intégrés en ce moment. Veuillez ressayer plus tard.";

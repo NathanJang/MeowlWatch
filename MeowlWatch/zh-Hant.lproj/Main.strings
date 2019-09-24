@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "7Yb-pI-Zp7"; */
+"7Yb-pI-Zp7.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "dhZ-Ys-l4W"; */
+"dhZ-Ys-l4W.text" = "Title";
+
+/* Class = "UITableViewController"; title = "Settings"; ObjectID = "feM-RP-uNa"; */
+"feM-RP-uNa.title" = "Settings";
+
+/* Class = "UIViewController"; title = "關於"; ObjectID = "kF4-Xw-Rxe"; */
+"kF4-Xw-Rxe.title" = "關於";
+
+/* Class = "UINavigationItem"; title = "設置"; ObjectID = "kOW-vz-TOz"; */
+"kOW-vz-TOz.title" = "設置";
+
+/* Class = "UINavigationItem"; title = "MeowlWatch"; ObjectID = "nLS-DN-g3z"; */
+"nLS-DN-g3z.title" = "MeowlWatch";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "qIM-p1-kay"; */
+"qIM-p1-kay.text" = "Title";
