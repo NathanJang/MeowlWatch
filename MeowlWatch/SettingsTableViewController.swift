@@ -88,22 +88,24 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if MeowlWatchData.widgetIsPurchased {
-                return MeowlWatchData.widgetArrangement.count
-            } else {
-                return 3
-            }
+            return MeowlWatchData.widgetArrangement.count
         case 1:
-            return 1
+            if MeowlWatchData.removeAdsIsPurchased {
+                return 1
+            } else {
+                return 2
+            }
         case 2:
-            return languages.count
+            return 1
         case 3:
+            return languages.count
+        case 4:
             return 4
         default:
             return 0
@@ -115,8 +117,10 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             return mwLocalizedString("SettingsWidgetHeading", comment: "Widget")
         case 1:
-            return mwLocalizedString("SettingsLogoHeading", comment: "Logo")
+            return mwLocalizedString("SettingsRemoveAdsHeading", comment: "Support MeowlWatch")
         case 2:
+            return mwLocalizedString("SettingsLogoHeading", comment: "Logo")
+        case 3:
             return mwLocalizedString("SettingsLanguageTitle")
         default:
             return nil
@@ -128,46 +132,38 @@ class SettingsTableViewController: UITableViewController {
         // Configure the cell...
         switch indexPath.section {
         case 0:
-            if MeowlWatchData.widgetIsPurchased {
-                cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "WidgetArrangementCell", for: indexPath)
 
-                let item = MeowlWatchData.widgetArrangement[indexPath.row]
-                cell!.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
-            } else {
-                #if !MEOWLWATCH_FULL
-                    switch indexPath.row {
-                    case 0:
-                        if isRefreshing {
-                            cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
-                            cell!.textLabel!.text = mwLocalizedString("SettingsLoadingTitle", comment: "")
-                        } else {
-                            cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                            if let widgetProduct = widgetProduct {
-                                cell!.textLabel!.text = widgetProduct.localizedTitle
-                            } else {
-                                cell!.textLabel!.text = mwLocalizedString("SettingsIAPUnavailableTitle", comment: "")
-                            }
-                        }
-
-                    case 1:
-                        cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
-                        cell!.textLabel!.text = mwLocalizedString("SettingsRestorePurchasesTitle", comment: "")
-
-                    case 2:
-                        let previewCell = tableView.dequeueReusableCell(withIdentifier: "WidgetPreviewCell", for: indexPath) as? WidgetPreviewTableViewCell
-                        previewCell?.previewImageView.image = UIImage(named: "WidgetPreviewFull_\((currentLanguage != .default ? currentLanguage : systemDefaultLanguage()).rawValue)")
-                        cell = previewCell
-
-                    default:
-                        break
-                    }
-                #endif
-            }
+            let item = MeowlWatchData.widgetArrangement[indexPath.row]
+            cell!.textLabel!.text = QueryResult.description(forItem: item, withQuery: nil)
         case 1:
+            switch indexPath.row {
+            case 0:
+                if isRefreshing {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                    cell!.textLabel!.text = mwLocalizedString("SettingsLoadingTitle", comment: "")
+                } else {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+                    if let widgetProduct = widgetProduct {
+                        cell!.textLabel!.text = widgetProduct.localizedTitle
+                    } else {
+                        cell!.textLabel!.text = mwLocalizedString("SettingsIAPUnavailableTitle", comment: "")
+                    }
+                }
+
+            case 1:
+                cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
+                cell!.textLabel!.text = mwLocalizedString("SettingsRestorePurchasesTitle", comment: "")
+
+            default:
+                break
+            }
+
+        case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             cell!.textLabel!.text = mwLocalizedString("SettingsVisitDesignerWebsiteTitle", comment: "")
 
-        case 2:
+        case 3:
             cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             let language = languages[indexPath.row]
             if language == .default {
@@ -178,7 +174,7 @@ class SettingsTableViewController: UITableViewController {
             }
             cell?.accessoryType = language == selectedLanguage ? .checkmark : .none
 
-        case 3:
+        case 4:
             cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             switch indexPath.row {
             case 0:
@@ -201,30 +197,24 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !MeowlWatchData.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
-            return 488
-        }
-
         return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !MeowlWatchData.widgetIsPurchased && indexPath == IndexPath(row: 2, section: 0) {
-            return tableView.frame.width * 488 / 414
-        }
-
         return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            if MeowlWatchData.widgetIsPurchased {
-                return mwLocalizedString("SettingsWidgetHelpMessage", comment: "")
-            } else {
-                return mwLocalizedString("SettingsTipInfoMessage", comment: "")
-            }
+            return mwLocalizedString("SettingsWidgetHelpMessage", comment: "")
         case 1:
+            if MeowlWatchData.removeAdsIsPurchased {
+                return mwLocalizedString("SettingsTipInfoMessage", comment: "")
+            } else {
+                return mwLocalizedString("SettingsTipThankMessage", comment: "Thank you for your support!")
+            }
+        case 2:
             return String(format: mwLocalizedString("SettingsArtistInfoMessage: %@", comment: ""), isabelURLString)
         default:
             return nil
@@ -240,7 +230,7 @@ class SettingsTableViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         switch indexPath.section {
         case 0:
-            return MeowlWatchData.widgetIsPurchased
+            return true
         default:
             return false
         }
@@ -251,7 +241,7 @@ class SettingsTableViewController: UITableViewController {
         // Return false if you do not want the item to be re-orderable.
         switch indexPath.section {
         case 0:
-            return MeowlWatchData.widgetIsPurchased
+            return true
         default:
             return false
         }
@@ -289,49 +279,47 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0:
-            if !MeowlWatchData.widgetIsPurchased {
-                #if !MEOWLWATCH_FULL
-                    if !isRefreshing {
-                        switch indexPath.row {
-                        case 0:
-                            if canMakePayments {
-                                if widgetProduct != nil {
-                                    buyWidgetIfAvailable()
-                                } else {
-                                    self.showMessageAlert(title: mwLocalizedString("SettingsIAPUnavailableTitle", comment: ""), message: mwLocalizedString("SettingsIAPUnavailableMessage", comment: ""))
-                                }
+        case 1:
+            if !MeowlWatchData.removeAdsIsPurchased {
+                if !isRefreshing {
+                    switch indexPath.row {
+                    case 0:
+                        if canMakePayments {
+                            if widgetProduct != nil {
+                                buyWidgetIfAvailable()
                             } else {
-                                showCannotMakePaymentsAlert()
+                                self.showMessageAlert(title: mwLocalizedString("SettingsIAPUnavailableTitle", comment: ""), message: mwLocalizedString("SettingsIAPUnavailableMessage", comment: ""))
                             }
-
-                        case 1:
-                            setCanDismiss(false, animated: true)
-                            SKPaymentQueue.default().restoreCompletedTransactions()
-
-                        default:
-                            break
+                        } else {
+                            showCannotMakePaymentsAlert()
                         }
+
+                    case 1:
+                        setCanDismiss(false, animated: true)
+                        SKPaymentQueue.default().restoreCompletedTransactions()
+
+                    default:
+                        break
                     }
-                #endif
+                }
                 tableView.deselectRow(at: indexPath, animated: true)
             }
 
-        case 1:
+        case 2:
             guard let url = URL(string: self.isabelShortURLString) else { return }
             let safariVC = SFSafariViewController(url: url)
             safariVC.preferredControlTintColor = self.view.tintColor
             self.present(safariVC, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
 
-        case 2:
+        case 3:
             let previousLanguage = selectedLanguage
             selectedLanguage = languages[indexPath.row]
             tableView.reloadRows(at: [indexPath, IndexPath(row: languages.firstIndex(of: previousLanguage)!, section: indexPath.section)], with: .none)
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             tableView.deselectRow(at: indexPath, animated: true)
 
-        case 3:
+        case 4:
             switch indexPath.row {
             case 0:
                 let emailAddress = "JonathanChan2020+MeowlWatch@u.northwestern.edu"
@@ -431,7 +419,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
             // Show list of available purchases
             for product in response.products {
-                if product.productIdentifier == MeowlWatchData.widgetProductIdentifier {
+                if product.productIdentifier == MeowlWatchData.removeAdsProductIdentifier {
                     self.widgetProduct = product
                 }
             }
@@ -458,7 +446,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 return
             }
             self.canMakePayments = true
-            let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.widgetProductIdentifier])
+            let request = SKProductsRequest(productIdentifiers: [MeowlWatchData.removeAdsProductIdentifier])
             request.delegate = self
             request.start()
         }
@@ -474,7 +462,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 self.isRefreshing = false
                 self.setCanDismiss(true, animated: false)
 
-                MeowlWatchData.widgetIsPurchased = true
+                MeowlWatchData.removeAdsIsPurchased = true
                 let navigationController = self.navigationController!.presentingViewController as! NavigationController
                 navigationController.bannerView = nil
                 navigationController.setToolbarHidden(true, animated: false)
@@ -502,7 +490,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 }
             }
 
-            if !MeowlWatchData.widgetIsPurchased {
+            if !MeowlWatchData.removeAdsIsPurchased {
                 DispatchQueue.main.async { [weak self] in
                     self?.showMessageAlert(title: mwLocalizedString("SettingsCannotRestorePurchaseAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotRestorePurchaseAlertMessage", comment: ""))
                     self?.isRefreshing = false
@@ -529,7 +517,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                     self?.isRefreshing = false
                     self?.setCanDismiss(true, animated: false)
                 }
-                if transaction.payment.productIdentifier == MeowlWatchData.widgetProductIdentifier {
+                if transaction.payment.productIdentifier == MeowlWatchData.removeAdsProductIdentifier {
                     didPurchaseWidget()
                     queue.finishTransaction(transaction)
                 }

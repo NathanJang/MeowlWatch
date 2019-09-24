@@ -82,7 +82,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     /// Sets the label text to the appropriate content given a query result.
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
-        guard MeowlWatchData.widgetIsPurchased else { return }
         self.errorLabel.isHidden = true
         self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
         self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
