@@ -160,9 +160,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="220"/>
                     <connections>
+                        <outlet property="errorLabel" destination="EfC-3X-LcA" id="d46-qA-n8s"/>
                         <outlet property="leftDescriptionLabel" destination="KUB-f2-HvF" id="do4-yY-yPu"/>
                         <outlet property="leftNumberLabel" destination="QII-MZ-5nP" id="R9O-fa-CQR"/>
-                        <outlet property="purchaseRequiredLabel" destination="EfC-3X-LcA" id="Ykb-vU-GQz"/>
                         <outlet property="rightDescriptionLabel" destination="RWY-hX-emE" id="Krs-BG-Pl0"/>
                         <outlet property="rightNumberLabel" destination="2gX-C0-KcY" id="rAj-Xg-F5V"/>
                         <outlet property="secondaryLeftDescriptionLabel" destination="w02-My-Ekv" id="SE2-nw-vKD"/>
