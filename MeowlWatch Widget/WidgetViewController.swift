@@ -21,7 +21,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var secondaryLeftDescriptionLabel: UILabel!
     @IBOutlet weak var secondaryRightNumberLabel: UILabel!
     @IBOutlet weak var secondaryRightDescriptionLabel: UILabel!
-    @IBOutlet weak var purchaseRequiredLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
         
     override func viewDidLoad() {
@@ -49,8 +49,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         MeowlWatchData.loadFromDefaults()
-
-        guard MeowlWatchData.widgetIsPurchased else { return completionHandler(.noData) }
 
         updateLabels(with: MeowlWatchData.lastQuery)
         guard MeowlWatchData.shouldRefresh else {
@@ -85,7 +83,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     /// - Parameter query: The query result.
     func updateLabels(with query: QueryResult?) {
         guard MeowlWatchData.widgetIsPurchased else { return }
-        self.purchaseRequiredLabel.isHidden = true
+        self.errorLabel.isHidden = true
         self.leftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
         self.rightDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[1], withQuery: query)
         self.secondaryLeftDescriptionLabel.text = QueryResult.description(forItem: MeowlWatchData.widgetArrangement[2], withQuery: query)
@@ -93,8 +91,8 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 
         if let query = query {
             if let error = query.error, error != .connectionError {
-                self.purchaseRequiredLabel.isHidden = false
-                self.purchaseRequiredLabel.text = mwLocalizedString("MWWUpdateFailedMessage", comment: "")
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = mwLocalizedString("MWWUpdateFailedMessage", comment: "")
             } else {
                 self.updateNumberLabel(self.leftNumberLabel, asItem: MeowlWatchData.widgetArrangement[0], withQuery: query)
                 self.updateNumberLabel(self.rightNumberLabel, asItem: MeowlWatchData.widgetArrangement[1], withQuery: query)

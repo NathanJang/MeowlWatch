@@ -104,9 +104,6 @@ class NavigationController: UINavigationController {
         if let presentedViewController = meowlWatchTableViewController.presentedViewController {
             presentedViewController.dismiss(animated: false, completion: nil)
         }
-        if !MeowlWatchData.widgetIsPurchased {
-            meowlWatchTableViewController.performSegue(withIdentifier: "ShowSettings", sender: self)
-        }
     }
 
 }

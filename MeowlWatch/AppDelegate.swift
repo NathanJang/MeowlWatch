@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 GADMobileAds.sharedInstance().start()
             }
         #else
-            MeowlWatchData.widgetIsPurchased = true
+            MeowlWatchData.removeAdsIsPurchased = true
         #endif
 
         Siren.shared.wail()

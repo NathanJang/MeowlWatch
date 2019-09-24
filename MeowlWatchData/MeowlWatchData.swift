@@ -42,10 +42,15 @@ public func loadFromDefaults() {
         hiddenSections = existingArray
     }
 
-    if let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased") {
-        widgetIsPurchased = storedWidgetIsPurchased
+    // Keeping widget logic for now for legacy/migration reasons
+    if let storedRemoveAdsIsPurchased = keychain.bool(forKey: "removeAdsPurchased") {
+        removeAdsIsPurchased = storedRemoveAdsIsPurchased
+    } else if let storedWidgetIsPurchased = keychain.bool(forKey: "widgetPurchased") {
+        removeAdsIsPurchased = storedWidgetIsPurchased
+        keychain.removeObject(forKey: "widgetPurchased")
     } else {
-        widgetIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
+        // Some migration logic??
+        removeAdsIsPurchased = userDefaults.bool(forKey: "widgetPurchased")
         userDefaults.removeObject(forKey: "widgetPurchased")
     }
 
@@ -71,7 +76,7 @@ public func persistToUserDefaults() {
 
     userDefaults.set(hiddenSections, forKey: "hiddenSections")
 
-    keychain.set(widgetIsPurchased, forKey: "widgetPurchased", withAccessibility: .always)
+    keychain.set(removeAdsIsPurchased, forKey: "removeAdsPurchased", withAccessibility: .always)
 
     if selectedLanguage == .default {
         userDefaults.removeObject(forKey: "currentLanguageId")
@@ -355,14 +360,14 @@ public func moveWidgetArrangement(fromIndex: Int, toIndex: Int) {
 
 // MARK: IAPs
 
-/// The product identifier for the IAP for the widget.
-public let widgetProductIdentifier = "me.jonathanchan.MeowlWatch.MeowlWatch_Widget"
+/// The product identifier for removing ads.
+/// Is widget ID for legacy reasons.
+public let removeAdsProductIdentifier = "me.jonathanchan.MeowlWatch.MeowlWatch_Widget"
 
-/// Whether the user purchased the widget.
-public var widgetIsPurchased = false
+public var removeAdsIsPurchased = false
 
 /// Whether anything is purchased.
-public var anythingIsPurchased: Bool { return widgetIsPurchased }
+public var anythingIsPurchased: Bool { return removeAdsIsPurchased }
 
 /// Whether we should display ads.
 public var shouldDisplayAds: Bool { return !anythingIsPurchased }
