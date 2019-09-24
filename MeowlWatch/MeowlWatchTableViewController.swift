@@ -323,7 +323,6 @@ class MeowlWatchTableViewController: ExpandableTableViewController {
         guard let refreshControl = refreshControl else { return }
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.adjustedContentInset.top - refreshControl.frame.height), animated: animated)
         }
         DispatchQueue.main.async { [unowned self] in
             self.refresh(animated: animated)
