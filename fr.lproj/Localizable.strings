@@ -70,7 +70,11 @@
 "SettingsRateOnAppStoreTitle" = "Noter sur App Store";
 "SettingsContributeTitle" = "Contribuer à MeowlWatch";
 "SettingsShowLegalTitle" = "À propos";
-"SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles se montreront dans cet ordre-ci.\n\nMerci beaucoup de m'avoir soutenu !";
+"SettingsWidgetHelpMessage" = "Vous pouvez ajouter le widget MeowlWatch au centre de notifications. Les articles se montreront dans cet ordre-ci.";
+"SettingsRemoveAdsHeading" = "Soutenir MeowlWatch";
+"SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Pensez à me laisser un petit pourboire ci-dessus ! :) En plus, les publicités se seront cachées. Pourquoi pas aussi écrire un avis sur App Store ?\n\nJe suis près de sortir ! Si vous vouliez maintenir MeowlWatch, envoyez-moi un message ci-dessous ou contribuer directement sur GitHub.";
+"SettingsRemoveAdsAlreadyPurchased" = "🎉 Merci pour le café ! 💜";
+"SettingsTipThankMessage" = "Merci beaucoup de m'avoir soutenu ! Si vous vouliez m'aider d'une autre façon envoyez-moi un message ci-dessous. :)\n\nJe suis près de sortir ! Si vous vouliez maintenir MeowlWatch, envoyez-moi un message ci-dessous ou contribuer directement sur GitHub.";
 "SettingsTipInfoMessage" = "Il est très dur de faire les apps utiles comme MeowlWatch. Pensez à me laisser un petit pourboire ci-dessus ! :) En plus, les publicités seront bien désactivés.";
 "SettingsArtistInfoMessage: %@" = "Le logo MeowlWatch est fait par Isabel Nygard. Passez à %@ pour en savoir plus.";
 "SettingsIAPUnavailableTitle" = "Achats intégrés non disponibles";

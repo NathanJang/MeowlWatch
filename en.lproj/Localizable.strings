@@ -70,8 +70,11 @@
 "SettingsRateOnAppStoreTitle" = "Rate on App Store";
 "SettingsContributeTitle" = "Contribute to MeowlWatch";
 "SettingsShowLegalTitle" = "About";
-"SettingsWidgetHelpMessage" = "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement.\n\nThank you for your support!";
-"SettingsTipInfoMessage" = "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled.";
+"SettingsWidgetHelpMessage" = "The MeowlWatch widget may be added to the Today View on the Notification Center. Items will appear in this arrangement.";
+"SettingsRemoveAdsHeading" = "Support MeowlWatch";
+"SettingsTipInfoMessage" = "Making useful apps like MeowlWatch is hard work. Please consider leaving me a tip above! :) Ads will also be disabled. Maybe write a review too?\n\nI'm graduating soon! If you'd like to help pick up this project, please contact me below or contribute directly on GitHub.";
+"SettingsRemoveAdsAlreadyPurchased" = "🎉 Thanks for the coffee! 💜";
+"SettingsTipThankMessage" = "Thanks fo much for your support! If you'd like to help out any other way please contact me below. :)\n\nI'm graduating soon! If you'd like to help pick up this project, please contact me below or contribute directly on GitHub.";
 "SettingsArtistInfoMessage: %@" = "The MeowlWatch logo was designed by Isabel Nygard. Visit %@ to see more.";
 "SettingsIAPUnavailableTitle" = "In-App Purchase Unavailable";
 "SettingsIAPUnavailableMessage" = "Please check your internet connection. Or, iTunes may be having some trouble with in-app purchases at the moment. Please try again later.";

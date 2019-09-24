@@ -70,8 +70,11 @@
 "SettingsRateOnAppStoreTitle" = "App Store 评分";
 "SettingsContributeTitle" = "贡献 MeowlWatch";
 "SettingsShowLegalTitle" = "关于";
-"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，显示顺序在此设置。\n\n感谢您信任支持！";
-"SettingsTipInfoMessage" = "台上一分钟，台下十年功。请您考虑给开发者留个小费！广告也将消失。";
+"SettingsWidgetHelpMessage" = "您可在通信中心添加 MeowlWatch 小部件，显示顺序在此设置。";
+"SettingsRemoveAdsHeading" = "支持 MeowlWatch";
+"SettingsTipInfoMessage" = "台上一分钟，台下十年功。请您考虑给开发者留个小费！广告也将消失。要不也评评分？\n\n我快毕业啦！您要是想以后继续开发 MeowlWatch，请联系我或直接 GitHub 开发贡献。";
+"SettingsRemoveAdsAlreadyPurchased" = "🎉 感激不尽！💜";
+"SettingsTipThankMessage" = "感谢您信任支持！您要是想再支持我，请联系。\n\n我快毕业啦！您要是想以后继续开发 MeowlWatch，请联系我或直接 GitHub 开发贡献。";
 "SettingsArtistInfoMessage: %@" = "程序图标由 Isabel Nygard 设计。详情请访问 %@。";
 "SettingsIAPUnavailableTitle" = "In-App Purchases 不可用";
 "SettingsIAPUnavailableMessage" = "请检查网络。或许，iTunes 与 In-App Purchases 可能暂时出错。请稍后重试。";
@@ -109,7 +112,7 @@
 "ScheduleDisclaimer" = "时间表只供平日参考，假期以学校公告为准。\n\n周制套餐将在每周日中部时间早上7点重置。";
 "SeeMap" = "打开 Google 地图";
 
-"MenuDisclaimer" = "菜单由餐饮公司提供。";
+"MenuDisclaimer" = "菜单资料由餐饮公司提供。";
 
 "Open" = "营业";
 "Closing Soon" = "即将休息";

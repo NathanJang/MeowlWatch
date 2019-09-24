@@ -139,7 +139,10 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             switch indexPath.row {
             case 0:
-                if isRefreshing {
+                if MeowlWatchData.removeAdsIsPurchased {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
+                    cell!.textLabel!.text = mwLocalizedString("SettingsRemoveAdsAlreadyPurchased", comment: "Remove Ads Purchased!")
+                } else if isRefreshing {
                     cell = tableView.dequeueReusableCell(withIdentifier: "LoadingButtonCell", for: indexPath)
                     cell!.textLabel!.text = mwLocalizedString("SettingsLoadingTitle", comment: "")
                 } else {
@@ -209,8 +212,8 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             return mwLocalizedString("SettingsWidgetHelpMessage", comment: "")
         case 1:
-            if MeowlWatchData.removeAdsIsPurchased {
-                return mwLocalizedString("SettingsTipInfoMessage", comment: "")
+            if !MeowlWatchData.removeAdsIsPurchased {
+                return mwLocalizedString("SettingsTipInfoMessage", comment: "This is what the tip does.")
             } else {
                 return mwLocalizedString("SettingsTipThankMessage", comment: "Thank you for your support!")
             }
@@ -426,7 +429,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             DispatchQueue.main.async { [weak self] in
                 self?.isRefreshing = false
                 self?.setCanDismiss(true, animated: false)
-                self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .none)
             }
         }
 
@@ -435,7 +438,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 self?.showMessageAlert(title: mwLocalizedString("SettingsCannotFetchAlertTitle", comment: ""), message: mwLocalizedString("SettingsCannotFetchAlertMessage", comment: ""), completion: {
                         self?.isRefreshing = false
                     self?.setCanDismiss(true, animated: false)
-                        self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                        self?.tableView?.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .none)
                 })
             }
         }
